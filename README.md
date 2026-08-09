@@ -48,17 +48,15 @@ const CONFIG = {
 
 ## Fotos da galeria
 
-A seção **Galeria** (`index.html`, `#galeria`) está com placeholders (ícones
-+ "Adicione uma foto"). Para trocar por fotos reais dos seus trabalhos,
-troque o conteúdo de um `.gallery-item` por uma imagem, por exemplo:
+As fotos ficam em `assets/img/gallery/`. Para adicionar uma peça nova,
+copie o padrão já usado na seção **Galeria** (`index.html`, `#galeria`):
 
 ```html
-<div class="gallery-item">
-  <img src="assets/img/trabalho-01.jpg" alt="Suporte de celular impresso em PETG preto">
-</div>
+<figure class="gallery-item reveal">
+  <img loading="lazy" decoding="async" src="assets/img/gallery/nome-da-peca.jpg" alt="Descrição da peça para leitores de tela">
+  <figcaption>Nome curto da peça</figcaption>
+</figure>
 ```
-
-Coloque os arquivos de imagem em `assets/img/`.
 
 ## Imagem de capa para compartilhamento (opcional)
 
@@ -91,6 +89,25 @@ Os arquivos da logo estão em `assets/img/brand/`:
   da marca, como papelaria ou documentos)
 - `apple-touch-icon.png` — ícone para adicionar o site à tela de início do iPhone
 
+## Assistentes personalizados (Claude Code)
+
+Este repositório tem 4 subagentes configurados em `.claude/agents/`, prontos
+pra usar sempre que você abrir o Claude Code aqui (em qualquer máquina —
+basta clonar o repo):
+
+| Agente | Pra que serve |
+|---|---|
+| `qa-tester` | Testa o site de verdade (roda local, clica nos fluxos) e reporta bugs — não corrige, só encontra. |
+| `devops` | Publica o site: branch → PR → merge → GitHub Pages. Sabe o processo desse projeto e é explícito sobre o que precisa de um clique seu. |
+| `ux-designer` | Revisão visual/UX — contraste, espaçamento, mobile. Ajusta coisas pequenas direto, avisa antes de mudar estrutura. |
+| `business-assistant` | Escreve conteúdo pra WhatsApp, Instagram e descrições de peça, no tom da Zanshin e com base nos dados reais do site (nunca inventa preço). |
+
+Chame um pelo nome ("usa o agente qa-tester pra conferir essa mudança") ou
+deixe o Claude Code puxar automaticamente quando a tarefa combinar com a
+descrição do agente. Esses agentes valem só pra este repositório — se você
+quiser os mesmos papéis disponíveis em outros projetos seus, copie as pastas
+`.claude/agents/*.md` pra `~/.claude/agents/` na sua máquina (config global).
+
 ## Estrutura do projeto
 
 ```
@@ -98,5 +115,6 @@ index.html            Página principal
 css/style.css          Estilos
 js/script.js            CONFIG, menu mobile, animações e calculadora de orçamento
 assets/img/brand/        Arquivos da logo
-assets/img/              Demais imagens (adicione as fotos da galeria aqui)
+assets/img/gallery/      Fotos da galeria
+.claude/agents/          Subagentes personalizados do Claude Code
 ```
