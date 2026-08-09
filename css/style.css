@@ -452,21 +452,32 @@ h2.center, p.section-lead.center, p.eyebrow.center { margin-left: auto; margin-r
 }
 
 .gallery-item {
+  position: relative;
   aspect-ratio: 1 / 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
+  margin: 0;
+  overflow: hidden;
   background: var(--surface);
-  border: 1.5px dashed var(--border);
+  border: 1px solid var(--border);
   border-radius: var(--radius);
-  color: var(--text-muted);
-  font-size: 0.82rem;
-  transition: border-color 0.2s ease, color 0.2s ease;
 }
-.gallery-item:hover { border-color: var(--accent-2); color: var(--accent-2); }
-.gallery-icon { width: 34px; height: 34px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; opacity: 0.8; }
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.gallery-item:hover img { transform: scale(1.06); }
+.gallery-item figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 28px 14px 12px;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.75), transparent);
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
 
 .gallery-note { margin-top: 32px; color: var(--text-muted); }
 .gallery-note a { color: var(--accent-2); font-weight: 600; }
