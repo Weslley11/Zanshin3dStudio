@@ -5,26 +5,26 @@
 
 const CONFIG = {
   // Número de WhatsApp no formato internacional, só dígitos: 55 + DDD + número.
-  // TODO: troque pelo número real da Zanshin 3D Studio.
-  whatsappNumber: "5547900000000",
+  whatsappNumber: "5547991677070",
 
   // Usuário do Instagram, sem o @.
-  // TODO: troque pelo usuário real do Instagram.
-  instagramUser: "zanshin3dstudio",
+  instagramUser: "zanshin_3dstudio",
 
-  // Valores de referência para a calculadora de orçamento.
-  // São só um ponto de partida — ajuste conforme o custo real do seu
-  // filamento, energia e a margem que você quer praticar.
+  // Valores para a calculadora de orçamento, a partir dos seus custos reais.
   pricing: {
-    pricePerGram: {
-      PLA: 0.09,
-      PETG: 0.11,
-      "ABS/ASA": 0.12,
-      TPU: 0.18,
-    },
-    pricePerHour: 6, // custo de máquina/energia por hora de impressão
-    setupFee: 5, // taxa fixa de preparo/manuseio por pedido
-    finishFee: 15, // acréscimo por acabamento extra (lixamento/pintura), por peça
+    filamentCostPerKg: 100.0, // R$ por kg de filamento — mesmo custo para todos os materiais por padrão; se você paga preços diferentes por material, dá pra separar por chave (PLA/PETG/...) como em pricePerGram antes.
+    energyTariff: 1.8, // R$ por kWh (tarifa da distribuidora)
+    printerPowerWatts: 180, // consumo médio da Bambu Lab P2S, em watts
+
+    // Margem sobre o custo (filamento + energia). Você passou "200/250%" —
+    // interpretei como multiplicar o custo por 2 a 2,5x, e usei o meio da
+    // faixa (2,25x = 225%). Se quiser um dos extremos, troque para 2 (200%)
+    // ou 2.5 (250%). Se na verdade você quis dizer "markup" (200% de markup
+    // = custo + 200% em cima = 3x o custo), me avisa que eu ajusto.
+    marginMultiplier: 2.25,
+
+    setupFee: 5, // taxa fixa de preparo/manuseio por pedido — ainda é um valor de exemplo meu, ajuste à vontade
+    finishFee: 15, // acréscimo por acabamento extra (lixamento/pintura), por peça — também exemplo
   },
 };
 
@@ -157,12 +157,16 @@ function initQuoteForm() {
   });
 }
 
-function estimatePrice({ weight, hours, material, qty, finish }) {
-  const { pricePerGram, pricePerHour, setupFee, finishFee } = CONFIG.pricing;
-  const gramRate = pricePerGram[material] ?? pricePerGram.PLA;
+function estimatePrice({ weight, hours, qty, finish }) {
+  const { filamentCostPerKg, energyTariff, printerPowerWatts, marginMultiplier, setupFee, finishFee } =
+    CONFIG.pricing;
 
-  const perPiece = weight * gramRate + hours * pricePerHour + (finish ? finishFee : 0);
-  const total = perPiece * qty + setupFee;
+  const materialCost = weight * (filamentCostPerKg / 1000);
+  const energyCost = hours * (printerPowerWatts / 1000) * energyTariff;
+  const rawCost = materialCost + energyCost;
+
+  const pricePerPiece = rawCost * marginMultiplier + (finish ? finishFee : 0);
+  const total = pricePerPiece * qty + setupFee;
 
   return Math.round(total * 100) / 100;
 }

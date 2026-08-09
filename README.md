@@ -24,19 +24,27 @@ Todo o contato do site é centralizado em **`js/script.js`**, no objeto
 
 ```js
 const CONFIG = {
-  whatsappNumber: "5547900000000", // seu número real: 55 + DDD + número, só dígitos
-  instagramUser: "zanshin3dstudio", // seu usuário real do Instagram, sem @
-  pricing: { ... } // valores de referência da calculadora de orçamento
+  whatsappNumber: "5547991677070", // 55 + DDD + número, só dígitos
+  instagramUser: "zanshin_3dstudio", // usuário do Instagram, sem @
+  pricing: { ... } // valores da calculadora de orçamento
 };
 ```
 
 - **`whatsappNumber`** e **`instagramUser`** alimentam automaticamente todos
   os botões/links de WhatsApp e Instagram da página (menu, seção de
-  contato, botão flutuante e o botão gerado pela calculadora).
-- **`pricing`** são valores de exemplo (preço por grama de cada material,
-  taxa por hora de máquina, taxa fixa e acabamento extra). Ajuste conforme
-  o custo real do seu filamento/energia e a margem que você quer praticar
-  — a fórmula usada está em `estimatePrice()` no `js/script.js`.
+  contato, botão flutuante e o botão gerado pela calculadora) — já
+  preenchidos com os dados reais.
+- **`pricing`** calcula o orçamento a partir do custo real (filamento +
+  energia) vezes uma margem:
+  - `filamentCostPerKg`, `energyTariff` e `printerPowerWatts` vieram dos
+    valores que você passou (R$100/kg, R$1,80/kWh, 180W da P2S).
+  - `marginMultiplier` está em **2.25** (meio da faixa "200/250%" que você
+    mencionou, interpretada como 2 a 2,5x o custo). Se você quis dizer
+    outra coisa com "margem" (por exemplo, markup de 200% = 3x o custo),
+    troque esse número — está comentado no arquivo.
+  - `setupFee` e `finishFee` continuam sendo valores de exemplo meus
+    (taxa fixa por pedido e acréscimo por acabamento) — ajuste à vontade.
+  - a fórmula completa está em `estimatePrice()` no `js/script.js`.
 
 ## Fotos da galeria
 
