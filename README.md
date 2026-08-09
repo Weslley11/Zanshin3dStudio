@@ -69,11 +69,26 @@ Qualquer serviço de hospedagem estática funciona, por exemplo:
 - **Netlify** ou **Vercel**: conecte o repositório e faça o deploy — não é
   necessário configurar comando de build (site estático).
 
+## Marca
+
+A paleta do site (vermelho `#d01010` e prata `#c7cdd3`, variáveis `--accent`
+e `--accent-2` no topo do `css/style.css`) foi extraída da logo oficial.
+Os arquivos da logo estão em `assets/img/brand/`:
+
+- `icon.png` — símbolo isolado (favicon e ilustração da seção Sobre)
+- `logo-horizontal-dark-bg.png` — versão com texto branco, para fundos
+  escuros (usada no cabeçalho e rodapé do site)
+- `logo-horizontal-light-bg.png` — versão com texto preto, para fundos
+  claros (não usada no site em si, mas disponível para outras aplicações
+  da marca, como papelaria ou documentos)
+- `apple-touch-icon.png` — ícone para adicionar o site à tela de início do iPhone
+
 ## Estrutura do projeto
 
 ```
-index.html          Página principal
-css/style.css        Estilos
-js/script.js          CONFIG, menu mobile, animações e calculadora de orçamento
-assets/img/           Favicon e imagens (adicione suas fotos aqui)
+index.html            Página principal
+css/style.css          Estilos
+js/script.js            CONFIG, menu mobile, animações e calculadora de orçamento
+assets/img/brand/        Arquivos da logo
+assets/img/              Demais imagens (adicione as fotos da galeria aqui)
 ```

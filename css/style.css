@@ -9,8 +9,9 @@
   --border: #2a2a34;
   --text: #f3f3f1;
   --text-muted: #a3a3ad;
-  --accent: #ff5a36;
-  --accent-2: #34d1bf;
+  --accent: #d01010;
+  --accent-bright: #f86060;
+  --accent-2: #c7cdd3;
   --whatsapp: #25d366;
   --radius: 14px;
   --radius-sm: 8px;
@@ -117,10 +118,10 @@ h2.center, p.section-lead.center, p.eyebrow.center { margin-left: auto; margin-r
 .btn:hover { transform: translateY(-2px); }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--accent), #ff8657);
-  color: #140900;
+  background: linear-gradient(135deg, var(--accent), var(--accent-bright));
+  color: #1a0505;
 }
-.btn-primary:hover { box-shadow: 0 12px 28px -10px rgba(255, 90, 54, 0.55); }
+.btn-primary:hover { box-shadow: 0 12px 28px -10px rgba(208, 16, 16, 0.55); }
 
 .btn-ghost {
   background: transparent;
@@ -165,19 +166,11 @@ h2.center, p.section-lead.center, p.eyebrow.center { margin-left: auto; margin-r
   letter-spacing: 0.02em;
 }
 
-.logo-mark {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 34px;
-  height: 34px;
-  border-radius: 9px;
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  color: #0d0d10;
-  font-size: 1.05rem;
+.logo-img {
+  height: 36px;
+  width: auto;
+  display: block;
 }
-
-.logo-text em { color: var(--accent); font-style: normal; }
 
 .nav-toggle {
   display: flex;
@@ -288,7 +281,7 @@ h2.center, p.section-lead.center, p.eyebrow.center { margin-left: auto; margin-r
   transform: translateX(-50%);
   width: 700px;
   height: 500px;
-  background: radial-gradient(circle, rgba(255, 90, 54, 0.35), transparent 65%);
+  background: radial-gradient(circle, rgba(208, 16, 16, 0.35), transparent 65%);
   filter: blur(10px);
 }
 
@@ -364,7 +357,7 @@ h2.center, p.section-lead.center, p.eyebrow.center { margin-left: auto; margin-r
   width: 44px;
   height: 44px;
   border-radius: 10px;
-  background: rgba(255, 90, 54, 0.12);
+  background: rgba(208, 16, 16, 0.12);
   color: var(--accent);
   margin-bottom: 16px;
 }
@@ -541,11 +534,8 @@ h2.center, p.section-lead.center, p.eyebrow.center { margin-left: auto; margin-r
 .footer-brand {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 0.85rem;
 }
+.footer-logo-img { height: 28px; }
 .footer-inner p { margin: 0; font-size: 0.85rem; }
 .footer-social { display: flex; gap: 10px; }
 .footer-social a {

@@ -15,7 +15,8 @@
      assets/img/og-cover.png e descomente a linha abaixo apontando para ela.
 <meta property="og:image" content="assets/img/og-cover.png"> -->
 
-<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<link rel="icon" type="image/png" href="assets/img/brand/icon.png">
+<link rel="apple-touch-icon" href="assets/img/brand/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -28,8 +29,7 @@
 <header class="site-header">
   <div class="container navbar">
     <a href="#top" class="logo">
-      <span class="logo-mark" aria-hidden="true">禅</span>
-      <span class="logo-text">ZANSHIN <em>3D STUDIO</em></span>
+      <img src="assets/img/brand/logo-horizontal-dark-bg.png" alt="Zanshin 3D Studio" class="logo-img">
     </a>
 
     <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navLinks">
@@ -96,20 +96,7 @@
         </p>
       </div>
       <div class="about-card reveal" aria-hidden="true">
-        <svg viewBox="0 0 200 200" class="about-illustration">
-          <defs>
-            <linearGradient id="cubeGrad" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="var(--accent)"/>
-              <stop offset="100%" stop-color="var(--accent-2)"/>
-            </linearGradient>
-          </defs>
-          <g fill="none" stroke="url(#cubeGrad)" stroke-width="2.5" stroke-linejoin="round">
-            <polygon points="100,20 170,60 170,140 100,180 30,140 30,60" opacity="0.35"/>
-            <polyline points="30,60 100,100 170,60"/>
-            <line x1="100" y1="100" x2="100" y2="180"/>
-            <polyline points="65,40 135,80" opacity="0.6"/>
-          </g>
-        </svg>
+        <img src="assets/img/brand/icon.png" alt="" class="about-illustration">
       </div>
     </div>
   </section>
@@ -353,8 +340,7 @@
 <footer class="site-footer">
   <div class="container footer-inner">
     <div class="footer-brand">
-      <span class="logo-mark" aria-hidden="true">禅</span>
-      <span>ZANSHIN 3D STUDIO</span>
+      <img src="assets/img/brand/logo-horizontal-dark-bg.png" alt="Zanshin 3D Studio" class="logo-img footer-logo-img">
     </div>
     <p>© <span id="year"></span> Zanshin 3D Studio · Jaraguá do Sul, SC</p>
     <div class="footer-social">
