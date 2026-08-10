@@ -9,7 +9,7 @@ const PEDIDOS_CONFIG = {
   // Cole aqui o link gerado em Arquivo → Compartilhar → Publicar na web
   // (escolha a aba "Painel", formato CSV). Deixe vazio para manter o
   // estado "ainda não configurado".
-  sheetCsvUrl: "",
+  sheetCsvUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSb0FujOgNUFYiBgowWO3uOzXQLE3XD-XmMbqHUqm-Zq3tORmbS19y8atmjaj9W4rJMP7vToh1H4u6c/pub?gid=35131697&single=true&output=tsv",
 };
 
 const STATUS_PIPELINE = ["Orçamento", "Fila", "Imprimindo", "Acabamento", "Pronto", "Entregue"];
