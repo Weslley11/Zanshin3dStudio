@@ -108,12 +108,57 @@ descrição do agente. Esses agentes valem só pra este repositório — se voc�
 quiser os mesmos papéis disponíveis em outros projetos seus, copie as pastas
 `.claude/agents/*.md` pra `~/.claude/agents/` na sua máquina (config global).
 
+## Painel de pedidos
+
+`pedidos.html` mostra os pedidos em andamento agrupados por status (Orçamento
+→ Fila → Imprimindo → Acabamento → Pronto → Entregue), lendo de uma planilha
+do Google Sheets — sem servidor, sem banco de dados, sem login pra você
+manter.
+
+**Por que duas abas.** O site é público (qualquer um com o link vê a
+página). Pra nunca expor nome/telefone/valor de cliente, a planilha usa uma
+aba privada (onde você realmente trabalha) e uma aba pública derivada por
+fórmula (a única que vira link público). Assim é impossível colar um
+telefone sem querer no lugar errado — a aba pública só tem as colunas que
+ela busca.
+
+**Passo a passo (uma vez só):**
+
+1. Crie uma planilha nova no [Google Sheets](https://sheets.google.com).
+2. Renomeie a primeira aba pra **`Pedidos`** e crie as colunas (linha 1):
+   `codigo | cliente | telefone | peca | material | status | previsao | valor | obs`
+   — essa aba é só sua, nunca é publicada.
+3. Crie uma segunda aba chamada **`Painel`** com estas colunas na linha 1:
+   `codigo | peca | material | status | previsao`
+   Na linha 2, cole estas fórmulas (uma por coluna) e arraste pra baixo até
+   cobrir o número de pedidos que você costuma ter ao mesmo tempo:
+   ```
+   A2: =Pedidos!A2      (código)
+   B2: =Pedidos!D2      (peça)
+   C2: =Pedidos!E2      (material)
+   D2: =Pedidos!F2      (status)
+   E2: =Pedidos!G2      (previsão)
+   ```
+4. Na coluna **status** (aba `Pedidos`), use sempre um destes textos exatos:
+   `Orçamento`, `Fila`, `Imprimindo`, `Acabamento`, `Pronto`, `Entregue`.
+5. Publique **só a aba `Painel`**: *Arquivo → Compartilhar → Publicar na
+   web* → em "Célula/intervalo" selecione a aba **`Painel`** (não a
+   planilha inteira) → formato **CSV** → *Publicar*. Copie o link gerado.
+6. Cole esse link em `PEDIDOS_CONFIG.sheetCsvUrl`, no topo de
+   `js/pedidos.js`.
+
+Pronto — a página busca esse CSV toda vez que alguém abre `pedidos.html`.
+Pra atualizar o status de um pedido, edite só a aba `Pedidos`; a aba
+`Painel` (e o site) atualiza sozinha.
+
 ## Estrutura do projeto
 
 ```
 index.html            Página principal
+pedidos.html            Painel de pedidos (lê a planilha do Google Sheets)
 css/style.css          Estilos
 js/script.js            CONFIG, menu mobile, animações e calculadora de orçamento
+js/pedidos.js            Config e lógica do painel de pedidos
 assets/img/brand/        Arquivos da logo
 assets/img/gallery/      Fotos da galeria
 .claude/agents/          Subagentes personalizados do Claude Code

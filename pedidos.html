@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acompanhe seu pedido — Zanshin 3D Studio</title>
+<meta name="description" content="Acompanhe o status do seu pedido na Zanshin 3D Studio pelo código enviado no WhatsApp.">
+<meta name="theme-color" content="#0d0d10">
+<meta name="robots" content="noindex">
+
+<link rel="icon" type="image/png" href="assets/img/brand/icon.png">
+<link rel="apple-touch-icon" href="assets/img/brand/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a href="index.html" class="logo">
+      <img src="assets/img/brand/logo-horizontal-dark-bg.png" alt="Zanshin 3D Studio" class="logo-img">
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#sobre" class="nav-link">Sobre</a></li>
+        <li><a href="index.html#servicos" class="nav-link">Serviços</a></li>
+        <li><a href="index.html#orcamento" class="nav-link">Orçamento</a></li>
+        <li><a href="index.html#galeria" class="nav-link">Galeria</a></li>
+        <li><a href="pedidos.html" class="nav-link">Pedidos</a></li>
+        <li><a href="index.html#contato" class="nav-link btn-nav">Contato</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="conteudo">
+  <section class="pedidos-hero">
+    <div class="container">
+      <p class="eyebrow">Acompanhe seu pedido</p>
+      <h1>Painel de pedidos</h1>
+      <p class="section-lead">
+        Digite ou procure pelo código que te enviamos no WhatsApp na
+        confirmação do orçamento.
+      </p>
+    </div>
+  </section>
+
+  <section class="pedidos-board-section">
+    <div class="container">
+      <div class="board" id="board" hidden></div>
+
+      <div class="board-state" id="emptyState" hidden>
+        <p>Nenhum pedido em andamento no momento.</p>
+      </div>
+
+      <div class="board-state" id="errorState" hidden>
+        <p>Não consegui carregar os pedidos agora. Tenta de novo em alguns minutos ou chama no WhatsApp.</p>
+      </div>
+
+      <div class="board-state" id="setupState" hidden>
+        <p><strong>Painel ainda não configurado.</strong></p>
+        <p>
+          Para ativar, crie a planilha de pedidos no Google Sheets, publique a
+          aba pública como CSV e cole o link em <code>PEDIDOS_CONFIG.sheetCsvUrl</code>
+          no arquivo <code>js/pedidos.js</code>. Passo a passo completo no
+          <code>README.md</code>, seção "Painel de pedidos".
+        </p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <img src="assets/img/brand/logo-horizontal-dark-bg.png" alt="Zanshin 3D Studio" class="logo-img footer-logo-img">
+    </div>
+    <p>© <span id="year"></span> Zanshin 3D Studio · Jaraguá do Sul, SC</p>
+    <div class="footer-social">
+      <a href="https://wa.me/5547991677070" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M20.5 3.5a11 11 0 0 0-17.4 13.2L2 21.5l4.9-1.3A11 11 0 0 0 20.5 3.5Z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/zanshin_3dstudio/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/5547991677070" target="_blank" rel="noopener" aria-label="Fale conosco no WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M20.5 3.5a11 11 0 0 0-17.4 13.2L2 21.5l4.9-1.3A11 11 0 0 0 20.5 3.5Z"/><path d="M8.5 8.4c.2-.5.4-.5.6-.5h.5c.2 0 .4 0 .5.4.2.5.6 1.6.7 1.7.1.1.1.3 0 .5-.1.2-.2.3-.3.5-.2.2-.3.3-.1.6.2.3.8 1.3 1.8 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.2.4-.2.6-.1.2.1 1.5.7 1.8.8.3.1.5.2.5.3.1.4.1.8-.1 1.2-.2.4-1.1 1-1.9 1.1-.6.1-1.3.1-4.2-1-3.5-1.4-5.7-4.9-5.9-5.1-.2-.2-1.4-1.8-1.4-3.5 0-1.6.9-2.4 1.2-2.7Z" fill="var(--bg)" stroke="none"/></svg>
+</a>
+
+<script src="js/pedidos.js"></script>
+</body>
+</html>
