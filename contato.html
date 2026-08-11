@@ -3,10 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Acompanhe seu pedido — Zanshin 3D Studio</title>
-<meta name="description" content="Acompanhe o status do seu pedido na Zanshin 3D Studio pelo código enviado no WhatsApp.">
+<title>Contato — Zanshin 3D Studio</title>
+<meta name="description" content="Fale com a Zanshin 3D Studio pelo WhatsApp ou Instagram. Impressão 3D em Jaraguá do Sul, SC.">
 <meta name="theme-color" content="#0d0d10">
-<meta name="robots" content="noindex">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Contato — Zanshin 3D Studio">
+<meta property="og:description" content="Fale com a Zanshin 3D Studio pelo WhatsApp ou Instagram. Impressão 3D em Jaraguá do Sul, SC.">
 
 <link rel="icon" type="image/png" href="assets/img/brand/icon.png">
 <link rel="apple-touch-icon" href="assets/img/brand/apple-touch-icon.png">
@@ -37,45 +39,58 @@
         <li><a href="orcamento.html" class="nav-link">Orçamento</a></li>
         <li><a href="galeria.html" class="nav-link">Galeria</a></li>
         <li><a href="faq.html" class="nav-link">FAQ</a></li>
-        <li><a href="pedidos.html" class="nav-link active" aria-current="page">Pedidos</a></li>
-        <li><a href="contato.html" class="nav-link btn-nav">Contato</a></li>
+        <li><a href="pedidos.html" class="nav-link">Pedidos</a></li>
+        <li><a href="contato.html" class="nav-link btn-nav active" aria-current="page">Contato</a></li>
       </ul>
     </nav>
   </div>
 </header>
 
 <main id="conteudo">
-  <section class="page-hero center">
-    <div class="container">
-      <p class="eyebrow">Acompanhe seu pedido</p>
-      <h1>Painel de pedidos</h1>
-      <p class="section-lead">
-        Digite ou procure pelo código que te enviamos no WhatsApp na
-        confirmação do orçamento.
-      </p>
-    </div>
-  </section>
-
-  <section class="pedidos-board-section">
-    <div class="container">
-      <div class="board" id="board" hidden></div>
-
-      <div class="board-state" id="emptyState" hidden>
-        <p>Nenhum pedido em andamento no momento.</p>
-      </div>
-
-      <div class="board-state" id="errorState" hidden>
-        <p>Não consegui carregar os pedidos agora. Tenta de novo em alguns minutos ou chama no WhatsApp.</p>
-      </div>
-
-      <div class="board-state" id="setupState" hidden>
-        <p><strong>Painel ainda não configurado.</strong></p>
+  <section class="contact contact-page">
+    <div class="container contact-grid">
+      <div class="contact-text reveal">
+        <p class="eyebrow">Vamos conversar</p>
+        <h1>Contato</h1>
         <p>
-          Para ativar, crie a planilha de pedidos no Google Sheets, publique a
-          aba pública como CSV e cole o link em <code>PEDIDOS_CONFIG.sheetCsvUrl</code>
-          no arquivo <code>js/pedidos.js</code>. Passo a passo completo no
-          <code>README.md</code>, seção "Painel de pedidos".
+          Tire dúvidas, envie seu arquivo ou peça um orçamento. Respondemos rápido pelo WhatsApp.
         </p>
+
+        <ul class="contact-list">
+          <li>
+            <span class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M20.5 3.5a11 11 0 0 0-17.4 13.2L2 21.5l4.9-1.3A11 11 0 0 0 20.5 3.5Z"/></svg>
+            </span>
+            <a href="https://wa.me/5547991677070" target="_blank" rel="noopener" id="contactWhatsapp">WhatsApp</a>
+          </li>
+          <li>
+            <span class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+            </span>
+            <a href="https://www.instagram.com/zanshin_3dstudio/" target="_blank" rel="noopener" id="contactInstagram">@zanshin_3dstudio</a>
+          </li>
+          <li>
+            <span class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            </span>
+            <span>Jaraguá do Sul, SC</span>
+          </li>
+        </ul>
+
+        <p class="contact-note">
+          Números e links acima são exemplos — atualize com os seus dados reais antes de publicar o site
+          (veja o README do projeto).
+        </p>
+      </div>
+
+      <div class="contact-card reveal">
+        <h3>Como funciona</h3>
+        <ol class="steps">
+          <li><strong>1. Envie os detalhes</strong><span>Arquivo 3D ou a ideia da peça, pelo <a href="orcamento.html">formulário</a> ou WhatsApp.</span></li>
+          <li><strong>2. Receba o orçamento</strong><span>Confirmamos material, tempo e valor final.</span></li>
+          <li><strong>3. Acompanhe a impressão</strong><span>Sua peça é impressa com atenção do início ao fim — veja o status no <a href="pedidos.html">painel de pedidos</a>.</span></li>
+          <li><strong>4. Retire ou receba</strong><span>Combinamos a entrega que for melhor para você.</span></li>
+        </ol>
       </div>
     </div>
   </section>
@@ -98,10 +113,10 @@
   </div>
 </footer>
 
-<a class="whatsapp-float" href="https://wa.me/5547991677070" target="_blank" rel="noopener" aria-label="Fale conosco no WhatsApp">
+<a class="whatsapp-float" href="https://wa.me/5547991677070" target="_blank" rel="noopener" aria-label="Fale conosco no WhatsApp" id="floatWhatsapp">
   <svg viewBox="0 0 24 24"><path d="M20.5 3.5a11 11 0 0 0-17.4 13.2L2 21.5l4.9-1.3A11 11 0 0 0 20.5 3.5Z"/><path d="M8.5 8.4c.2-.5.4-.5.6-.5h.5c.2 0 .4 0 .5.4.2.5.6 1.6.7 1.7.1.1.1.3 0 .5-.1.2-.2.3-.3.5-.2.2-.3.3-.1.6.2.3.8 1.3 1.8 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.2.4-.2.6-.1.2.1 1.5.7 1.8.8.3.1.5.2.5.3.1.4.1.8-.1 1.2-.2.4-1.1 1-1.9 1.1-.6.1-1.3.1-4.2-1-3.5-1.4-5.7-4.9-5.9-5.1-.2-.2-1.4-1.8-1.4-3.5 0-1.6.9-2.4 1.2-2.7Z" fill="var(--bg)" stroke="none"/></svg>
 </a>
 
-<script src="js/pedidos.js"></script>
+<script src="js/script.js"></script>
 </body>
 </html>

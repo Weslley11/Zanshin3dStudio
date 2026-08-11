@@ -3,8 +3,13 @@
 Site institucional da **Zanshin 3D Studio** — impressão 3D sob encomenda em
 Jaraguá do Sul, SC. HTML/CSS/JS puro, sem build, sem dependências.
 
-Seções: hero, sobre, serviços, calculadora de orçamento (com envio para
-WhatsApp), galeria e contato.
+Site multi-página: `index.html` (home) mais uma página por seção —
+`sobre.html`, `servicos.html`, `materiais.html` (guia + quiz), `orcamento.html`
+(calculadora com envio para WhatsApp), `galeria.html`, `faq.html`,
+`contato.html` — e `pedidos.html` (painel de acompanhamento). O header, o
+menu e o rodapé se repetem em cada arquivo (é tudo estático, sem
+templating), então uma mudança neles precisa ser replicada manualmente em
+todas as páginas.
 
 ## Como visualizar localmente
 
@@ -155,12 +160,19 @@ Pra atualizar o status de um pedido, edite só a aba `Pedidos`; a aba
 ## Estrutura do projeto
 
 ```
-index.html            Página principal
+index.html             Home
+sobre.html              Sobre o studio
+servicos.html           Serviços
+materiais.html          Guia de materiais + quiz
+orcamento.html          Calculadora de orçamento
+galeria.html            Galeria completa
+faq.html                Perguntas frequentes
+contato.html            Contato
 pedidos.html            Painel de pedidos (lê a planilha do Google Sheets)
-css/style.css          Estilos
-js/script.js            CONFIG, menu mobile, animações e calculadora de orçamento
-js/pedidos.js            Config e lógica do painel de pedidos
-assets/img/brand/        Arquivos da logo
-assets/img/gallery/      Fotos da galeria
-.claude/agents/          Subagentes personalizados do Claude Code
+css/style.css           Estilos (compartilhado por todas as páginas)
+js/script.js             CONFIG, menu mobile, animações, calculadora e quiz de materiais
+js/pedidos.js             Config e lógica do painel de pedidos
+assets/img/brand/         Arquivos da logo
+assets/img/gallery/       Fotos da galeria
+.claude/agents/           Subagentes personalizados do Claude Code
 ```
