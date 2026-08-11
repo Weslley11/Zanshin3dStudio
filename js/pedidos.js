@@ -7,8 +7,8 @@
 
 const PEDIDOS_CONFIG = {
   // Cole aqui o link gerado em Arquivo → Compartilhar → Publicar na web
-  // (escolha a aba "Painel", formato CSV). Deixe vazio para manter o
-  // estado "ainda não configurado".
+  // (escolha a aba "Painel", formato CSV ou TSV — o parser detecta os dois).
+  // Deixe vazio para manter o estado "ainda não configurado".
   sheetCsvUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSb0FujOgNUFYiBgowWO3uOzXQLE3XD-XmMbqHUqm-Zq3tORmbS19y8atmjaj9W4rJMP7vToh1H4u6c/pub?gid=35131697&single=true&output=tsv",
 };
 
@@ -72,8 +72,16 @@ async function loadPedidos() {
   }
 }
 
-/** Parser de CSV simples que lida com campos entre aspas (vírgulas dentro do texto). */
+/**
+ * Parser de CSV/TSV simples que lida com campos entre aspas (o delimitador
+ * dentro do texto). O Google Sheets pode publicar como CSV (vírgula) ou TSV
+ * (tab) dependendo da opção escolhida — detecta pela primeira linha em vez
+ * de assumir um formato fixo.
+ */
 function parseCsv(text) {
+  const firstLine = text.slice(0, text.indexOf("\n") > -1 ? text.indexOf("\n") : text.length);
+  const delimiter = (firstLine.match(/\t/g) || []).length >= (firstLine.match(/,/g) || []).length ? "\t" : ",";
+
   const rows = [];
   let row = [];
   let field = "";
@@ -92,7 +100,7 @@ function parseCsv(text) {
       }
     } else if (c === '"') {
       inQuotes = true;
-    } else if (c === ",") {
+    } else if (c === delimiter) {
       row.push(field);
       field = "";
     } else if (c === "\n" || c === "\r") {

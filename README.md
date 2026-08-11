@@ -143,7 +143,8 @@ ela busca.
    `Orçamento`, `Fila`, `Imprimindo`, `Acabamento`, `Pronto`, `Entregue`.
 5. Publique **só a aba `Painel`**: *Arquivo → Compartilhar → Publicar na
    web* → em "Célula/intervalo" selecione a aba **`Painel`** (não a
-   planilha inteira) → formato **CSV** → *Publicar*. Copie o link gerado.
+   planilha inteira) → formato **CSV** ou **TSV** (os dois funcionam, o
+   painel detecta sozinho) → *Publicar*. Copie o link gerado.
 6. Cole esse link em `PEDIDOS_CONFIG.sheetCsvUrl`, no topo de
    `js/pedidos.js`.
 
