@@ -40,8 +40,10 @@
       <ul class="nav-links" id="navLinks">
         <li><a href="#sobre" class="nav-link">Sobre</a></li>
         <li><a href="#servicos" class="nav-link">Serviços</a></li>
+        <li><a href="#materiais" class="nav-link">Materiais</a></li>
         <li><a href="#orcamento" class="nav-link">Orçamento</a></li>
         <li><a href="#galeria" class="nav-link">Galeria</a></li>
+        <li><a href="#faq" class="nav-link">FAQ</a></li>
         <li><a href="pedidos.html" class="nav-link">Pedidos</a></li>
         <li><a href="#contato" class="nav-link btn-nav">Contato</a></li>
       </ul>
@@ -160,6 +162,75 @@
           <h3>Materiais disponíveis</h3>
           <p><strong>PLA</strong> · <strong>PETG</strong> · <strong>ABS/ASA</strong> · <strong>TPU flexível</strong> — indicamos o melhor para cada uso.</p>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- GUIA DE MATERIAIS -->
+  <section id="materiais" class="materials">
+    <div class="container">
+      <p class="eyebrow reveal center">Antes de pedir</p>
+      <h2 class="reveal center">Guia de materiais</h2>
+      <p class="section-lead reveal center">
+        Cada material tem um ponto forte. Se não souber qual escolher, responda uma
+        pergunta abaixo que a gente indica.
+      </p>
+
+      <div class="materials-grid">
+        <article class="material-card reveal" data-material="PLA">
+          <h3>PLA</h3>
+          <p class="material-tag">O mais versátil</p>
+          <p>Ideal para peças decorativas, miniaturas e protótipos de uso interno. Melhor
+          acabamento superficial e mais fácil de obter detalhes finos.</p>
+          <ul class="material-meta">
+            <li>Uso interno, decorativo</li>
+            <li>Amolece com calor/sol forte</li>
+          </ul>
+        </article>
+
+        <article class="material-card reveal" data-material="PETG">
+          <h3>PETG</h3>
+          <p class="material-tag">O mais equilibrado</p>
+          <p>Mais resistente a impacto e produtos químicos que o PLA, com boa flexibilidade.
+          Ótimo para peças de uso diário que precisam aguentar uso real.</p>
+          <ul class="material-meta">
+            <li>Peças funcionais, uso diário</li>
+            <li>Tolera um pouco de sol</li>
+          </ul>
+        </article>
+
+        <article class="material-card reveal" data-material="ABS/ASA">
+          <h3>ABS / ASA</h3>
+          <p class="material-tag">O mais resistente ao tempo</p>
+          <p>Alta resistência térmica e a impacto. O ASA aguenta sol e chuva sem ressecar
+          ou perder cor — a escolha certa pra quem vai usar a peça do lado de fora.</p>
+          <ul class="material-meta">
+            <li>Área externa, sol/chuva</li>
+            <li>Fácil de lixar e pintar</li>
+          </ul>
+        </article>
+
+        <article class="material-card reveal" data-material="TPU">
+          <h3>TPU</h3>
+          <p class="material-tag">O flexível</p>
+          <p>Emborrachado, dobra e volta ao normal sem quebrar. Usado em capas, vedações,
+          amortecedores e qualquer peça que precise ceder em vez de trincar.</p>
+          <ul class="material-meta">
+            <li>Precisa flexionar/dobrar</li>
+            <li>Resistente a abrasão</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="material-quiz reveal" id="materialQuiz">
+        <p class="material-quiz-question">Sua peça vai ficar onde, e vai passar por quê?</p>
+        <div class="material-quiz-options">
+          <button type="button" class="material-quiz-btn" data-answer="PLA">Dentro de casa, é decorativa</button>
+          <button type="button" class="material-quiz-btn" data-answer="PETG">Uso diário, precisa aguentar uso real</button>
+          <button type="button" class="material-quiz-btn" data-answer="ABS/ASA">Do lado de fora, pega sol/chuva</button>
+          <button type="button" class="material-quiz-btn" data-answer="TPU">Precisa dobrar ou flexionar</button>
+        </div>
+        <p class="material-quiz-result" id="materialQuizResult" hidden></p>
       </div>
     </div>
   </section>
@@ -323,6 +394,64 @@
         Quer ver mais? Acompanhe o dia a dia do studio no
         <a href="https://www.instagram.com/zanshin_3dstudio/" target="_blank" rel="noopener" id="instagramInlineLink">Instagram</a>.
       </p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="faq">
+    <div class="container">
+      <p class="eyebrow reveal center">Dúvidas frequentes</p>
+      <h2 class="reveal center">Perguntas e respostas</h2>
+
+      <div class="faq-list">
+        <details class="faq-item reveal">
+          <summary>Que arquivo eu preciso enviar?</summary>
+          <p>STL, OBJ ou 3MF funcionam bem. Se você já tem o arquivo pronto (do seu
+          próprio projeto ou baixado de algum site), é só mandar pelo WhatsApp ou colar
+          o link no formulário de orçamento.</p>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary>Não tenho um arquivo 3D — e agora?</summary>
+          <p>Sem problema. Muita gente pede assim: descreve a ideia e a gente ajuda a
+          encontrar um modelo pronto. Sites como <strong>MakerWorld</strong>,
+          <strong>Printables</strong>, <strong>Thingiverse</strong> e <strong>Cults3D</strong>
+          têm milhares de modelos gratuitos (e alguns pagos) prontos pra imprimir — encontrou
+          algo lá, manda o link pra gente que a gente confere e orça.</p>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary>Quanto tempo demora?</summary>
+          <p>Depende do tamanho, da complexidade e da fila de impressão no momento. A
+          <a href="#orcamento">calculadora de orçamento</a> já dá uma estimativa de tempo de
+          impressão, e o prazo final combinamos na confirmação.</p>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary>Tem tamanho máximo de peça?</summary>
+          <p>Depende da mesa de impressão da nossa Bambu Lab P2S. Peças maiores que isso
+          também são possíveis — imprimimos em partes e encaixamos/colamos. Manda as
+          medidas que a gente avalia.</p>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary>Fazem acabamento, pintura ou lixamento?</summary>
+          <p>Sim, é só marcar "acabamento extra" na calculadora ou pedir direto no
+          WhatsApp. A peça sai lisa e pronta, sem as marcas de camada.</p>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary>Como acompanho o andamento do meu pedido?</summary>
+          <p>Depois da confirmação, você recebe um código de acompanhamento. É só abrir o
+          <a href="pedidos.html">painel de pedidos</a> e ver em qual etapa sua peça está.</p>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary>Atendem só em Jaraguá do Sul?</summary>
+          <p>Somos baseados em Jaraguá do Sul, SC, e atendemos toda a região. Fala com a
+          gente no WhatsApp pra combinar a melhor forma de entrega pro seu caso.</p>
+        </details>
+      </div>
     </div>
   </section>
 
