@@ -15,32 +15,10 @@ const PEDIDOS_CONFIG = {
 const STATUS_PIPELINE = ["Orçamento", "Fila", "Imprimindo", "Acabamento", "Pronto", "Entregue"];
 
 document.addEventListener("DOMContentLoaded", () => {
-  const yearEl = document.getElementById("year");
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-  initNav();
+  // Menu mobile, header ao rolar, reveal e barra de progresso já são
+  // cuidados pelo js/script.js (carregado antes deste arquivo na página).
   loadPedidos();
 });
-
-function initNav() {
-  const toggle = document.getElementById("navToggle");
-  const links = document.getElementById("navLinks");
-  if (!toggle || !links) return;
-
-  toggle.addEventListener("click", () => {
-    const isOpen = links.classList.toggle("open");
-    toggle.setAttribute("aria-expanded", String(isOpen));
-    toggle.setAttribute("aria-label", isOpen ? "Fechar menu" : "Abrir menu");
-  });
-
-  links.querySelectorAll(".nav-link").forEach((link) => {
-    link.addEventListener("click", () => {
-      links.classList.remove("open");
-      toggle.setAttribute("aria-expanded", "false");
-      toggle.setAttribute("aria-label", "Abrir menu");
-    });
-  });
-}
 
 async function loadPedidos() {
   const board = document.getElementById("board");
@@ -132,10 +110,11 @@ function parseCsv(text) {
 function renderBoard(pedidos, board) {
   board.innerHTML = "";
 
-  STATUS_PIPELINE.forEach((status) => {
+  STATUS_PIPELINE.forEach((status, index) => {
     const items = pedidos.filter((p) => p.status === status);
     const column = document.createElement("div");
     column.className = "board-column";
+    column.style.setProperty("--col-index", index);
     column.innerHTML = `
       <h3 class="board-column-title">${status} <span class="board-count">${items.length}</span></h3>
       <div class="board-cards"></div>
@@ -155,6 +134,7 @@ function renderBoard(pedidos, board) {
   if (outros.length) {
     const column = document.createElement("div");
     column.className = "board-column";
+    column.style.setProperty("--col-index", STATUS_PIPELINE.length);
     column.innerHTML = `<h3 class="board-column-title">Outros <span class="board-count">${outros.length}</span></h3><div class="board-cards"></div>`;
     const cardsContainer = column.querySelector(".board-cards");
     outros.forEach((p) => cardsContainer.appendChild(renderCard(p)));

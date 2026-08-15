@@ -31,9 +31,12 @@ const CONFIG = {
 document.addEventListener("DOMContentLoaded", () => {
   applyConfig();
   initNav();
+  initHeaderScroll();
   initReveal();
+  initScrollProgress();
   initQuoteForm();
   initMaterialQuiz();
+  initFaqAccordion();
 
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
@@ -82,10 +85,17 @@ function initNav() {
   });
 }
 
-/** Anima elementos .reveal à medida que entram na tela. */
+/** Anima elementos .reveal à medida que entram na tela, com atraso escalonado entre irmãos. */
 function initReveal() {
   const items = document.querySelectorAll(".reveal");
   if (!items.length) return;
+
+  const siblingIndex = new Map();
+  items.forEach((el) => {
+    const i = siblingIndex.get(el.parentElement) || 0;
+    el.style.setProperty("--reveal-delay", `${Math.min(i, 5) * 70}ms`);
+    siblingIndex.set(el.parentElement, i + 1);
+  });
 
   if (!("IntersectionObserver" in window)) {
     items.forEach((el) => el.classList.add("is-visible"));
@@ -105,6 +115,93 @@ function initReveal() {
   );
 
   items.forEach((el) => observer.observe(el));
+}
+
+/** Header fica mais opaco e "encolhe" um pouco ao rolar a página. */
+function initHeaderScroll() {
+  const header = document.querySelector(".site-header");
+  if (!header) return;
+
+  const update = () => header.classList.toggle("is-scrolled", window.scrollY > 8);
+  update();
+
+  let ticking = false;
+  window.addEventListener("scroll", () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      update();
+      ticking = false;
+    });
+  });
+}
+
+/** Injeta e atualiza a barrinha de progresso de leitura no topo da página. */
+function initScrollProgress() {
+  const bar = document.createElement("div");
+  bar.className = "scroll-progress";
+  bar.setAttribute("aria-hidden", "true");
+  document.body.appendChild(bar);
+
+  const update = () => {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const ratio = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+    bar.style.transform = `scaleX(${ratio})`;
+  };
+  update();
+
+  let ticking = false;
+  window.addEventListener("scroll", () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      update();
+      ticking = false;
+    });
+  });
+  window.addEventListener("resize", update);
+}
+
+/** Abre/fecha os itens do FAQ com uma animação suave de altura, no lugar do toggle nativo instantâneo. */
+function initFaqAccordion() {
+  document.querySelectorAll(".faq-item").forEach((details) => {
+    const summary = details.querySelector("summary");
+    const content = details.querySelector("p");
+    if (!summary || !content) return;
+
+    summary.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      if (details.hasAttribute("open")) {
+        content.style.maxHeight = `${content.scrollHeight}px`;
+        requestAnimationFrame(() => {
+          content.style.maxHeight = "0px";
+        });
+        content.addEventListener(
+          "transitionend",
+          () => {
+            details.removeAttribute("open");
+            content.style.maxHeight = "";
+          },
+          { once: true }
+        );
+      } else {
+        details.setAttribute("open", "");
+        const targetHeight = content.scrollHeight;
+        content.style.maxHeight = "0px";
+        requestAnimationFrame(() => {
+          content.style.maxHeight = `${targetHeight}px`;
+        });
+        content.addEventListener(
+          "transitionend",
+          () => {
+            content.style.maxHeight = "";
+          },
+          { once: true }
+        );
+      }
+    });
+  });
 }
 
 /** Calculadora de orçamento + geração da mensagem para o WhatsApp. */
@@ -141,6 +238,7 @@ function initQuoteForm() {
 
     valueEl.textContent = currency.format(total);
     resultBox.hidden = false;
+    replayAnimation(resultBox, "pop-in");
     resultBox.scrollIntoView({ behavior: "smooth", block: "center" });
 
     const message = buildWhatsappMessage({
@@ -179,12 +277,20 @@ function initMaterialQuiz() {
       const material = btn.dataset.answer;
       resultEl.innerHTML = `<strong>${material}.</strong> ${MATERIAL_QUIZ_RESULTS[material]}`;
       resultEl.hidden = false;
+      replayAnimation(resultEl, "pop-in");
 
       document.querySelectorAll(".material-card").forEach((card) => {
         card.classList.toggle("is-recommended", card.dataset.material === material);
       });
     });
   });
+}
+
+/** Remove e reaplica uma classe de animação, forçando reflow, pra ela "tocar" de novo mesmo se o elemento já estava visível. */
+function replayAnimation(el, className) {
+  el.classList.remove(className);
+  void el.offsetWidth;
+  el.classList.add(className);
 }
 
 function estimatePrice({ weight, hours, qty, finish }) {
