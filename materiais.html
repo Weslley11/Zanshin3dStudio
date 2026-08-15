@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guia de materiais — Zanshin 3D Studio</title>
+<meta name="description" content="PLA, PETG, ABS/ASA ou TPU? Veja qual material é ideal para a sua peça impressa em 3D.">
+<meta name="theme-color" content="#0d0d10">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Guia de materiais — Zanshin 3D Studio">
+<meta property="og:description" content="PLA, PETG, ABS/ASA ou TPU? Veja qual material é ideal para a sua peça impressa em 3D.">
+
+<link rel="icon" type="image/png" href="assets/img/brand/icon.png">
+<link rel="apple-touch-icon" href="assets/img/brand/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a href="index.html" class="logo">
+      <img src="assets/img/brand/logo-horizontal-dark-bg.png" alt="Zanshin 3D Studio" class="logo-img">
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="sobre.html" class="nav-link">Sobre</a></li>
+        <li><a href="servicos.html" class="nav-link">Serviços</a></li>
+        <li><a href="materiais.html" class="nav-link active" aria-current="page">Materiais</a></li>
+        <li><a href="orcamento.html" class="nav-link">Orçamento</a></li>
+        <li><a href="galeria.html" class="nav-link">Galeria</a></li>
+        <li><a href="faq.html" class="nav-link">FAQ</a></li>
+        <li><a href="pedidos.html" class="nav-link">Pedidos</a></li>
+        <li><a href="contato.html" class="nav-link btn-nav">Contato</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="conteudo">
+  <section class="page-hero center">
+    <div class="container">
+      <p class="eyebrow reveal">Antes de pedir</p>
+      <h1 class="reveal">Guia de materiais</h1>
+      <p class="section-lead reveal">
+        Cada material tem um ponto forte. Se não souber qual escolher, responda uma
+        pergunta abaixo que a gente indica.
+      </p>
+    </div>
+  </section>
+
+  <section class="materials">
+    <div class="container">
+      <div class="materials-grid">
+        <article class="material-card reveal" data-material="PLA">
+          <h3>PLA</h3>
+          <p class="material-tag">O mais versátil</p>
+          <p>Ideal para peças decorativas, miniaturas e protótipos de uso interno. Melhor
+          acabamento superficial e mais fácil de obter detalhes finos.</p>
+          <ul class="material-meta">
+            <li>Uso interno, decorativo</li>
+            <li>Amolece com calor/sol forte</li>
+          </ul>
+        </article>
+
+        <article class="material-card reveal" data-material="PETG">
+          <h3>PETG</h3>
+          <p class="material-tag">O mais equilibrado</p>
+          <p>Mais resistente a impacto e produtos químicos que o PLA, com boa flexibilidade.
+          Ótimo para peças de uso diário que precisam aguentar uso real.</p>
+          <ul class="material-meta">
+            <li>Peças funcionais, uso diário</li>
+            <li>Tolera um pouco de sol</li>
+          </ul>
+        </article>
+
+        <article class="material-card reveal" data-material="ABS/ASA">
+          <h3>ABS / ASA</h3>
+          <p class="material-tag">O mais resistente ao tempo</p>
+          <p>Alta resistência térmica e a impacto. O ASA aguenta sol e chuva sem ressecar
+          ou perder cor — a escolha certa pra quem vai usar a peça do lado de fora.</p>
+          <ul class="material-meta">
+            <li>Área externa, sol/chuva</li>
+            <li>Fácil de lixar e pintar</li>
+          </ul>
+        </article>
+
+        <article class="material-card reveal" data-material="TPU">
+          <h3>TPU</h3>
+          <p class="material-tag">O flexível</p>
+          <p>Emborrachado, dobra e volta ao normal sem quebrar. Usado em capas, vedações,
+          amortecedores e qualquer peça que precise ceder em vez de trincar.</p>
+          <ul class="material-meta">
+            <li>Precisa flexionar/dobrar</li>
+            <li>Resistente a abrasão</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="material-quiz reveal" id="materialQuiz">
+        <p class="material-quiz-question">Sua peça vai ficar onde, e vai passar por quê?</p>
+        <div class="material-quiz-options">
+          <button type="button" class="material-quiz-btn" data-answer="PLA">Dentro de casa, é decorativa</button>
+          <button type="button" class="material-quiz-btn" data-answer="PETG">Uso diário, precisa aguentar uso real</button>
+          <button type="button" class="material-quiz-btn" data-answer="ABS/ASA">Do lado de fora, pega sol/chuva</button>
+          <button type="button" class="material-quiz-btn" data-answer="TPU">Precisa dobrar ou flexionar</button>
+        </div>
+        <p class="material-quiz-result" id="materialQuizResult" hidden></p>
+      </div>
+
+      <p class="gallery-note reveal center">
+        Já sabe o material? <a href="orcamento.html">Calcule uma estimativa de orçamento</a>.
+      </p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <img src="assets/img/brand/logo-horizontal-dark-bg.png" alt="Zanshin 3D Studio" class="logo-img footer-logo-img">
+    </div>
+    <p>© <span id="year"></span> Zanshin 3D Studio · Jaraguá do Sul, SC</p>
+    <div class="footer-social">
+      <a href="https://wa.me/5547991677070" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M20.5 3.5a11 11 0 0 0-17.4 13.2L2 21.5l4.9-1.3A11 11 0 0 0 20.5 3.5Z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/zanshin_3dstudio/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/5547991677070" target="_blank" rel="noopener" aria-label="Fale conosco no WhatsApp" id="floatWhatsapp">
+  <svg viewBox="0 0 24 24"><path d="M20.5 3.5a11 11 0 0 0-17.4 13.2L2 21.5l4.9-1.3A11 11 0 0 0 20.5 3.5Z"/><path d="M8.5 8.4c.2-.5.4-.5.6-.5h.5c.2 0 .4 0 .5.4.2.5.6 1.6.7 1.7.1.1.1.3 0 .5-.1.2-.2.3-.3.5-.2.2-.3.3-.1.6.2.3.8 1.3 1.8 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.2.4-.2.6-.1.2.1 1.5.7 1.8.8.3.1.5.2.5.3.1.4.1.8-.1 1.2-.2.4-1.1 1-1.9 1.1-.6.1-1.3.1-4.2-1-3.5-1.4-5.7-4.9-5.9-5.1-.2-.2-1.4-1.8-1.4-3.5 0-1.6.9-2.4 1.2-2.7Z" fill="var(--bg)" stroke="none"/></svg>
+</a>
+
+<script src="js/script.js"></script>
+</body>
+</html>

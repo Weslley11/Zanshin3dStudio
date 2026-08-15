@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initNav();
   initReveal();
   initQuoteForm();
+  initMaterialQuiz();
 
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
@@ -154,6 +155,35 @@ function initQuoteForm() {
       total: currency.format(total),
     });
     sendBtn.href = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;
+  });
+}
+
+const MATERIAL_QUIZ_RESULTS = {
+  PLA: "PLA é a escolha certa: acabamento liso e ótimo pra peças decorativas de uso interno.",
+  PETG: "PETG é o ideal: equilíbrio entre resistência e flexibilidade pro uso do dia a dia.",
+  "ABS/ASA": "ABS/ASA é o mais indicado: aguenta sol e chuva sem ressecar ou perder cor.",
+  TPU: "TPU é o que você precisa: emborrachado, dobra e volta ao normal sem trincar.",
+};
+
+/** Quiz de 1 pergunta na seção de materiais: sugere o material pelo caso de uso. */
+function initMaterialQuiz() {
+  const quiz = document.getElementById("materialQuiz");
+  const resultEl = document.getElementById("materialQuizResult");
+  if (!quiz || !resultEl) return;
+
+  quiz.querySelectorAll(".material-quiz-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      quiz.querySelectorAll(".material-quiz-btn").forEach((b) => b.classList.remove("is-selected"));
+      btn.classList.add("is-selected");
+
+      const material = btn.dataset.answer;
+      resultEl.innerHTML = `<strong>${material}.</strong> ${MATERIAL_QUIZ_RESULTS[material]}`;
+      resultEl.hidden = false;
+
+      document.querySelectorAll(".material-card").forEach((card) => {
+        card.classList.toggle("is-recommended", card.dataset.material === material);
+      });
+    });
   });
 }
 
