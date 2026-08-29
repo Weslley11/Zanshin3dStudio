@@ -37,10 +37,127 @@ document.addEventListener("DOMContentLoaded", () => {
   initQuoteForm();
   initMaterialQuiz();
   initFaqAccordion();
+  initHeroParallax();
+  initTiltCards();
+  initMagneticButtons();
+  initProcessScroll();
 
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 });
+
+/** true se o visitante pediu menos movimento no sistema, ou o dispositivo não tem hover (touch). */
+function prefersStaticUI() {
+  return (
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+    !window.matchMedia("(hover: hover)").matches
+  );
+}
+
+/** O glow do hero acompanha sutilmente o mouse (paralaxe), além da respiração automática. */
+function initHeroParallax() {
+  const hero = document.querySelector(".hero");
+  const glow = document.querySelector(".hero-glow");
+  if (!hero || !glow || prefersStaticUI()) return;
+
+  hero.addEventListener("mousemove", (event) => {
+    const rect = hero.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width - 0.5;
+    const y = (event.clientY - rect.top) / rect.height - 0.5;
+    glow.style.translate = `${x * 40}px ${y * 30}px`;
+  });
+  hero.addEventListener("mouseleave", () => {
+    glow.style.translate = "0px 0px";
+  });
+}
+
+/** Cards, peças da galeria e cards de material inclinam sutilmente seguindo o mouse (efeito 3D). */
+function initTiltCards() {
+  if (prefersStaticUI()) return;
+
+  document.querySelectorAll(".card, .gallery-item, .material-card").forEach((card) => {
+    if (card.dataset.tiltBound) return;
+    card.dataset.tiltBound = "true";
+
+    card.addEventListener("mousemove", (event) => {
+      const rect = card.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width - 0.5;
+      const y = (event.clientY - rect.top) / rect.height - 0.5;
+      card.style.setProperty("--tilt-x", `${y * -7}deg`);
+      card.style.setProperty("--tilt-y", `${x * 7}deg`);
+    });
+    card.addEventListener("mouseleave", () => {
+      card.style.setProperty("--tilt-x", "0deg");
+      card.style.setProperty("--tilt-y", "0deg");
+    });
+  });
+}
+
+/** Botões principais se deslocam sutilmente em direção ao cursor (efeito magnético). */
+function initMagneticButtons() {
+  if (prefersStaticUI()) return;
+
+  document.querySelectorAll(".btn-primary, .btn-ghost").forEach((btn) => {
+    if (btn.dataset.magneticBound) return;
+    btn.dataset.magneticBound = "true";
+
+    btn.addEventListener("mousemove", (event) => {
+      const rect = btn.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width - 0.5;
+      const y = (event.clientY - rect.top) / rect.height - 0.5;
+      btn.style.translate = `${x * 10}px ${y * 8}px`;
+    });
+    btn.addEventListener("mouseleave", () => {
+      btn.style.translate = "0px 0px";
+    });
+  });
+}
+
+/** Seção "Como funciona": no desktop, fica pinada e os passos deslizam na horizontal
+ *  conforme o scroll vertical (scrollytelling). No mobile, os passos ficam empilhados
+ *  normalmente — essa função não faz nada nesse caso. */
+function initProcessScroll() {
+  const section = document.querySelector(".process");
+  const steps = document.querySelector(".process-steps");
+  const stepEls = document.querySelectorAll(".process-step");
+  const progressBar = document.getElementById("processProgressBar");
+  if (!section || !steps || !stepEls.length) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const desktopQuery = window.matchMedia("(min-width: 860px)");
+
+  const update = () => {
+    if (!desktopQuery.matches) {
+      steps.style.transform = "";
+      return;
+    }
+
+    const scrollableHeight = section.offsetHeight - window.innerHeight;
+    if (scrollableHeight <= 0) return;
+
+    const rect = section.getBoundingClientRect();
+    const progress = Math.min(1, Math.max(0, -rect.top / scrollableHeight));
+
+    const maxTranslate = Math.max(0, steps.scrollWidth - steps.clientWidth);
+    steps.style.transform = `translateX(-${progress * maxTranslate}px)`;
+    if (progressBar) progressBar.style.transform = `scaleX(${progress})`;
+
+    const activeIndex = Math.min(stepEls.length - 1, Math.floor(progress * stepEls.length));
+    stepEls.forEach((el, i) => el.classList.toggle("is-active", i === activeIndex));
+  };
+
+  update();
+  let ticking = false;
+  window.addEventListener("scroll", () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      update();
+      ticking = false;
+    });
+  });
+  window.addEventListener("resize", update);
+}
 
 /**
  * Aplica os dados de CONFIG nos links de WhatsApp e Instagram espalhados pela página,
