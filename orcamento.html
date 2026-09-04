@@ -60,6 +60,12 @@
   <section class="quote">
     <div class="container">
       <div class="quote-box reveal">
+        <span class="hud-corners" aria-hidden="true">
+          <i class="hud-corner hud-corner-tl"></i>
+          <i class="hud-corner hud-corner-tr"></i>
+          <i class="hud-corner hud-corner-bl"></i>
+          <i class="hud-corner hud-corner-br"></i>
+        </span>
         <form id="quoteForm" class="quote-form" novalidate>
           <div class="quote-form-grid">
             <div class="field">
@@ -113,6 +119,12 @@
             <a href="materiais.html">guia de materiais</a>.
           </p>
         </form>
+
+        <div class="quote-processing hud-scan" id="quoteProcessing" hidden aria-hidden="true">
+          <p class="quote-processing-line">Lendo peso e tempo informados…</p>
+          <p class="quote-processing-line">Calculando custo de material e energia…</p>
+          <p class="quote-processing-line">Aplicando margem do studio…</p>
+        </div>
 
         <div class="quote-result" id="quoteResult" hidden>
           <p class="quote-result-label">Estimativa</p>

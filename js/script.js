@@ -41,6 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initTiltCards();
   initMagneticButtons();
   initProcessScroll();
+  initHeroClock();
 
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
@@ -157,6 +158,26 @@ function initProcessScroll() {
     });
   });
   window.addEventListener("resize", update);
+}
+
+/** Relógio ao vivo no chip da hero, no horário real de Jaraguá do Sul (America/Sao_Paulo). */
+function initHeroClock() {
+  const clock = document.getElementById("heroClock");
+  if (!clock) return;
+
+  function update() {
+    const now = new Date();
+    clock.textContent = now.toLocaleTimeString("pt-BR", {
+      timeZone: "America/Sao_Paulo",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    });
+    clock.setAttribute("datetime", now.toISOString());
+  }
+
+  update();
+  setInterval(update, 1000);
 }
 
 /**
@@ -327,6 +348,8 @@ function initQuoteForm() {
   const resultBox = document.getElementById("quoteResult");
   const valueEl = document.getElementById("quoteValue");
   const sendBtn = document.getElementById("sendWhatsapp");
+  const processingBox = document.getElementById("quoteProcessing");
+  const calcBtn = document.getElementById("calcBtn");
   if (!form || !resultBox || !valueEl || !sendBtn) return;
 
   const currency = new Intl.NumberFormat("pt-BR", {
@@ -352,12 +375,6 @@ function initQuoteForm() {
     }
 
     const total = estimatePrice({ weight, hours, material, qty, finish });
-
-    valueEl.textContent = currency.format(total);
-    resultBox.hidden = false;
-    replayAnimation(resultBox, "pop-in");
-    resultBox.scrollIntoView({ behavior: "smooth", block: "center" });
-
     const message = buildWhatsappMessage({
       name,
       phone,
@@ -369,8 +386,59 @@ function initQuoteForm() {
       details,
       total: currency.format(total),
     });
-    sendBtn.href = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;
+    const waHref = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function reveal() {
+      resultBox.hidden = false;
+      replayAnimation(resultBox, "pop-in");
+      resultBox.scrollIntoView({ behavior: "smooth", block: "center" });
+      sendBtn.href = waHref;
+      if (reduceMotion) {
+        valueEl.textContent = currency.format(total);
+      } else {
+        animateQuoteValue(valueEl, total, currency);
+      }
+    }
+
+    const skipAnimation = !processingBox || reduceMotion;
+    if (skipAnimation) {
+      reveal();
+      return;
+    }
+
+    resultBox.hidden = true;
+    if (calcBtn) calcBtn.disabled = true;
+    processingBox.hidden = false;
+    processingBox.classList.remove("is-active", "is-scanning");
+    void processingBox.offsetWidth;
+    processingBox.classList.add("is-active", "is-scanning");
+    processingBox.scrollIntoView({ behavior: "smooth", block: "center" });
+
+    setTimeout(() => {
+      processingBox.hidden = true;
+      processingBox.classList.remove("is-scanning");
+      if (calcBtn) calcBtn.disabled = false;
+      reveal();
+    }, 1250);
   });
+}
+
+/** Anima o valor final subindo de 0 até o total, tipo um assistente "calculando" em tempo real. */
+function animateQuoteValue(el, total, currency) {
+  const duration = 700;
+  const start = performance.now();
+
+  function tick(now) {
+    const progress = Math.min(1, (now - start) / duration);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = currency.format(total * eased);
+    if (progress < 1) requestAnimationFrame(tick);
+    else el.textContent = currency.format(total);
+  }
+
+  requestAnimationFrame(tick);
 }
 
 const MATERIAL_QUIZ_RESULTS = {
