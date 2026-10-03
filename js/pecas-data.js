@@ -9,6 +9,35 @@
 
 const PECAS = [
   {
+    id: "dragao-articulado",
+    titulo: "Dragão articulado",
+    categoria: "Personagens & Colecionáveis",
+    imagens: [
+      { src: "assets/img/gallery/dragao-articulado.jpg", alt: "Dragão articulado impresso em 3D, enrolado, com escamas em degradê azul, verde e dourado" },
+      { src: "assets/img/gallery/dragao-articulado-cabeca.jpg", alt: "Close da cabeça e do corpo do dragão articulado, mostrando as escamas e o degradê de cor" },
+    ],
+    descricao: "Dragão articulado: sai da impressora já montado e com todas as juntas móveis, dobrando ao longo do corpo inteiro. O filamento com degradê faz a cor mudar do azul ao dourado ao longo das escamas, sem nenhuma pintura.",
+  },
+  {
+    id: "banguela-articulado",
+    titulo: "Banguela articulado",
+    categoria: "Personagens & Colecionáveis",
+    imagens: [
+      { src: "assets/img/gallery/banguela-articulado.jpg", alt: "Banguela articulado impresso em 3D na cor preta, com os olhos verdes pintados" },
+      { src: "assets/img/gallery/banguela-articulado-pecas.jpg", alt: "Banguela articulado desmontado, mostrando as asas, a cauda em segmentos e o corpo separados" },
+    ],
+    descricao: "Versão articulada do Banguela, em preto fosco com os olhos verdes pintados. O corpo é montado em segmentos e as asas têm dobradiça, então ele mexe e muda de pose. A segunda foto mostra todas as partes separadas.",
+  },
+  {
+    id: "jesus",
+    titulo: "Jesus",
+    categoria: "Decoração",
+    imagens: [
+      { src: "assets/img/gallery/jesus.jpg", alt: "Miniatura do Jesus impressa em 3D, sentada, com túnica branca, faixa vermelha e sandálias" },
+    ],
+    descricao: "Miniatura do Jesus sentado, impressa em várias cores: túnica branca, faixa vermelha, cabelo e sandálias em marrom. Pequena o bastante pra deixar na prateleira, no painel do carro ou na mesa de trabalho.",
+  },
+  {
     id: "ninja",
     titulo: "Ninja",
     categoria: "Personagens & Colecionáveis",
