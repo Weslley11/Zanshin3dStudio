@@ -9,6 +9,29 @@
 
 const PECAS = [
   {
+    id: "ninja",
+    titulo: "Ninja",
+    categoria: "Personagens & Colecionáveis",
+    imagens: [
+      { src: "assets/img/gallery/ninja.jpg", alt: "Figura de ninja agachado em posição de combate, impressa em 3D em preto, com katana nas costas" },
+      { src: "assets/img/gallery/ninja-lateral.jpg", alt: "Ninja impresso em 3D visto de lado, mostrando a katana e a pose agachada" },
+      { src: "assets/img/gallery/ninja-costas.jpg", alt: "Ninja impresso em 3D visto por trás, mostrando o capuz e a bainha da katana" },
+    ],
+    descricao: "Ninja agachado em posição de combate, com katana nas costas. Impresso em preto, o acabamento acetinado realça as dobras do tecido, o cinto e as amarrações das botas. As três fotos mostram a peça por ângulos diferentes.",
+  },
+  {
+    id: "banguela-furia-luz",
+    titulo: "Banguela & Fúria da Luz",
+    categoria: "Personagens & Colecionáveis",
+    imagens: [
+      { src: "assets/img/gallery/banguela-furia-luz.jpg", alt: "Banguela (preto) e Fúria da Luz (branca) lado a lado sobre base de pedra cinza, impressos em 3D" },
+      { src: "assets/img/gallery/banguela-furia-luz-detalhe.jpg", alt: "Close de Banguela e Fúria da Luz juntos, mostrando os olhos pintados em verde e azul" },
+      { src: "assets/img/gallery/banguela-furia-luz-banguela.jpg", alt: "Banguela impresso em 3D na cor preta, de perfil, com as asas recolhidas" },
+      { src: "assets/img/gallery/banguela-furia-luz-furia.jpg", alt: "Fúria da Luz impressa em 3D na cor branca, com os olhos azuis pintados" },
+    ],
+    descricao: "O casal de dragões de Como Treinar o Seu Dragão — Banguela em preto e a Fúria da Luz em branco — sobre uma base de pedra em cinza. Os olhos são pintados à mão: verde nele, azul nela. Impresso em três cores, com as peças montadas sobre a base.",
+  },
+  {
     id: "trofeu-copa",
     titulo: "Troféu Copa do Mundo",
     categoria: "Decoração & Colecionáveis",
@@ -23,9 +46,11 @@ const PECAS = [
     categoria: "Personagens & Colecionáveis",
     imagens: [
       { src: "assets/img/gallery/kratos-figura.jpg", alt: "Figura do Kratos (God of War) impressa em 3D, pintada em tons terrosos com detalhes em vermelho" },
+      { src: "assets/img/gallery/kratos-rosto.jpg", alt: "Close do rosto do Kratos impresso em 3D, mostrando a barba, a sobrancelha e a marca vermelha pintadas à mão" },
+      { src: "assets/img/gallery/kratos-torso.jpg", alt: "Torso do Kratos impresso em 3D, mostrando a faixa vermelha, o cinto e a ombreira acolchoada" },
       { src: "assets/img/gallery/kratos-busto-natural.jpg", alt: "Busto do Kratos (God of War) impresso em 3D, close-up do rosto e armadura" },
     ],
-    descricao: "Figura do Kratos (God of War), pintada em tons terrosos com detalhes em vermelho. A segunda foto é um close no busto, mostrando o nível de detalhe do rosto, da barba e da armadura.",
+    descricao: "Figura do Kratos (God of War), pintada em tons terrosos com detalhes em vermelho. Os closes mostram o nível de detalhe do rosto, da barba, da faixa vermelha e das fivelas do cinto — tudo pintado à mão aqui no studio.",
   },
   {
     id: "pomo-de-ouro",
@@ -70,8 +95,9 @@ const PECAS = [
     categoria: "Personagens & Colecionáveis",
     imagens: [
       { src: "assets/img/gallery/machado-tatico.jpg", alt: "Réplica do machado do jogo Resident Evil Requiem, impressa em 3D, acabamento preto fosco" },
+      { src: "assets/img/gallery/revolver-machado-duo.jpg", alt: "Réplica do machado ao lado da réplica do revólver de Resident Evil Requiem, impressas em 3D" },
     ],
-    descricao: "Réplica do machado tático do jogo Resident Evil Requiem, acabamento preto fosco com detalhes de parafusos e recortes fiéis ao design original.",
+    descricao: "Réplica do machado tático do jogo Resident Evil Requiem, acabamento preto fosco com detalhes de parafusos e recortes fiéis ao design original. A segunda foto mostra o machado ao lado do revólver do mesmo jogo.",
   },
   {
     id: "suporte-ps5-oni",
@@ -107,8 +133,9 @@ const PECAS = [
     imagens: [
       { src: "assets/img/gallery/revolver-detalhe.jpg", alt: "Réplica do revólver do jogo Resident Evil Requiem, impressa em 3D, acabamento cinza claro perolado" },
       { src: "assets/img/gallery/revolver-perfil.jpg", alt: "Réplica do revólver do jogo Resident Evil Requiem, impressa em 3D, vista de perfil com cabo preto detalhado" },
+      { src: "assets/img/gallery/revolver-machado-duo.jpg", alt: "Réplica do revólver ao lado da réplica do machado de Resident Evil Requiem, impressas em 3D" },
     ],
-    descricao: "Réplica do revólver do jogo Resident Evil Requiem, acabamento cinza perolado com cabo preto detalhado. Duas fotos: uma de frente, outra de perfil.",
+    descricao: "Réplica do revólver do jogo Resident Evil Requiem, acabamento cinza perolado com cabo preto detalhado. Tem foto de frente, de perfil e ao lado do machado do mesmo jogo.",
   },
   {
     id: "torre-pisa",
@@ -143,8 +170,9 @@ const PECAS = [
     categoria: "Decoração",
     imagens: [
       { src: "assets/img/gallery/capivara-bailarina.jpg", alt: "Estatueta de capivara bailarina impressa em 3D, acabamento dourado" },
+      { src: "assets/img/gallery/capivara-bailarina-pecas.jpg", alt: "Capivara bailarina dourada desmontada, mostrando a peça e o pião que a faz girar" },
     ],
-    descricao: "Estatueta de capivara bailarina, acabamento dourado espelhado — um jeito bem-humorado de decorar.",
+    descricao: "Capivara bailarina em acabamento dourado espelhado — um jeito bem-humorado de decorar. A segunda foto mostra a peça desmontada: ela encaixa sobre um pião, então a bailarina roda de verdade.",
   },
   {
     id: "chaveiro-gabi",
