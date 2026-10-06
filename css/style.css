@@ -712,11 +712,20 @@ h2.center, p.section-lead.center, p.eyebrow.center { margin-left: auto; margin-r
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 28px 14px 12px;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.75), transparent);
+  padding: 34px 14px 12px;
+  /* as fotos têm fundo claro: o degradê precisa segurar o contraste
+     do texto branco até o topo da legenda, inclusive com 2-3 linhas */
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(0, 0, 0, 0.78) 42%,
+    rgba(0, 0, 0, 0.42) 74%,
+    transparent 100%
+  );
   color: #fff;
   font-size: 0.82rem;
   font-weight: 600;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
   transition: transform var(--dur) var(--ease);
 }
 .gallery-item:hover .gallery-item-caption { transform: translateY(-2px); }
