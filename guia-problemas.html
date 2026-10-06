@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minha impressão deu problema: diagnóstico rápido — Zanshin 3D Studio</title>
+<meta name="description" content="Índice de 20 problemas de impressão 3D por sintoma: o que está acontecendo e, em ordem, o que mexer para resolver.">
+<meta name="theme-color" content="#0d0d10">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Minha impressão deu problema: diagnóstico rápido — Zanshin 3D Studio">
+<meta property="og:description" content="Índice de 20 problemas de impressão 3D por sintoma: o que está acontecendo e, em ordem, o que mexer para resolver.">
+<meta property="og:url" content="https://weslley11.github.io/Zanshin3dStudio/guia-problemas.html">
+<link rel="canonical" href="https://weslley11.github.io/Zanshin3dStudio/guia-problemas.html">
+
+<link rel="icon" type="image/png" href="assets/img/brand/icon.png">
+<link rel="apple-touch-icon" href="assets/img/brand/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a href="index.html" class="logo">
+      <img src="assets/img/brand/logo-horizontal-dark-bg.png" alt="Zanshin 3D Studio" class="logo-img">
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="sobre.html" class="nav-link">Sobre</a></li>
+        <li><a href="servicos.html" class="nav-link">Serviços</a></li>
+        <li><a href="materiais.html" class="nav-link">Materiais</a></li>
+        <li><a href="orcamento.html" class="nav-link">Orçamento</a></li>
+        <li><a href="galeria.html" class="nav-link">Galeria</a></li>
+        <li><a href="guia.html" class="nav-link active" aria-current="page">Guia</a></li>
+        <li><a href="faq.html" class="nav-link">FAQ</a></li>
+        <li><a href="pedidos.html" class="nav-link">Pedidos</a></li>
+        <li><a href="contato.html" class="nav-link btn-nav">Contato</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="conteudo">
+  <section class="page-hero center">
+    <div class="container">
+      <p class="eyebrow reveal"><a href="guia.html" style="color:inherit">Guia</a> · Diagnóstico</p>
+      <h1 class="reveal">Minha impressão deu problema</h1>
+      <p class="section-lead reveal">
+        Ache o sintoma, abra, e siga a lista <strong>na ordem</strong> — ela vai do que mais
+        resolve para o que menos resolve. Mude uma coisa por vez: se mexer em três, você não
+        vai saber qual funcionou.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width:860px">
+    <div class="diag-group reveal">
+      <h2>Adesão e primeira camada</h2>
+      <details class="diag-item">
+        <summary>A peça descola da mesa no meio da impressão</summary>
+        <div class="diag-body">
+          <p>Soltou depois de já ter começado, normalmente por um canto.</p>
+          <ol>
+            <li>Lave a chapa com <strong>água morna e detergente neutro</strong>. Gordura de dedo é a causa número um, e álcool não tira ela por completo.</li>
+            <li>Baixe o <strong>Z offset</strong>: se as linhas da primeira camada não se tocam, não há área de contato suficiente.</li>
+            <li>Reduza a <strong>velocidade da primeira camada</strong> para 15–25&nbsp;mm/s.</li>
+            <li>Em peça alta e de base pequena, ligue o <strong>brim</strong>.</li>
+            <li>Em ABS e ASA, use cola em bastão — não é opcional.</li>
+          </ol>
+          <a class="diag-leia" href="guia-primeira-camada.html">Entender a fundo</a>
+        </div>
+      </details>
+      <details class="diag-item">
+        <summary>Os cantos levantam e a base fica torta (empenamento)</summary>
+        <div class="diag-body">
+          <p>A peça continua colada no centro, mas as bordas sobem e deformam.</p>
+          <ol>
+            <li>É contração: o material encolhe ao esfriar e puxa as pontas. ABS e ASA são os piores.</li>
+            <li>Use <strong>impressora fechada</strong> ou, no mínimo, proteja de corrente de ar — porta e janela abertas perto da máquina bastam para causar isso.</li>
+            <li>Suba a <strong>temperatura da mesa</strong> e mantenha aquecida durante toda a impressão.</li>
+            <li>Reduza a ventoinha: resfriar rápido demais aumenta a contração.</li>
+            <li>Use <strong>brim</strong> largo para segurar as bordas.</li>
+            <li>Se a peça não precisa de resistência térmica, troque para PLA e o problema some.</li>
+          </ol>
+        </div>
+      </details>
+      <details class="diag-item">
+        <summary>A base saiu com uma saia para fora (pé de elefante)</summary>
+        <div class="diag-body">
+          <p>As primeiras camadas ficaram mais largas que o resto, e o encaixe trava na base.</p>
+          <ol>
+            <li>As primeiras camadas são espremidas pelo peso e pelo calor.</li>
+            <li>Ligue a <strong>compensação de pé de elefante</strong> no slicer, em torno de 0,15&nbsp;mm.</li>
+            <li>Suba um pouco o <strong>Z offset</strong>, se ele estiver baixo demais.</li>
+            <li>Baixe a <strong>temperatura da mesa</strong> alguns graus.</li>
+          </ol>
+          <a class="diag-leia" href="guia-tolerancia-de-encaixe.html">Entender a fundo</a>
+        </div>
+      </details>
+    </div>
+    <div class="diag-group reveal">
+      <h2>Extrusão</h2>
+      <details class="diag-item">
+        <summary>As linhas estão finas e com falhas (sub-extrusão)</summary>
+        <div class="diag-body">
+          <p>Falta material: aparecem vãos entre as linhas e o topo não fecha.</p>
+          <ol>
+            <li>Verifique se o filamento está <strong>úmido</strong> — é a causa mais comum e a mais ignorada.</li>
+            <li>Suba a <strong>temperatura do bico</strong> em 5&nbsp;°C e teste.</li>
+            <li>Suba a <strong>taxa de fluxo</strong> se a parede está medindo menos que o configurado.</li>
+            <li>Reduza a velocidade: pode ser que você esteja pedindo mais vazão do que o bico entrega.</li>
+            <li>Se vier acompanhado de estalo no extrusor, trate como entupimento.</li>
+          </ol>
+          <a class="diag-leia" href="guia-calibracao-fluxo.html">Entender a fundo</a>
+        </div>
+      </details>
+      <details class="diag-item">
+        <summary>Sobra material: rebarba, topo com relevo e peça fora de medida</summary>
+        <div class="diag-body">
+          <p>O oposto do anterior — sai plástico demais.</p>
+          <ol>
+            <li>Baixe a <strong>taxa de fluxo</strong>. Imprima um cubo de parede única e meça com paquímetro.</li>
+            <li>Filamento silk quase sempre precisa de fluxo bem menor, na faixa de 0,90–0,95.</li>
+            <li>Confira a <strong>temperatura</strong>: alta demais deixa o plástico mole e espalhado.</li>
+          </ol>
+          <a class="diag-leia" href="guia-calibracao-fluxo.html">Entender a fundo</a>
+        </div>
+      </details>
+      <details class="diag-item">
+        <summary>Fiapos finos entre as partes da peça (stringing)</summary>
+        <div class="diag-body">
+          <p>Teias de plástico ligando pontos que deveriam estar separados.</p>
+          <ol>
+            <li><strong>Filamento úmido</strong> é a primeira suspeita, principalmente em PETG. Seque antes de mexer em qualquer outra coisa.</li>
+            <li>Baixe a <strong>temperatura do bico</strong> em 5–10&nbsp;°C.</li>
+            <li>Aumente um pouco a <strong>retração</strong> — mas pouco: retração exagerada causa entupimento.</li>
+            <li>Aumente a velocidade de deslocamento, para o bico passar mais rápido pelo vão.</li>
+          </ol>
+          <a class="diag-leia" href="guia-bico-entupido.html">Entender a fundo</a>
+        </div>
+      </details>
+      <details class="diag-item">
+        <summary>O extrusor estala e a extrusão falha</summary>
+        <div class="diag-body">
+          <p>Som de clique ritmado, e trechos sem material.</p>
+          <ol>
+            <li>É entupimento parcial ou pressão alta demais.</li>
+            <li>Confira se a <strong>ventoinha do dissipador</strong> está girando e desobstruída — essa é a causa de entupimento que aparece no meio de impressão longa.</li>
+            <li>Suba a temperatura, ou baixe a velocidade.</li>
+            <li>Faça uma <strong>limpeza a frio</strong> (cold pull).</li>
+            <li>Se você imprimiu material abrasivo com bico de latão, o bico pode estar gasto.</li>
+          </ol>
+          <a class="diag-leia" href="guia-bico-entupido.html">Entender a fundo</a>
+        </div>
+      </details>
+    </div>
+    <div class="diag-group reveal">
+      <h2>Superfície e acabamento</h2>
+      <details class="diag-item">
+        <summary>Ondulação que se repete depois de cada quina</summary>
+        <div class="diag-body">
+          <p>Um padrão de eco na parede, que vai sumindo alguns milímetros depois do canto.</p>
+          <ol>
+            <li>Isso é <strong>ringing</strong>, causado por vibração — quase nunca é defeito de máquina.</li>
+            <li>Baixe a <strong>velocidade da parede externa</strong>: 60–90&nbsp;mm/s em PLA, 40–60 em PETG.</li>
+            <li>Baixe a <strong>aceleração da parede externa</strong> para 3.000–5.000&nbsp;mm/s². Em peça pequena isso pesa mais que a velocidade.</li>
+            <li>Calibre a compensação de vibração (input shaper), com a mesa aquecida.</li>
+            <li>Confira se a impressora está em superfície estável e sem parafuso solto no carro do bico.</li>
+          </ol>
+          <a class="diag-leia" href="guia-velocidade-e-aceleracao.html">Entender a fundo</a>
+        </div>
+      </details>
+      <details class="diag-item">
+        <summary>A quina ficou com bolinha, ou afundada</summary>
+        <div class="diag-body">
+          <p>Acúmulo de material logo na quina, ou falha logo depois dela.</p>
+          <ol>
+            <li>É <strong>pressure advance</strong> (dinâmica de fluxo) descalibrado.</li>
+            <li>Bolinha na quina = valor baixo demais. Quina afundada = valor alto demais.</li>
+            <li>Rode o teste de torre do seu slicer e refaça a cada filamento novo.</li>
+          </ol>
+          <a class="diag-leia" href="guia-calibracao-fluxo.html">Entender a fundo</a>
+        </div>
+      </details>
+      <details class="diag-item">
+        <summary>O topo ficou rugoso, com linhas cruzadas</summary>
+        <div class="diag-body">
+          <p>A superfície de cima não fica lisa nem uniforme.</p>
+          <ol>
+            <li>Calibre o <strong>fluxo</strong> primeiro. Topo com relevo quase sempre é fluxo alto.</li>
+            <li>Ligue <strong>linhas monotônicas</strong> no topo: mesmo tempo, superfície bem mais uniforme.</li>
+            <li>Baixe a <strong>velocidade do topo</strong> para 30–50&nbsp;mm/s.</li>
+            <li>Use camada de 0,12–0,16&nbsp;mm se o acabamento importa.</li>
+            <li>Só então ligue o <strong>ironing</strong>, com fluxo de 10–20%.</li>
+          </ol>
+          <a class="diag-leia" href="guia-topo-liso.html">Entender a fundo</a>
+        </div>
+      </details>
+      <details class="diag-item">
+        <summary>Uma linha vertical aparece na lateral da peça</summary>
+        <div class="diag-body">
+          <p>A marca onde cada camada começa e termina.</p>
+          <ol>
+            <li>Isso é a <strong>costura</strong>, e ela sempre existe — a questão é onde cai.</li>
+            <li>Em peça com frente definida, use o modo <em>atrás</em> e gire o modelo.</li>
+            <li>Em cilindro, use <em>alinhado</em> ou a <strong>costura em bisel</strong> (scarf seam).</li>
+            <li>Evite o modo <em>aleatório</em> em superfície lisa: ele troca uma linha por pontinhos espalhados.</li>
+            <li>Para controle total, pinte a costura no modelo.</li>
+          </ol>
+          <a class="diag-leia" href="guia-costura.html">Entender a fundo</a>
+        </div>
+      </details>
+      <details class="diag-item">
+        <summary>O degrau das camadas aparece nas curvas</summary>
+        <div class="diag-body">
+          <p>Superfície arredondada com aspecto de escada.</p>
+          <ol>
+            <li>Baixe a <strong>altura de camada</strong> — o degrau só aparece em superfície inclinada, não em parede reta.</li>
+            <li>Melhor ainda: use <strong>camada variável</strong>, que deixa fina só onde precisa e mantém o resto rápido.</li>
+          </ol>
+          <a class="diag-leia" href="guia-altura-de-camada.html">Entender a fundo</a>
+        </div>
+      </details>
+      <details class="diag-item">
+        <summary>A saliência saiu caída e enrolada</summary>
+        <div class="diag-body">
+          <p>Partes que avançam no ar ficam com fios pendurados.</p>
+          <ol>
+            <li>Aumente o <strong>resfriamento</strong>: em PLA, ventoinha em 90–100%.</li>
+            <li>Reduza a velocidade nas saliências.</li>
+            <li>Gire a peça: saliência de até cerca de <strong>45°</strong> imprime sem suporte nenhum.</li>
+            <li>Se passar de 45°, use suporte — de preferência em árvore.</li>
+          </ol>
+          <a class="diag-leia" href="guia-suportes.html">Entender a fundo</a>
+        </div>
+      </details>
+    </div>
+    <div class="diag-group reveal">
+      <h2>Resistência e dimensão</h2>
+      <details class="diag-item">
+        <summary>A peça quebrou fácil, separando entre camadas</summary>
+        <div class="diag-body">
+          <p>A ruptura aconteceu numa linha horizontal, acompanhando a emenda das camadas.</p>
+          <ol>
+            <li>A ligação entre camadas é o ponto fraco de toda peça impressa.</li>
+            <li><strong>Mude a orientação na mesa</strong>: o esforço precisa correr ao longo das camadas, não através delas. Esse é o fator que mais pesa.</li>
+            <li>Aumente o <strong>número de paredes</strong> para 3 ou 4 — conta mais que preenchimento.</li>
+            <li>Suba a temperatura do bico um pouco: mais calor, melhor adesão entre camadas.</li>
+            <li>Reduza o resfriamento em materiais que não sejam PLA.</li>
+            <li>Confira se o filamento está seco.</li>
+          </ol>
+          <a class="diag-leia" href="guia-paredes-e-preenchimento.html">Entender a fundo</a>
+        </div>
+      </details>
+      <details class="diag-item">
+        <summary>Aumentei o preenchimento e a peça continua fraca</summary>
+        <div class="diag-body">
+          <p>Mais tempo, mais filamento, mesmo resultado.</p>
+          <ol>
+            <li>Preenchimento quase nunca é o problema. A resistência vem do material <strong>longe do centro</strong>.</li>
+            <li>Volte o preenchimento para 15% em giroide e suba as <strong>paredes</strong> para 3 ou 4.</li>
+            <li>Revise a orientação na mesa antes de qualquer outra coisa.</li>
+            <li>Confira o material: PLA não aguenta esforço contínuo nem calor.</li>
+          </ol>
+          <a class="diag-leia" href="guia-paredes-e-preenchimento.html">Entender a fundo</a>
+        </div>
+      </details>
+      <details class="diag-item">
+        <summary>As duas peças não encaixam</summary>
+        <div class="diag-body">
+          <p>O pino não entra no furo, ou entra e não segura.</p>
+          <ol>
+            <li>Dimensão externa sai maior e furo sai menor — os dois erros somam no encaixe.</li>
+            <li>Deixe <strong>0,2&nbsp;mm de folga total</strong> como ponto de partida; 0,3–0,4 se precisa girar.</li>
+            <li>Ligue a compensação de <strong>pé de elefante</strong>, senão trava na base.</li>
+            <li>Calibre o <strong>fluxo</strong>: fluxo alto engorda tudo.</li>
+            <li>Imprima só a região do encaixe para testar, não a peça inteira.</li>
+            <li>Chanfre a entrada do furo em 0,5&nbsp;mm — perdoa muito desvio.</li>
+          </ol>
+          <a class="diag-leia" href="guia-tolerancia-de-encaixe.html">Entender a fundo</a>
+        </div>
+      </details>
+      <details class="diag-item">
+        <summary>A peça entortou depois de pronta</summary>
+        <div class="diag-body">
+          <p>Ficou boa na impressão e deformou com o tempo ou com o uso.</p>
+          <ol>
+            <li>Quase sempre é <strong>calor</strong>. PLA começa a amolecer por volta de 55&nbsp;°C, e um carro fechado no sol passa disso fácil.</li>
+            <li>Para peça que pega sol ou calor, use PETG, ABS ou ASA.</li>
+            <li>Se a peça ficou sob carga constante, pode ser fluência: PLA cede devagar sob peso permanente.</li>
+          </ol>
+        </div>
+      </details>
+    </div>
+    <div class="diag-group reveal">
+      <h2>Suportes e mecânico</h2>
+      <details class="diag-item">
+        <summary>O suporte não sai, ou arranca pedaço da peça</summary>
+        <div class="diag-body">
+          <p>Fica grudado demais e estraga a superfície ao remover.</p>
+          <ol>
+            <li>Aumente a <strong>distância Z do topo</strong> — em passos de uma altura de camada, porque o valor é arredondado.</li>
+            <li>Aumente o <strong>espaçamento da interface</strong> em 0,05–0,1&nbsp;mm.</li>
+            <li>Reduza (ou zere) as <strong>camadas de interface</strong>.</li>
+            <li>Se puder usar dois materiais, faça a interface em PETG sob peça de PLA: praticamente não aderem.</li>
+            <li>Mude uma coisa de cada vez, e teste em peça pequena.</li>
+          </ol>
+          <a class="diag-leia" href="guia-suportes.html">Entender a fundo</a>
+        </div>
+      </details>
+      <details class="diag-item">
+        <summary>As camadas saíram deslocadas no meio da peça</summary>
+        <div class="diag-body">
+          <p>A impressão &#x27;pulou&#x27; de lugar e seguiu torta a partir dali.</p>
+          <ol>
+            <li>Isso é mecânico, não de slicer.</li>
+            <li>Confira se o bico <strong>bateu na peça</strong> — saliência enrolada ou blob levantado derrubam o eixo.</li>
+            <li>Verifique correias e polias: folga ou parafuso solto causam perda de passo.</li>
+            <li>Reduza velocidade e aceleração de deslocamento.</li>
+            <li>Confira se algo está obstruindo o movimento dos eixos.</li>
+          </ol>
+        </div>
+      </details>
+      <details class="diag-item">
+        <summary>Pontinhos e bolhas espalhados pela superfície</summary>
+        <div class="diag-body">
+          <p>Pequenos relevos onde o bico começou ou terminou um trecho.</p>
+          <ol>
+            <li>Se estão espalhados por toda a peça, pode ser o modo de costura <em>aleatório</em>. Troque para alinhado ou atrás.</li>
+            <li>Se vêm acompanhados de estalo e fiapo, é <strong>filamento úmido</strong>: seque.</li>
+            <li>Ajuste o pressure advance, que controla o acúmulo no fim de cada trecho.</li>
+          </ol>
+          <a class="diag-leia" href="guia-costura.html">Entender a fundo</a>
+        </div>
+      </details>
+    </div>
+
+      <div class="article-cta reveal" style="margin-top:72px">
+        <h2>Não quer caçar regulagem?</h2>
+        <p>Você manda a ideia ou o arquivo e a gente entrega a peça pronta — com tudo
+        isso já resolvido do nosso lado.</p>
+        <a href="orcamento.html" class="btn btn-primary">Fazer um orçamento</a>
+        <a href="https://wa.me/5547991677070" class="btn btn-ghost" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+      </div>
+
+      <nav class="article-nav" aria-label="Outras páginas do guia">
+        <a href="guia.html">Todos os artigos</a>
+        <a href="guia-referencia.html">Tabela de valores de partida →</a>
+      </nav>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <nav class="footer-nav" aria-label="Páginas por público">
+      <a href="presentes.html">Presentes personalizados</a>
+      <a href="colecionaveis.html">Colecionáveis e figuras</a>
+      <a href="gamer.html">Acessórios gamer e setup</a>
+      <a href="empresas.html">Empresas e protótipos</a>
+    </nav>
+  </div>
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <img src="assets/img/brand/logo-horizontal-dark-bg.png" alt="Zanshin 3D Studio" class="logo-img footer-logo-img">
+    </div>
+    <p>© <span id="year"></span> Zanshin 3D Studio · Jaraguá do Sul, SC</p>
+    <div class="footer-social">
+      <a href="https://wa.me/5547991677070" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M20.5 3.5a11 11 0 0 0-17.4 13.2L2 21.5l4.9-1.3A11 11 0 0 0 20.5 3.5Z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/zanshin_3dstudio/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/5547991677070" target="_blank" rel="noopener" aria-label="Fale conosco no WhatsApp" id="floatWhatsapp">
+  <svg viewBox="0 0 24 24"><path d="M20.5 3.5a11 11 0 0 0-17.4 13.2L2 21.5l4.9-1.3A11 11 0 0 0 20.5 3.5Z"/><path d="M8.5 8.4c.2-.5.4-.5.6-.5h.5c.2 0 .4 0 .5.4.2.5.6 1.6.7 1.7.1.1.1.3 0 .5-.1.2-.2.3-.3.5-.2.2-.3.3-.1.6.2.3.8 1.3 1.8 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.2.4-.2.6-.1.2.1 1.5.7 1.8.8.3.1.5.2.5.3.1.4.1.8-.1 1.2-.2.4-1.1 1-1.9 1.1-.6.1-1.3.1-4.2-1-3.5-1.4-5.7-4.9-5.9-5.1-.2-.2-1.4-1.8-1.4-3.5 0-1.6.9-2.4 1.2-2.7Z" fill="var(--bg)" stroke="none"/></svg>
+</a>
+
+<script src="js/script.js"></script>
+</body>
+</html>
