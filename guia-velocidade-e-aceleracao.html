@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ondulação e fantasma na peça: é velocidade, não a impressora — Zanshin 3D Studio</title>
+<meta name="description" content="Ringing e ghosting explicados: por que acelerar demais estraga a superfície, quais velocidades usar na parede externa e o que o input shaper resolve de verdade.">
+<meta name="theme-color" content="#0d0d10">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ondulação e fantasma na peça: é velocidade, não a impressora — Zanshin 3D Studio">
+<meta property="og:description" content="Ringing e ghosting explicados: por que acelerar demais estraga a superfície, quais velocidades usar na parede externa e o que o input shaper resolve de verdade.">
+<meta property="og:url" content="https://weslley11.github.io/Zanshin3dStudio/guia-velocidade-e-aceleracao.html">
+<link rel="canonical" href="https://weslley11.github.io/Zanshin3dStudio/guia-velocidade-e-aceleracao.html">
+
+<link rel="icon" type="image/png" href="assets/img/brand/icon.png">
+<link rel="apple-touch-icon" href="assets/img/brand/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a href="index.html" class="logo">
+      <img src="assets/img/brand/logo-horizontal-dark-bg.png" alt="Zanshin 3D Studio" class="logo-img">
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="sobre.html" class="nav-link">Sobre</a></li>
+        <li><a href="servicos.html" class="nav-link">Serviços</a></li>
+        <li><a href="materiais.html" class="nav-link">Materiais</a></li>
+        <li><a href="orcamento.html" class="nav-link">Orçamento</a></li>
+        <li><a href="galeria.html" class="nav-link">Galeria</a></li>
+        <li><a href="guia.html" class="nav-link active" aria-current="page">Guia</a></li>
+        <li><a href="faq.html" class="nav-link">FAQ</a></li>
+        <li><a href="pedidos.html" class="nav-link">Pedidos</a></li>
+        <li><a href="contato.html" class="nav-link btn-nav">Contato</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="conteudo">
+  <article class="article">
+    <div class="container">
+      <div class="article-head reveal">
+        <p class="eyebrow"><a href="guia.html" style="color:inherit">Guia</a> · Qualidade</p>
+        <h1>Ondulação e fantasma na peça: é velocidade, não a impressora</h1>
+        <p class="article-lead">Aquela ondinha que se repete depois de cada quina tem nome, causa e solução — e quase nunca é defeito de máquina.</p>
+        <div class="article-meta">
+          <span>Leitura de 7 min</span>
+          <span>Escrito pela Zanshin 3D Studio, em Jaraguá do Sul</span>
+        </div>
+      </div>
+
+      <div class="article-body reveal">
+<p>Você imprime um cubo e, logo depois de cada quina, a parede fica com uma ondulação que
+vai sumindo aos poucos. Isso é <strong>ringing</strong> (ou ghosting): a estrutura da
+impressora vibrou na mudança de direção, e o bico registrou essa vibração no plástico.</p>
+
+<p>É o defeito que mais faz gente achar que precisa trocar de impressora. Quase sempre é
+regulagem.</p>
+
+<h2>Por que acontece</h2>
+
+<p>Para fazer uma quina, o bico precisa parar numa direção e sair noutra. Quanto mais rápido
+isso acontece, maior a força envolvida — e toda estrutura cede um pouco. O eixo balança, a
+oscilação demora alguns milímetros para amortecer, e cada camada grava a mesma onda no mesmo
+lugar. Empilhadas, viram aquele padrão de eco.</p>
+
+<p>Três coisas controlam isso: <strong>velocidade</strong>, <strong>aceleração</strong> e
+<strong>rigidez da máquina</strong>. As duas primeiras você muda no slicer em dois minutos.</p>
+
+<h2>1. A parede externa é a única que precisa ser lenta</h2>
+
+<p>Essa é a ideia central, e ela economiza muito tempo: <strong>devagar só no que aparece</strong>.
+A parede externa é a única superfície que o olho vê. Parede interna, preenchimento e
+deslocamento podem correr solto — ninguém nunca vai olhar.</p>
+
+<p>Pontos de partida para a parede externa:</p>
+
+<ul>
+  <li><strong>PLA:</strong> 60 a 90&nbsp;mm/s</li>
+  <li><strong>PETG:</strong> 40 a 60&nbsp;mm/s</li>
+  <li><strong>TPU:</strong> 25 a 40&nbsp;mm/s</li>
+</ul>
+
+<p>O preenchimento pode ir a 120–150&nbsp;mm/s sem prejuízo nenhum. Como a parede externa é
+uma fração pequena do tempo total, baixar só ela custa pouco e muda muito o resultado.</p>
+
+<h2>2. Aceleração importa mais que velocidade de ponta</h2>
+
+<p>Aqui está o detalhe que quase ninguém ajusta. Em peça pequena, o bico nem chega na
+velocidade programada: ele passa o tempo todo acelerando e freando. Nesse caso, quem define
+o acabamento é a <strong>aceleração</strong>, não a velocidade máxima.</p>
+
+<p>Faixas típicas numa máquina rápida de pórtico:</p>
+
+<ul>
+  <li><strong>Parede externa:</strong> 3.000 a 5.000&nbsp;mm/s²</li>
+  <li><strong>Parede interna:</strong> 6.000 a 10.000&nbsp;mm/s²</li>
+  <li><strong>Deslocamento:</strong> 15.000 a 20.000&nbsp;mm/s²</li>
+</ul>
+
+<div class="article-note">
+  <p><strong>Teste rápido:</strong> imprima um cubo pequeno com um pino saliente numa face.
+  Se a ondulação aparece depois do pino e vai sumindo, é ringing. Baixe só a aceleração da
+  parede externa e imprima de novo — a diferença aparece na hora.</p>
+</div>
+
+<h2>3. Input shaper: o que ele faz e o que não faz</h2>
+
+<p>Impressoras modernas têm compensação de vibração — <em>input shaper</em>, <em>vibration
+compensation</em>, o nome muda de marca para marca. A ideia é medir a frequência natural com
+que a máquina vibra e antecipar o comando de movimento para cancelar essa oscilação.</p>
+
+<p>Funciona muito bem, e permite correr mais rápido mantendo o acabamento. Mas:</p>
+
+<ul>
+  <li>Precisa ser <strong>calibrado</strong>, não só ligado. A calibração mede a sua máquina,
+  no seu lugar.</li>
+  <li>Calibre com a <strong>mesa aquecida</strong> e a peça montada como vai imprimir: a
+  frequência muda com a temperatura e com o peso.</li>
+  <li>A impressora precisa estar numa <strong>superfície estável</strong>. Mesa bamba ou
+  estante de MDF fina sabotam a calibração — e todo o resto.</li>
+  <li>Parafuso solto no carro do bico também. Vale conferir antes de calibrar.</li>
+</ul>
+
+<p>O input shaper não conserta estrutura frouxa. Ele compensa a vibração que a máquina tem,
+não a que você adicionou.</p>
+
+<h2>4. "Parede externa por último"</h2>
+
+<p>Uma opção simples com efeito grande: imprimir a parede externa <strong>depois</strong> das
+internas, em vez de antes. A externa passa a se apoiar em material já depositado, em vez de
+no vazio, e sai mais lisa, com quinas mais definidas.</p>
+
+<p>Em peça multicolorida ajuda ainda mais, porque reduz a chance de o material de uma cor
+borrar na superfície visível.</p>
+
+<h2>A ordem em que vale mexer</h2>
+
+<ol>
+  <li>Baixe a velocidade da parede externa.</li>
+  <li>Baixe a aceleração da parede externa.</li>
+  <li>Ligue "parede externa por último".</li>
+  <li>Calibre a compensação de vibração.</li>
+  <li>Só então pense em hardware.</li>
+</ol>
+
+<p>Uma mudança de cada vez, sempre — senão você não sabe qual resolveu, e a próxima peça
+volta a dar problema sem você entender por quê.</p>
+
+        <div class="article-cta">
+          <h2>Prefere que a gente imprima pra você?</h2>
+          <p>Você manda a ideia ou o arquivo, a gente cuida de todo o resto — inclusive de tudo
+          que está escrito aqui em cima.</p>
+          <a href="orcamento.html" class="btn btn-primary">Fazer um orçamento</a>
+          <a href="https://wa.me/5547991677070" class="btn btn-ghost" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+        </div>
+      </div>
+
+      <nav class="article-nav" aria-label="Outros artigos">
+        <a href="guia-costura.html">← A costura da peça: onde ela aparece e como escondê-la</a><a href="guia.html">Todos os artigos</a><a href="guia-calibracao-fluxo.html">Fluxo e pressure advance: duas calibrações, dois problemas diferentes →</a>
+      </nav>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <nav class="footer-nav" aria-label="Páginas por público">
+      <a href="presentes.html">Presentes personalizados</a>
+      <a href="colecionaveis.html">Colecionáveis e figuras</a>
+      <a href="gamer.html">Acessórios gamer e setup</a>
+      <a href="empresas.html">Empresas e protótipos</a>
+    </nav>
+  </div>
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <img src="assets/img/brand/logo-horizontal-dark-bg.png" alt="Zanshin 3D Studio" class="logo-img footer-logo-img">
+    </div>
+    <p>© <span id="year"></span> Zanshin 3D Studio · Jaraguá do Sul, SC</p>
+    <div class="footer-social">
+      <a href="https://wa.me/5547991677070" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M20.5 3.5a11 11 0 0 0-17.4 13.2L2 21.5l4.9-1.3A11 11 0 0 0 20.5 3.5Z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/zanshin_3dstudio/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/5547991677070" target="_blank" rel="noopener" aria-label="Fale conosco no WhatsApp" id="floatWhatsapp">
+  <svg viewBox="0 0 24 24"><path d="M20.5 3.5a11 11 0 0 0-17.4 13.2L2 21.5l4.9-1.3A11 11 0 0 0 20.5 3.5Z"/><path d="M8.5 8.4c.2-.5.4-.5.6-.5h.5c.2 0 .4 0 .5.4.2.5.6 1.6.7 1.7.1.1.1.3 0 .5-.1.2-.2.3-.3.5-.2.2-.3.3-.1.6.2.3.8 1.3 1.8 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.2.4-.2.6-.1.2.1 1.5.7 1.8.8.3.1.5.2.5.3.1.4.1.8-.1 1.2-.2.4-1.1 1-1.9 1.1-.6.1-1.3.1-4.2-1-3.5-1.4-5.7-4.9-5.9-5.1-.2-.2-1.4-1.8-1.4-3.5 0-1.6.9-2.4 1.2-2.7Z" fill="var(--bg)" stroke="none"/></svg>
+</a>
+
+<script src="js/script.js"></script>
+</body>
+</html>

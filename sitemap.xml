@@ -41,7 +41,17 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://weslley11.github.io/Zanshin3dStudio/guia-calibracao-fluxo.html</loc>
+    <lastmod>2026-10-06</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://weslley11.github.io/Zanshin3dStudio/guia-costura.html</loc>
+    <lastmod>2026-10-06</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://weslley11.github.io/Zanshin3dStudio/guia-paredes-e-preenchimento.html</loc>
     <lastmod>2026-10-06</lastmod>
     <priority>0.6</priority>
   </url>
@@ -52,6 +62,21 @@
   </url>
   <url>
     <loc>https://weslley11.github.io/Zanshin3dStudio/guia-suportes.html</loc>
+    <lastmod>2026-10-06</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://weslley11.github.io/Zanshin3dStudio/guia-tolerancia-de-encaixe.html</loc>
+    <lastmod>2026-10-06</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://weslley11.github.io/Zanshin3dStudio/guia-topo-liso.html</loc>
+    <lastmod>2026-10-06</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://weslley11.github.io/Zanshin3dStudio/guia-velocidade-e-aceleracao.html</loc>
     <lastmod>2026-10-06</lastmod>
     <priority>0.6</priority>
   </url>

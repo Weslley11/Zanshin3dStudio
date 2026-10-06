@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fluxo e pressure advance: duas calibrações, dois problemas diferentes — Zanshin 3D Studio</title>
+<meta name="description" content="Flow ratio ajusta quanto material sai; pressure advance ajusta a resposta na mudança de velocidade. O que cada uma conserta e como medir.">
+<meta name="theme-color" content="#0d0d10">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fluxo e pressure advance: duas calibrações, dois problemas diferentes — Zanshin 3D Studio">
+<meta property="og:description" content="Flow ratio ajusta quanto material sai; pressure advance ajusta a resposta na mudança de velocidade. O que cada uma conserta e como medir.">
+<meta property="og:url" content="https://weslley11.github.io/Zanshin3dStudio/guia-calibracao-fluxo.html">
+<link rel="canonical" href="https://weslley11.github.io/Zanshin3dStudio/guia-calibracao-fluxo.html">
+
+<link rel="icon" type="image/png" href="assets/img/brand/icon.png">
+<link rel="apple-touch-icon" href="assets/img/brand/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a href="index.html" class="logo">
+      <img src="assets/img/brand/logo-horizontal-dark-bg.png" alt="Zanshin 3D Studio" class="logo-img">
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="sobre.html" class="nav-link">Sobre</a></li>
+        <li><a href="servicos.html" class="nav-link">Serviços</a></li>
+        <li><a href="materiais.html" class="nav-link">Materiais</a></li>
+        <li><a href="orcamento.html" class="nav-link">Orçamento</a></li>
+        <li><a href="galeria.html" class="nav-link">Galeria</a></li>
+        <li><a href="guia.html" class="nav-link active" aria-current="page">Guia</a></li>
+        <li><a href="faq.html" class="nav-link">FAQ</a></li>
+        <li><a href="pedidos.html" class="nav-link">Pedidos</a></li>
+        <li><a href="contato.html" class="nav-link btn-nav">Contato</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="conteudo">
+  <article class="article">
+    <div class="container">
+      <div class="article-head reveal">
+        <p class="eyebrow"><a href="guia.html" style="color:inherit">Guia</a> · Calibração</p>
+        <h1>Fluxo e pressure advance: duas calibrações, dois problemas diferentes</h1>
+        <p class="article-lead">Elas têm nome parecido e resolvem coisas opostas. Trocar uma pela outra é perder tarde inteira.</p>
+        <div class="article-meta">
+          <span>Leitura de 7 min</span>
+          <span>Escrito pela Zanshin 3D Studio, em Jaraguá do Sul</span>
+        </div>
+      </div>
+
+      <div class="article-body reveal">
+<p>Duas calibrações aparecem juntas em todo tutorial e são constantemente confundidas:
+<strong>taxa de fluxo</strong> (flow ratio) e <strong>dinâmica de fluxo</strong> (pressure
+advance, ou valor K). Nomes parecidos, trabalhos completamente diferentes.</p>
+
+<div class="article-note">
+  <p><strong>Em uma linha:</strong> fluxo é <em>quanto</em> material sai. Pressure advance é
+  <em>quando</em> ele sai.</p>
+</div>
+
+<h2>Taxa de fluxo: quanto material sai</h2>
+
+<p>O slicer calcula quanto plástico precisa para cada linha. A taxa de fluxo é o fator que
+corrige esse cálculo para o seu filamento real — porque o diâmetro varia de rolo para rolo,
+e cada tipo de plástico incha de um jeito ao sair do bico.</p>
+
+<h3>O que o fluxo errado causa</h3>
+
+<ul>
+  <li><strong>Sub-extrusão</strong> (fluxo baixo): vão entre as linhas, topo que não fecha,
+  peça frágil.</li>
+  <li><strong>Sobre-extrusão</strong> (fluxo alto): topo com relevo e rugosidade, dimensão
+  maior que o projeto, quina "inchada", encaixe que não entra.</li>
+</ul>
+
+<h3>Como medir</h3>
+
+<p>O jeito mais direto: imprima um <strong>cubo de parede única</strong> (sem preenchimento,
+sem topo) e meça a espessura da parede com paquímetro em vários pontos. Compare com a largura
+de linha configurada. Se mediu mais, abaixe o fluxo na mesma proporção; se mediu menos, suba.</p>
+
+<p>Faixas em que a maioria dos filamentos cai:</p>
+
+<ul>
+  <li><strong>PLA:</strong> 0,96 a 0,99</li>
+  <li><strong>PETG:</strong> 0,93 a 0,97</li>
+  <li><strong>PLA silk:</strong> 0,90 a 0,95 — silk costuma precisar de bem menos fluxo,
+  e é o que explica aquele topo rugoso que muita gente aceita como característica do
+  material.</li>
+</ul>
+
+<h2>Pressure advance: quando o material sai</h2>
+
+<p>Dentro do bico existe pressão. Quando o bico acelera, a pressão precisa subir para a
+extrusão acompanhar — e isso leva um instante. Quando ele freia para fazer uma quina, a
+pressão continua lá e o plástico continua saindo por mais um pouco.</p>
+
+<p>O resultado, sem compensação: <strong>falta material no começo de cada linha reta e sobra
+na quina</strong>. É por isso que a quina fica com uma bolinha e o início da parede fica fino.</p>
+
+<p>O pressure advance antecipa isso: pressuriza antes de acelerar e alivia antes de frear.</p>
+
+<h3>Como reconhecer</h3>
+
+<ul>
+  <li><strong>Valor baixo demais:</strong> quina abaulada, com acúmulo de material.</li>
+  <li><strong>Valor alto demais:</strong> quina afundada, com falha logo depois dela.</li>
+  <li><strong>No ponto:</strong> a quina sai viva, com a mesma espessura da parede reta.</li>
+</ul>
+
+<h3>Como medir</h3>
+
+<p>Com um teste de torre: a impressora sobe variando o valor camada a camada e você olha em
+que altura a quina ficou melhor. A maioria dos slicers modernos já traz esse teste pronto.</p>
+
+<p>Faixas de partida em impressora de acionamento direto:</p>
+
+<ul>
+  <li><strong>PLA:</strong> 0,02 a 0,05</li>
+  <li><strong>PETG:</strong> 0,03 a 0,06</li>
+  <li><strong>TPU:</strong> 0,015 a 0,03</li>
+</ul>
+
+<p>Esses números são ponto de partida, não preset. O valor certo depende do conjunto bico,
+extrusor e filamento — e é por isso que a calibração se refaz a cada rolo novo de um
+material diferente.</p>
+
+<h2>Qual delas resolve o seu problema</h2>
+
+<ul>
+  <li>Topo rugoso, dimensão errada, encaixe apertado → <strong>fluxo</strong></li>
+  <li>Quina com bolinha ou afundada, parede que começa fina → <strong>pressure advance</strong></li>
+  <li>Ondulação depois da quina, que vai sumindo → nenhuma das duas: é
+  <a href="guia-velocidade-e-aceleracao.html">velocidade e aceleração</a></li>
+</ul>
+
+<h2>Calibre uma vez, salve o perfil</h2>
+
+<p>Calibração não é tarefa recorrente se você for organizado. Calibre uma vez por
+combinação de filamento e bico, <strong>salve como perfil com nome</strong>, e pronto. Aqui o
+studio mantém um perfil por rolo de material — é o que permite prometer o mesmo acabamento
+em peça repetida, meses depois.</p>
+
+<p>Se você só quer a peça pronta, isso tudo já está feito: é só
+<a href="orcamento.html">pedir um orçamento</a>.</p>
+
+        <div class="article-cta">
+          <h2>Prefere que a gente imprima pra você?</h2>
+          <p>Você manda a ideia ou o arquivo, a gente cuida de todo o resto — inclusive de tudo
+          que está escrito aqui em cima.</p>
+          <a href="orcamento.html" class="btn btn-primary">Fazer um orçamento</a>
+          <a href="https://wa.me/5547991677070" class="btn btn-ghost" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+        </div>
+      </div>
+
+      <nav class="article-nav" aria-label="Outros artigos">
+        <a href="guia-velocidade-e-aceleracao.html">← Ondulação e fantasma na peça: é velocidade, não a impressora</a><a href="guia.html">Todos os artigos</a><a href="guia-topo-liso.html">Topo liso de verdade: ironing e o que mais importa →</a>
+      </nav>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <nav class="footer-nav" aria-label="Páginas por público">
+      <a href="presentes.html">Presentes personalizados</a>
+      <a href="colecionaveis.html">Colecionáveis e figuras</a>
+      <a href="gamer.html">Acessórios gamer e setup</a>
+      <a href="empresas.html">Empresas e protótipos</a>
+    </nav>
+  </div>
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <img src="assets/img/brand/logo-horizontal-dark-bg.png" alt="Zanshin 3D Studio" class="logo-img footer-logo-img">
+    </div>
+    <p>© <span id="year"></span> Zanshin 3D Studio · Jaraguá do Sul, SC</p>
+    <div class="footer-social">
+      <a href="https://wa.me/5547991677070" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M20.5 3.5a11 11 0 0 0-17.4 13.2L2 21.5l4.9-1.3A11 11 0 0 0 20.5 3.5Z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/zanshin_3dstudio/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/5547991677070" target="_blank" rel="noopener" aria-label="Fale conosco no WhatsApp" id="floatWhatsapp">
+  <svg viewBox="0 0 24 24"><path d="M20.5 3.5a11 11 0 0 0-17.4 13.2L2 21.5l4.9-1.3A11 11 0 0 0 20.5 3.5Z"/><path d="M8.5 8.4c.2-.5.4-.5.6-.5h.5c.2 0 .4 0 .5.4.2.5.6 1.6.7 1.7.1.1.1.3 0 .5-.1.2-.2.3-.3.5-.2.2-.3.3-.1.6.2.3.8 1.3 1.8 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.2.4-.2.6-.1.2.1 1.5.7 1.8.8.3.1.5.2.5.3.1.4.1.8-.1 1.2-.2.4-1.1 1-1.9 1.1-.6.1-1.3.1-4.2-1-3.5-1.4-5.7-4.9-5.9-5.1-.2-.2-1.4-1.8-1.4-3.5 0-1.6.9-2.4 1.2-2.7Z" fill="var(--bg)" stroke="none"/></svg>
+</a>
+
+<script src="js/script.js"></script>
+</body>
+</html>
