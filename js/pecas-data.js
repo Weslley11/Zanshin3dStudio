@@ -130,7 +130,7 @@ const PECAS = [
     imagens: [
       { src: "assets/img/gallery/caneca-monster.jpg", alt: "Caneca impressa em 3D em rosa, com as três garras vazadas na lateral e alça grande" },
     ],
-    descricao: "Caneca com as três garras vazadas na lateral, impressa em rosa. A alça é grande o bastante pra mão inteira e o corpo é reto, com aros em relevo em cima e embaixo. Dá pra fazer na cor que você quiser.",
+    descricao: "Caneca com as três garras vazadas na lateral, impressa em rosa. A alça é grande o bastante pra mão inteira e o corpo é reto, com aros em relevo em cima e embaixo. Dá pra fazer na cor que você quiser. É peça decorativa, de prateleira ou porta-canetas: impressão 3D não serve pra contato com bebida.",
   },
   {
     id: "suporte-celular",
