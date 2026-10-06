@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A costura da peça: onde ela aparece e como escondê-la — Zanshin 3D Studio</title>
-<meta name="description" content="Nearest, aligned, back e random: o que cada modo faz, por que aleatório costuma piorar, e as duas ferramentas que realmente resolvem.">
+<title>Topo liso de verdade: ironing e o que mais importa — Zanshin 3D Studio</title>
+<meta name="description" content="Linhas monotônicas, ironing e calibração de fluxo: as três coisas que transformam um topo rugoso em superfície lisa, e quando não vale a pena usar.">
 <meta name="theme-color" content="#0d0d10">
 <meta property="og:type" content="article">
-<meta property="og:title" content="A costura da peça: onde ela aparece e como escondê-la — Zanshin 3D Studio">
-<meta property="og:description" content="Nearest, aligned, back e random: o que cada modo faz, por que aleatório costuma piorar, e as duas ferramentas que realmente resolvem.">
-<meta property="og:url" content="https://weslley11.github.io/Zanshin3dStudio/guia-costura.html">
-<link rel="canonical" href="https://weslley11.github.io/Zanshin3dStudio/guia-costura.html">
+<meta property="og:title" content="Topo liso de verdade: ironing e o que mais importa — Zanshin 3D Studio">
+<meta property="og:description" content="Linhas monotônicas, ironing e calibração de fluxo: as três coisas que transformam um topo rugoso em superfície lisa, e quando não vale a pena usar.">
+<meta property="og:url" content="https://weslley11.github.io/Zanshin3dStudio/guia-topo-liso.html">
+<link rel="canonical" href="https://weslley11.github.io/Zanshin3dStudio/guia-topo-liso.html">
 
 <link rel="icon" type="image/png" href="assets/img/brand/icon.png">
 <link rel="apple-touch-icon" href="assets/img/brand/apple-touch-icon.png">
@@ -54,8 +54,8 @@
     <div class="container">
       <div class="article-head reveal">
         <p class="eyebrow"><a href="guia.html" style="color:inherit">Guia</a> · Acabamento</p>
-        <h1>A costura da peça: onde ela aparece e como escondê-la</h1>
-        <p class="article-lead">Aquela linha vertical na lateral não é defeito — é onde cada camada começa. Dá pra controlar onde ela cai.</p>
+        <h1>Topo liso de verdade: ironing e o que mais importa</h1>
+        <p class="article-lead">A superfície de cima é a que mais entrega impressão malfeita — e a que tem a solução mais direta.</p>
         <div class="article-meta">
           <span>Leitura de 5 min</span>
           <span>Escrito pela Zanshin 3D Studio, em Jaraguá do Sul</span>
@@ -63,70 +63,80 @@
       </div>
 
       <div class="article-body reveal">
-<p>Toda camada da parede externa começa e termina em algum ponto. Nesse ponto o bico
-pressuriza e despressuriza, e fica uma marca mínima. Empilhadas, essas marcas formam a
-<strong>costura</strong>: a linha vertical que você vê na lateral de um cilindro.</p>
+<p>Parede com linha de camada todo mundo aceita — faz parte do processo. Mas topo rugoso,
+com linha cruzada e ondulação, é o que faz a peça parecer malfeita. E é justamente onde um
+ajuste pequeno muda muito.</p>
 
-<p>Costura não é defeito de impressão. Ela sempre existe. A pergunta certa não é como
-eliminar, e sim onde deixar.</p>
+<h2>1. Linhas monotônicas: o ajuste gratuito</h2>
 
-<h2>Os quatro modos</h2>
+<p>O padrão de preenchimento do topo pode ser feito de duas formas. No modo comum, o bico vai
+e volta em zigue-zague, alternando o sentido — e linhas impressas em sentidos opostos
+refletem a luz de maneira diferente, criando aquele efeito de faixas alternadas.</p>
 
-<h3>Mais próximo (nearest)</h3>
-<p>Escolhe um ponto próximo da posição atual do bico, preferindo lugares pouco visíveis
-como quinas côncavas, e evitando saliências. Como depende de onde o bico está, a costura
-pode andar de camada para camada. Bom padrão geral.</p>
+<p>No modo <strong>monotônico</strong>, todas as linhas do topo correm no mesmo sentido. O
+tempo de impressão é praticamente o mesmo, e a superfície fica visivelmente mais uniforme.</p>
 
-<h3>Alinhado (aligned)</h3>
-<p>Procura pontos adequados e tenta empilhá-los, criando uma linha vertical consistente.
-Ainda desvia quando precisa evitar uma saliência. É o que dá o resultado mais previsível
-em peça cilíndrica.</p>
+<p>É a melhoria mais barata que existe: um clique, custo zero. Se o seu slicer tem a opção,
+deixe ligada sempre.</p>
 
-<h3>Atrás (back)</h3>
-<p>Joga a costura para o fundo da mesa (Y+), independente da orientação do modelo. Simples
-e eficaz: gire a peça na mesa e a costura muda de face. Útil quando a peça tem um lado que
-ninguém vai ver.</p>
+<h2>2. Ironing: passar a ferro de verdade</h2>
 
-<h3>Aleatório (random)</h3>
-<p>Espalha os pontos pela superfície. A ideia é não ter linha nenhuma — mas, na prática,
-em superfície lisa isso troca uma linha discreta por <strong>pontinhos espalhados pela peça
-inteira</strong>, que costumam incomodar mais. Funciona melhor em peça com textura, onde os
-pontos somem.</p>
+<p>O <em>ironing</em> faz o bico passar mais uma vez por cima da camada superior já pronta,
+quase sem extrudar, só com o calor e o peso. O plástico amolece de leve e preenche os vales
+entre as linhas.</p>
+
+<p>Configuração que funciona bem:</p>
+
+<ul>
+  <li><strong>Tipo:</strong> só nas superfícies de topo. Ironing em tudo é desperdício de
+  tempo enorme.</li>
+  <li><strong>Padrão:</strong> retilíneo.</li>
+  <li><strong>Velocidade:</strong> 30 a 60&nbsp;mm/s.</li>
+  <li><strong>Fluxo:</strong> 10 a 20%. Mais que isso acumula material e piora.</li>
+  <li><strong>Espaçamento de linha:</strong> em torno de 0,10 a 0,15&nbsp;mm.</li>
+</ul>
 
 <div class="article-note">
-  <p><strong>Na dúvida:</strong> cilindro e peça de revolução pedem alinhado. Figura com
-  frente e costas definidas pede atrás, com a costura nas costas. Aleatório só em
-  superfície já texturizada.</p>
+  <p><strong>Ironing não é mágica.</strong> Ele alisa, mas custa tempo — às vezes vários
+  minutos por superfície. E em peça com muitas áreas planas pequenas, o ganho não compensa.
+  Use onde existe uma superfície plana grande e visível.</p>
 </div>
 
-<h2>As duas ferramentas que realmente resolvem</h2>
+<h2>3. O fluxo precisa estar certo antes</h2>
 
-<h3>Pintar a costura (seam painting)</h3>
-<p>Em vez de escolher uma regra, você pinta no modelo exatamente onde quer a costura. É o
-controle real: numa figura, dá pra empurrar a costura para dentro de uma dobra da roupa,
-atrás da orelha, na junção de duas peças. Dá trabalho e vale a pena em peça de exposição.</p>
+<p>Essa é a parte que faz gente desistir do ironing achando que não funciona. Se o fluxo
+estiver alto, o topo já sai com material sobrando — e passar o ferro em cima só empurra esse
+excesso para os lados, formando relevo.</p>
 
-<h3>Costura em bisel (scarf joint seam)</h3>
-<p>Em vez de só mudar o ponto, essa opção espalha a transição ao longo de um trecho da
-parede, sobrepondo o início e o fim em rampa. Em superfície curva, isso dissolve a marca
-em vez de mudá-la de lugar. É a melhor opção para cilindro e vaso.</p>
+<p>A ordem certa é: <strong>calibrar o fluxo primeiro</strong>, ver o topo melhorar sozinho,
+e só então ligar o ironing para o acabamento final. Se você ainda não calibrou, comece por
+<a href="guia-calibracao-fluxo.html">fluxo e pressure advance</a>.</p>
 
-<h2>Velocidade também conta</h2>
+<h2>4. Camada mais fina ajuda no topo também</h2>
 
-<p>Parede externa rápida demais piora a costura e o acabamento geral, porque o sistema de
-pressão do bico não acompanha a mudança de velocidade nas quinas. Baixar só a parede
-externa — mantendo o preenchimento rápido — custa pouco tempo e melhora bastante o que
-se vê.</p>
+<p>Com camada de 0,12 a 0,16&nbsp;mm, cada linha do topo é mais estreita e o vale entre elas
+é menor — o topo já sai melhor antes de qualquer ironing. Em 0,28&nbsp;mm, nem o ferro
+resolve direito.</p>
 
-<p>É o mesmo princípio da calibração de fluxo dinâmico: o que você perde em velocidade na
-parte visível, você compensa correndo solto no que fica escondido.</p>
+<p>Mais sobre isso em <a href="guia-altura-de-camada.html">altura de camada</a>.</p>
 
-<h2>O que a gente faz nas peças daqui</h2>
+<h2>5. Velocidade do topo</h2>
 
-<p>Nas figuras da <a href="galeria.html">galeria</a>, a costura fica nas costas ou pintada
-dentro de uma dobra. Em peça cilíndrica, costura em bisel. E em peça funcional, onde
-ninguém vai reparar, deixa no automático — gastar tempo escondendo costura de um gancho
-de parede é tempo que o cliente paga sem motivo.</p>
+<p>Mesma lógica da parede externa: o topo é superfície visível, então vale ir devagar nele.
+Entre 30 e 50&nbsp;mm/s é uma faixa confortável. O restante da peça segue rápido.</p>
+
+<h2>A receita completa</h2>
+
+<ol>
+  <li>Calibre o fluxo.</li>
+  <li>Ligue linhas monotônicas no topo.</li>
+  <li>Baixe a velocidade do topo para 30–50&nbsp;mm/s.</li>
+  <li>Use camada de 0,12 a 0,16&nbsp;mm se o acabamento importa.</li>
+  <li>Ligue ironing só nas superfícies de topo.</li>
+</ol>
+
+<p>Nessa ordem. Começar pelo ironing com o fluxo errado é o caminho mais rápido para concluir,
+erradamente, que a sua impressora não dá conta.</p>
 
         <div class="article-cta">
           <h2>Prefere que a gente imprima pra você?</h2>
@@ -138,7 +148,7 @@ de parede é tempo que o cliente paga sem motivo.</p>
       </div>
 
       <nav class="article-nav" aria-label="Outros artigos">
-        <a href="guia-suportes.html">← Suportes que saem fácil sem estragar a peça</a><a href="guia.html">Todos os artigos</a><a href="guia-velocidade-e-aceleracao.html">Ondulação e fantasma na peça: é velocidade, não a impressora →</a>
+        <a href="guia-calibracao-fluxo.html">← Fluxo e pressure advance: duas calibrações, dois problemas diferentes</a><a href="guia.html">Todos os artigos</a><a href="guia-paredes-e-preenchimento.html">O que deixa a peça forte (e não é o preenchimento) →</a>
       </nav>
     </div>
   </article>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peças que encaixam: a folga certa entre duas partes — Zanshin 3D Studio</title>
+<meta name="description" content="Por que a peça sai sempre um pouco maior, qual folga usar como partida, e o método de três passos pra acertar encaixe sem imprimir dez vezes.">
+<meta name="theme-color" content="#0d0d10">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Peças que encaixam: a folga certa entre duas partes — Zanshin 3D Studio">
+<meta property="og:description" content="Por que a peça sai sempre um pouco maior, qual folga usar como partida, e o método de três passos pra acertar encaixe sem imprimir dez vezes.">
+<meta property="og:url" content="https://weslley11.github.io/Zanshin3dStudio/guia-tolerancia-de-encaixe.html">
+<link rel="canonical" href="https://weslley11.github.io/Zanshin3dStudio/guia-tolerancia-de-encaixe.html">
+
+<link rel="icon" type="image/png" href="assets/img/brand/icon.png">
+<link rel="apple-touch-icon" href="assets/img/brand/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a href="index.html" class="logo">
+      <img src="assets/img/brand/logo-horizontal-dark-bg.png" alt="Zanshin 3D Studio" class="logo-img">
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="sobre.html" class="nav-link">Sobre</a></li>
+        <li><a href="servicos.html" class="nav-link">Serviços</a></li>
+        <li><a href="materiais.html" class="nav-link">Materiais</a></li>
+        <li><a href="orcamento.html" class="nav-link">Orçamento</a></li>
+        <li><a href="galeria.html" class="nav-link">Galeria</a></li>
+        <li><a href="guia.html" class="nav-link active" aria-current="page">Guia</a></li>
+        <li><a href="faq.html" class="nav-link">FAQ</a></li>
+        <li><a href="pedidos.html" class="nav-link">Pedidos</a></li>
+        <li><a href="contato.html" class="nav-link btn-nav">Contato</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="conteudo">
+  <article class="article">
+    <div class="container">
+      <div class="article-head reveal">
+        <p class="eyebrow"><a href="guia.html" style="color:inherit">Guia</a> · Projeto</p>
+        <h1>Peças que encaixam: a folga certa entre duas partes</h1>
+        <p class="article-lead">O modelo estava certo e mesmo assim não entrou. O problema é que o plástico não sai do bico com a medida do desenho.</p>
+        <div class="article-meta">
+          <span>Leitura de 5 min</span>
+          <span>Escrito pela Zanshin 3D Studio, em Jaraguá do Sul</span>
+        </div>
+      </div>
+
+      <div class="article-body reveal">
+<p>Você modela um pino de 10&nbsp;mm e um furo de 10&nbsp;mm. Imprime. O pino não entra. Mede
+tudo: o furo saiu com 9,8 e o pino com 10,2.</p>
+
+<p>Não é erro de modelagem, e normalmente não é erro da impressora. É o processo.</p>
+
+<h2>Por que a peça sai diferente do desenho</h2>
+
+<p>Três efeitos somam na mesma direção:</p>
+
+<ul>
+  <li><strong>Inchaço na saída:</strong> o plástico sai do bico sob pressão e expande um
+  pouco antes de esfriar. A linha fica mais larga que o programado.</li>
+  <li><strong>Contração ao esfriar:</strong> todo plástico encolhe ao solidificar, e a taxa
+  muda com o material. ABS encolhe bem mais que PLA.</li>
+  <li><strong>Pé de elefante:</strong> as primeiras camadas ficam espremidas contra a mesa
+  pelo peso e pelo calor, e a base sai com uma saia para fora.</li>
+</ul>
+
+<p>Resultado: dimensão externa tende a sair maior, dimensão interna (furo) tende a sair menor.
+Os dois erros se somam justamente no encaixe.</p>
+
+<h2>A folga de partida</h2>
+
+<p>Para encaixe entre duas peças impressas, <strong>0,2&nbsp;mm de folga total</strong> é o
+ponto de partida que funciona na maioria dos casos. Ou seja: se o furo é de 10&nbsp;mm, o
+pino sai com 9,8.</p>
+
+<p>Ajuste a partir daí conforme o uso:</p>
+
+<ul>
+  <li><strong>0,1&nbsp;mm</strong> — encaixe sob pressão, que entra com força e não sai mais.</li>
+  <li><strong>0,2&nbsp;mm</strong> — encaixe justo, que entra com a mão e segura.</li>
+  <li><strong>0,3 a 0,4&nbsp;mm</strong> — peça que precisa girar ou deslizar, como
+  dobradiça ou tampa de rosca.</li>
+  <li><strong>0,5&nbsp;mm ou mais</strong> — quando entra um componente comprado, tipo
+  rolamento ou ímã, e você não quer forçar.</li>
+</ul>
+
+<p>Com ABS, aumente: o material encolhe mais e de forma menos previsível.</p>
+
+<h2>Compensação de pé de elefante</h2>
+
+<p>Quase todo slicer tem um ajuste de <em>elephant foot compensation</em> que encolhe as
+primeiras camadas de propósito para cancelar o esmagamento. Algo em torno de
+<strong>0,15&nbsp;mm</strong> costuma resolver.</p>
+
+<p>Sem isso, mesmo com a folga certa o encaixe trava nos primeiros milímetros — e você fica
+procurando erro no lugar errado.</p>
+
+<h2>O método de três passos</h2>
+
+<p>Em vez de reimprimir a peça inteira a cada tentativa:</p>
+
+<ol>
+  <li><strong>Calibre a dimensão.</strong> Imprima um cubo de 20&nbsp;mm e meça os três
+  lados. Se está consistentemente maior, acerte o
+  <a href="guia-calibracao-fluxo.html">fluxo</a> — fluxo alto engorda tudo.</li>
+  <li><strong>Imprima só o encaixe.</strong> Corte do modelo apenas a região do pino e do
+  furo e imprima essa peça de teste, que leva minutos em vez de horas.</li>
+  <li><strong>Teste e itere.</strong> Mude a folga em passos de 0,05&nbsp;mm. Duas ou três
+  rodadas resolvem, e cada rodada custa quase nada.</li>
+</ol>
+
+<div class="article-note">
+  <p><strong>Uma cor por peça, no teste.</strong> Em impressão multicolorida, a troca de
+  material muda levemente a extrusão na região da troca. Para calibrar encaixe, imprima o
+  teste numa cor só e aplique as cores depois, na peça final.</p>
+</div>
+
+<h2>Dois detalhes que salvam o encaixe</h2>
+
+<ul>
+  <li><strong>Chanfre a entrada.</strong> Um chanfro de 0,5&nbsp;mm na boca do furo e na
+  ponta do pino guia a montagem e perdoa muito desvio. É a melhoria de projeto com melhor
+  retorno que existe.</li>
+  <li><strong>Furo redondo sai oval.</strong> Furo pequeno impresso na vertical costuma sair
+  ligeiramente menor e com facetas. Se precisa de precisão, modele o furo um pouco maior ou
+  deixe para acabar com broca.</li>
+</ul>
+
+<p>Se você vai pedir uma peça com encaixe aqui no studio, mande junto a informação de
+<strong>como as partes devem se comportar</strong> — se é para prender firme, girar ou sair
+e voltar. É essa informação, e não a medida do desenho, que define a folga que a gente usa.</p>
+
+        <div class="article-cta">
+          <h2>Prefere que a gente imprima pra você?</h2>
+          <p>Você manda a ideia ou o arquivo, a gente cuida de todo o resto — inclusive de tudo
+          que está escrito aqui em cima.</p>
+          <a href="orcamento.html" class="btn btn-primary">Fazer um orçamento</a>
+          <a href="https://wa.me/5547991677070" class="btn btn-ghost" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+        </div>
+      </div>
+
+      <nav class="article-nav" aria-label="Outros artigos">
+        <a href="guia-paredes-e-preenchimento.html">← O que deixa a peça forte (e não é o preenchimento)</a><a href="guia.html">Todos os artigos</a><a href="guia-bico-entupido.html">Bico entupido: como reconhecer, resolver e evitar →</a>
+      </nav>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <nav class="footer-nav" aria-label="Páginas por público">
+      <a href="presentes.html">Presentes personalizados</a>
+      <a href="colecionaveis.html">Colecionáveis e figuras</a>
+      <a href="gamer.html">Acessórios gamer e setup</a>
+      <a href="empresas.html">Empresas e protótipos</a>
+    </nav>
+  </div>
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <img src="assets/img/brand/logo-horizontal-dark-bg.png" alt="Zanshin 3D Studio" class="logo-img footer-logo-img">
+    </div>
+    <p>© <span id="year"></span> Zanshin 3D Studio · Jaraguá do Sul, SC</p>
+    <div class="footer-social">
+      <a href="https://wa.me/5547991677070" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M20.5 3.5a11 11 0 0 0-17.4 13.2L2 21.5l4.9-1.3A11 11 0 0 0 20.5 3.5Z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/zanshin_3dstudio/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/5547991677070" target="_blank" rel="noopener" aria-label="Fale conosco no WhatsApp" id="floatWhatsapp">
+  <svg viewBox="0 0 24 24"><path d="M20.5 3.5a11 11 0 0 0-17.4 13.2L2 21.5l4.9-1.3A11 11 0 0 0 20.5 3.5Z"/><path d="M8.5 8.4c.2-.5.4-.5.6-.5h.5c.2 0 .4 0 .5.4.2.5.6 1.6.7 1.7.1.1.1.3 0 .5-.1.2-.2.3-.3.5-.2.2-.3.3-.1.6.2.3.8 1.3 1.8 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.2.4-.2.6-.1.2.1 1.5.7 1.8.8.3.1.5.2.5.3.1.4.1.8-.1 1.2-.2.4-1.1 1-1.9 1.1-.6.1-1.3.1-4.2-1-3.5-1.4-5.7-4.9-5.9-5.1-.2-.2-1.4-1.8-1.4-3.5 0-1.6.9-2.4 1.2-2.7Z" fill="var(--bg)" stroke="none"/></svg>
+</a>
+
+<script src="js/script.js"></script>
+</body>
+</html>
