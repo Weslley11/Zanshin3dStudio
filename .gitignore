@@ -1,0 +1,3 @@
+# cache do Python, criado quando os geradores de tools/ importam uns aos outros
+__pycache__/
+*.pyc

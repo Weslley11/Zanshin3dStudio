@@ -51,17 +51,50 @@ const CONFIG = {
     (taxa fixa por pedido e acréscimo por acabamento) — ajuste à vontade.
   - a fórmula completa está em `estimatePrice()` no `js/script.js`.
 
-## Fotos da galeria
+## Galeria: como adicionar uma peça
 
-As fotos ficam em `assets/img/gallery/`. Para adicionar uma peça nova,
-copie o padrão já usado na seção **Galeria** (`index.html`, `#galeria`):
+Toda peça mora num lugar só: `js/pecas-data.js`. A galeria, a faixa em
+movimento da home, as landing pages e as páginas de peça são todas derivadas
+dele — **não edite `galeria.html` nem as landing pages à mão**, porque a
+próxima regeneração desfaz.
 
-```html
-<figure class="gallery-item reveal">
-  <img loading="lazy" decoding="async" src="assets/img/gallery/nome-da-peca.jpg" alt="Descrição da peça para leitores de tela">
-  <figcaption>Nome curto da peça</figcaption>
-</figure>
-```
+1. Coloque a foto em `assets/img/gallery/nome-da-peca.jpg` (quadrada, de
+   preferência 1200×1200, peça inteira no quadro).
+2. Em `js/pecas-data.js`, copie um bloco de peça, troque o `id` (é o que vai
+   na URL `peca.html?id=...`, precisa ser único) e aponte a foto como
+   **`.webp`**, não `.jpg`:
+   ```js
+   { src: "assets/img/gallery/nome-da-peca.webp", alt: "Descrição para leitores de tela" },
+   ```
+3. Rode:
+   ```bash
+   python3 tools/build.py
+   ```
+   Ele converte a foto, apaga o `.jpg`, e regenera galeria, faixa, landing
+   pages, guia e sitemap.
+
+Para a peça aparecer numa landing page ou na faixa da home, acrescente o `id`
+na lista correspondente em `tools/gera_landing.py` ou `tools/gera_faixa.py`
+antes de rodar o build.
+
+### Por que cada foto tem dois arquivos
+
+`nome.webp` (1200 px) e `nome-600.webp` (600 px). Os cards da galeria são
+exibidos com no máximo ~500 px físicos, mesmo em celular de tela densa, então
+usam a versão de 600 — isso cortou cerca de 80% do peso de cada página. A de
+1200 só é baixada onde a foto aparece grande: o destaque da home e a foto
+principal da página de peça, e mesmo ali o navegador escolhe a menor quando a
+tela não precisa da maior.
+
+As partes da home escritas à mão (destaque, cards de público e os 6 cards da
+seção de galeria) não são geradas: se trocar uma peça ali, edite `index.html`
+e use o nome `-600.webp` nos cards.
+
+## Guia: como adicionar um artigo
+
+Os artigos ficam na lista `ARTIGOS` de `tools/gera_guia.py`, e o diagnóstico
+por sintoma e a tabela de referência em `tools/gera_guia_extra.py`. Edite lá
+e rode `python3 tools/build.py`.
 
 ## Imagem de capa para compartilhamento (opcional)
 
@@ -165,14 +198,23 @@ sobre.html              Sobre o studio
 servicos.html           Serviços
 materiais.html          Guia de materiais + quiz
 orcamento.html          Calculadora de orçamento
-galeria.html            Galeria completa
+galeria.html            Galeria completa              (gerada)
+peca.html               Página de uma peça, montada por js/peca.js a partir de ?id=
+presentes.html, colecionaveis.html, gamer.html, empresas.html
+                        Landing pages por público    (geradas)
+guia.html, guia-*.html  Guia de impressão 3D         (gerados)
 faq.html                Perguntas frequentes
 contato.html            Contato
 pedidos.html            Painel de pedidos (lê a planilha do Google Sheets)
+sitemap.xml, robots.txt Para o Google                (gerados)
 css/style.css           Estilos (compartilhado por todas as páginas)
 js/script.js             CONFIG, menu mobile, animações, calculadora e quiz de materiais
+js/pecas-data.js          Todas as peças da galeria — a fonte de tudo que é gerado
+js/peca.js                Monta a página de peça
 js/pedidos.js             Config e lógica do painel de pedidos
+tools/build.py            Regenera tudo que está marcado como (gerado)
+tools/                    Os geradores e o conversor de fotos que o build usa
 assets/img/brand/         Arquivos da logo
-assets/img/gallery/       Fotos da galeria
+assets/img/gallery/       Fotos da galeria, em WebP (1200 px e -600)
 .claude/agents/           Subagentes personalizados do Claude Code
 ```

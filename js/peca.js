@@ -5,6 +5,12 @@
 
 document.addEventListener("DOMContentLoaded", initPecaPage);
 
+// Cada foto existe em dois tamanhos: x.webp (1200 px) e x-600.webp.
+// Miniaturas e cards usam a de 600; só a foto principal pode precisar da grande.
+function miniatura(src) {
+  return src.replace(/\.webp$/, "-600.webp");
+}
+
 function initPecaPage() {
   const content = document.getElementById("pecaContent");
   const notFound = document.getElementById("pecaNotFound");
@@ -35,8 +41,14 @@ function renderPeca(peca) {
   const mainImg = document.getElementById("pecaImgMain");
   const thumbsWrap = document.getElementById("pecaThumbs");
 
+  // a foto principal ocupa ~560 px no desktop e a largura toda no celular:
+  // o navegador escolhe entre as duas versões conforme a tela
+  mainImg.sizes = "(max-width: 860px) 92vw, 560px";
+
   function showImage(index) {
-    mainImg.src = peca.imagens[index].src;
+    const src = peca.imagens[index].src;
+    mainImg.srcset = `${miniatura(src)} 600w, ${src} 1200w`;
+    mainImg.src = src;
     mainImg.alt = peca.imagens[index].alt;
     thumbsWrap.querySelectorAll(".peca-thumb").forEach((thumb, i) => {
       thumb.classList.toggle("is-active", i === index);
@@ -52,7 +64,7 @@ function renderPeca(peca) {
       btn.type = "button";
       btn.className = "peca-thumb" + (i === 0 ? " is-active" : "");
       btn.setAttribute("aria-label", `Ver foto ${i + 1} de ${peca.imagens.length}`);
-      btn.innerHTML = `<img src="${img.src}" alt="" loading="lazy">`;
+      btn.innerHTML = `<img src="${miniatura(img.src)}" alt="" loading="lazy">`;
       btn.addEventListener("click", () => showImage(i));
       thumbsWrap.appendChild(btn);
     });
@@ -78,7 +90,7 @@ function renderRelated(peca) {
     a.href = `peca.html?id=${p.id}`;
     a.className = "gallery-item reveal";
     a.innerHTML = `
-      <img loading="lazy" decoding="async" src="${p.imagens[0].src}" alt="${p.imagens[0].alt}">
+      <img loading="lazy" decoding="async" src="${miniatura(p.imagens[0].src)}" alt="${p.imagens[0].alt}">
       <span class="gallery-item-caption">${p.titulo}</span>
     `;
     wrap.appendChild(a);
