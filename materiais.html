@@ -117,6 +117,101 @@
         <p class="material-quiz-result" id="materialQuizResult" hidden></p>
       </div>
 
+      <p class="spec-table-hint reveal">Arraste a tabela para o lado para ver todas as colunas</p>
+      <div class="spec-table-wrap reveal">
+        <table class="spec-table">
+          <caption>Os valores de temperatura são aproximados e servem como referência — a peça começa a amolecer bem antes de derreter.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Material</th>
+              <th scope="col">Aguenta calor até</th>
+              <th scope="col">Melhor para</th>
+              <th scope="col">Ponto de atenção</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">PLA</th>
+              <td class="spec-temp">~55 °C</td>
+              <td>Decoração, miniaturas, presentes, protótipo de forma</td>
+              <td>Entorta dentro de carro fechado ou no sol direto</td>
+            </tr>
+            <tr>
+              <th scope="row">PETG</th>
+              <td class="spec-temp">~70 °C</td>
+              <td>Peças de uso diário, suportes, caixas, ganchos</td>
+              <td>Superfície fica um pouco menos lisa que a do PLA</td>
+            </tr>
+            <tr>
+              <th scope="row">ABS</th>
+              <td class="spec-temp">~90 °C</td>
+              <td>Peças técnicas e mecânicas, uso perto de calor</td>
+              <td>Precisa de impressora fechada e empena com facilidade</td>
+            </tr>
+            <tr>
+              <th scope="row">ASA</th>
+              <td class="spec-temp">~95 °C</td>
+              <td>Qualquer peça que vá ficar do lado de fora</td>
+              <td>Mesmo cuidado do ABS, mas não amarela no sol</td>
+            </tr>
+            <tr>
+              <th scope="row">TPU</th>
+              <td class="spec-temp">~80 °C</td>
+              <td>Capas, vedações, pés antiderrapantes, amortecedores</td>
+              <td>Detalhe muito fino sai menos nítido que no PLA</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="reveal center" style="margin-top:72px">Cuidados com a sua peça</h2>
+      <p class="section-lead reveal center">
+        Peça impressa em 3D dura muito tempo — desde que você saiba o que ela não gosta.
+      </p>
+
+      <div class="care-grid">
+        <article class="care-card is-warning reveal">
+          <h3>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2 20h20L12 3Z"/><path d="M12 10v4"/><path d="M12 17.2v.1"/></svg>
+            Não use para comida ou bebida
+          </h3>
+          <p>Peça impressa em 3D não serve para contato com alimento, nem as canecas e copos.
+          As linhas de camada formam ranhuras onde bactéria se aloja e não sai na lavagem,
+          e nem o filamento nem o bico têm certificação alimentícia. As peças desse tipo
+          que fazemos aqui são decorativas.</p>
+        </article>
+
+        <article class="care-card reveal">
+          <h3>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg>
+            Fuja do carro fechado
+          </h3>
+          <p>É o erro mais comum. Um carro no sol passa de 60&nbsp;°C por dentro, e isso basta
+          para o PLA amolecer e entortar. Se a peça vai ficar no painel ou em área de sol
+          direto, peça em PETG ou ASA que a gente ajusta o orçamento.</p>
+        </article>
+
+        <article class="care-card reveal">
+          <h3>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11h16"/><path d="M6 11V7a6 6 0 0 1 12 0v4"/><path d="M5 11l1.2 8a2 2 0 0 0 2 1.7h7.6a2 2 0 0 0 2-1.7L19 11"/></svg>
+            Lave na mão, com água fria
+          </h3>
+          <p>Água morna, lava-louças e vapor fazem o mesmo estrago do carro fechado.
+          Pano úmido com sabão neutro resolve. Em peça pintada, nada de álcool ou solvente:
+          tira a tinta.</p>
+        </article>
+
+        <article class="care-card reveal">
+          <h3>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12"/><path d="M8 11l4 4 4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+            Peça quebrou? Traga de volta
+          </h3>
+          <p>Peça impressa quebra na emenda entre camadas, quase sempre de queda.
+          Na maioria dos casos dá para colar ou reimprimir só a parte quebrada, que sai
+          bem mais barato que a peça inteira. Chama no WhatsApp com uma foto.</p>
+        </article>
+      </div>
+
       <p class="gallery-note reveal center">
         Já sabe o material? <a href="orcamento.html">Calcule uma estimativa de orçamento</a>.
       </p>
