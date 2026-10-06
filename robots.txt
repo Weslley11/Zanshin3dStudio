@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://weslley11.github.io/Zanshin3dStudio/sitemap.xml

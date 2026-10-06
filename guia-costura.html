@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A costura da peça: onde ela aparece e como escondê-la — Zanshin 3D Studio</title>
+<meta name="description" content="Nearest, aligned, back e random: o que cada modo faz, por que aleatório costuma piorar, e as duas ferramentas que realmente resolvem.">
+<meta name="theme-color" content="#0d0d10">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A costura da peça: onde ela aparece e como escondê-la — Zanshin 3D Studio">
+<meta property="og:description" content="Nearest, aligned, back e random: o que cada modo faz, por que aleatório costuma piorar, e as duas ferramentas que realmente resolvem.">
+<meta property="og:url" content="https://weslley11.github.io/Zanshin3dStudio/guia-costura.html">
+<link rel="canonical" href="https://weslley11.github.io/Zanshin3dStudio/guia-costura.html">
+
+<link rel="icon" type="image/png" href="assets/img/brand/icon.png">
+<link rel="apple-touch-icon" href="assets/img/brand/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a href="index.html" class="logo">
+      <img src="assets/img/brand/logo-horizontal-dark-bg.png" alt="Zanshin 3D Studio" class="logo-img">
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="sobre.html" class="nav-link">Sobre</a></li>
+        <li><a href="servicos.html" class="nav-link">Serviços</a></li>
+        <li><a href="materiais.html" class="nav-link">Materiais</a></li>
+        <li><a href="orcamento.html" class="nav-link">Orçamento</a></li>
+        <li><a href="galeria.html" class="nav-link">Galeria</a></li>
+        <li><a href="guia.html" class="nav-link active" aria-current="page">Guia</a></li>
+        <li><a href="faq.html" class="nav-link">FAQ</a></li>
+        <li><a href="pedidos.html" class="nav-link">Pedidos</a></li>
+        <li><a href="contato.html" class="nav-link btn-nav">Contato</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="conteudo">
+  <article class="article">
+    <div class="container">
+      <div class="article-head reveal">
+        <p class="eyebrow"><a href="guia.html" style="color:inherit">Guia</a> · Acabamento</p>
+        <h1>A costura da peça: onde ela aparece e como escondê-la</h1>
+        <p class="article-lead">Aquela linha vertical na lateral não é defeito — é onde cada camada começa. Dá pra controlar onde ela cai.</p>
+        <div class="article-meta">
+          <span>Leitura de 5 min</span>
+          <span>Escrito pela Zanshin 3D Studio, em Jaraguá do Sul</span>
+        </div>
+      </div>
+
+      <div class="article-body reveal">
+<p>Toda camada da parede externa começa e termina em algum ponto. Nesse ponto o bico
+pressuriza e despressuriza, e fica uma marca mínima. Empilhadas, essas marcas formam a
+<strong>costura</strong>: a linha vertical que você vê na lateral de um cilindro.</p>
+
+<p>Costura não é defeito de impressão. Ela sempre existe. A pergunta certa não é como
+eliminar, e sim onde deixar.</p>
+
+<h2>Os quatro modos</h2>
+
+<h3>Mais próximo (nearest)</h3>
+<p>Escolhe um ponto próximo da posição atual do bico, preferindo lugares pouco visíveis
+como quinas côncavas, e evitando saliências. Como depende de onde o bico está, a costura
+pode andar de camada para camada. Bom padrão geral.</p>
+
+<h3>Alinhado (aligned)</h3>
+<p>Procura pontos adequados e tenta empilhá-los, criando uma linha vertical consistente.
+Ainda desvia quando precisa evitar uma saliência. É o que dá o resultado mais previsível
+em peça cilíndrica.</p>
+
+<h3>Atrás (back)</h3>
+<p>Joga a costura para o fundo da mesa (Y+), independente da orientação do modelo. Simples
+e eficaz: gire a peça na mesa e a costura muda de face. Útil quando a peça tem um lado que
+ninguém vai ver.</p>
+
+<h3>Aleatório (random)</h3>
+<p>Espalha os pontos pela superfície. A ideia é não ter linha nenhuma — mas, na prática,
+em superfície lisa isso troca uma linha discreta por <strong>pontinhos espalhados pela peça
+inteira</strong>, que costumam incomodar mais. Funciona melhor em peça com textura, onde os
+pontos somem.</p>
+
+<div class="article-note">
+  <p><strong>Na dúvida:</strong> cilindro e peça de revolução pedem alinhado. Figura com
+  frente e costas definidas pede atrás, com a costura nas costas. Aleatório só em
+  superfície já texturizada.</p>
+</div>
+
+<h2>As duas ferramentas que realmente resolvem</h2>
+
+<h3>Pintar a costura (seam painting)</h3>
+<p>Em vez de escolher uma regra, você pinta no modelo exatamente onde quer a costura. É o
+controle real: numa figura, dá pra empurrar a costura para dentro de uma dobra da roupa,
+atrás da orelha, na junção de duas peças. Dá trabalho e vale a pena em peça de exposição.</p>
+
+<h3>Costura em bisel (scarf joint seam)</h3>
+<p>Em vez de só mudar o ponto, essa opção espalha a transição ao longo de um trecho da
+parede, sobrepondo o início e o fim em rampa. Em superfície curva, isso dissolve a marca
+em vez de mudá-la de lugar. É a melhor opção para cilindro e vaso.</p>
+
+<h2>Velocidade também conta</h2>
+
+<p>Parede externa rápida demais piora a costura e o acabamento geral, porque o sistema de
+pressão do bico não acompanha a mudança de velocidade nas quinas. Baixar só a parede
+externa — mantendo o preenchimento rápido — custa pouco tempo e melhora bastante o que
+se vê.</p>
+
+<p>É o mesmo princípio da calibração de fluxo dinâmico: o que você perde em velocidade na
+parte visível, você compensa correndo solto no que fica escondido.</p>
+
+<h2>O que a gente faz nas peças daqui</h2>
+
+<p>Nas figuras da <a href="galeria.html">galeria</a>, a costura fica nas costas ou pintada
+dentro de uma dobra. Em peça cilíndrica, costura em bisel. E em peça funcional, onde
+ninguém vai reparar, deixa no automático — gastar tempo escondendo costura de um gancho
+de parede é tempo que o cliente paga sem motivo.</p>
+
+        <div class="article-cta">
+          <h2>Prefere que a gente imprima pra você?</h2>
+          <p>Você manda a ideia ou o arquivo, a gente cuida de todo o resto — inclusive de tudo
+          que está escrito aqui em cima.</p>
+          <a href="orcamento.html" class="btn btn-primary">Fazer um orçamento</a>
+          <a href="https://wa.me/5547991677070" class="btn btn-ghost" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+        </div>
+      </div>
+
+      <nav class="article-nav" aria-label="Outros artigos">
+        <a href="guia-suportes.html">← Suportes que saem fácil sem estragar a peça</a><a href="guia.html">Todos os artigos</a><a href="guia-bico-entupido.html">Bico entupido: como reconhecer, resolver e evitar →</a>
+      </nav>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <nav class="footer-nav" aria-label="Páginas por público">
+      <a href="presentes.html">Presentes personalizados</a>
+      <a href="colecionaveis.html">Colecionáveis e figuras</a>
+      <a href="gamer.html">Acessórios gamer e setup</a>
+      <a href="empresas.html">Empresas e protótipos</a>
+    </nav>
+  </div>
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <img src="assets/img/brand/logo-horizontal-dark-bg.png" alt="Zanshin 3D Studio" class="logo-img footer-logo-img">
+    </div>
+    <p>© <span id="year"></span> Zanshin 3D Studio · Jaraguá do Sul, SC</p>
+    <div class="footer-social">
+      <a href="https://wa.me/5547991677070" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M20.5 3.5a11 11 0 0 0-17.4 13.2L2 21.5l4.9-1.3A11 11 0 0 0 20.5 3.5Z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/zanshin_3dstudio/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/5547991677070" target="_blank" rel="noopener" aria-label="Fale conosco no WhatsApp" id="floatWhatsapp">
+  <svg viewBox="0 0 24 24"><path d="M20.5 3.5a11 11 0 0 0-17.4 13.2L2 21.5l4.9-1.3A11 11 0 0 0 20.5 3.5Z"/><path d="M8.5 8.4c.2-.5.4-.5.6-.5h.5c.2 0 .4 0 .5.4.2.5.6 1.6.7 1.7.1.1.1.3 0 .5-.1.2-.2.3-.3.5-.2.2-.3.3-.1.6.2.3.8 1.3 1.8 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.2.4-.2.6-.1.2.1 1.5.7 1.8.8.3.1.5.2.5.3.1.4.1.8-.1 1.2-.2.4-1.1 1-1.9 1.1-.6.1-1.3.1-4.2-1-3.5-1.4-5.7-4.9-5.9-5.1-.2-.2-1.4-1.8-1.4-3.5 0-1.6.9-2.4 1.2-2.7Z" fill="var(--bg)" stroke="none"/></svg>
+</a>
+
+<script src="js/script.js"></script>
+</body>
+</html>

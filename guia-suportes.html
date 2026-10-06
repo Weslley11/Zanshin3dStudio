@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suportes que saem fácil sem estragar a peça — Zanshin 3D Studio</title>
+<meta name="description" content="Top Z distance, camadas de interface e espaçamento: o que cada um faz, o que você perde ao mexer, e por que mudar um de cada vez importa.">
+<meta name="theme-color" content="#0d0d10">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Suportes que saem fácil sem estragar a peça — Zanshin 3D Studio">
+<meta property="og:description" content="Top Z distance, camadas de interface e espaçamento: o que cada um faz, o que você perde ao mexer, e por que mudar um de cada vez importa.">
+<meta property="og:url" content="https://weslley11.github.io/Zanshin3dStudio/guia-suportes.html">
+<link rel="canonical" href="https://weslley11.github.io/Zanshin3dStudio/guia-suportes.html">
+
+<link rel="icon" type="image/png" href="assets/img/brand/icon.png">
+<link rel="apple-touch-icon" href="assets/img/brand/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a href="index.html" class="logo">
+      <img src="assets/img/brand/logo-horizontal-dark-bg.png" alt="Zanshin 3D Studio" class="logo-img">
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="sobre.html" class="nav-link">Sobre</a></li>
+        <li><a href="servicos.html" class="nav-link">Serviços</a></li>
+        <li><a href="materiais.html" class="nav-link">Materiais</a></li>
+        <li><a href="orcamento.html" class="nav-link">Orçamento</a></li>
+        <li><a href="galeria.html" class="nav-link">Galeria</a></li>
+        <li><a href="guia.html" class="nav-link active" aria-current="page">Guia</a></li>
+        <li><a href="faq.html" class="nav-link">FAQ</a></li>
+        <li><a href="pedidos.html" class="nav-link">Pedidos</a></li>
+        <li><a href="contato.html" class="nav-link btn-nav">Contato</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="conteudo">
+  <article class="article">
+    <div class="container">
+      <div class="article-head reveal">
+        <p class="eyebrow"><a href="guia.html" style="color:inherit">Guia</a> · Qualidade</p>
+        <h1>Suportes que saem fácil sem estragar a peça</h1>
+        <p class="article-lead">Três regulagens resolvem quase todo caso de suporte grudado — e uma quarta evita o suporte inteiro.</p>
+        <div class="article-meta">
+          <span>Leitura de 7 min</span>
+          <span>Escrito pela Zanshin 3D Studio, em Jaraguá do Sul</span>
+        </div>
+      </div>
+
+      <div class="article-body reveal">
+<p>Suporte é material descartável que segura o que ficaria no ar. O problema é que ele
+precisa ser forte o bastante para sustentar e fraco o bastante para sair — e esses dois
+objetivos puxam para lados opostos.</p>
+
+<p>Quando o suporte não sai, ou sai arrancando pedaço, quase sempre é uma destas três
+regulagens.</p>
+
+<h2>1. Distância Z do topo (top Z distance)</h2>
+
+<p>É o vão vertical entre o topo do suporte e a peça. O ajuste mais decisivo dos três.</p>
+
+<ul>
+  <li><strong>Menor:</strong> contato melhor, superfície de baixo mais lisa — e suporte
+  mais difícil de tirar, com risco de marcar a peça.</li>
+  <li><strong>Maior:</strong> sai fácil, menos risco de marca — e a superfície de baixo
+  fica mais áspera, porque a peça começa no vazio.</li>
+</ul>
+
+<p>Um detalhe que confunde: esse valor costuma ser <strong>arredondado para um múltiplo da
+altura de camada</strong>. Então, se você mexer de 0,01 em 0,01, pode não mudar nada. Ajuste
+de uma altura de camada por vez, e confira no preview.</p>
+
+<h2>2. Camadas de interface (top interface layers)</h2>
+
+<p>São as camadas sólidas no topo do suporte, que formam a "mesinha" onde a peça se apoia.</p>
+
+<ul>
+  <li><strong>Menos camadas:</strong> imprime mais rápido, gasta menos material — e o
+  padrão do suporte pode marcar a superfície de baixo.</li>
+  <li><strong>Mais camadas:</strong> superfície de baixo mais lisa e base mais estável.</li>
+</ul>
+
+<p>Zerar as camadas de interface é uma estratégia válida quando o que você quer é remoção
+fácil acima de tudo — típico de PLA sobre PLA.</p>
+
+<h2>3. Espaçamento da interface (top interface spacing)</h2>
+
+<p>É o vão horizontal entre as linhas da interface. Só faz efeito se você tiver pelo menos
+uma camada de interface.</p>
+
+<ul>
+  <li><strong>Menor espaçamento:</strong> interface mais densa, superfície mais lisa — e
+  mais difícil de remover.</li>
+  <li><strong>Maior espaçamento:</strong> interface mais rala, sai fácil — superfície de
+  baixo mais marcada.</li>
+</ul>
+
+<p>Ajuste em passos de 0,05 a 0,1&nbsp;mm e teste.</p>
+
+<div class="article-note">
+  <p><strong>Mude uma coisa por vez.</strong> Essas três regulagens interagem, e mexer nas
+  três juntas torna impossível saber qual resolveu. Teste numa peça pequena, não na
+  impressão de oito horas.</p>
+</div>
+
+<h2>4. O truque de material diferente</h2>
+
+<p>Se a impressora tem mais de um material disponível, dá pra imprimir <strong>só a
+interface do suporte em outro material</strong>. PETG e PLA praticamente não aderem um ao
+outro, então uma interface de PETG embaixo de uma peça de PLA solta quase sozinha,
+deixando a superfície lisa.</p>
+
+<p>É a solução mais limpa que existe para o problema — com o custo de uma troca de
+filamento e algum desperdício na purga.</p>
+
+<h2>5. Suporte em árvore</h2>
+
+<p>O suporte em árvore toca a peça em menos pontos, gasta menos material e costuma sair
+mais fácil que o suporte tradicional em grade. Funciona especialmente bem em figura
+orgânica — braço estendido, asa, capa. Em peça com grandes áreas planas no ar, o suporte
+normal ainda é mais confiável.</p>
+
+<h2>6. O melhor suporte é o que não existe</h2>
+
+<p>Antes de ajustar qualquer coisa, gire a peça. Saliências de até cerca de <strong>45
+graus</strong> imprimem sem suporte nenhum: cada camada se apoia o suficiente na anterior.
+Mudar a orientação na mesa muitas vezes elimina o suporte inteiro — e, de quebra, melhora
+a resistência da peça, porque as camadas passam a trabalhar na direção certa do esforço.</p>
+
+<p>É por isso que, aqui, a gente decide a orientação antes de qualquer outra regulagem.
+Dois minutos olhando a peça economizam uma hora de pós-processamento.</p>
+
+        <div class="article-cta">
+          <h2>Prefere que a gente imprima pra você?</h2>
+          <p>Você manda a ideia ou o arquivo, a gente cuida de todo o resto — inclusive de tudo
+          que está escrito aqui em cima.</p>
+          <a href="orcamento.html" class="btn btn-primary">Fazer um orçamento</a>
+          <a href="https://wa.me/5547991677070" class="btn btn-ghost" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+        </div>
+      </div>
+
+      <nav class="article-nav" aria-label="Outros artigos">
+        <a href="guia-primeira-camada.html">← Primeira camada: o que decide se a peça vai colar</a><a href="guia.html">Todos os artigos</a><a href="guia-costura.html">A costura da peça: onde ela aparece e como escondê-la →</a>
+      </nav>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <nav class="footer-nav" aria-label="Páginas por público">
+      <a href="presentes.html">Presentes personalizados</a>
+      <a href="colecionaveis.html">Colecionáveis e figuras</a>
+      <a href="gamer.html">Acessórios gamer e setup</a>
+      <a href="empresas.html">Empresas e protótipos</a>
+    </nav>
+  </div>
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <img src="assets/img/brand/logo-horizontal-dark-bg.png" alt="Zanshin 3D Studio" class="logo-img footer-logo-img">
+    </div>
+    <p>© <span id="year"></span> Zanshin 3D Studio · Jaraguá do Sul, SC</p>
+    <div class="footer-social">
+      <a href="https://wa.me/5547991677070" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M20.5 3.5a11 11 0 0 0-17.4 13.2L2 21.5l4.9-1.3A11 11 0 0 0 20.5 3.5Z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/zanshin_3dstudio/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/5547991677070" target="_blank" rel="noopener" aria-label="Fale conosco no WhatsApp" id="floatWhatsapp">
+  <svg viewBox="0 0 24 24"><path d="M20.5 3.5a11 11 0 0 0-17.4 13.2L2 21.5l4.9-1.3A11 11 0 0 0 20.5 3.5Z"/><path d="M8.5 8.4c.2-.5.4-.5.6-.5h.5c.2 0 .4 0 .5.4.2.5.6 1.6.7 1.7.1.1.1.3 0 .5-.1.2-.2.3-.3.5-.2.2-.3.3-.1.6.2.3.8 1.3 1.8 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.2.4-.2.6-.1.2.1 1.5.7 1.8.8.3.1.5.2.5.3.1.4.1.8-.1 1.2-.2.4-1.1 1-1.9 1.1-.6.1-1.3.1-4.2-1-3.5-1.4-5.7-4.9-5.9-5.1-.2-.2-1.4-1.8-1.4-3.5 0-1.6.9-2.4 1.2-2.7Z" fill="var(--bg)" stroke="none"/></svg>
+</a>
+
+<script src="js/script.js"></script>
+</body>
+</html>
