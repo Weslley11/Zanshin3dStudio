@@ -9,6 +9,63 @@
 
 const PECAS = [
   {
+    id: "encapuzado",
+    titulo: "Figura encapuzada",
+    categoria: "Personagens & Colecionáveis",
+    imagens: [
+      { src: "assets/img/gallery/encapuzado.jpg", alt: "Figura encapuzada de sobretudo longo impressa em 3D, acabamento prata metálico, vista de frente" },
+      { src: "assets/img/gallery/encapuzado-angulo.jpg", alt: "Figura encapuzada impressa em 3D vista de lado, mostrando o caimento do sobretudo e os coldres nas coxas" },
+    ],
+    descricao: "Figura encapuzada de sobretudo longo, impressa em prata metálico. O capuz cobre o rosto e deixa só a máscara à mostra; dá pra ver a armadura do peito, os coldres presos nas coxas e as fivelas das botas. As duas fotos mostram a peça de frente e de lado.",
+  },
+  {
+    id: "gato-samurai",
+    titulo: "Gato samurai",
+    categoria: "Personagens & Colecionáveis",
+    imagens: [
+      { src: "assets/img/gallery/gato-samurai.jpg", alt: "Gato samurai impresso em 3D, de quimono e segurando uma katana, acabamento cinza escuro" },
+    ],
+    descricao: "Gatinho de quimono segurando uma katana, de olhos fechados e cara de calmo. Impresso em cinza escuro acetinado, com as dobras do tecido e a faixa da cintura bem marcadas. A cauda sai curvada pra fora, acompanhando a base.",
+  },
+  {
+    id: "leao",
+    titulo: "Leão",
+    categoria: "Decoração",
+    imagens: [
+      { src: "assets/img/gallery/leao.jpg", alt: "Estatueta de leão impressa em 3D, cinza metálico, com textura áspera imitando pelo e juba em mechas" },
+    ],
+    descricao: "Leão em passo, impresso em cinza metálico. A superfície inteira tem uma textura áspera que imita pelo, e a juba é formada por mechas separadas bem definidas — o contraste entre as duas texturas é o que dá vida à peça.",
+  },
+  {
+    id: "pensador-abstrato",
+    titulo: "Escultura abstrata — pensador",
+    categoria: "Decoração",
+    imagens: [
+      { src: "assets/img/gallery/pensador-abstrato.jpg", alt: "Escultura abstrata de figura sentada pensando, impressa em 3D em cinza grafite, vista de frente" },
+      { src: "assets/img/gallery/pensador-abstrato-perfil.jpg", alt: "Escultura abstrata do pensador vista de perfil, mostrando o apoio do queixo na mão e as pernas alongadas" },
+    ],
+    descricao: "Escultura abstrata de uma figura sentada com o queixo apoiado na mão, braços e pernas alongados. Impressa em cinza grafite com textura áspera, que dá um aspecto de pedra em vez de plástico. Tem foto de frente e de perfil.",
+  },
+  {
+    id: "sagrada-familia",
+    titulo: "Sagrada Família",
+    categoria: "Decoração",
+    imagens: [
+      { src: "assets/img/gallery/sagrada-familia.jpg", alt: "Escultura abstrata da Sagrada Família impressa em 3D, acabamento dourado, com as figuras formando um arco" },
+    ],
+    descricao: "Sagrada Família em versão abstrata: duas formas curvas que se abraçam em volta do menino, sem nenhum traço de rosto. Acabamento dourado acetinado, com as linhas da impressão acompanhando a curva e fazendo a luz correr pela peça.",
+  },
+  {
+    id: "boneco-articulado-roxo",
+    titulo: "Boneco articulado roxo",
+    categoria: "Personagens & Colecionáveis",
+    imagens: [
+      { src: "assets/img/gallery/boneco-articulado-roxo.jpg", alt: "Boneco articulado impresso em 3D em filamento roxo com brilho, de braços abertos" },
+      { src: "assets/img/gallery/boneco-articulado-roxo-pose.jpg", alt: "O mesmo boneco articulado roxo em outra pose, mostrando as juntas dos braços e das pernas" },
+    ],
+    descricao: "Boneco articulado em filamento roxo com partículas brilhantes. As juntas dos braços, pernas, quadril e pescoço se mexem, então ele para em pé em qualquer pose — as duas fotos são a mesma peça, só reposicionada.",
+  },
+  {
     id: "dragao-articulado",
     titulo: "Dragão articulado",
     categoria: "Personagens & Colecionáveis",
@@ -226,9 +283,10 @@ const PECAS = [
     titulo: "Batman — armadura",
     categoria: "Personagens & Colecionáveis",
     imagens: [
-      { src: "assets/img/gallery/batman-armadura.jpg", alt: "Batman em armadura tática impresso em 3D, acabamento metálico grafite" },
+      { src: "assets/img/gallery/batman-armadura.jpg", alt: "Batman em armadura tática impresso em 3D, acabamento metálico grafite, de frente com a capa aberta" },
+      { src: "assets/img/gallery/batman-armadura-angulo.jpg", alt: "Batman em armadura tática visto de três quartos, mostrando o volume das ombreiras e o caimento da capa" },
     ],
-    descricao: "Versão armadura tática do Batman, acabamento metálico grafite — visual mais pesado e agressivo que o clássico.",
+    descricao: "Versão armadura tática do Batman, acabamento metálico grafite — visual mais pesado e agressivo que o clássico. A segunda foto é de três quartos e mostra melhor o volume das ombreiras e o caimento da capa.",
   },
   {
     id: "mascote-espartano",
@@ -236,8 +294,9 @@ const PECAS = [
     categoria: "Personagens & Colecionáveis",
     imagens: [
       { src: "assets/img/gallery/mascote-espartano.jpg", alt: "Mascote guerreiro espartano impresso em 3D, acabamento dourado, com escudo e capacete emplumado" },
+      { src: "assets/img/gallery/mascote-espartano-frente.jpg", alt: "Mascote espartano visto de frente, com o escudo erguido e a crista do capacete inteira à mostra" },
     ],
-    descricao: "Mascote guerreiro espartano, acabamento dourado, com escudo e capacete emplumado.",
+    descricao: "Mascote guerreiro espartano, acabamento dourado, com escudo e capacete emplumado. A segunda foto é de frente e mostra o escudo erguido e a crista do capacete inteira.",
   },
   {
     id: "coelho-laco",
