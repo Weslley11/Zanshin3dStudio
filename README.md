@@ -43,10 +43,8 @@ const CONFIG = {
   energia) vezes uma margem:
   - `filamentCostPerKg`, `energyTariff` e `printerPowerWatts` vieram dos
     valores que você passou (R$100/kg, R$1,80/kWh, 180W da P2S).
-  - `marginMultiplier` está em **2.25** (meio da faixa "200/250%" que você
-    mencionou, interpretada como 2 a 2,5x o custo). Se você quis dizer
-    outra coisa com "margem" (por exemplo, markup de 200% = 3x o custo),
-    troque esse número — está comentado no arquivo.
+  - `marginMultiplier` está em **3.5**: o custo direto de cada peça
+    (filamento + energia) vezes 3,5. Foi o valor que você definiu.
   - `setupFee` e `finishFee` continuam sendo valores de exemplo meus
     (taxa fixa por pedido e acréscimo por acabamento) — ajuste à vontade.
   - a fórmula completa está em `estimatePrice()` no `js/script.js`.
