@@ -3,11 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Peça — Zanshin 3D Studio</title>
-<meta name="description" content="Detalhes de uma peça impressa em 3D pela Zanshin 3D Studio em Jaraguá do Sul, SC.">
+<title>Guia de impressão 3D — Zanshin 3D Studio</title>
+<meta name="description" content="Artigos práticos sobre impressão 3D escritos pela Zanshin 3D Studio: altura de camada, primeira camada, suportes, costura e manutenção do bico.">
 <meta name="theme-color" content="#0d0d10">
-<meta name="robots" content="noindex">
-<meta property="og:type" content="website">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Guia de impressão 3D — Zanshin 3D Studio">
+<meta property="og:description" content="Artigos práticos sobre impressão 3D escritos pela Zanshin 3D Studio: altura de camada, primeira camada, suportes, costura e manutenção do bico.">
+<meta property="og:url" content="https://weslley11.github.io/Zanshin3dStudio/guia.html">
+<link rel="canonical" href="https://weslley11.github.io/Zanshin3dStudio/guia.html">
 
 <link rel="icon" type="image/png" href="assets/img/brand/icon.png">
 <link rel="apple-touch-icon" href="assets/img/brand/apple-touch-icon.png">
@@ -36,8 +39,8 @@
         <li><a href="servicos.html" class="nav-link">Serviços</a></li>
         <li><a href="materiais.html" class="nav-link">Materiais</a></li>
         <li><a href="orcamento.html" class="nav-link">Orçamento</a></li>
-        <li><a href="galeria.html" class="nav-link active" aria-current="page">Galeria</a></li>
-        <li><a href="guia.html" class="nav-link">Guia</a></li>
+        <li><a href="galeria.html" class="nav-link">Galeria</a></li>
+        <li><a href="guia.html" class="nav-link active" aria-current="page">Guia</a></li>
         <li><a href="faq.html" class="nav-link">FAQ</a></li>
         <li><a href="pedidos.html" class="nav-link">Pedidos</a></li>
         <li><a href="contato.html" class="nav-link btn-nav">Contato</a></li>
@@ -47,49 +50,57 @@
 </header>
 
 <main id="conteudo">
-  <section class="peca-page">
+  <section class="page-hero center">
     <div class="container">
-      <p class="peca-breadcrumb reveal"><a href="galeria.html">← Voltar pra galeria</a></p>
-
-      <div class="peca-grid" id="pecaContent" hidden>
-        <div class="peca-media reveal">
-          <div class="peca-main-image">
-            <img id="pecaImgMain" src="" alt="">
-          </div>
-          <div class="peca-thumbs" id="pecaThumbs" hidden></div>
-        </div>
-
-        <div class="peca-info reveal">
-          <p class="eyebrow" id="pecaCategoria"></p>
-          <h1 id="pecaTitulo"></h1>
-          <p class="peca-descricao" id="pecaDescricao"></p>
-
-          <div class="hero-actions">
-            <a href="orcamento.html" class="btn btn-primary">Quero uma peça parecida</a>
-            <a href="#" id="pecaWhatsapp" class="btn btn-ghost" target="_blank" rel="noopener">Perguntar no WhatsApp</a>
-          </div>
-
-          <p class="peca-note">
-            Preço varia por tamanho, material e acabamento — sem tabela fixa. Peça um
-            orçamento pra essa ideia ou pra outra parecida que a gente confirma certinho.
-          </p>
-        </div>
-      </div>
-
-      <div class="peca-not-found reveal" id="pecaNotFound" hidden>
-        <p class="eyebrow">Ops</p>
-        <h1>Não achamos essa peça</h1>
-        <p class="section-lead">O link pode estar errado ou desatualizado.</p>
-        <a href="galeria.html" class="btn btn-primary">Ver galeria completa</a>
-      </div>
+      <p class="eyebrow reveal">Conteúdo aberto</p>
+      <h1 class="reveal">Guia de impressão 3D</h1>
+      <p class="section-lead reveal">
+        O que a gente aprendeu imprimindo peça de verdade, escrito sem enrolação.
+        Serve tanto pra quem tem impressora em casa quanto pra entender o que acontece
+        por trás de uma peça encomendada.
+      </p>
     </div>
   </section>
 
-  <section class="peca-more" id="pecaMoreSection" hidden>
+  <section class="section">
     <div class="container">
-      <p class="eyebrow reveal center">Outras peças</p>
-      <h2 class="reveal center">Você também pode gostar</h2>
-      <div class="gallery-grid" id="pecaRelated"></div>
+      <div class="guide-grid">
+        <a href="guia-altura-de-camada.html" class="guide-card reveal">
+          <p class="guide-card-meta"><span>Qualidade</span><span>6 min</span></p>
+          <h3>Altura de camada: qual usar em cada peça</h3>
+          <p>0,08, 0,16, 0,20 ou 0,28 mm? O que cada faixa entrega, onde a diferença realmente aparece e por que subir a altura nem sempre economiza tempo.</p>
+          <span class="guide-card-go">Ler</span>
+        </a>
+        <a href="guia-primeira-camada.html" class="guide-card reveal">
+          <p class="guide-card-meta"><span>Fundamentos</span><span>7 min</span></p>
+          <h3>Primeira camada: o que decide se a peça vai colar</h3>
+          <p>Mesa limpa, Z offset no ponto e três regulagens. Como reconhecer camada alta demais, baixa demais e no ponto — e o que fazer em cada caso.</p>
+          <span class="guide-card-go">Ler</span>
+        </a>
+        <a href="guia-suportes.html" class="guide-card reveal">
+          <p class="guide-card-meta"><span>Qualidade</span><span>7 min</span></p>
+          <h3>Suportes que saem fácil sem estragar a peça</h3>
+          <p>Top Z distance, camadas de interface e espaçamento: o que cada um faz, o que você perde ao mexer, e por que mudar um de cada vez importa.</p>
+          <span class="guide-card-go">Ler</span>
+        </a>
+        <a href="guia-costura.html" class="guide-card reveal">
+          <p class="guide-card-meta"><span>Acabamento</span><span>5 min</span></p>
+          <h3>A costura da peça: onde ela aparece e como escondê-la</h3>
+          <p>Nearest, aligned, back e random: o que cada modo faz, por que aleatório costuma piorar, e as duas ferramentas que realmente resolvem.</p>
+          <span class="guide-card-go">Ler</span>
+        </a>
+        <a href="guia-bico-entupido.html" class="guide-card reveal">
+          <p class="guide-card-meta"><span>Manutenção</span><span>6 min</span></p>
+          <h3>Bico entupido: como reconhecer, resolver e evitar</h3>
+          <p>Os sinais que aparecem antes da falha, as oito causas mais comuns e o que fazer em cada uma — incluindo a tabela de secagem por material.</p>
+          <span class="guide-card-go">Ler</span>
+        </a>
+      </div>
+
+      <p class="gallery-note reveal center">
+        Não quer lidar com nada disso? <a href="orcamento.html">Peça um orçamento</a> que a
+        gente imprime pra você.
+      </p>
     </div>
   </section>
 </main>
@@ -123,8 +134,6 @@
   <svg viewBox="0 0 24 24"><path d="M20.5 3.5a11 11 0 0 0-17.4 13.2L2 21.5l4.9-1.3A11 11 0 0 0 20.5 3.5Z"/><path d="M8.5 8.4c.2-.5.4-.5.6-.5h.5c.2 0 .4 0 .5.4.2.5.6 1.6.7 1.7.1.1.1.3 0 .5-.1.2-.2.3-.3.5-.2.2-.3.3-.1.6.2.3.8 1.3 1.8 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.2.4-.2.6-.1.2.1 1.5.7 1.8.8.3.1.5.2.5.3.1.4.1.8-.1 1.2-.2.4-1.1 1-1.9 1.1-.6.1-1.3.1-4.2-1-3.5-1.4-5.7-4.9-5.9-5.1-.2-.2-1.4-1.8-1.4-3.5 0-1.6.9-2.4 1.2-2.7Z" fill="var(--bg)" stroke="none"/></svg>
 </a>
 
-<script src="js/pecas-data.js"></script>
 <script src="js/script.js"></script>
-<script src="js/peca.js"></script>
 </body>
 </html>

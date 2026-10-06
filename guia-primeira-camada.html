@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Primeira camada: o que decide se a peça vai colar — Zanshin 3D Studio</title>
+<meta name="description" content="Mesa limpa, Z offset no ponto e três regulagens. Como reconhecer camada alta demais, baixa demais e no ponto — e o que fazer em cada caso.">
+<meta name="theme-color" content="#0d0d10">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Primeira camada: o que decide se a peça vai colar — Zanshin 3D Studio">
+<meta property="og:description" content="Mesa limpa, Z offset no ponto e três regulagens. Como reconhecer camada alta demais, baixa demais e no ponto — e o que fazer em cada caso.">
+<meta property="og:url" content="https://weslley11.github.io/Zanshin3dStudio/guia-primeira-camada.html">
+<link rel="canonical" href="https://weslley11.github.io/Zanshin3dStudio/guia-primeira-camada.html">
+
+<link rel="icon" type="image/png" href="assets/img/brand/icon.png">
+<link rel="apple-touch-icon" href="assets/img/brand/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a href="index.html" class="logo">
+      <img src="assets/img/brand/logo-horizontal-dark-bg.png" alt="Zanshin 3D Studio" class="logo-img">
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="sobre.html" class="nav-link">Sobre</a></li>
+        <li><a href="servicos.html" class="nav-link">Serviços</a></li>
+        <li><a href="materiais.html" class="nav-link">Materiais</a></li>
+        <li><a href="orcamento.html" class="nav-link">Orçamento</a></li>
+        <li><a href="galeria.html" class="nav-link">Galeria</a></li>
+        <li><a href="guia.html" class="nav-link active" aria-current="page">Guia</a></li>
+        <li><a href="faq.html" class="nav-link">FAQ</a></li>
+        <li><a href="pedidos.html" class="nav-link">Pedidos</a></li>
+        <li><a href="contato.html" class="nav-link btn-nav">Contato</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="conteudo">
+  <article class="article">
+    <div class="container">
+      <div class="article-head reveal">
+        <p class="eyebrow"><a href="guia.html" style="color:inherit">Guia</a> · Fundamentos</p>
+        <h1>Primeira camada: o que decide se a peça vai colar</h1>
+        <p class="article-lead">A maior parte das impressões que falham, falha nos primeiros dois minutos.</p>
+        <div class="article-meta">
+          <span>Leitura de 7 min</span>
+          <span>Escrito pela Zanshin 3D Studio, em Jaraguá do Sul</span>
+        </div>
+      </div>
+
+      <div class="article-body reveal">
+<p>Impressão que descola, peça que empena, canto que levanta: quase sempre o problema
+nasceu na primeira camada. É a única camada que não gruda em plástico — gruda na mesa — e
+por isso ela tem regras próprias.</p>
+
+<h2>1. Mesa limpa é metade do trabalho</h2>
+
+<p>Gordura de dedo é o inimigo número um. A oleosidade da mão forma um filme que o plástico
+não atravessa, e o ponto onde você segurou a chapa vira exatamente o ponto onde a peça
+descola.</p>
+
+<p>Lave a chapa com <strong>água morna e detergente neutro</strong>, esfregando com a mão ou
+esponja macia, e seque com pano limpo. Álcool isopropílico ajuda a tirar poeira e resíduo
+entre impressões, mas não remove gordura tão bem quanto detergente. Depois de limpar,
+pegue a chapa pelas bordas.</p>
+
+<h2>2. Z offset: o ajuste mais importante</h2>
+
+<p>O Z offset define a distância entre o bico e a mesa na primeira camada. Ele precisa
+deixar o filamento <strong>levemente esmagado</strong> contra a chapa — nem encostado de
+leve, nem espremido.</p>
+
+<ul>
+  <li><strong>Alto demais:</strong> dá pra ver vão entre as linhas, elas ficam
+  arredondadas e separadas, e a peça descola com facilidade.</li>
+  <li><strong>No ponto:</strong> as linhas se tocam e formam uma superfície contínua, com
+  textura suave e sem buracos.</li>
+  <li><strong>Baixo demais:</strong> a superfície fica áspera e ondulada, com plástico
+  empurrado para os lados formando rebarba, e a peça gruda tanto que pode danificar a
+  chapa na hora de tirar.</li>
+</ul>
+
+<div class="article-note">
+  <p><strong>Teste rápido:</strong> imprima só um quadrado fino de primeira camada. Olhar
+  esse quadrado contra a luz diz na hora se o offset está certo — se passa luz entre as
+  linhas, está alto.</p>
+</div>
+
+<h2>3. As regulagens da primeira camada</h2>
+
+<p>No slicer, a primeira camada tem parâmetros separados do resto. Pontos de partida que
+funcionam bem em bico de 0,4&nbsp;mm:</p>
+
+<ul>
+  <li><strong>Altura:</strong> 0,16 a 0,24&nbsp;mm — um pouco mais grossa que as demais,
+  para absorver variação da mesa.</li>
+  <li><strong>Largura:</strong> 110 a 130% — linha mais larga tem mais área de contato.</li>
+  <li><strong>Velocidade:</strong> 15 a 25&nbsp;mm/s. Essa é a que mais gente esquece.
+  Devagar dá tempo do plástico assentar e aderir.</li>
+  <li><strong>Fluxo:</strong> 95 a 105%.</li>
+</ul>
+
+<p>O resto da peça pode correr rápido. Só a primeira camada precisa de paciência — são
+poucos minutos que decidem as próximas oito horas.</p>
+
+<h2>4. Chapa certa para o material</h2>
+
+<p>Cada superfície de mesa tem um comportamento:</p>
+
+<ul>
+  <li><strong>PEI lisa:</strong> boa para quase tudo, deixa a base da peça espelhada.</li>
+  <li><strong>PEI texturizada:</strong> adesão mais forte e base com textura fosca.
+  É a mais tolerante.</li>
+  <li><strong>Chapa fria (cool plate):</strong> pensada para PLA, solta fácil quando
+  esfria.</li>
+</ul>
+
+<p>Para ABS e ASA, cola em bastão não é opcional: ajuda na adesão e, tão importante
+quanto, protege a chapa na hora de soltar.</p>
+
+<h2>5. Brim: quando usar</h2>
+
+<p>Brim é uma aba de uma camada em volta da peça, que aumenta a área colada. Use quando a
+peça é <strong>alta e de base pequena</strong> — torre, figura em pé, haste — porque é o
+caso em que a alavanca do próprio movimento do bico tomba a impressão. Também ajuda em
+peça grande e chata, que tende a levantar os cantos.</p>
+
+<h2>Checklist antes de confiar na impressão</h2>
+
+<ol>
+  <li>As linhas da primeira camada se tocam, sem vão entre elas?</li>
+  <li>A superfície está lisa, sem ondulação nem rebarba?</li>
+  <li>Os cantos continuam colados depois de alguns minutos?</li>
+  <li>A peça só solta quando a chapa esfria?</li>
+</ol>
+
+<p>Se as quatro respostas forem sim, pode deixar rodando.</p>
+
+        <div class="article-cta">
+          <h2>Prefere que a gente imprima pra você?</h2>
+          <p>Você manda a ideia ou o arquivo, a gente cuida de todo o resto — inclusive de tudo
+          que está escrito aqui em cima.</p>
+          <a href="orcamento.html" class="btn btn-primary">Fazer um orçamento</a>
+          <a href="https://wa.me/5547991677070" class="btn btn-ghost" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+        </div>
+      </div>
+
+      <nav class="article-nav" aria-label="Outros artigos">
+        <a href="guia-altura-de-camada.html">← Altura de camada: qual usar em cada peça</a><a href="guia.html">Todos os artigos</a><a href="guia-suportes.html">Suportes que saem fácil sem estragar a peça →</a>
+      </nav>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <nav class="footer-nav" aria-label="Páginas por público">
+      <a href="presentes.html">Presentes personalizados</a>
+      <a href="colecionaveis.html">Colecionáveis e figuras</a>
+      <a href="gamer.html">Acessórios gamer e setup</a>
+      <a href="empresas.html">Empresas e protótipos</a>
+    </nav>
+  </div>
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <img src="assets/img/brand/logo-horizontal-dark-bg.png" alt="Zanshin 3D Studio" class="logo-img footer-logo-img">
+    </div>
+    <p>© <span id="year"></span> Zanshin 3D Studio · Jaraguá do Sul, SC</p>
+    <div class="footer-social">
+      <a href="https://wa.me/5547991677070" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M20.5 3.5a11 11 0 0 0-17.4 13.2L2 21.5l4.9-1.3A11 11 0 0 0 20.5 3.5Z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/zanshin_3dstudio/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/5547991677070" target="_blank" rel="noopener" aria-label="Fale conosco no WhatsApp" id="floatWhatsapp">
+  <svg viewBox="0 0 24 24"><path d="M20.5 3.5a11 11 0 0 0-17.4 13.2L2 21.5l4.9-1.3A11 11 0 0 0 20.5 3.5Z"/><path d="M8.5 8.4c.2-.5.4-.5.6-.5h.5c.2 0 .4 0 .5.4.2.5.6 1.6.7 1.7.1.1.1.3 0 .5-.1.2-.2.3-.3.5-.2.2-.3.3-.1.6.2.3.8 1.3 1.8 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.2.4-.2.6-.1.2.1 1.5.7 1.8.8.3.1.5.2.5.3.1.4.1.8-.1 1.2-.2.4-1.1 1-1.9 1.1-.6.1-1.3.1-4.2-1-3.5-1.4-5.7-4.9-5.9-5.1-.2-.2-1.4-1.8-1.4-3.5 0-1.6.9-2.4 1.2-2.7Z" fill="var(--bg)" stroke="none"/></svg>
+</a>
+
+<script src="js/script.js"></script>
+</body>
+</html>

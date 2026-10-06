@@ -1264,6 +1264,124 @@ h2.center, p.section-lead.center, p.eyebrow.center { margin-left: auto; margin-r
 .care-card.is-warning { border-color: rgba(208, 16, 16, 0.45); }
 .care-card.is-warning h3 svg { stroke: var(--accent-bright); }
 
+/* ---------- Guia: índice ---------- */
+.guide-grid {
+  /* sem margem própria: o padding da .section já dá o respiro, e somando os dois
+     sobrava um vão morto de ~200px entre o título e o primeiro card */
+  margin-top: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 18px;
+}
+.guide-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 26px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.guide-card:hover,
+.guide-card:focus-visible {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+}
+.guide-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+.guide-card-meta span:first-child { color: var(--accent-2); font-weight: 600; }
+.guide-card h3 { font-size: 1.1rem; line-height: 1.35; margin-bottom: 10px; }
+.guide-card p { font-size: 0.89rem; color: var(--text-muted); margin: 0 0 18px; }
+.guide-card-go {
+  margin-top: auto;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+.guide-card-go::after { content: " →"; }
+
+/* ---------- Guia: artigo ---------- */
+.article { padding: 72px 0 96px; }
+.article-head { max-width: 760px; margin: 0 auto 48px; }
+.article-head .eyebrow { margin-bottom: 14px; }
+.article-head h1 { font-size: clamp(1.8rem, 4.4vw, 2.7rem); line-height: 1.15; margin-bottom: 18px; }
+.article-head .article-lead { font-size: 1.05rem; color: var(--text-muted); margin: 0 0 20px; }
+.article-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+}
+.article-body { max-width: 760px; margin: 0 auto; }
+.article-body > * + * { margin-top: 20px; }
+.article-body h2 {
+  font-size: 1.4rem;
+  line-height: 1.3;
+  margin-top: 52px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+}
+.article-body h3 { font-size: 1.05rem; margin-top: 34px; }
+.article-body p { color: var(--text-muted); line-height: 1.75; }
+.article-body strong { color: var(--text); font-weight: 600; }
+.article-body ul, .article-body ol { padding-left: 22px; color: var(--text-muted); line-height: 1.75; }
+.article-body li + li { margin-top: 8px; }
+.article-body li::marker { color: var(--accent); }
+.article-body a { color: var(--accent-bright); }
+.article-body code {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 1px 6px;
+  font-size: 0.86em;
+  color: var(--accent-2);
+}
+.article-note {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 12px 12px 0;
+  padding: 20px 22px;
+}
+.article-note p { margin: 0; color: var(--text); font-size: 0.92rem; }
+.article-note p + p { margin-top: 10px; }
+.article-cta {
+  margin-top: 64px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  text-align: center;
+}
+.article-cta h2 { border: 0; margin: 0 0 10px; padding: 0; font-size: 1.25rem; }
+.article-cta p { color: var(--text-muted); margin: 0 0 22px; }
+.article-nav {
+  max-width: 760px;
+  margin: 56px auto 0;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: space-between;
+  font-size: 0.88rem;
+}
+.article-nav a { color: var(--accent); text-decoration: none; font-weight: 600; }
+.article-nav a:hover { text-decoration: underline; }
+
 /* ---------- FAQ ---------- */
 .faq-list {
   max-width: 760px;

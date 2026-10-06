@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Altura de camada: qual usar em cada peça — Zanshin 3D Studio</title>
+<meta name="description" content="0,08, 0,16, 0,20 ou 0,28 mm? O que cada faixa entrega, onde a diferença realmente aparece e por que subir a altura nem sempre economiza tempo.">
+<meta name="theme-color" content="#0d0d10">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Altura de camada: qual usar em cada peça — Zanshin 3D Studio">
+<meta property="og:description" content="0,08, 0,16, 0,20 ou 0,28 mm? O que cada faixa entrega, onde a diferença realmente aparece e por que subir a altura nem sempre economiza tempo.">
+<meta property="og:url" content="https://weslley11.github.io/Zanshin3dStudio/guia-altura-de-camada.html">
+<link rel="canonical" href="https://weslley11.github.io/Zanshin3dStudio/guia-altura-de-camada.html">
+
+<link rel="icon" type="image/png" href="assets/img/brand/icon.png">
+<link rel="apple-touch-icon" href="assets/img/brand/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a href="index.html" class="logo">
+      <img src="assets/img/brand/logo-horizontal-dark-bg.png" alt="Zanshin 3D Studio" class="logo-img">
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="sobre.html" class="nav-link">Sobre</a></li>
+        <li><a href="servicos.html" class="nav-link">Serviços</a></li>
+        <li><a href="materiais.html" class="nav-link">Materiais</a></li>
+        <li><a href="orcamento.html" class="nav-link">Orçamento</a></li>
+        <li><a href="galeria.html" class="nav-link">Galeria</a></li>
+        <li><a href="guia.html" class="nav-link active" aria-current="page">Guia</a></li>
+        <li><a href="faq.html" class="nav-link">FAQ</a></li>
+        <li><a href="pedidos.html" class="nav-link">Pedidos</a></li>
+        <li><a href="contato.html" class="nav-link btn-nav">Contato</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="conteudo">
+  <article class="article">
+    <div class="container">
+      <div class="article-head reveal">
+        <p class="eyebrow"><a href="guia.html" style="color:inherit">Guia</a> · Qualidade</p>
+        <h1>Altura de camada: qual usar em cada peça</h1>
+        <p class="article-lead">A regulagem que mais muda o resultado visual — e a que mais gente deixa no padrão sem pensar.</p>
+        <div class="article-meta">
+          <span>Leitura de 6 min</span>
+          <span>Escrito pela Zanshin 3D Studio, em Jaraguá do Sul</span>
+        </div>
+      </div>
+
+      <div class="article-body reveal">
+<p>Altura de camada é a espessura de cada fatia que a impressora empilha. Com bico de
+0,4&nbsp;mm — o padrão — dá pra trabalhar de 0,08 a 0,28&nbsp;mm. Quanto mais fina, mais
+camadas, mais detalhe e mais tempo. É o <em>trade-off</em> mais direto da impressão 3D.</p>
+
+<p>O erro comum é tratar isso como uma régua simples de "fino&nbsp;=&nbsp;melhor". Não é:
+em boa parte das peças a diferença entre 0,12 e 0,20&nbsp;mm é invisível, e você pagou o dobro
+do tempo por nada.</p>
+
+<h2>As quatro faixas, e o que cada uma serve</h2>
+
+<h3>0,08 a 0,12 mm — acabamento fino</h3>
+<p>Para peças de exposição e superfícies curvas: busto, miniatura, rosto, qualquer coisa
+com inclinação suave. É aqui que a camada fina se paga, porque é onde o degrau aparece.
+Em compensação, o tempo sobe muito.</p>
+
+<h3>0,16 mm — equilíbrio</h3>
+<p>O meio-termo honesto. Decorativo com bom acabamento sem o tempo do 0,12. É a altura
+que a gente usa na maior parte das peças da galeria.</p>
+
+<h3>0,20 mm — dia a dia</h3>
+<p>Ponto de partida para quase tudo que é funcional: suporte, gancho, caixa, encaixe,
+protótipo de forma. O degrau existe, mas em peça utilitária ninguém olha.</p>
+
+<h3>0,24 a 0,28 mm — rascunho</h3>
+<p>Para validar formato e encaixe rápido, ou para peça grande e de geometria simples.
+O degrau fica bem visível em curva.</p>
+
+<h2>Onde a diferença aparece de verdade</h2>
+
+<p>Essa é a parte que quase nenhum guia explica: a altura de camada <strong>mal muda a
+parede vertical</strong>. Uma parede reta sai praticamente igual em 0,12 e em 0,24.</p>
+
+<p>O degrau aparece em <strong>superfície inclinada e em curva suave</strong> — o topo de uma
+cúpula, o ombro de uma figura, a lateral arredondada de um vaso. Quanto mais próxima da
+horizontal a superfície, mais larga fica cada "prateleira" entre camadas, e mais o olho
+enxerga a escada.</p>
+
+<div class="article-note">
+  <p><strong>Regra prática:</strong> olhe a peça e pergunte onde existe superfície quase
+  horizontal. Se não existe quase nenhuma, suba a altura sem medo. Se a peça é toda curva,
+  desça.</p>
+</div>
+
+<h2>Camada variável: o melhor dos dois</h2>
+
+<p>Em vez de escolher um número para a peça inteira, dá pra deixar a altura fina só onde
+precisa. No Bambu Studio e no Orca isso é a <strong>camada variável (adaptive layer
+height)</strong>: você seleciona o modelo, aplica o adaptativo e suaviza.</p>
+
+<p>Numa cúpula, por exemplo, a base reta sai em 0,24 e o topo curvo em 0,12. O resultado
+visual é quase o de 0,12 na peça inteira, com uma fração do tempo. Vale conferir o preview
+por altura de camada antes de mandar imprimir, porque a transição mal distribuída deixa
+uma faixa visível.</p>
+
+<h2>Dois limites que não dá pra ignorar</h2>
+
+<ul>
+  <li><strong>Altura máxima:</strong> não passe de cerca de 75–80% do diâmetro do bico. Em
+  bico de 0,4&nbsp;mm, isso dá uns 0,30&nbsp;mm. Acima disso a camada não gruda direito na
+  de baixo e a peça fica frágil.</li>
+  <li><strong>Resistência:</strong> camada mais fina não deixa a peça mais forte de forma
+  automática. O que mais pesa na resistência é o número de paredes, não o preenchimento
+  nem a altura de camada.</li>
+</ul>
+
+<h2>Como a gente decide aqui</h2>
+
+<p>Figura e colecionável: 0,12 a 0,16. Peça funcional: 0,20. Protótipo de validação:
+0,24. Peça grande e curva: camada variável. E quando o cliente pede acabamento máximo
+numa peça de exposição, 0,08 — avisando que o tempo de impressão mais que dobra, porque
+isso entra no orçamento.</p>
+
+        <div class="article-cta">
+          <h2>Prefere que a gente imprima pra você?</h2>
+          <p>Você manda a ideia ou o arquivo, a gente cuida de todo o resto — inclusive de tudo
+          que está escrito aqui em cima.</p>
+          <a href="orcamento.html" class="btn btn-primary">Fazer um orçamento</a>
+          <a href="https://wa.me/5547991677070" class="btn btn-ghost" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+        </div>
+      </div>
+
+      <nav class="article-nav" aria-label="Outros artigos">
+        <a href="guia.html">Todos os artigos</a><a href="guia-primeira-camada.html">Primeira camada: o que decide se a peça vai colar →</a>
+      </nav>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <nav class="footer-nav" aria-label="Páginas por público">
+      <a href="presentes.html">Presentes personalizados</a>
+      <a href="colecionaveis.html">Colecionáveis e figuras</a>
+      <a href="gamer.html">Acessórios gamer e setup</a>
+      <a href="empresas.html">Empresas e protótipos</a>
+    </nav>
+  </div>
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <img src="assets/img/brand/logo-horizontal-dark-bg.png" alt="Zanshin 3D Studio" class="logo-img footer-logo-img">
+    </div>
+    <p>© <span id="year"></span> Zanshin 3D Studio · Jaraguá do Sul, SC</p>
+    <div class="footer-social">
+      <a href="https://wa.me/5547991677070" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M20.5 3.5a11 11 0 0 0-17.4 13.2L2 21.5l4.9-1.3A11 11 0 0 0 20.5 3.5Z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/zanshin_3dstudio/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/5547991677070" target="_blank" rel="noopener" aria-label="Fale conosco no WhatsApp" id="floatWhatsapp">
+  <svg viewBox="0 0 24 24"><path d="M20.5 3.5a11 11 0 0 0-17.4 13.2L2 21.5l4.9-1.3A11 11 0 0 0 20.5 3.5Z"/><path d="M8.5 8.4c.2-.5.4-.5.6-.5h.5c.2 0 .4 0 .5.4.2.5.6 1.6.7 1.7.1.1.1.3 0 .5-.1.2-.2.3-.3.5-.2.2-.3.3-.1.6.2.3.8 1.3 1.8 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.2.4-.2.6-.1.2.1 1.5.7 1.8.8.3.1.5.2.5.3.1.4.1.8-.1 1.2-.2.4-1.1 1-1.9 1.1-.6.1-1.3.1-4.2-1-3.5-1.4-5.7-4.9-5.9-5.1-.2-.2-1.4-1.8-1.4-3.5 0-1.6.9-2.4 1.2-2.7Z" fill="var(--bg)" stroke="none"/></svg>
+</a>
+
+<script src="js/script.js"></script>
+</body>
+</html>
