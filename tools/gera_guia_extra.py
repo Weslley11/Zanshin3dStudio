@@ -61,7 +61,7 @@ PROBLEMAS = [
           "Baixe a <strong>temperatura do bico</strong> em 5–10&nbsp;°C.",
           "Aumente um pouco a <strong>retração</strong> — mas pouco: retração exagerada causa entupimento.",
           "Aumente a velocidade de deslocamento, para o bico passar mais rápido pelo vão."],
-         "bico-entupido"),
+         "secagem-de-filamento"),
         ("O extrusor estala e a extrusão falha",
          "Som de clique ritmado, e trechos sem material.",
          ["É entupimento parcial ou pressão alta demais.",
