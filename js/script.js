@@ -16,12 +16,10 @@ const CONFIG = {
     energyTariff: 1.8, // R$ por kWh (tarifa da distribuidora)
     printerPowerWatts: 180, // consumo médio da Bambu Lab P2S, em watts
 
-    // Margem sobre o custo (filamento + energia). Você passou "200/250%" —
-    // interpretei como multiplicar o custo por 2 a 2,5x, e usei o meio da
-    // faixa (2,25x = 225%). Se quiser um dos extremos, troque para 2 (200%)
-    // ou 2.5 (250%). Se na verdade você quis dizer "markup" (200% de markup
-    // = custo + 200% em cima = 3x o custo), me avisa que eu ajusto.
-    marginMultiplier: 2.25,
+    // Multiplicador sobre o custo direto (filamento + energia): o preço de cada
+    // peça é o custo vezes este número, antes do acabamento e da taxa de preparo.
+    // 3,5x definido pelo Weslley. Exemplo: R$ 10 de custo -> R$ 35 por peça.
+    marginMultiplier: 3.5,
 
     setupFee: 5, // taxa fixa de preparo/manuseio por pedido — ainda é um valor de exemplo meu, ajuste à vontade
     finishFee: 15, // acréscimo por acabamento extra (lixamento/pintura), por peça — também exemplo
