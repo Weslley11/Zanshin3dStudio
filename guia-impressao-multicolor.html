@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Impressão multicolor: o que acontece em cada troca de cor — Zanshin 3D Studio</title>
+<meta name="description" content="Como a impressora troca de cor, por que uma peça multicolor pode gastar mais filamento na purga do que na própria peça, e como projetar pra trocar menos.">
+<meta name="theme-color" content="#0d0d10">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Impressão multicolor: o que acontece em cada troca de cor — Zanshin 3D Studio">
+<meta property="og:description" content="Como a impressora troca de cor, por que uma peça multicolor pode gastar mais filamento na purga do que na própria peça, e como projetar pra trocar menos.">
+<meta property="og:url" content="https://weslley11.github.io/Zanshin3dStudio/guia-impressao-multicolor.html">
+<link rel="canonical" href="https://weslley11.github.io/Zanshin3dStudio/guia-impressao-multicolor.html">
+
+<link rel="icon" type="image/png" href="assets/img/brand/icon.png">
+<link rel="apple-touch-icon" href="assets/img/brand/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a href="index.html" class="logo">
+      <img src="assets/img/brand/logo-horizontal-dark-bg.png" alt="Zanshin 3D Studio" class="logo-img">
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="sobre.html" class="nav-link">Sobre</a></li>
+        <li><a href="servicos.html" class="nav-link">Serviços</a></li>
+        <li><a href="materiais.html" class="nav-link">Materiais</a></li>
+        <li><a href="orcamento.html" class="nav-link">Orçamento</a></li>
+        <li><a href="galeria.html" class="nav-link">Galeria</a></li>
+        <li><a href="guia.html" class="nav-link active" aria-current="page">Guia</a></li>
+        <li><a href="faq.html" class="nav-link">FAQ</a></li>
+        <li><a href="pedidos.html" class="nav-link">Pedidos</a></li>
+        <li><a href="contato.html" class="nav-link btn-nav">Contato</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="conteudo">
+  <article class="article">
+    <div class="container">
+      <div class="article-head reveal">
+        <p class="eyebrow"><a href="guia.html" style="color:inherit">Guia</a> · Projeto</p>
+        <h1>Impressão multicolor: o que acontece em cada troca de cor</h1>
+        <p class="article-lead">Peça colorida direto da impressora não leva tinta — mas cada troca de cor tem um custo que não aparece na foto.</p>
+        <div class="article-meta">
+          <span>Leitura de 7 min</span>
+          <span>Escrito pela Zanshin 3D Studio, em Jaraguá do Sul</span>
+        </div>
+      </div>
+
+      <div class="article-body reveal">
+<p>Várias peças da <a href="galeria.html">galeria</a> saem coloridas direto da impressora,
+sem pintura: o Dobby, o boné do Mario, os porta-copos, o jogo da velha. É uma das
+coisas mais bonitas que a impressão 3D faz hoje. Mas entender o que acontece por trás
+explica por que peça multicolor custa mais e demora mais.</p>
+
+<h2>Como a impressora troca de cor</h2>
+
+<p>Existem dois jeitos de fazer isso, e eles se comportam de forma muito diferente.</p>
+
+<h3>Um bico só, vários filamentos</h3>
+<p>É o sistema mais comum. A impressora tem um bico e um alimentador que troca o filamento:
+recolhe a cor atual, empurra a próxima. O problema é que o bico ainda está cheio da cor
+anterior. Antes de voltar pra peça, ele precisa <strong>purgar</strong> — empurrar plástico
+até a cor nova sair limpa. Esse material purgado vira descarte.</p>
+
+<h3>Vários bicos (troca de ferramenta)</h3>
+<p>Cada cor tem seu próprio bico, e a impressora troca o bico inteiro. Como cada bico já
+está carregado com sua cor, a purga é mínima. Desperdiça muito menos — mas o equipamento é
+mais caro e cada bico extra é um ponto a mais pra calibrar.</p>
+
+<h2>O custo escondido da purga</h2>
+
+<p>Num sistema de bico único, <strong>cada troca de cor gasta filamento</strong>, e a conta
+cresce rápido. Se uma peça tem duas cores alternando em todas as camadas, são duas trocas
+por camada. Numa peça de 300 camadas, 600 trocas.</p>
+
+<p>Não é exagero: em peça pequena com muitas trocas, o filamento jogado fora na purga pode
+passar do que vai na própria peça. E cada troca leva tempo — às vezes mais de um minuto.</p>
+
+<div class="article-note">
+  <p><strong>É por isso que peça multicolor custa mais.</strong> Não é a quantidade de cores
+  em si: é quantas vezes a cor muda ao longo da altura da peça.</p>
+</div>
+
+<h3>A ordem das cores pesa</h3>
+<p>Trocar de uma cor escura pra uma clara exige muito mais purga que o contrário. Branco
+depois de preto é o pior caso: o pigmento escuro contamina a cor clara por bastante tempo.
+Os slicers calculam a purga por par de cores, e o volume de branco-depois-de-preto chega a
+ser várias vezes o de preto-depois-de-branco.</p>
+
+<h2>Projetar pra trocar menos</h2>
+
+<p>A melhor economia acontece no projeto, antes de imprimir:</p>
+
+<ul>
+  <li><strong>Cor só no topo.</strong> Um chaveiro com o nome em outra cor fica igual se a
+  cor diferente estiver só nas últimas camadas. Em vez de trocar em cada camada, troca uma
+  vez só.</li>
+  <li><strong>Agrupar as cores por altura.</strong> Uma figura com pés de uma cor, corpo de
+  outra e cabeça de outra troca poucas vezes — cada cor ocupa uma faixa de altura.</li>
+  <li><strong>Imprimir separado e montar.</strong> Às vezes vale mais imprimir cada parte
+  numa cor e encaixar, do que imprimir tudo junto com milhares de trocas.</li>
+</ul>
+
+<h2>Reaproveitando a purga</h2>
+
+<p>Os slicers permitem mandar a purga pra dentro da própria peça:</p>
+
+<ul>
+  <li><strong>Purgar no preenchimento:</strong> a transição de cor vai pro miolo, onde
+  ninguém vê. Economiza bastante sem nenhum custo visual.</li>
+  <li><strong>Purgar em outro objeto:</strong> se tem uma peça de uma cor só na mesma mesa,
+  a purga vira parte dela.</li>
+</ul>
+
+<h2>Qualidade na fronteira entre cores</h2>
+
+<ul>
+  <li><strong>Temperatura um pouco mais baixa</strong> diminui o escorrimento de plástico
+  entre uma troca e outra, que deixa fiapo e borrão na cor vizinha. Abaixe até onde a
+  adesão entre camadas continuar boa.</li>
+  <li><strong>Parede externa por último</strong> e <strong>limpar o bico antes da parede
+  externa</strong> evitam que resto da cor anterior vá parar na superfície visível.</li>
+  <li><strong>Filamento seco</strong> faz ainda mais diferença aqui: úmido, ele escorre mais
+  durante as trocas. Veja <a href="guia-secagem-de-filamento.html">filamento úmido</a>.</li>
+  <li><strong>Encaixe:</strong> a troca altera levemente a extrusão na fronteira. Pra
+  calibrar folga, imprima o teste numa cor só — mais em
+  <a href="guia-tolerancia-de-encaixe.html">peças que encaixam</a>.</li>
+</ul>
+
+<h2>Na hora de pedir</h2>
+
+<p>Se você quer uma peça colorida, mande a ideia antes do arquivo final: muitas vezes uma
+mudança pequena no desenho — passar uma cor pra cima, separar uma parte — corta pela metade
+o tempo e o filamento, sem mudar nada no resultado. Vale conversar sobre isso na hora do
+<a href="orcamento.html">orçamento</a>.</p>
+
+        <div class="article-cta">
+          <h2>Prefere que a gente imprima pra você?</h2>
+          <p>Você manda a ideia ou o arquivo, a gente cuida de todo o resto — inclusive de tudo
+          que está escrito aqui em cima.</p>
+          <a href="orcamento.html" class="btn btn-primary">Fazer um orçamento</a>
+          <a href="https://wa.me/5547991677070" class="btn btn-ghost" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+        </div>
+      </div>
+
+      <nav class="article-nav" aria-label="Outros artigos">
+        <a href="guia-secagem-de-filamento.html">← Filamento úmido: como saber, como secar e como guardar</a><a href="guia.html">Todos os artigos</a><a href="guia-materiais-de-engenharia.html">Náilon, policarbonato e filamento com fibra: quando o PLA não dá conta →</a>
+      </nav>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <nav class="footer-nav" aria-label="Páginas por público">
+      <a href="presentes.html">Presentes personalizados</a>
+      <a href="colecionaveis.html">Colecionáveis e figuras</a>
+      <a href="gamer.html">Acessórios gamer e setup</a>
+      <a href="empresas.html">Empresas e protótipos</a>
+    </nav>
+  </div>
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <img src="assets/img/brand/logo-horizontal-dark-bg.png" alt="Zanshin 3D Studio" class="logo-img footer-logo-img">
+    </div>
+    <p>© <span id="year"></span> Zanshin 3D Studio · Jaraguá do Sul, SC</p>
+    <div class="footer-social">
+      <a href="https://wa.me/5547991677070" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M20.5 3.5a11 11 0 0 0-17.4 13.2L2 21.5l4.9-1.3A11 11 0 0 0 20.5 3.5Z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/zanshin_3dstudio/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/5547991677070" target="_blank" rel="noopener" aria-label="Fale conosco no WhatsApp" id="floatWhatsapp">
+  <svg viewBox="0 0 24 24"><path d="M20.5 3.5a11 11 0 0 0-17.4 13.2L2 21.5l4.9-1.3A11 11 0 0 0 20.5 3.5Z"/><path d="M8.5 8.4c.2-.5.4-.5.6-.5h.5c.2 0 .4 0 .5.4.2.5.6 1.6.7 1.7.1.1.1.3 0 .5-.1.2-.2.3-.3.5-.2.2-.3.3-.1.6.2.3.8 1.3 1.8 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.2.4-.2.6-.1.2.1 1.5.7 1.8.8.3.1.5.2.5.3.1.4.1.8-.1 1.2-.2.4-1.1 1-1.9 1.1-.6.1-1.3.1-4.2-1-3.5-1.4-5.7-4.9-5.9-5.1-.2-.2-1.4-1.8-1.4-3.5 0-1.6.9-2.4 1.2-2.7Z" fill="var(--bg)" stroke="none"/></svg>
+</a>
+
+<script src="js/script.js"></script>
+</body>
+</html>

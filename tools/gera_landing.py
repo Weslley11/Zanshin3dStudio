@@ -150,7 +150,8 @@ PAGES = [
                       "textura fina, detalhe pequeno, montagem em partes e peça grande em uma só impressão.",
         "benefits_titulo": "Como atendemos empresas",
         "benefits": [
-            ("tecnico", "Materiais técnicos", "PETG pra resistência no dia a dia, ABS/ASA pra peça que pega sol e chuva sem ressecar."),
+            ("tecnico", "Materiais técnicos", "PETG pra resistência no dia a dia, ABS/ASA pra peça que pega sol e chuva sem ressecar. "
+             'Acha que precisa de algo além? Veja <a href="guia-materiais-de-engenharia.html">quando vale um material de engenharia</a>.'),
             ("lote", "Lote pequeno sem custo de molde", "Pra poucas unidades, imprimir sai mais barato e mais rápido do que abrir molde."),
             ("reposicao", "Peça de reposição", "Aquela peça descontinuada pode ser remodelada e impressa a partir de uma amostra ou desenho."),
             ("marca", "Brindes e peças com a marca", "Chaveiros, troféus e lembranças com o logo da empresa, em quantidade."),

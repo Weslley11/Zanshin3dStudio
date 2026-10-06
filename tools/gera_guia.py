@@ -42,8 +42,8 @@ com inclinação suave. É aqui que a camada fina se paga, porque é onde o degr
 Em compensação, o tempo sobe muito.</p>
 
 <h3>0,16 mm — equilíbrio</h3>
-<p>O meio-termo honesto. Decorativo com bom acabamento sem o tempo do 0,12. É a altura
-que a gente usa na maior parte das peças da galeria.</p>
+<p>O meio-termo honesto. Decorativo com bom acabamento sem o tempo do 0,12 — para a
+maioria das peças de decoração, é o melhor ponto de partida.</p>
 
 <h3>0,20 mm — dia a dia</h3>
 <p>Ponto de partida para quase tudo que é funcional: suporte, gancho, caixa, encaixe,
@@ -91,12 +91,11 @@ uma faixa visível.</p>
   nem a altura de camada.</li>
 </ul>
 
-<h2>Como a gente decide aqui</h2>
+<h2>Na prática, por tipo de peça</h2>
 
 <p>Figura e colecionável: 0,12 a 0,16. Peça funcional: 0,20. Protótipo de validação:
-0,24. Peça grande e curva: camada variável. E quando o cliente pede acabamento máximo
-numa peça de exposição, 0,08 — avisando que o tempo de impressão mais que dobra, porque
-isso entra no orçamento.</p>
+0,24. Peça grande e curva: camada variável. E 0,08 só quando o acabamento máximo justifica:
+o tempo de impressão mais que dobra — e, numa peça encomendada, isso aparece no preço.</p>
 """,
     },
     {
@@ -282,7 +281,7 @@ graus</strong> imprimem sem suporte nenhum: cada camada se apoia o suficiente na
 Mudar a orientação na mesa muitas vezes elimina o suporte inteiro — e, de quebra, melhora
 a resistência da peça, porque as camadas passam a trabalhar na direção certa do esforço.</p>
 
-<p>É por isso que, aqui, a gente decide a orientação antes de qualquer outra regulagem.
+<p>É por isso que a orientação deveria ser a primeira decisão, antes de qualquer outra regulagem.
 Dois minutos olhando a peça economizam uma hora de pós-processamento.</p>
 """,
     },
@@ -352,12 +351,12 @@ se vê.</p>
 <p>É o mesmo princípio da calibração de fluxo dinâmico: o que você perde em velocidade na
 parte visível, você compensa correndo solto no que fica escondido.</p>
 
-<h2>O que a gente faz nas peças daqui</h2>
+<h2>Na prática, por tipo de peça</h2>
 
-<p>Nas figuras da <a href="galeria.html">galeria</a>, a costura fica nas costas ou pintada
-dentro de uma dobra. Em peça cilíndrica, costura em bisel. E em peça funcional, onde
-ninguém vai reparar, deixa no automático — gastar tempo escondendo costura de um gancho
-de parede é tempo que o cliente paga sem motivo.</p>
+<p>Em figura, o melhor lugar pra costura é nas costas ou dentro de uma dobra da roupa. Em
+peça cilíndrica, costura em bisel. E em peça funcional, onde ninguém vai reparar, deixe no
+automático — gastar tempo escondendo costura de um gancho de parede não traz retorno
+nenhum.</p>
 """,
     },
     {
@@ -562,9 +561,9 @@ material diferente.</p>
 <h2>Calibre uma vez, salve o perfil</h2>
 
 <p>Calibração não é tarefa recorrente se você for organizado. Calibre uma vez por
-combinação de filamento e bico, <strong>salve como perfil com nome</strong>, e pronto. Aqui o
-studio mantém um perfil por rolo de material — é o que permite prometer o mesmo acabamento
-em peça repetida, meses depois.</p>
+combinação de filamento e bico, <strong>salve como perfil com nome</strong>, e pronto. Ter um
+perfil salvo por material é o que permite repetir o mesmo acabamento numa peça igual, meses
+depois.</p>
 
 <p>Se você só quer a peça pronta, isso tudo já está feito: é só
 <a href="orcamento.html">pedir um orçamento</a>.</p>
@@ -742,7 +741,7 @@ bico e esqueça a altura de camada como variável de resistência.</p>
   <li>Preenchimento só sobe se houver motivo específico.</li>
 </ol>
 
-<p>Essa combinação cobre a grande maioria das peças funcionais que saem daqui. Se a sua peça
+<p>Essa combinação cobre a grande maioria das peças funcionais. Se a sua peça
 precisa de um estudo mais a fundo, a gente conversa sobre isso na
 <a href="empresas.html">página de empresas</a>.</p>
 """,
@@ -837,7 +836,7 @@ procurando erro no lugar errado.</p>
 
 <p>Se você vai pedir uma peça com encaixe aqui no studio, mande junto a informação de
 <strong>como as partes devem se comportar</strong> — se é para prender firme, girar ou sair
-e voltar. É essa informação, e não a medida do desenho, que define a folga que a gente usa.</p>
+e voltar. É essa informação, e não a medida do desenho, que define a folga certa.</p>
 """,
     },
     {
@@ -929,12 +928,315 @@ horas, senão só a parte de baixo seca.</p>
   rolo umas nas outras, e aí o filamento não desenrola mais.</p>
 </div>
 
+<p>Como reconhecer filamento úmido, quanto tempo secar cada material e como guardar pra não
+precisar secar de novo: está tudo em <a href="guia-secagem-de-filamento.html">filamento
+úmido</a>.</p>
+
 <h2>Por que isso importa pra quem compra</h2>
 
 <p>Tudo nesta página é trabalho que acontece antes da sua peça começar. Filamento seco e
 guardado direito, bico certo para cada material, manutenção em dia — é o que faz a
 diferença entre a peça que você viu na foto e uma com fiapo, falha de camada e superfície
 irregular.</p>
+""",
+    },
+    {
+        "slug": "secagem-de-filamento",
+        "categoria": "Manutenção",
+        "tempo": "7 min",
+        "titulo": "Filamento úmido: como saber, como secar e como guardar",
+        "lead": "É a causa escondida de metade dos problemas de impressão — e a que menos gente investiga, porque o rolo parece perfeito.",
+        "resumo": "Os sinais de filamento úmido, a temperatura e o tempo de secagem de cada material, os três erros que estragam o rolo durante a secagem e como guardar pra não precisar secar de novo.",
+        "corpo": """
+<p>Plástico de impressão absorve água do ar. Não é defeito do rolo nem de marca ruim: é
+química. O filamento sai seco e lacrado da fábrica e, a partir do momento em que você abre
+o saco, começa a puxar umidade do ambiente.</p>
+
+<p>Dentro do bico, a mais de 200&nbsp;°C, essa água vira vapor. O vapor forma bolha, a bolha
+estoura, e a extrusão fica irregular. O resultado aparece de mil formas diferentes — e é
+por isso que tanta gente passa horas mexendo em temperatura, retração e velocidade sem
+resolver nada.</p>
+
+<h2>Os sinais</h2>
+
+<ul>
+  <li><strong>Estalinhos no bico</strong> durante a impressão, como pipoca. É o sinal mais
+  claro de todos, e às vezes dá pra ver um fiozinho de vapor.</li>
+  <li><strong>Fiapo demais</strong>, mesmo com retração e temperatura que antes
+  funcionavam.</li>
+  <li><strong>Superfície com bolhinhas e furinhos</strong>, ou fosca num material que
+  deveria sair brilhante.</li>
+  <li><strong>Peça frágil</strong>, que separa entre camadas com pouca força.</li>
+  <li><strong>Extrusão irregular</strong>: trechos mais grossos e mais finos na mesma
+  linha.</li>
+  <li><strong>No PLA, filamento quebradiço</strong>, que estala ao ser dobrado em vez de
+  dobrar. É a umidade degradando o próprio plástico.</li>
+</ul>
+
+<div class="article-note">
+  <p><strong>Teste rápido:</strong> faça uma linha de extrusão no ar e escute, ou imprima
+  um cubo pequeno e olhe a parede contra a luz. Bolhinha e estalo confirmam. Seque e
+  repita: se melhorou, você achou a causa sem mexer em nenhuma regulagem.</p>
+</div>
+
+<h2>Quem absorve mais</h2>
+
+<p>Cada material tem uma sensibilidade diferente:</p>
+
+<ul>
+  <li><strong>Náilon:</strong> extremo. Fica inutilizável em poucas horas no ar e
+  precisa ser impresso direto de uma caixa seca.</li>
+  <li><strong>PETG, TPU e PC:</strong> altos. Rolo aberto há uma ou duas semanas já
+  costuma dar problema.</li>
+  <li><strong>ABS e ASA:</strong> moderados.</li>
+  <li><strong>PLA:</strong> o que menos absorve — mas absorve. Rolo parado por meses em
+  ambiente úmido também dá problema.</li>
+</ul>
+
+<p>A umidade do lugar pesa tanto quanto o material. Aqui em Jaraguá do Sul, com a umidade
+que a gente tem boa parte do ano, guardar direito não é opcional.</p>
+
+<h2>Temperatura e tempo de secagem</h2>
+
+<p>Pontos de partida, num secador ou desidratador com temperatura estável:</p>
+
+<ul>
+  <li><strong>PLA:</strong> 50 a 55&nbsp;°C por 6 a 8&nbsp;h</li>
+  <li><strong>PETG:</strong> 60 a 65&nbsp;°C por 6 a 8&nbsp;h</li>
+  <li><strong>TPU:</strong> 50 a 55&nbsp;°C por cerca de 8&nbsp;h</li>
+  <li><strong>ABS e ASA:</strong> 75 a 85&nbsp;°C por cerca de 8&nbsp;h</li>
+  <li><strong>Náilon:</strong> 70 a 80&nbsp;°C por 8 a 12&nbsp;h</li>
+</ul>
+
+<p>PLA especial — silk, madeira, translúcido, com fibra — fica na mesma faixa do PLA comum,
+do lado mais baixo dela.</p>
+
+<h2>Os três erros que estragam o rolo</h2>
+
+<h3>1. Passar da temperatura do material</h3>
+<p>Secar mais quente não seca mais rápido — derrete. PLA acima de uns 60&nbsp;°C amolece e
+as voltas do rolo grudam umas nas outras. A partir daí o filamento não desenrola mais e o
+rolo inteiro vai pro lixo.</p>
+
+<h3>2. Esquecer do carretel</h3>
+<p>O carretel também é de plástico, e muitos deformam bem antes da temperatura de secagem
+do ABS. Carretel de papelão aguenta mais calor, mas solta fibra. Antes de secar ABS ou
+náilon a 80&nbsp;°C, confira o limite do carretel — ou passe o filamento pra um que aguente.</p>
+
+<h3>3. Confiar no forno de cozinha</h3>
+<p>Termostato de forno doméstico não foi feito pra 55&nbsp;°C. Ele oscila, às vezes em
+dezenas de graus, e o primeiro pico já basta pra estragar um rolo de PLA. Se for usar,
+meça com um termômetro separado antes de colocar o filamento — e nunca use a função de
+grill.</p>
+
+<h2>Secar na mesa aquecida</h2>
+
+<p>Funciona em emergência. Coloque o rolo deitado na mesa, cubra com uma caixa (a do próprio
+filamento serve) pra segurar o calor, e <strong>vire o rolo a cada poucas horas</strong>: só
+a parte de baixo esquenta de verdade. Conte com bem mais tempo que num secador, perto de
+12&nbsp;h.</p>
+
+<h2>Guardar é mais barato que secar</h2>
+
+<ul>
+  <li><strong>Saco com fecho ou caixa hermética</strong>, com sílica gel dentro. O saco
+  original do filamento, se tiver zíper, já serve.</li>
+  <li><strong>Indicador de umidade</strong> dentro da caixa. É barato e tira o achismo:
+  abaixo de 20–30% está bom.</li>
+  <li><strong>Sílica saturada se recupera</strong>: a de bolinha que muda de cor volta a
+  funcionar depois de um tempo no forno ou no próprio secador.</li>
+  <li><strong>Caixa seca que alimenta a impressora</strong> direto é o ideal pra material
+  sensível — o filamento sai seco e vai direto pro bico.</li>
+</ul>
+
+<p>Pra quem encomenda uma peça, essa é uma etapa invisível: ninguém vê o filamento que foi
+secado. Vê só a peça que saiu sem bolha, sem fiapo e sem falha de camada.</p>
+""",
+    },
+    {
+        "slug": "impressao-multicolor",
+        "categoria": "Projeto",
+        "tempo": "7 min",
+        "titulo": "Impressão multicolor: o que acontece em cada troca de cor",
+        "lead": "Peça colorida direto da impressora não leva tinta — mas cada troca de cor tem um custo que não aparece na foto.",
+        "resumo": "Como a impressora troca de cor, por que uma peça multicolor pode gastar mais filamento na purga do que na própria peça, e como projetar pra trocar menos.",
+        "corpo": """
+<p>Várias peças da <a href="galeria.html">galeria</a> saem coloridas direto da impressora,
+sem pintura: o Dobby, o boné do Mario, os porta-copos, o jogo da velha. É uma das
+coisas mais bonitas que a impressão 3D faz hoje. Mas entender o que acontece por trás
+explica por que peça multicolor custa mais e demora mais.</p>
+
+<h2>Como a impressora troca de cor</h2>
+
+<p>Existem dois jeitos de fazer isso, e eles se comportam de forma muito diferente.</p>
+
+<h3>Um bico só, vários filamentos</h3>
+<p>É o sistema mais comum. A impressora tem um bico e um alimentador que troca o filamento:
+recolhe a cor atual, empurra a próxima. O problema é que o bico ainda está cheio da cor
+anterior. Antes de voltar pra peça, ele precisa <strong>purgar</strong> — empurrar plástico
+até a cor nova sair limpa. Esse material purgado vira descarte.</p>
+
+<h3>Vários bicos (troca de ferramenta)</h3>
+<p>Cada cor tem seu próprio bico, e a impressora troca o bico inteiro. Como cada bico já
+está carregado com sua cor, a purga é mínima. Desperdiça muito menos — mas o equipamento é
+mais caro e cada bico extra é um ponto a mais pra calibrar.</p>
+
+<h2>O custo escondido da purga</h2>
+
+<p>Num sistema de bico único, <strong>cada troca de cor gasta filamento</strong>, e a conta
+cresce rápido. Se uma peça tem duas cores alternando em todas as camadas, são duas trocas
+por camada. Numa peça de 300 camadas, 600 trocas.</p>
+
+<p>Não é exagero: em peça pequena com muitas trocas, o filamento jogado fora na purga pode
+passar do que vai na própria peça. E cada troca leva tempo — às vezes mais de um minuto.</p>
+
+<div class="article-note">
+  <p><strong>É por isso que peça multicolor custa mais.</strong> Não é a quantidade de cores
+  em si: é quantas vezes a cor muda ao longo da altura da peça.</p>
+</div>
+
+<h3>A ordem das cores pesa</h3>
+<p>Trocar de uma cor escura pra uma clara exige muito mais purga que o contrário. Branco
+depois de preto é o pior caso: o pigmento escuro contamina a cor clara por bastante tempo.
+Os slicers calculam a purga por par de cores, e o volume de branco-depois-de-preto chega a
+ser várias vezes o de preto-depois-de-branco.</p>
+
+<h2>Projetar pra trocar menos</h2>
+
+<p>A melhor economia acontece no projeto, antes de imprimir:</p>
+
+<ul>
+  <li><strong>Cor só no topo.</strong> Um chaveiro com o nome em outra cor fica igual se a
+  cor diferente estiver só nas últimas camadas. Em vez de trocar em cada camada, troca uma
+  vez só.</li>
+  <li><strong>Agrupar as cores por altura.</strong> Uma figura com pés de uma cor, corpo de
+  outra e cabeça de outra troca poucas vezes — cada cor ocupa uma faixa de altura.</li>
+  <li><strong>Imprimir separado e montar.</strong> Às vezes vale mais imprimir cada parte
+  numa cor e encaixar, do que imprimir tudo junto com milhares de trocas.</li>
+</ul>
+
+<h2>Reaproveitando a purga</h2>
+
+<p>Os slicers permitem mandar a purga pra dentro da própria peça:</p>
+
+<ul>
+  <li><strong>Purgar no preenchimento:</strong> a transição de cor vai pro miolo, onde
+  ninguém vê. Economiza bastante sem nenhum custo visual.</li>
+  <li><strong>Purgar em outro objeto:</strong> se tem uma peça de uma cor só na mesma mesa,
+  a purga vira parte dela.</li>
+</ul>
+
+<h2>Qualidade na fronteira entre cores</h2>
+
+<ul>
+  <li><strong>Temperatura um pouco mais baixa</strong> diminui o escorrimento de plástico
+  entre uma troca e outra, que deixa fiapo e borrão na cor vizinha. Abaixe até onde a
+  adesão entre camadas continuar boa.</li>
+  <li><strong>Parede externa por último</strong> e <strong>limpar o bico antes da parede
+  externa</strong> evitam que resto da cor anterior vá parar na superfície visível.</li>
+  <li><strong>Filamento seco</strong> faz ainda mais diferença aqui: úmido, ele escorre mais
+  durante as trocas. Veja <a href="guia-secagem-de-filamento.html">filamento úmido</a>.</li>
+  <li><strong>Encaixe:</strong> a troca altera levemente a extrusão na fronteira. Pra
+  calibrar folga, imprima o teste numa cor só — mais em
+  <a href="guia-tolerancia-de-encaixe.html">peças que encaixam</a>.</li>
+</ul>
+
+<h2>Na hora de pedir</h2>
+
+<p>Se você quer uma peça colorida, mande a ideia antes do arquivo final: muitas vezes uma
+mudança pequena no desenho — passar uma cor pra cima, separar uma parte — corta pela metade
+o tempo e o filamento, sem mudar nada no resultado. Vale conversar sobre isso na hora do
+<a href="orcamento.html">orçamento</a>.</p>
+""",
+    },
+    {
+        "slug": "materiais-de-engenharia",
+        "categoria": "Materiais",
+        "tempo": "6 min",
+        "titulo": "Náilon, policarbonato e filamento com fibra: quando o PLA não dá conta",
+        "lead": "Os materiais de engenharia resolvem o que nenhum outro resolve — e na maioria das peças, não são necessários.",
+        "resumo": "O que náilon, policarbonato, filamentos com fibra e os de alta performance oferecem, o que eles exigem da impressora, e a pergunta que vale fazer antes de escolher um.",
+        "corpo": """
+<p>PLA, PETG, ABS, ASA e TPU resolvem a grande maioria das peças — veja o
+<a href="materiais.html">guia de materiais</a>. Mas existe um grupo de materiais pensados pra
+uso técnico pesado: calor alto, atrito constante, impacto, contato com produto químico. Eles
+existem porque há peças que de fato precisam deles.</p>
+
+<p>O problema é que eles cobram caro em dificuldade, e escolher um sem precisar só traz
+custo e risco.</p>
+
+<h2>Náilon (poliamida)</h2>
+
+<p><strong>O que oferece:</strong> resistência ao desgaste e ao impacto muito acima dos
+materiais comuns, e superfície escorregadia. É o material de engrenagem, bucha, dobradiça e
+qualquer peça que esfrega em outra o tempo todo. Também tem um pouco de flexibilidade, então
+cede antes de quebrar.</p>
+
+<p><strong>O que exige:</strong> é o material mais higroscópico de todos. Fica inutilizável
+em poucas horas no ar e precisa ser impresso direto de uma caixa seca. Também empena e pede
+temperatura de bico alta. Mais sobre umidade em
+<a href="guia-secagem-de-filamento.html">filamento úmido</a>.</p>
+
+<h2>Policarbonato (PC)</h2>
+
+<p><strong>O que oferece:</strong> resistência a impacto muito alta e aguenta bem mais calor
+que o ABS. Existe em versão transparente.</p>
+
+<p><strong>O que exige:</strong> bico bem quente, impressora fechada e muito controle de
+empenamento — é um dos materiais que mais contraem ao esfriar.</p>
+
+<h2>Filamentos com fibra de carbono ou de vidro</h2>
+
+<p>Não são um material, são uma <em>versão</em>: PLA, PETG ou náilon com fibras picadas
+misturadas.</p>
+
+<p><strong>O que oferecem:</strong> peça bem mais rígida, que deforma menos sob carga e
+mantém melhor a dimensão. O acabamento sai fosco e esconde muito da linha de camada.</p>
+
+<p><strong>O que exigem:</strong> a fibra é <strong>abrasiva</strong> e come bico de latão
+— o furo vai abrindo até a extrusão ficar irregular. Bico de aço endurecido é obrigatório.
+E um detalhe que pouca gente sabe: a fibra aumenta a rigidez, mas costuma <em>reduzir</em>
+a resistência a impacto. Peça com fibra é mais dura, não necessariamente mais forte num
+golpe.</p>
+
+<div class="article-note">
+  <p><strong>Rígido não é o mesmo que resistente.</strong> Uma peça rígida não deforma; uma
+  peça tenaz aguenta pancada sem quebrar. Fibra de carbono dá a primeira coisa, náilon puro
+  dá a segunda. Saber qual das duas a sua peça precisa já escolhe metade do material.</p>
+</div>
+
+<h2>Os de alta performance: PPS, PEI, PEEK</h2>
+
+<p>Esses estão em outra categoria. Altíssima resistência térmica e química, estabilidade
+dimensional excelente — são usados em peças industriais, aeronáuticas e médicas. Pedem
+impressoras próprias, com câmara aquecida e bico que passa dos 350&nbsp;°C. Não são
+materiais de impressora de mesa.</p>
+
+<h2>A pergunta que vale fazer antes</h2>
+
+<p><strong>O problema é o material, ou é o projeto?</strong></p>
+
+<p>Muita peça "que precisa de náilon" na verdade precisa de outra coisa:</p>
+
+<ul>
+  <li>Quebrou entre camadas? Quase sempre é <strong>orientação na mesa</strong>, não
+  material. Veja <a href="guia-paredes-e-preenchimento.html">o que deixa a peça
+  forte</a>.</li>
+  <li>Deformou com calor? PETG ou ASA costumam resolver, sem a dificuldade do PC.</li>
+  <li>Vai ficar ao ar livre? ASA foi feito pra isso.</li>
+  <li>Encaixe que gasta? Às vezes é só a folga errada — veja
+  <a href="guia-tolerancia-de-encaixe.html">peças que encaixam</a>.</li>
+</ul>
+
+<p>Um material comum bem escolhido, com paredes e orientação certas, resolve muito mais
+casos do que parece — e sai mais barato, mais rápido e com menos risco de falha.</p>
+
+<h2>Se o seu projeto pede um desses</h2>
+
+<p>Fale com a gente antes de fechar o material. Mande a peça, o que ela vai fazer e onde
+vai ficar: a gente avalia se um material de engenharia é mesmo necessário e se dá pra
+imprimir, ou se um material comum, bem projetado, resolve. Pra projetos de empresa, veja
+também a <a href="empresas.html">página de empresas</a>.</p>
 """,
     },
 ]
@@ -1096,7 +1398,7 @@ def pagina_indice():
     return (
         head(
             "Guia de impressão 3D — Zanshin 3D Studio",
-            "Artigos práticos sobre impressão 3D escritos pela Zanshin 3D Studio: altura de camada, primeira camada, suportes, costura e manutenção do bico.",
+            "Artigos práticos sobre impressão 3D escritos pela Zanshin 3D Studio: qualidade, calibração, resistência, encaixe, multicolor, materiais e manutenção — e um diagnóstico por sintoma.",
             "guia.html",
         )
         + header("guia.html")
