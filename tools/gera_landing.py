@@ -3,6 +3,10 @@
 import json
 import re
 import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from config import url_oficial  # noqa: E402
 
 ROOT = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 
@@ -210,6 +214,7 @@ def render(p):
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{p["title"]}</title>
 <meta name="description" content="{p["desc"]}">
+<link rel="canonical" href="{url_oficial(p["file"])}">
 <meta name="theme-color" content="#0d0d10">
 <meta property="og:type" content="website">
 <meta property="og:title" content="{p["title"]}">

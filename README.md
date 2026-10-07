@@ -1,15 +1,17 @@
 # Zanshin 3D Studio
 
 Site institucional da **Zanshin 3D Studio** — impressão 3D sob encomenda em
-Jaraguá do Sul, SC. HTML/CSS/JS puro, sem build, sem dependências.
+Jaraguá do Sul, SC. HTML/CSS/JS puro, sem framework. As páginas geradas pelos
+scripts de `tools/` já ficam no repositório, então a hospedagem só serve os
+arquivos, sem build.
 
 Site multi-página: `index.html` (home) mais uma página por seção —
 `sobre.html`, `servicos.html`, `materiais.html` (guia + quiz), `orcamento.html`
 (calculadora com envio para WhatsApp), `galeria.html`, `faq.html`,
 `contato.html` — e `pedidos.html` (painel de acompanhamento). O header, o
 menu e o rodapé se repetem em cada arquivo (é tudo estático, sem
-templating), então uma mudança neles precisa ser replicada manualmente em
-todas as páginas.
+templating), então uma mudança neles precisa ser replicada nas páginas
+escritas à mão e nos geradores de `tools/`.
 
 ## Como visualizar localmente
 
@@ -104,12 +106,54 @@ essa pré-visualização, crie uma imagem de 1200×630px, salve como
 
 ## Publicar o site (grátis)
 
-Qualquer serviço de hospedagem estática funciona, por exemplo:
+O site fica no ar em dois lugares, os dois servindo o que está na branch
+`main` como está — a hospedagem não roda build nenhum, porque as páginas
+geradas já ficam no repositório:
 
-- **GitHub Pages**: nas configurações do repositório, em *Settings → Pages*,
-  selecione a branch e a pasta raiz (`/`).
-- **Netlify** ou **Vercel**: conecte o repositório e faça o deploy — não é
-  necessário configurar comando de build (site estático).
+- **Cloudflare Pages**: hospedagem principal e endereço oficial. Grátis e
+  liberada pra uso comercial.
+- **GitHub Pages** (`https://weslley11.github.io/Zanshin3dStudio/`): fica
+  como espelho, pra os links que já circularam (bio do Instagram, conversas
+  antigas) continuarem funcionando. Toda página diz ao Google qual é o
+  endereço oficial (tag `canonical`), então as duas cópias não competem.
+
+Fazer merge na `main` atualiza os dois em cerca de um minuto.
+
+### Conectar a Cloudflare Pages (uma vez só)
+
+1. Crie uma conta grátis em [dash.cloudflare.com](https://dash.cloudflare.com).
+2. Vá em **Workers & Pages** → **Create application** → **Pages** →
+   **Connect to Git**, entre com o GitHub e escolha o repositório
+   `Weslley11/Zanshin3dStudio` (**Install & Authorize** → **Begin setup**).
+3. Preencha:
+
+   | Campo | Valor |
+   |---|---|
+   | Project name | `zanshin3dstudio` (vira o endereço `….pages.dev`) |
+   | Production branch | `main` |
+   | Framework preset | `None` |
+   | Build command | `exit 0` |
+   | Build output directory | `/` |
+
+4. **Save and Deploy**. No fim aparece o endereço `https://….pages.dev`.
+5. Em `tools/config.py`, troque o endereço oficial por esse e ligue o
+   `URL_SEM_HTML` (a Cloudflare redireciona `/galeria.html` pra `/galeria`, e
+   o endereço oficial precisa ser o final):
+   ```python
+   BASE_URL = "https://zanshin3dstudio.pages.dev/"   # o seu, com a barra no fim
+   URL_SEM_HTML = True
+   ```
+   Rode `python3 tools/build.py` e publique: o canonical de todas as páginas,
+   o `sitemap.xml` e o `robots.txt` passam a usar o endereço novo.
+6. Cadastre o endereço novo no [Google Search Console](https://search.google.com/search-console)
+   e envie o `sitemap.xml`.
+
+Pra usar um domínio próprio depois (ex.: `zanshin3d.com.br`, registrado no
+registro.br), adicione-o no projeto em **Custom domains**, troque o
+`BASE_URL` pra ele e rode o build de novo.
+
+**Por que não a Vercel:** o plano grátis dela (Hobby) é só pra uso pessoal,
+sem fins comerciais — um site de negócio precisaria do plano pago (Pro).
 
 ## Marca
 
@@ -134,7 +178,7 @@ basta clonar o repo):
 | Agente | Pra que serve |
 |---|---|
 | `qa-tester` | Testa o site de verdade (roda local, clica nos fluxos) e reporta bugs — não corrige, só encontra. |
-| `devops` | Publica o site: branch → PR → merge → GitHub Pages. Sabe o processo desse projeto e é explícito sobre o que precisa de um clique seu. |
+| `devops` | Publica o site: branch → PR → merge → Cloudflare Pages e o espelho no GitHub Pages. Sabe o processo desse projeto e é explícito sobre o que precisa de um clique seu. |
 | `ux-designer` | Revisão visual/UX — contraste, espaçamento, mobile. Ajusta coisas pequenas direto, avisa antes de mudar estrutura. |
 | `business-assistant` | Escreve conteúdo pra WhatsApp, Instagram e descrições de peça, no tom da Zanshin e com base nos dados reais do site (nunca inventa preço). |
 
@@ -204,6 +248,7 @@ guia.html, guia-*.html  Guia de impressão 3D         (gerados)
 faq.html                Perguntas frequentes
 contato.html            Contato
 pedidos.html            Painel de pedidos (lê a planilha do Google Sheets)
+404.html                Página de "não encontrada"   (gerada)
 sitemap.xml, robots.txt Para o Google                (gerados)
 css/style.css           Estilos (compartilhado por todas as páginas)
 js/script.js             CONFIG, menu mobile, animações, calculadora e quiz de materiais
@@ -211,6 +256,7 @@ js/pecas-data.js          Todas as peças da galeria — a fonte de tudo que é 
 js/peca.js                Monta a página de peça
 js/pedidos.js             Config e lógica do painel de pedidos
 tools/build.py            Regenera tudo que está marcado como (gerado)
+tools/config.py           Endereço oficial do site (usado no canonical e no sitemap)
 tools/                    Os geradores e o conversor de fotos que o build usa
 assets/img/brand/         Arquivos da logo
 assets/img/gallery/       Fotos da galeria, em WebP (1200 px e -600)

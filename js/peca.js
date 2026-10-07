@@ -20,6 +20,12 @@ function initPecaPage() {
   const peca = PECAS.find((p) => p.id === id);
 
   if (!peca) {
+    // sem peça, esse endereço é só uma página de erro: fica fora do Google
+    // (é o jeito que o próprio Google recomenda pra página montada em JS)
+    const robots = document.createElement("meta");
+    robots.name = "robots";
+    robots.content = "noindex";
+    document.head.appendChild(robots);
     notFound.hidden = false;
     return;
   }
@@ -33,6 +39,17 @@ function renderPeca(peca) {
   document.title = `${peca.titulo} — Zanshin 3D Studio`;
   const metaDesc = document.querySelector('meta[name="description"]');
   if (metaDesc) metaDesc.setAttribute("content", peca.descricao);
+
+  // o peca.html é um só pras 60 peças, então não tem canonical fixo (juntaria
+  // todas numa página só no Google). O build carimba a base do endereço
+  // oficial e o canonical de cada peça nasce aqui, com o ?id= dela.
+  const base = document.querySelector('meta[name="url-oficial"]');
+  if (base) {
+    const canonical = document.createElement("link");
+    canonical.rel = "canonical";
+    canonical.href = `${base.content}?id=${encodeURIComponent(peca.id)}`;
+    document.head.appendChild(canonical);
+  }
 
   document.getElementById("pecaCategoria").textContent = peca.categoria;
   document.getElementById("pecaTitulo").textContent = peca.titulo;
