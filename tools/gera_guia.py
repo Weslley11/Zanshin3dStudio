@@ -8,6 +8,8 @@ modelo e máquina.
 import html
 import os
 
+from config import url_oficial
+
 ROOT = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 WA = "5547991677070"
 
@@ -1255,8 +1257,8 @@ def head(title, desc, canonical):
 <meta property="og:type" content="article">
 <meta property="og:title" content="{t}">
 <meta property="og:description" content="{d}">
-<meta property="og:url" content="https://weslley11.github.io/Zanshin3dStudio/{canonical}">
-<link rel="canonical" href="https://weslley11.github.io/Zanshin3dStudio/{canonical}">
+<meta property="og:url" content="{url_oficial(canonical)}">
+<link rel="canonical" href="{url_oficial(canonical)}">
 
 <link rel="icon" type="image/png" href="assets/img/brand/icon.png">
 <link rel="apple-touch-icon" href="assets/img/brand/apple-touch-icon.png">
