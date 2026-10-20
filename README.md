@@ -232,6 +232,38 @@ Pronto — a página busca esse CSV toda vez que alguém abre `pedidos.html`.
 Pra atualizar o status de um pedido, edite só a aba `Pedidos`; a aba
 `Painel` (e o site) atualiza sozinha.
 
+## Home cinematográfica e animações (Motion)
+
+A home abre com uma cena 3D (Three.js) em que um vaso é impresso camada por
+camada: a impressão começa sozinha e termina conforme a pessoa rola a página.
+Logo abaixo vem a **vitrine**: a seção fica fixa na tela e cada rolagem troca a
+peça, com o fundo mudando para a cor do filamento dela. O resto da home
+(públicos, como funciona, galeria, sobre, serviços) continua como antes.
+
+Todas as páginas carregam a biblioteca **Motion** (`js/vendor/motion.min.js`)
+e o `js/motion-site.js`, que cuida das entradas dos elementos `.reveal`
+(títulos com máscara, imagens com zoom), da cortina vermelha na troca de
+página, do header que some ao descer e do brilho dos cards. A tipografia e os
+títulos de página vêm de `css/cinema.css`, carregado depois do `style.css`.
+
+- **Trocar uma peça da vitrine:** edite o bloco `<article class="sc-piece">`
+  dela no `index.html`. As cores ficam no atributo `style`
+  (`--scene` é o fundo, `--glow` é a luz atrás da foto) e a palavra gigante de
+  fundo em `data-word`. As fotos verticais ficam em `assets/img/vitrine/`
+  (900 px de largura).
+- **Sem Motion, sem WebGL ou com "reduzir movimento" ligado no sistema**, o
+  site continua inteiro: o hero mostra uma foto e a vitrine vira uma tela por
+  peça.
+
+### Tratamento das fotos
+
+Toda foto nova passa pelo `tools/naturaliza.py` dentro do build: suaviza a
+borda do recorte, deixa a luz do fundo envolver a peça, tira o excesso de
+contraste e saturação e aplica um grão fino igual na foto inteira, para peça e
+fundo parecerem uma foto só. As fotos que já estão na galeria já foram
+tratadas; não rode o script de novo nelas. O build agora precisa de
+`pip install pillow numpy scipy`.
+
 ## Estrutura do projeto
 
 ```
@@ -251,14 +283,20 @@ pedidos.html            Painel de pedidos (lê a planilha do Google Sheets)
 404.html                Página de "não encontrada"   (gerada)
 sitemap.xml, robots.txt Para o Google                (gerados)
 css/style.css           Estilos (compartilhado por todas as páginas)
+css/cinema.css          Tipografia display, títulos de página e estados do Motion
+css/home.css            Só a home: hero 3D e vitrine
 js/script.js             CONFIG, menu mobile, animações, calculadora e quiz de materiais
 js/pecas-data.js          Todas as peças da galeria — a fonte de tudo que é gerado
 js/peca.js                Monta a página de peça
 js/pedidos.js             Config e lógica do painel de pedidos
+js/motion-site.js         Animações com Motion em todas as páginas
+js/home.js                Hero 3D e vitrine da home
+js/vendor/                Motion e Three.js (cópias locais, sem CDN)
 tools/build.py            Regenera tudo que está marcado como (gerado)
 tools/config.py           Endereço oficial do site (usado no canonical e no sitemap)
 tools/                    Os geradores e o conversor de fotos que o build usa
 assets/img/brand/         Arquivos da logo
 assets/img/gallery/       Fotos da galeria, em WebP (1200 px e -600)
+assets/img/vitrine/       Fotos verticais das peças da vitrine da home
 .claude/agents/           Subagentes personalizados do Claude Code
 ```

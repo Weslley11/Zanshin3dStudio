@@ -9,6 +9,51 @@
 
 const PECAS = [
   {
+    id: "trex-articulado",
+    titulo: "T-Rex articulado bronze",
+    categoria: "Personagens & Colecionáveis",
+    imagens: [
+      { src: "assets/img/gallery/trex-articulado.webp", alt: "T-Rex articulado impresso em 3D em filamento bronze, de corpo inteiro, de perfil sobre a mesa" },
+      { src: "assets/img/gallery/trex-articulado-frente.webp", alt: "T-Rex articulado bronze visto de frente, com a boca aberta e os braços curtos para a frente" },
+      { src: "assets/img/gallery/trex-articulado-lado.webp", alt: "T-Rex articulado bronze visto de lado, mostrando a cauda em segmentos" },
+      { src: "assets/img/gallery/trex-articulado-perfil.webp", alt: "T-Rex articulado bronze de perfil, com a cabeça inclinada para cima" },
+    ],
+    descricao: "T-Rex articulado em filamento bronze. Mandíbula, pescoço, braços e a cauda em segmentos se movem, então dá pra mudar a pose dele na mesa. As fotos mostram a peça de perfil, de frente e de lado.",
+  },
+  {
+    id: "dev-headset",
+    titulo: "Dev de headset",
+    categoria: "Personagens & Colecionáveis",
+    imagens: [
+      { src: "assets/img/gallery/dev-headset.webp", alt: "Figura preta de um programador de headset atrás do notebook, vista de frente" },
+      { src: "assets/img/gallery/dev-headset-esquerda.webp", alt: "Figura do programador vista pela esquerda, com notebook de teclado texturizado e caneca na mesa" },
+      { src: "assets/img/gallery/dev-headset-direita.webp", alt: "Figura do programador vista pela direita, com o fone de almofadas em camadas" },
+    ],
+    descricao: "Figura de mesa de um programador de headset, com notebook de teclado texturizado e caneca do lado. Impressa em preto, peça única com mesa e cadeira. Presente certo pra quem vive no código.",
+  },
+  {
+    id: "cavaleiro-porta-caneta",
+    titulo: "Cavaleiro porta-caneta",
+    categoria: "Acessórios & Utilidades",
+    imagens: [
+      { src: "assets/img/gallery/cavaleiro-porta-caneta-angulo.webp", alt: "Cavaleiro ajoelhado de armadura preta e penacho vermelho segurando uma caneta verde, visto de três quartos" },
+      { src: "assets/img/gallery/cavaleiro-porta-caneta.webp", alt: "Cavaleiro porta-caneta visto de frente, com a caneta apoiada nas duas mãos" },
+      { src: "assets/img/gallery/cavaleiro-porta-caneta-lateral.webp", alt: "Cavaleiro porta-caneta visto de lado, mostrando a capa e o penacho vermelho" },
+      { src: "assets/img/gallery/cavaleiro-porta-caneta-aberto.webp", alt: "Cavaleiro porta-caneta de frente, em plano aberto sobre a mesa" },
+    ],
+    descricao: "Cavaleiro ajoelhado que segura a sua caneta nas duas mãos. Armadura e capa em preto, penacho em vermelho, com detalhe fino nas placas da armadura e no tecido da capa.",
+  },
+  {
+    id: "alien-da-paz",
+    titulo: "Alien da paz",
+    categoria: "Personagens & Colecionáveis",
+    imagens: [
+      { src: "assets/img/gallery/alien-da-paz.webp", alt: "Alien verde sorridente fazendo sinal de paz, de bermuda bronze e chinelo preto" },
+      { src: "assets/img/gallery/alien-da-paz-angulo.webp", alt: "O mesmo alien visto de outro ângulo, de corpo inteiro" },
+    ],
+    descricao: "Alien sorridente fazendo sinal de paz, em três cores: pele verde, bermuda bronze e chinelo preto.",
+  },
+  {
     id: "dragao-laranja",
     titulo: "Dragão articulado laranja",
     categoria: "Personagens & Colecionáveis",

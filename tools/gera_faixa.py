@@ -19,7 +19,8 @@ def miniatura(src):
     return src[: -len(".webp")] + "-600.webp" if src.endswith(".webp") else src
 
 IDS = [
-    "kratos", "gengar", "dragao-articulado", "ninja", "darth-vader", "banguela-furia-luz",
+    "trex-articulado", "kratos", "cavaleiro-porta-caneta", "gengar", "alien-da-paz",
+    "dragao-articulado", "dev-headset", "ninja", "darth-vader", "banguela-furia-luz",
     "encapuzado", "dobby", "batman-armadura", "deadpool", "dragao-laranja", "goku-shenron",
     "sagrada-familia", "homem-aranha-streetwear", "mascote-espartano", "diorama-hollow-knight",
     "revolver-resident-evil", "gato-samurai", "suporte-headset-pistao", "esqueletos-dragao",
