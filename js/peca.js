@@ -87,6 +87,22 @@ function renderPeca(peca) {
     });
   }
 
+  // peça com vídeo: um loop curto, sem som, abaixo das fotos
+  if (peca.video) {
+    const video = document.createElement("video");
+    video.className = "peca-video";
+    video.muted = true;
+    video.loop = true;
+    video.autoplay = true;
+    video.playsInline = true;
+    video.setAttribute("playsinline", "");
+    video.preload = "metadata";
+    video.poster = `${peca.video}.webp`;
+    video.setAttribute("aria-label", `Vídeo: ${peca.titulo} em movimento`);
+    video.innerHTML = `<source src="${peca.video}.mp4" type="video/mp4">`;
+    thumbsWrap.after(video);
+  }
+
   const waBtn = document.getElementById("pecaWhatsapp");
   if (waBtn && typeof CONFIG !== "undefined") {
     const message = `Olá! Vi a peça "${peca.titulo}" no site da Zanshin 3D Studio e queria saber mais 🙂`;

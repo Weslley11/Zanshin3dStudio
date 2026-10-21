@@ -167,6 +167,19 @@
   else introP = 1;
   if (M.scroll) M.scroll(function (p) { scrollP = p; }, { target: $(".home-hero"), offset: ["start start", "end end"] });
 
+  /* ================= vídeos: tocam só quando aparecem ================= */
+  var vids = document.querySelectorAll(".on-printer video");
+  if (vids.length && "IntersectionObserver" in window && !reduce) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        var v = e.target;
+        if (e.isIntersecting) { v.preload = "auto"; var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); }
+        else v.pause();
+      });
+    }, { threshold: 0.25 });
+    vids.forEach(function (v) { io.observe(v); });
+  }
+
   /* ================= vitrine ================= */
   var show = $("#destaques");
   var pieces = show ? Array.prototype.slice.call(show.querySelectorAll(".sc-piece")) : [];

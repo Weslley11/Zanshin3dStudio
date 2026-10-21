@@ -154,3 +154,51 @@ section h2 { font-size: clamp(2rem, 4.4vw, 3.4rem); }
 .gallery-item:hover .gallery-item-caption { transform: none; }
 .audience-card-media { aspect-ratio: 1 / 1; }
 .audience-card:hover .audience-card-media img { transform: scale(1.03); }
+
+/* ---------- vídeos ---------- */
+.peca-video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  margin-top: 14px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+/* ---------- dicas rápidas (guia-dicas.html) ---------- */
+.tips .container { display: grid; gap: 72px; }
+.tips-stage { display: grid; gap: 26px; }
+.tips-stage-head { display: flex; align-items: flex-start; gap: 18px; }
+.tips-stage-head h2 { margin: 0 0 4px; font-size: clamp(1.7rem, 3.4vw, 2.6rem); text-transform: uppercase; }
+.tips-stage-head p { margin: 0; }
+.tips-stage-n {
+  flex: none; width: 46px; height: 46px; border-radius: 50%;
+  display: grid; place-items: center; margin-top: 2px;
+  font: 600 1rem/1 var(--font-mono); color: var(--accent-hi);
+  box-shadow: inset 0 0 0 1px var(--accent);
+}
+.tip-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+.tip-card {
+  position: relative;
+  display: flex; flex-direction: column;
+  padding: 22px 22px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.tip-card h3 { font-size: 1.05rem; margin: 0 0 10px; }
+.tip-value {
+  margin: 0 0 12px;
+  font: 600 1.35rem/1.15 var(--font-mono);
+  letter-spacing: -0.01em;
+  color: var(--accent-hi);
+  font-variant-numeric: tabular-nums;
+}
+.tip-card p:not(.tip-value) { font-size: 0.93rem; margin: 0 0 16px; }
+.tip-link { margin-top: auto; font-weight: 600; font-size: 0.88rem; color: var(--text); }
+.tip-link:hover { color: var(--accent-hi); }
+.tips-note { max-width: 70ch; font-size: 0.92rem; }
+.tips-note a { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 600px) { .tips .container { gap: 56px; } }

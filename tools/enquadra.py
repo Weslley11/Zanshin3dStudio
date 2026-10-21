@@ -17,6 +17,7 @@ estúdio, com sombra de contato, para entrarem na galeria iguais às demais.
 Uso:
   python3 tools/enquadra.py estudio  entrada.webp saida-base   # saida-base.webp e saida-base-600.webp
   python3 tools/enquadra.py ambiente entrada.jpg  saida-base [--base-escura]
+  python3 tools/enquadra.py natural  entrada.jpg  saida-base   # mantém o fundo real
   (--base-escura: peça com base preta sobre mesa clara, que o recortador
    costuma deixar meio transparente)
 
@@ -235,9 +236,52 @@ def ambiente(entrada, base, bases_escuras=False):
     return enc
 
 
+def natural(entrada, base, folga=0.10):
+    """Foto real (mesa da impressora, cozinha...): mantém o fundo, enquadra em
+    quadrado com a peça inteira e folga em volta, e aplica o tratamento.
+    Se a peça for mais alta (ou larga) que a foto permite, o quadrado é
+    completado com o próprio fundo da foto, desfocado e um pouco mais escuro."""
+    from PIL import ImageFilter, ImageEnhance
+    im = Image.open(entrada).convert("RGB")
+    W, H = im.size
+    peca = limpa(isnet(im) > 0.5, 0.002 * W * H)
+    x0, y0, x1, y1 = caixa(peca)
+    lado = int(max(x1 - x0, y1 - y0) * (1 + 2 * folga))
+    lado = max(lado, int(0.45 * min(W, H)))
+    cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
+    if lado <= min(W, H):
+        left = int(min(max(cx - lado / 2, 0), W - lado))
+        top = int(min(max(cy - lado / 2, 0), H - lado))
+        sq = im.crop((left, top, left + lado, top + lado))
+    else:
+        left, top = int(cx - lado / 2), int(cy - lado / 2)
+        # fundo: a foto esticada para cobrir o quadrado, bem desfocada
+        fundo = im.resize((lado, int(lado * H / W)) if H / W >= 1 else (int(lado * W / H), lado), Image.LANCZOS)
+        fx, fy = (fundo.width - lado) // 2, (fundo.height - lado) // 2
+        fundo = fundo.crop((fx, fy, fx + lado, fy + lado)).filter(ImageFilter.GaussianBlur(lado / 30))
+        fundo = ImageEnhance.Brightness(fundo).enhance(0.82)
+        # foto real colada por cima, com a borda esfumada
+        a = np.zeros((H, W), np.float32)
+        a[...] = 1
+        f = max(8, int(0.03 * lado))
+        rampa = np.clip(np.arange(W) / f, 0, 1) * np.clip((W - 1 - np.arange(W)) / f, 0, 1)
+        rampa_y = np.clip(np.arange(H) / f, 0, 1) * np.clip((H - 1 - np.arange(H)) / f, 0, 1)
+        if left > 0 or left + lado < W:
+            rampa = np.ones(W)
+        if top > 0 or top + lado < H:
+            rampa_y = np.ones(H)
+        a = (rampa[None, :] * rampa_y[:, None]).astype(np.float32)
+        sq = fundo.copy()
+        sq.paste(im, (-left, -top), Image.fromarray((a * 255).astype(np.uint8)))
+    sq = sq.resize((LADO, LADO), Image.LANCZOS)
+    salva(sq, base, sum(map(ord, os.path.basename(base))))
+
+
 if __name__ == "__main__":
     modo, entrada, base = sys.argv[1:4]
-    if modo == "estudio":
+    if modo == "natural":
+        natural(entrada, base)
+    elif modo == "estudio":
         print(estudio(entrada, base, forcar=True))
     else:
         print(ambiente(entrada, base, "--base-escura" in sys.argv))
