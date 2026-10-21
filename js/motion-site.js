@@ -49,7 +49,7 @@
             { opacity: [0, 1], y: [42, 0], filter: ["blur(6px)", "blur(0px)"] },
             { duration: 0.9, delay: delay, easing: EASE });
           if (img && !el.closest(".hero")) {
-            M.animate(img, { scale: [1.14, 1] }, { duration: 1.4, delay: delay, easing: EASE })
+            M.animate(img, { scale: [1.06, 1] }, { duration: 1.2, delay: delay, easing: EASE })
               .then(function () { clean(img, ["transform"]); });
           }
         }

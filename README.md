@@ -264,6 +264,22 @@ fundo parecerem uma foto só. As fotos que já estão na galeria já foram
 tratadas; não rode o script de novo nelas. O build agora precisa de
 `pip install pillow numpy scipy`.
 
+**Foto de celular (com mesa e parede atrás) ou peça encostando na borda:**
+use o `tools/enquadra.py`. Ele recorta a peça, monta no mesmo fundo claro das
+outras fotos, com sombra, e deixa 8,5% de margem em volta para nada ficar
+cortado no site. Precisa de `pip install rembg onnxruntime` (baixa um modelo
+de ~180 MB na primeira vez).
+
+```bash
+python3 tools/enquadra.py ambiente ~/fotos/minha-peca.jpg assets/img/gallery/minha-peca
+python3 tools/enquadra.py ambiente ~/fotos/peca-base-preta.jpg assets/img/gallery/outra --base-escura
+```
+
+Isso já gera o `.webp` e o `-600.webp` tratados; depois é só cadastrar a peça
+no `js/pecas-data.js` e rodar o build. Fotos que são close de propósito
+(rosto, busto) ficam listadas em `CLOSES` dentro do script, para o lado
+cortado continuar colado na borda.
+
 ## Estrutura do projeto
 
 ```
