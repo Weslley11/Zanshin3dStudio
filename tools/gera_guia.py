@@ -1264,8 +1264,9 @@ def head(title, desc, canonical):
 <link rel="apple-touch-icon" href="assets/img/brand/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..900;1,62..125,400..900&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/cinema.css">
 </head>
 <body>
 
@@ -1332,6 +1333,8 @@ RODAPE = """
   <svg viewBox="0 0 24 24"><path d="M20.5 3.5a11 11 0 0 0-17.4 13.2L2 21.5l4.9-1.3A11 11 0 0 0 20.5 3.5Z"/><path d="M8.5 8.4c.2-.5.4-.5.6-.5h.5c.2 0 .4 0 .5.4.2.5.6 1.6.7 1.7.1.1.1.3 0 .5-.1.2-.2.3-.3.5-.2.2-.3.3-.1.6.2.3.8 1.3 1.8 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.2.4-.2.6-.1.2.1 1.5.7 1.8.8.3.1.5.2.5.3.1.4.1.8-.1 1.2-.2.4-1.1 1-1.9 1.1-.6.1-1.3.1-4.2-1-3.5-1.4-5.7-4.9-5.9-5.1-.2-.2-1.4-1.8-1.4-3.5 0-1.6.9-2.4 1.2-2.7Z" fill="var(--bg)" stroke="none"/></svg>
 </a>
 
+<script src="js/vendor/motion.min.js"></script>
+<script src="js/motion-site.js"></script>
 <script src="js/script.js"></script>
 </body>
 </html>
@@ -1434,6 +1437,13 @@ def pagina_indice():
           <p>Temperatura, ventoinha, velocidade, fluxo e secagem numa tabela só — mais as
           regulagens que não dependem do material. Para consultar com a impressora na frente.</p>
           <span class="guide-card-go">Abrir a tabela</span>
+        </a>
+        <a href="guia-dicas.html" class="guide-entry-card reveal">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.6 10.8c.6.5 1 1.2 1 2V16h5.2v-.2c0-.8.4-1.5 1-2A6 6 0 0 0 12 3Z"/></svg>
+          <h3>Dicas rápidas</h3>
+          <p>As regulagens que mais mudam o resultado, organizadas por etapa, cada uma com o
+          valor de partida e o link para o artigo completo.</p>
+          <span class="guide-card-go">Ver as dicas</span>
         </a>
       </div>
 

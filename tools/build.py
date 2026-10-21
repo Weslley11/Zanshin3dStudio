@@ -16,6 +16,7 @@ O que ele faz, nesta ordem:
   4. gera_landing      — presentes, colecionáveis, gamer e empresas
   5. gera_guia         — o índice do guia e os artigos
   6. gera_guia_extra   — o diagnóstico por sintoma e a tabela de referência
+     gera_dicas        — a página de dicas rápidas (guia-dicas.html)
   7. gera_404          — a página de endereço inexistente
   8. carimba_canonical — o endereço oficial em todas as páginas (tools/config.py)
   9. gera_sitemap      — sitemap.xml e robots.txt
@@ -32,7 +33,7 @@ sys.path.insert(0, AQUI)
 
 ETAPAS = [
     "otimiza_imagens", "gera_galeria", "gera_faixa", "gera_landing",
-    "gera_guia", "gera_guia_extra", "gera_404", "carimba_canonical",
+    "gera_guia", "gera_guia_extra", "gera_dicas", "gera_404", "carimba_canonical",
     "gera_sitemap",
 ]
 

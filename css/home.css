@@ -1,0 +1,209 @@
+/* ---------------------------------------------------
+   Zanshin 3D Studio — só a home
+   Hero com a impressão 3D e a vitrine fixa das peças.
+   Sem JS, a vitrine vira uma sequência de telas, uma por peça.
+--------------------------------------------------- */
+
+.home-wrap {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-left: max(24px, env(safe-area-inset-left, 0px));
+  padding-right: max(24px, env(safe-area-inset-right, 0px));
+}
+
+/* ---------- hero ---------- */
+section.home-hero { padding: 0; position: relative; }
+.print-on section.home-hero { height: 190vh; }
+.home-hero-stick {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 560px;
+  overflow: hidden;
+  background: var(--bg);
+}
+#printScene { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.home-hero-fallback {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: 70% 50%;
+  opacity: 0.45;
+}
+#printScene { display: none; }
+.print-on #printScene { display: block; }
+.print-on .home-hero-fallback { display: none; }
+.home-hero-shade {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(120% 80% at 72% 55%, transparent 30%, rgba(13, 13, 16, 0.7) 75%, var(--bg) 100%),
+    linear-gradient(90deg, rgba(13, 13, 16, 0.88), rgba(13, 13, 16, 0) 58%);
+}
+.home-hero-copy {
+  position: relative; z-index: 2; height: 100%;
+  display: flex; flex-direction: column; justify-content: center;
+  padding-top: 84px;
+}
+.home-hero-copy > * { max-width: 640px; }
+.home-hero h1 {
+  font-size: clamp(3rem, 7.2vw, 6.6rem);
+  text-transform: uppercase;
+  line-height: 0.92;
+  margin: 0 0 0.3em;
+}
+.home-hero h1 .ln { display: block; overflow: hidden; padding-bottom: 0.06em; }
+.home-hero h1 .ln > span { display: inline-block; }
+.home-hero h1 em { color: var(--accent-hi); }
+.home-hero-lead { font-size: clamp(1rem, 1.3vw, 1.15rem); max-width: 44ch; margin-bottom: 1.8em; }
+.print-hud {
+  position: absolute; z-index: 2;
+  right: max(24px, env(safe-area-inset-right, 0px));
+  bottom: 28px;
+  display: grid; gap: 8px; justify-items: end; text-align: right;
+  font: 500 12px/1.3 var(--font-mono);
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.print-hud b { color: var(--text); font-weight: 500; }
+.print-hud-bar { width: 220px; height: 2px; background: var(--border); overflow: hidden; border-radius: 2px; }
+.print-hud-bar i { display: block; height: 100%; background: var(--accent); transform-origin: left; transform: scaleX(0); }
+.print-hud { display: none; }
+.print-on .print-hud { display: grid; }
+
+@media (max-width: 760px) {
+  .home-hero-copy { justify-content: flex-end; padding-bottom: 150px; }
+  .home-hero-shade { background: linear-gradient(0deg, var(--bg) 20%, rgba(13, 13, 16, 0.55) 58%, rgba(13, 13, 16, 0.1)); }
+  .print-hud { left: max(24px, env(safe-area-inset-left, 0px)); right: auto; justify-items: start; text-align: left; bottom: 24px; }
+}
+
+/* ---------- vitrine ---------- */
+section.showcase { padding: 0; position: relative; }
+.sc-word, .sc-count, .sc-dots, .sc-glow { display: none; }
+.sc-piece {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  align-items: center;
+  gap: 40px;
+  padding: 110px max(24px, env(safe-area-inset-right, 0px)) 60px max(24px, env(safe-area-inset-left, 0px));
+  background: radial-gradient(55% 50% at 64% 52%, color-mix(in srgb, var(--glow) 38%, transparent), transparent 70%), var(--scene);
+  overflow: hidden;
+}
+.sc-text { max-width: 520px; justify-self: end; position: relative; z-index: 2; }
+.sc-title {
+  font-size: clamp(2.8rem, 6vw, 5.8rem);
+  text-transform: uppercase;
+  line-height: 0.9;
+  margin: 0 0 0.35em;
+  color: #fff;
+}
+.sc-text p { color: rgba(255, 255, 255, 0.8); font-size: 1.05rem; max-width: 40ch; }
+.sc-specs { display: flex; flex-wrap: wrap; gap: 10px 28px; margin: 22px 0 28px; }
+.sc-specs div { display: grid; gap: 4px; }
+.sc-specs dt { font: 500 11px/1 var(--font-mono); letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255, 255, 255, 0.55); }
+.sc-specs dd { margin: 0; font-weight: 600; color: #fff; }
+.sc-text .btn-ghost { border-color: rgba(255, 255, 255, 0.35); color: #fff; }
+.sc-text .btn-ghost:hover { background: rgba(255, 255, 255, 0.1); border-color: #fff; color: #fff; }
+.sc-media { position: relative; height: min(78vh, 760px); }
+.sc-media figure { position: absolute; margin: 0; border-radius: 18px; overflow: hidden; box-shadow: 0 40px 90px -30px rgba(0, 0, 0, 0.75); }
+.sc-media img { width: 100%; height: 100%; object-fit: cover; }
+.sc-main { height: 100%; aspect-ratio: 9 / 16; left: 10%; max-width: 72%; }
+.sc-alt { height: 48%; aspect-ratio: 9 / 16; right: 6%; bottom: 4%; box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.8), 0 0 0 6px rgba(255, 255, 255, 0.06) !important; }
+
+/* modo fixo (ligado pelo js/home.js) */
+.sc-on section.showcase { height: calc(var(--n, 4) * 100vh + 60vh); }
+.sc-on .sc-stick {
+  position: sticky; top: 0;
+  height: 100vh; height: 100dvh;
+  overflow: hidden;
+  background: var(--sc-scene, #0d0d10);
+  transition: background-color 0.9s var(--ease-out);
+}
+.sc-on .sc-glow {
+  display: block; position: absolute; inset: -20%; pointer-events: none;
+  background: radial-gradient(50% 45% at 62% 52%, var(--sc-glow, #d01010), transparent 70%);
+  opacity: 0.38;
+}
+.sc-on .sc-word {
+  display: block; position: absolute; left: 0; top: 50%;
+  transform: translate3d(-10vw, -50%, 0);
+  white-space: nowrap; pointer-events: none;
+  font: italic 900 clamp(120px, 24vw, 400px)/0.8 var(--font-heading);
+  font-stretch: 125%;
+  color: rgba(255, 255, 255, 0.07);
+}
+.sc-on .sc-count {
+  display: block; position: absolute; z-index: 3;
+  top: 96px; left: max(24px, env(safe-area-inset-left, 0px));
+  font: 500 12px/1 var(--font-mono); letter-spacing: 0.06em; color: rgba(255, 255, 255, 0.7);
+}
+.sc-on .sc-piece { position: absolute; inset: 0; min-height: 0; background: none; visibility: hidden; }
+.sc-on .sc-piece.is-on { visibility: visible; }
+.sc-on .sc-dots {
+  display: grid; gap: 14px; position: absolute; z-index: 4;
+  right: max(20px, env(safe-area-inset-right, 0px)); top: 50%; transform: translateY(-50%);
+}
+.sc-dots button {
+  width: 12px; height: 12px; padding: 0; border-radius: 50%; cursor: pointer;
+  border: 1.5px solid rgba(255, 255, 255, 0.6); background: transparent;
+  transition: transform 0.3s var(--ease-out), background 0.3s;
+}
+.sc-dots button[aria-current="true"] { background: #fff; transform: scale(1.25); }
+.sc-dots button:hover { transform: scale(1.25); }
+
+@media (max-width: 860px) {
+  .sc-piece {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(0, 1fr) auto;
+    align-items: end; gap: 0;
+    padding-top: 140px; padding-bottom: 34px;
+  }
+  .sc-media { order: -1; height: 100%; min-height: 46vh; }
+  .sc-main { left: 50%; translate: -50% 0; }
+  .sc-alt { height: 40%; right: 2%; }
+  .sc-text { justify-self: stretch; padding-right: 40px; padding-top: 18px; }
+  .sc-text p { font-size: 0.95rem; margin-bottom: 0.6em; }
+  .sc-specs { margin: 12px 0 16px; gap: 8px 18px; }
+  .sc-on .sc-count { top: 84px; }
+}
+@media (max-width: 860px) and (max-height: 760px) {
+  .sc-on .sc-text p { display: none; }
+}
+
+/* ---------- direto da impressora ---------- */
+.on-printer-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  gap: 14px;
+  margin-top: 40px;
+}
+.op-tile {
+  position: relative;
+  margin: 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  aspect-ratio: 1 / 1;
+  display: block;
+  color: #fff;
+}
+.op-tall { grid-row: span 2; aspect-ratio: auto; }
+.op-wide { grid-column: span 2; aspect-ratio: 2 / 1; }
+.op-tile video { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.8s var(--ease-out); }
+a.op-tile:hover video { transform: scale(1.03); }
+.op-tile figcaption, .op-caption {
+  position: absolute; left: 12px; bottom: 12px;
+  padding: 6px 12px; border-radius: 999px;
+  background: rgba(13, 13, 16, 0.72);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  font-size: 0.82rem; font-weight: 600;
+}
+@media (max-width: 860px) {
+  .on-printer-grid { grid-template-columns: 1fr 1fr; }
+  .op-tall { grid-column: span 2; grid-row: auto; aspect-ratio: 4 / 5; }
+  .op-wide { aspect-ratio: 2 / 1; }
+}

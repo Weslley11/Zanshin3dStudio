@@ -19,6 +19,9 @@ import sys
 
 from PIL import Image
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from naturaliza import naturaliza  # tratamento de cor/borda/grão, igual em todas as fotos
+
 GAL = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "assets", "img", "gallery")
 QUALIDADE = 82          # WebP 82 fica visualmente igual ao JPEG 88 que a galeria usava
 TAMANHOS = ((1200, ""), (600, "-600"))
@@ -27,6 +30,9 @@ TAMANHOS = ((1200, ""), (600, "-600"))
 def converte(jpg):
     base = os.path.splitext(jpg)[0]
     im = Image.open(jpg).convert("RGB")
+    if im.size != (1200, 1200):
+        im = im.resize((1200, 1200), Image.LANCZOS)
+    im = naturaliza(im, seed=sum(map(ord, os.path.basename(base))))
     feitos = []
     for lado, sufixo in TAMANHOS:
         destino = f"{base}{sufixo}.webp"

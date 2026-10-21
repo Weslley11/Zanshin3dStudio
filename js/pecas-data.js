@@ -9,6 +9,144 @@
 
 const PECAS = [
   {
+    id: "gato-olhos-saltados",
+    titulo: "Gato de olhos saltados",
+    categoria: "Personagens & Colecionáveis",
+    imagens: [
+      { src: "assets/img/gallery/gato-olhos-saltados.webp", alt: "Gato branco sentado na beirada da mesa, com olhos roxos saltados e pernas articuladas" },
+      { src: "assets/img/gallery/gato-olhos-saltados-lado.webp", alt: "O mesmo gato visto de lado, com o dedo apertando a cabeça" },
+    ],
+    video: "assets/video/gato-olhos-saltados",
+    descricao: "Gato branco de pernas articuladas que senta na beirada da prateleira. Aperte a cabeça e os olhos roxos saltam para fora. O vídeo mostra o mecanismo funcionando.",
+  },
+  {
+    id: "mascote-flamengo",
+    titulo: "Mascote do Flamengo",
+    categoria: "Personagens & Colecionáveis",
+    imagens: [
+      { src: "assets/img/gallery/mascote-flamengo-mesa.webp", alt: "Mascote urubu do Flamengo fazendo pose de força, com a camisa rubro-negra" },
+      { src: "assets/img/gallery/mascote-flamengo-costas.webp", alt: "Mascote do Flamengo visto de costas, com a camisa 10" },
+      { src: "assets/img/gallery/mascote-flamengo.webp", alt: "Mascote do Flamengo de perto" },
+    ],
+    descricao: "Urubu do Flamengo musculoso, camisa rubro-negra com o 10 nas costas, calção branco e meião. Cada cor sai em filamento separado.",
+  },
+  {
+    id: "mascote-spfc",
+    titulo: "Mascote do São Paulo",
+    categoria: "Personagens & Colecionáveis",
+    imagens: [
+      { src: "assets/img/gallery/mascote-spfc-detalhe.webp", alt: "Santo Paulo, mascote do São Paulo, com auréola dourada e o dedo para cima" },
+      { src: "assets/img/gallery/mascote-spfc-costas.webp", alt: "Mascote do São Paulo visto de costas, com a camisa 10, sobre a base com o escudo" },
+      { src: "assets/img/gallery/mascote-spfc-base.webp", alt: "Detalhe da base com o escudo do SPFC e as chuteiras" },
+      { src: "assets/img/gallery/mascote-spfc.webp", alt: "Mascote do São Paulo de corpo inteiro" },
+    ],
+    descricao: "O Santo Paulo do São Paulo FC, com auréola dourada, camisa tricolor 10 e base com o escudo do time.",
+  },
+  {
+    id: "benchy",
+    titulo: "Benchy",
+    categoria: "Decoração",
+    imagens: [
+      { src: "assets/img/gallery/benchy.webp", alt: "Benchy, o barquinho de teste da impressão 3D, em roxo metálico" },
+      { src: "assets/img/gallery/benchy-frente.webp", alt: "Benchy roxo visto de frente" },
+      { src: "assets/img/gallery/benchy-mesa.webp", alt: "Benchy roxo sobre a mesa da impressora" },
+    ],
+    descricao: "O barquinho que toda impressora 3D já imprimiu: o Benchy junta ponte, balanço, furo e texto num modelo pequeno, por isso serve de teste de calibração. Este saiu em roxo com brilho metálico.",
+  },
+  {
+    id: "capivara-meditando",
+    titulo: "Capivara meditando",
+    categoria: "Decoração",
+    imagens: [
+      { src: "assets/img/gallery/capivara-meditando.webp", alt: "Capivara sentada em posição de meditação, acabamento bronze" },
+      { src: "assets/img/gallery/capivara-meditando-lado.webp", alt: "Capivara meditando vista de três quartos" },
+    ],
+    descricao: "Capivara de pernas cruzadas e mãos no joelho, em posição de meditação. Impressa em filamento bronze, fica bem em estante, mesa de trabalho ou cantinho zen.",
+  },
+  {
+    id: "saboneteira",
+    titulo: "Saboneteira",
+    categoria: "Acessórios & Utilidades",
+    imagens: [
+      { src: "assets/img/gallery/saboneteira.webp", alt: "Saboneteira oval com canaletas de escoamento, acabamento bronze" },
+      { src: "assets/img/gallery/saboneteira-angulo.webp", alt: "Saboneteira vista de lado, mostrando a bica por onde a água escorre" },
+      { src: "assets/img/gallery/saboneteira-impressora.webp", alt: "Saboneteira recém-impressa sobre a mesa da impressora" },
+    ],
+    descricao: "Saboneteira com canaletas inclinadas e uma bica na ponta: a água escorre e o sabonete não fica parado em poça. Funciona na pia ou no box.",
+  },
+  {
+    id: "gato-linha",
+    titulo: "Gato em linha contínua",
+    categoria: "Decoração",
+    imagens: [
+      { src: "assets/img/gallery/gato-linha.webp", alt: "Escultura de um gato desenhado com uma única linha contínua" },
+    ],
+    descricao: "Gato desenhado no ar com uma linha só, do rabo às orelhas. Peça minimalista para decorar estante ou parede.",
+  },
+  {
+    id: "cachorro-balao",
+    titulo: "Cachorro de balão",
+    categoria: "Decoração",
+    imagens: [
+      { src: "assets/img/gallery/cachorro-balao.webp", alt: "Cachorro em forma de balão de festa, em verde metálico, sobre a mesa da impressora" },
+    ],
+    descricao: "O cachorro de bexiga de festa, em verde com brilho metálico. Os gomos imitam os balões torcidos.",
+  },
+  {
+    id: "canecas-chope",
+    titulo: "Mini canecas de chope",
+    categoria: "Presentes personalizados",
+    imagens: [
+      { src: "assets/img/gallery/canecas-chope.webp", alt: "Cinco mini canecas de chope amarelas com espuma branca, sobre a mesa da impressora" },
+    ],
+    descricao: "Canequinhas de chope em amarelo com espuma branca, em duas cores sem pintura. Boas como lembrancinha de festa, chaveiro ou enfeite de bar.",
+  },
+  {
+    id: "trex-articulado",
+    titulo: "T-Rex articulado bronze",
+    categoria: "Personagens & Colecionáveis",
+    imagens: [
+      { src: "assets/img/gallery/trex-articulado.webp", alt: "T-Rex articulado impresso em 3D em filamento bronze, de corpo inteiro, de perfil sobre a mesa" },
+      { src: "assets/img/gallery/trex-articulado-frente.webp", alt: "T-Rex articulado bronze visto de frente, com a boca aberta e os braços curtos para a frente" },
+      { src: "assets/img/gallery/trex-articulado-lado.webp", alt: "T-Rex articulado bronze visto de lado, mostrando a cauda em segmentos" },
+      { src: "assets/img/gallery/trex-articulado-perfil.webp", alt: "T-Rex articulado bronze de perfil, com a cabeça inclinada para cima" },
+    ],
+    descricao: "T-Rex articulado em filamento bronze. Mandíbula, pescoço, braços e a cauda em segmentos se movem, então dá pra mudar a pose dele na mesa. As fotos mostram a peça de perfil, de frente e de lado.",
+  },
+  {
+    id: "dev-headset",
+    titulo: "Dev de headset",
+    categoria: "Personagens & Colecionáveis",
+    imagens: [
+      { src: "assets/img/gallery/dev-headset.webp", alt: "Figura preta de um programador de headset atrás do notebook, vista de frente" },
+      { src: "assets/img/gallery/dev-headset-esquerda.webp", alt: "Figura do programador vista pela esquerda, com notebook de teclado texturizado e caneca na mesa" },
+      { src: "assets/img/gallery/dev-headset-direita.webp", alt: "Figura do programador vista pela direita, com o fone de almofadas em camadas" },
+    ],
+    descricao: "Figura de mesa de um programador de headset, com notebook de teclado texturizado e caneca do lado. Impressa em preto, peça única com mesa e cadeira. Presente certo pra quem vive no código.",
+  },
+  {
+    id: "cavaleiro-porta-caneta",
+    titulo: "Cavaleiro porta-caneta",
+    categoria: "Acessórios & Utilidades",
+    imagens: [
+      { src: "assets/img/gallery/cavaleiro-porta-caneta-angulo.webp", alt: "Cavaleiro ajoelhado de armadura preta e penacho vermelho segurando uma caneta verde, visto de três quartos" },
+      { src: "assets/img/gallery/cavaleiro-porta-caneta.webp", alt: "Cavaleiro porta-caneta visto de frente, com a caneta apoiada nas duas mãos" },
+      { src: "assets/img/gallery/cavaleiro-porta-caneta-lateral.webp", alt: "Cavaleiro porta-caneta visto de lado, mostrando a capa e o penacho vermelho" },
+      { src: "assets/img/gallery/cavaleiro-porta-caneta-aberto.webp", alt: "Cavaleiro porta-caneta de frente, em plano aberto sobre a mesa" },
+    ],
+    descricao: "Cavaleiro ajoelhado que segura a sua caneta nas duas mãos. Armadura e capa em preto, penacho em vermelho, com detalhe fino nas placas da armadura e no tecido da capa.",
+  },
+  {
+    id: "alien-da-paz",
+    titulo: "Alien da paz",
+    categoria: "Personagens & Colecionáveis",
+    imagens: [
+      { src: "assets/img/gallery/alien-da-paz.webp", alt: "Alien verde sorridente fazendo sinal de paz, de bermuda bronze e chinelo preto" },
+      { src: "assets/img/gallery/alien-da-paz-angulo.webp", alt: "O mesmo alien visto de outro ângulo, de corpo inteiro" },
+    ],
+    descricao: "Alien sorridente fazendo sinal de paz, em três cores: pele verde, bermuda bronze e chinelo preto.",
+  },
+  {
     id: "dragao-laranja",
     titulo: "Dragão articulado laranja",
     categoria: "Personagens & Colecionáveis",
@@ -16,6 +154,10 @@ const PECAS = [
       { src: "assets/img/gallery/dragao-laranja.webp", alt: "Dragão articulado impresso em 3D em laranja e amarelo, com as asas abertas e membrana translúcida" },
       { src: "assets/img/gallery/dragao-laranja-lateral.webp", alt: "Dragão articulado laranja visto de lado, mostrando o corpo em segmentos e a cauda" },
       { src: "assets/img/gallery/dragao-laranja-mesa.webp", alt: "Dragão articulado laranja ainda na mesa da impressora, com as asas recolhidas" },
+      { src: "assets/img/gallery/dragao-laranja-impressora.webp", alt: "Dragão laranja de asas abertas sobre a mesa da impressora" },
+      { src: "assets/img/gallery/dragao-laranja-perfil.webp", alt: "Dragão laranja de perfil, com as asas amarelas translúcidas" },
+      { src: "assets/img/gallery/dragao-laranja-costas.webp", alt: "Dragão laranja visto de trás, com a cauda em segmentos" },
+      { src: "assets/img/gallery/dragao-laranja-cabeca.webp", alt: "Close da cabeça do dragão laranja" },
     ],
     descricao: "Dragão articulado em laranja com as asas em amarelo: a membrana fica mais clara que as nervuras e deixa a luz passar. O corpo é feito de segmentos que dobram um a um, e as asas têm dobradiça perto do ombro. As três fotos mostram a peça de asas abertas, de lado e ainda na mesa da impressora.",
   },
@@ -91,6 +233,7 @@ const PECAS = [
     categoria: "Decoração",
     imagens: [
       { src: "assets/img/gallery/cavalo.webp", alt: "Estatueta de cavalo impressa em 3D em branco perolado, com a crina e a cauda esculpidas" },
+      { src: "assets/img/gallery/cavalo-mesa.webp", alt: "Cavalo impresso em 3D na mesa da impressora" },
     ],
     descricao: "Cavalo em pé, impresso em branco perolado. A crina e a cauda são esculpidas em mechas separadas, e a musculatura das pernas e do peito fica bem marcada — peça de decoração pra prateleira ou escrivaninha.",
   },
@@ -110,6 +253,8 @@ const PECAS = [
     imagens: [
       { src: "assets/img/gallery/porta-copos-hp.webp", alt: "Porta-copos impresso em 3D, preto com o brasão Espresso Patronum em prata com glitter" },
       { src: "assets/img/gallery/porta-copos-hp-texto.webp", alt: "O segundo porta-copos do conjunto, com a frase Espresso Patronum escrita e uma varinha" },
+      { src: "assets/img/gallery/porta-copos-hp-mesa.webp", alt: "Porta-copos Espresso Patronum sobre a mesa" },
+      { src: "assets/img/gallery/porta-copos-hp-texto-mesa.webp", alt: "Detalhe do texto em relevo do porta-copos" },
     ],
     descricao: "Dupla de porta-copos com o trocadilho Espresso Patronum, pra quem é fã de Harry Potter. Um traz o brasão redondo com os óculos e a cicatriz, o outro a frase com a xícara e a varinha. O preto e o prata com glitter saem em cores separadas, sem pintura nem adesivo.",
   },
@@ -120,6 +265,8 @@ const PECAS = [
     imagens: [
       { src: "assets/img/gallery/jogo-da-velha.webp", alt: "Jogo da velha impresso em 3D em laranja com as marcações em amarelo, com argola de chaveiro" },
       { src: "assets/img/gallery/jogo-da-velha-tabuleiro.webp", alt: "O tabuleiro do jogo da velha visto de cima, com as peças X e O encaixadas nas casas" },
+      { src: "assets/img/gallery/jogo-da-velha-chaveiro.webp", alt: "Jogo da velha de bolso com argola de chaveiro" },
+      { src: "assets/img/gallery/jogo-da-velha-partida.webp", alt: "Jogo da velha com as peças viradas mostrando X e O" },
     ],
     descricao: "Jogo da velha que cabe no bolso: as nove peças ficam encaixadas nas casas do tabuleiro e giram pra mostrar X ou O, então nada se perde. Vai com argola, pra levar na chave ou na mochila. Impresso em duas cores.",
   },
@@ -128,6 +275,8 @@ const PECAS = [
     titulo: "Caneca Monster",
     categoria: "Acessórios & Utilidades",
     imagens: [
+      { src: "assets/img/gallery/caneca-monster-rosa.webp", alt: "Caneca Monster rosa na mão, com as garras vazadas na lateral" },
+      { src: "assets/img/gallery/caneca-monster-rosa-detalhe.webp", alt: "Detalhe das garras vazadas da caneca rosa" },
       { src: "assets/img/gallery/caneca-monster.webp", alt: "Caneca impressa em 3D em rosa, com as três garras vazadas na lateral e alça grande" },
     ],
     descricao: "Caneca com as três garras vazadas na lateral, impressa em rosa. A alça é grande o bastante pra mão inteira e o corpo é reto, com aros em relevo em cima e embaixo. Dá pra fazer na cor que você quiser. É peça decorativa, de prateleira ou porta-canetas: impressão 3D não serve pra contato com bebida.",
@@ -149,6 +298,8 @@ const PECAS = [
       { src: "assets/img/gallery/gancho-parede.webp", alt: "Dois ganchos de parede impressos em 3D em cinza, formato de U com textura canelada" },
       { src: "assets/img/gallery/gancho-parede-preto.webp", alt: "Gancho de parede na versão preta, visto de lado, mostrando a profundidade e as canaletas" },
       { src: "assets/img/gallery/gancho-parede-impressora.webp", alt: "Os ganchos de parede recém-impressos, ainda na mesa da impressora" },
+      { src: "assets/img/gallery/gancho-parede-toalha.webp", alt: "Gancho de parede preto segurando uma toalha no banheiro" },
+      { src: "assets/img/gallery/gancho-parede-toalha-detalhe.webp", alt: "Detalhe do gancho com a toalha pendurada" },
     ],
     descricao: "Gancho de parede em formato de U, com as laterais caneladas. Funciona em toalha, bolsa, casaco ou chave. A segunda foto é da versão preta vista de lado, que mostra a profundidade do gancho. Sai em qualquer cor, e dá pra fazer quantos você precisar.",
   },
@@ -158,6 +309,7 @@ const PECAS = [
     categoria: "Acessórios & Utilidades",
     imagens: [
       { src: "assets/img/gallery/suporte-bananas.webp", alt: "Suporte de bananas impresso em 3D em branco, com haste curva e base redonda, com um cacho pendurado" },
+      { src: "assets/img/gallery/suporte-bananas-cozinha.webp", alt: "Suporte de bananas em uso na cozinha, com um cacho pendurado" },
     ],
     descricao: "Suporte pra pendurar o cacho de bananas: a haste curva sai da base redonda e deixa a fruta no ar, que é o que atrasa o amadurecimento. A base tem canaleta pra apoiar as bananas que se soltam. Impresso em branco, mas sai em qualquer cor.",
   },
@@ -177,6 +329,7 @@ const PECAS = [
     categoria: "Personagens & Colecionáveis",
     imagens: [
       { src: "assets/img/gallery/darth-vader.webp", alt: "Darth Vader (Star Wars) impresso em 3D em preto metálico, versão cabeçuda com capa" },
+      { src: "assets/img/gallery/darth-vader-mesa.webp", alt: "Darth Vader impresso em 3D sobre a mesa da impressora" },
     ],
     descricao: "Darth Vader em versão cabeçuda, impresso em preto metálico. O capacete traz o recorte da máscara e a grelha do respirador em relevo, e a capa cai solta dos dois lados do corpo.",
   },
@@ -186,6 +339,7 @@ const PECAS = [
     categoria: "Personagens & Colecionáveis",
     imagens: [
       { src: "assets/img/gallery/deadpool.webp", alt: "Deadpool (Marvel) impresso em 3D em vermelho, versão cabeçuda com as mãos na cintura" },
+      { src: "assets/img/gallery/deadpool-mesa.webp", alt: "Deadpool impresso em 3D sobre a mesa da impressora" },
     ],
     descricao: "Deadpool em versão cabeçuda, de mãos na cintura. Impresso em vermelho, com os detalhes da máscara em preto e branco e o cinto com as bolsas em relevo.",
   },
@@ -195,6 +349,7 @@ const PECAS = [
     categoria: "Personagens & Colecionáveis",
     imagens: [
       { src: "assets/img/gallery/homem-de-ferro.webp", alt: "Homem de Ferro (Marvel) impresso em 3D em vermelho, versão cabeçuda com a mão erguida" },
+      { src: "assets/img/gallery/homem-de-ferro-mesa.webp", alt: "Homem de Ferro impresso em 3D sobre a mesa da impressora" },
     ],
     descricao: "Homem de Ferro em versão cabeçuda, com a mão erguida. Impresso em vermelho, com as placas da armadura, o reator do peito e a palma da mão em relevo.",
   },
@@ -214,6 +369,7 @@ const PECAS = [
     imagens: [
       { src: "assets/img/gallery/esqueletos-dragao-dourado.webp", alt: "Esqueleto de dragão articulado impresso em 3D em dourado, de pé com as asas abertas" },
       { src: "assets/img/gallery/esqueletos-dragao.webp", alt: "Dois esqueletos de dragão articulados impressos em 3D, um dourado maior e um creme menor, lado a lado" },
+      { src: "assets/img/gallery/esqueletos-dragao-mesa.webp", alt: "Esqueletos de dragão articulados na mesa da impressora" },
     ],
     descricao: "Dois esqueletos de dragão lado a lado, um dourado maior e um creme menor. As costelas e as vértebras são vazadas uma a uma, e dá pra ver as juntas articuladas nos ombros, no quadril e na cauda. A mesma peça em dois tamanhos e duas cores.",
   },
@@ -224,6 +380,7 @@ const PECAS = [
     imagens: [
       { src: "assets/img/gallery/suporte-headset-pistao.webp", alt: "Suporte de headset em formato de pistão com biela, impresso em 3D em preto fosco" },
       { src: "assets/img/gallery/suporte-headset-pistao-uso.webp", alt: "O suporte de headset em uso, com um headset apoiado e o cabo passando pelo furo da base" },
+      { src: "assets/img/gallery/suporte-headset-pistao-mesa.webp", alt: "Suporte de headset em formato de pistão, em pé sobre a mesa" },
     ],
     descricao: "Suporte de headset em formato de pistão com biela: a base é o pistão com os anéis, e a haste sobe até o apoio em U. Impresso em preto fosco. A segunda foto mostra com o headset apoiado e o cabo passando pelo furo da base.",
   },
@@ -261,6 +418,7 @@ const PECAS = [
     categoria: "Presentes personalizados",
     imagens: [
       { src: "assets/img/gallery/gatinho-texturizado.webp", alt: "Gatinho sentado impresso em 3D em creme, com textura de tricô no corpo inteiro e cauda volumosa" },
+      { src: "assets/img/gallery/gatinho-texturizado-mesa.webp", alt: "Gatinho texturizado na mesa da impressora" },
     ],
     descricao: "Gatinho sentado com textura de tricô no corpo inteiro e cauda bem volumosa. Impresso em creme. A foto é de trás, que é de onde dá pra ver melhor a textura e o volume da cauda.",
   },
@@ -328,7 +486,9 @@ const PECAS = [
     imagens: [
       { src: "assets/img/gallery/boneco-articulado-roxo.webp", alt: "Boneco articulado impresso em 3D em filamento roxo com brilho, de braços abertos" },
       { src: "assets/img/gallery/boneco-articulado-roxo-pose.webp", alt: "O mesmo boneco articulado roxo em outra pose, mostrando as juntas dos braços e das pernas" },
+      { src: "assets/img/gallery/boneco-articulado-roxo-lado.webp", alt: "Boneco articulado roxo apontando para a frente, com as juntas à mostra" },
     ],
+    video: "assets/video/boneco-articulado-roxo",
     descricao: "Boneco articulado em filamento roxo com partículas brilhantes. As juntas dos braços, pernas, quadril e pescoço se mexem, então ele para em pé em qualquer pose — as duas fotos são a mesma peça, só reposicionada.",
   },
   {
@@ -421,6 +581,9 @@ const PECAS = [
       { src: "assets/img/gallery/chicago-bulls-frente.webp", alt: "Mascote do Chicago Bulls (NBA) de frente, moletom vermelho Jumpman, calça preta e tênis branco" },
       { src: "assets/img/gallery/touro-hoodie.webp", alt: "Mascote do Chicago Bulls (NBA) com moletom vermelho e tênis, impresso em 3D e pintado" },
       { src: "assets/img/gallery/touro-hoodie-detalhe.webp", alt: "Close-up do mascote do Chicago Bulls (NBA), chifres e argola no nariz em detalhe, moletom Jumpman vermelho" },
+      { src: "assets/img/gallery/touro-hoodie-impressora.webp", alt: "Touro de moletom vermelho de corpo inteiro na impressora" },
+      { src: "assets/img/gallery/touro-hoodie-rosto.webp", alt: "Close do rosto do touro, com a argola amarela no nariz" },
+      { src: "assets/img/gallery/touro-hoodie-lado.webp", alt: "Touro de moletom visto de lado" },
     ],
     descricao: "Mascote do Chicago Bulls (NBA) com moletom vermelho estilo Jordan, calça preta e tênis branco. Os chifres brancos, a argola amarela no nariz e o logo Jumpman saem em cores separadas. A última foto é um close do moletom e da argola.",
   },
@@ -440,6 +603,9 @@ const PECAS = [
     categoria: "Personagens & Colecionáveis",
     imagens: [
       { src: "assets/img/gallery/batman.webp", alt: "Figura do Batman (DC) impressa em 3D e pintada, capa preta e cinto amarelo" },
+      { src: "assets/img/gallery/batman-impressora.webp", alt: "Batman de corpo inteiro na frente da impressora, com a capa aberta" },
+      { src: "assets/img/gallery/batman-mesa.webp", alt: "Batman visto de três quartos, com o cinto amarelo" },
+      { src: "assets/img/gallery/batman-capa.webp", alt: "Batman visto de costas, mostrando a capa" },
     ],
     descricao: "Batman clássico, capa e cinto amarelo, acabamento cinza e preto pintado à mão.",
   },
@@ -468,6 +634,12 @@ const PECAS = [
     categoria: "Acessórios para games",
     imagens: [
       { src: "assets/img/gallery/toothless-ps5.webp", alt: "Suporte para controle de PS5 em formato do Banguela (Como Treinar o Seu Dragão), impresso em 3D" },
+      { src: "assets/img/gallery/toothless-ps5-impressora.webp", alt: "Suporte do Banguela segurando um controle de PS5, de frente" },
+      { src: "assets/img/gallery/toothless-ps5-angulo.webp", alt: "Suporte do Banguela com o controle, de lado" },
+      { src: "assets/img/gallery/toothless-ps5-sem-controle.webp", alt: "Suporte do Banguela sem o controle, mostrando as patas que seguram" },
+      { src: "assets/img/gallery/toothless-ps5-costas.webp", alt: "Suporte do Banguela visto de costas, com as asas e as escamas" },
+      { src: "assets/img/gallery/toothless-ps5-cozinha.webp", alt: "Suporte do Banguela com o controle sobre a bancada" },
+      { src: "assets/img/gallery/toothless-ps5-cozinha-frente.webp", alt: "Suporte do Banguela com o controle, de frente na bancada" },
     ],
     descricao: "Suporte pra controle de PS5 em formato do Banguela (Como Treinar o Seu Dragão), acabamento metálico escuro.",
   },
@@ -488,6 +660,7 @@ const PECAS = [
       { src: "assets/img/gallery/revolver-detalhe.webp", alt: "Réplica do revólver do jogo Resident Evil Requiem, impressa em 3D, acabamento cinza claro perolado" },
       { src: "assets/img/gallery/revolver-perfil.webp", alt: "Réplica do revólver do jogo Resident Evil Requiem, impressa em 3D, vista de perfil com cabo preto detalhado" },
       { src: "assets/img/gallery/revolver-machado-duo.webp", alt: "Réplica do revólver ao lado da réplica do machado de Resident Evil Requiem, impressas em 3D" },
+      { src: "assets/img/gallery/revolver-machado-mesa.webp", alt: "Revólver e machado de Resident Evil Requiem lado a lado na bancada" },
     ],
     descricao: "Réplica do revólver do jogo Resident Evil Requiem, acabamento cinza perolado com cabo preto detalhado. Tem foto de frente, de perfil e ao lado do machado do mesmo jogo.",
   },
@@ -517,6 +690,7 @@ const PECAS = [
     categoria: "Decoração",
     imagens: [
       { src: "assets/img/gallery/bailarina.webp", alt: "Estatueta de bailarina impressa em filamento translúcido" },
+      { src: "assets/img/gallery/bailarina-transparente.webp", alt: "Bailarina translúcida de braços erguidos sobre a base ondulada" },
     ],
     descricao: "Estatueta de bailarina impressa em filamento translúcido, com efeito de vidro fosco quando a luz passa por trás.",
   },
@@ -536,6 +710,8 @@ const PECAS = [
     categoria: "Presentes personalizados",
     imagens: [
       { src: "assets/img/gallery/chaveiro-personalizado-gabi.webp", alt: "Chaveiro personalizado com o nome GABI, letras brancas sobre base dourada, impresso em 3D" },
+      { src: "assets/img/gallery/chaveiro-gabi-angulo.webp", alt: "Chaveiro GABI visto de lado, letras brancas sobre base amarela articulada" },
+      { src: "assets/img/gallery/chaveiro-gabi-mesa.webp", alt: "Chaveiro GABI com argola sobre a bancada" },
     ],
     descricao: "Chaveiro com nome personalizado — troque \"GABI\" pelo nome que você quiser (ou de presente). Rápido de fazer e sempre um sucesso.",
   },
@@ -574,6 +750,7 @@ const PECAS = [
     categoria: "Presentes personalizados",
     imagens: [
       { src: "assets/img/gallery/coelho-laco.webp", alt: "Coelhinho com laço impresso em 3D, textura canelada, acabamento dourado" },
+      { src: "assets/img/gallery/coelho-laco-mesa.webp", alt: "Coelho com laço dourado de textura de tricô, sobre a mesa da impressora" },
     ],
     descricao: "Coelhinho fofo com laço, textura canelada, acabamento dourado — presente delicado pra qualquer ocasião.",
   },

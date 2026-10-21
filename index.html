@@ -20,10 +20,12 @@
 <link rel="apple-touch-icon" href="assets/img/brand/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..900;1,62..125,400..900&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/cinema.css">
+<link rel="stylesheet" href="css/home.css">
 </head>
-<body>
+<body class="home">
 
 <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
@@ -55,61 +57,45 @@
 
 <main id="conteudo">
 
-  <!-- HERO -->
-  <section id="top" class="hero">
-    <div class="hero-bg" aria-hidden="true">
-      <div class="hero-grid"></div>
-      <div class="hero-glow"></div>
-    </div>
-
-    <div class="container hero-inner hero-split">
-      <div class="hero-copy">
-        <p class="eyebrow reveal">Jaraguá do Sul · SC</p>
-        <h1 class="reveal">Sua ideia vira peça real</h1>
-        <p class="hero-lead reveal">
-          A <strong>Zanshin 3D Studio</strong> imprime presentes personalizados, colecionáveis,
-          acessórios e peças técnicas sob encomenda — do arquivo pronto ao acabamento final,
-          camada por camada, na nossa Bambu Lab P2S.
-        </p>
-        <div class="hero-actions reveal">
+  <!-- HERO: um vaso é impresso camada por camada conforme a rolagem (js/home.js) -->
+  <section id="top" class="home-hero" aria-label="Apresentação">
+    <div class="home-hero-stick">
+      <img class="home-hero-fallback" src="assets/img/vitrine/cavaleiro-porta-caneta-angulo.webp" alt="" aria-hidden="true">
+      <canvas id="printScene" aria-hidden="true"></canvas>
+      <div class="home-hero-shade" aria-hidden="true"></div>
+      <div class="home-wrap home-hero-copy">
+        <p class="eyebrow">Jaraguá do Sul · SC</p>
+        <h1 aria-label="Da ideia à peça, camada por camada.">
+          <span class="ln"><span>Da ideia</span></span>
+          <span class="ln"><span>à peça,</span></span>
+          <span class="ln"><span><em>camada</em></span></span>
+          <span class="ln"><span>por camada.</span></span>
+        </h1>
+        <p class="home-hero-lead">Presentes, colecionáveis, acessórios e peças técnicas sob encomenda, impressos aqui no studio na nossa Bambu Lab P2S.</p>
+        <div class="hero-actions">
           <a href="orcamento.html" class="btn btn-primary">Calcular meu orçamento</a>
-          <a href="galeria.html" class="btn btn-ghost">Ver as peças</a>
+          <a href="#destaques" class="btn btn-ghost">Ver as peças</a>
         </div>
-        <p class="hud-chip reveal">
-          <span class="hud-dot" aria-hidden="true"></span>
-          Jaraguá do Sul, SC · <time id="heroClock">--:--:--</time>
-        </p>
       </div>
-
-      <div class="hero-featured reveal">
-        <div class="hero-featured-frame">
-          <span class="hud-corners" aria-hidden="true">
-            <i class="hud-corner hud-corner-tl"></i>
-            <i class="hud-corner hud-corner-tr"></i>
-            <i class="hud-corner hud-corner-bl"></i>
-            <i class="hud-corner hud-corner-br"></i>
-          </span>
-          <img src="assets/img/gallery/goku-shenron.webp" srcset="assets/img/gallery/goku-shenron-600.webp 600w, assets/img/gallery/goku-shenron.webp 1200w" sizes="(max-width: 860px) 92vw, 500px" width="1200" height="1200" alt="Goku Super Saiyajin com o dragão Shenron, diorama impresso em 3D e pintado à mão">
-        </div>
-        <p class="hero-featured-caption">Goku &amp; Shenron — impresso e pintado aqui no studio</p>
+      <div class="print-hud" aria-hidden="true">
+        <div>Camada <b id="hudLayer">0</b> de 240</div>
+        <div>Altura de camada <b>0,20 mm</b></div>
+        <div><b>PLA · PETG · ABS/ASA · TPU</b></div>
+        <div class="print-hud-bar"><i id="hudBar"></i></div>
       </div>
-    </div>
-
-    <div class="container">
-      <ul class="hero-stats reveal">
-        <li><strong>PLA · PETG · ABS/ASA · TPU</strong><span>Materiais disponíveis</span></li>
-        <li><strong>Bambu Lab P2S</strong><span>Tecnologia de impressão</span></li>
-        <li><strong>100% sob medida</strong><span>Cada peça é única</span></li>
-      </ul>
     </div>
   </section>
 
   <!-- FAIXA DE PEÇAS -->
   <section class="marquee" aria-label="Peças impressas pela Zanshin 3D Studio">
     <div class="marquee-track">
+      <a href="peca.html?id=trex-articulado" class="marquee-item"><img loading="lazy" decoding="async" src="assets/img/gallery/trex-articulado-600.webp" alt="T-Rex articulado bronze impresso em 3D"></a>
       <a href="peca.html?id=kratos" class="marquee-item"><img loading="lazy" decoding="async" src="assets/img/gallery/kratos-figura-600.webp" alt="Kratos impresso em 3D"></a>
+      <a href="peca.html?id=cavaleiro-porta-caneta" class="marquee-item"><img loading="lazy" decoding="async" src="assets/img/gallery/cavaleiro-porta-caneta-angulo-600.webp" alt="Cavaleiro porta-caneta impresso em 3D"></a>
       <a href="peca.html?id=gengar" class="marquee-item"><img loading="lazy" decoding="async" src="assets/img/gallery/gengar-600.webp" alt="Gengar impresso em 3D"></a>
+      <a href="peca.html?id=alien-da-paz" class="marquee-item"><img loading="lazy" decoding="async" src="assets/img/gallery/alien-da-paz-600.webp" alt="Alien da paz impresso em 3D"></a>
       <a href="peca.html?id=dragao-articulado" class="marquee-item"><img loading="lazy" decoding="async" src="assets/img/gallery/dragao-articulado-600.webp" alt="Dragão articulado impresso em 3D"></a>
+      <a href="peca.html?id=dev-headset" class="marquee-item"><img loading="lazy" decoding="async" src="assets/img/gallery/dev-headset-600.webp" alt="Dev de headset impresso em 3D"></a>
       <a href="peca.html?id=ninja" class="marquee-item"><img loading="lazy" decoding="async" src="assets/img/gallery/ninja-600.webp" alt="Ninja impresso em 3D"></a>
       <a href="peca.html?id=darth-vader" class="marquee-item"><img loading="lazy" decoding="async" src="assets/img/gallery/darth-vader-600.webp" alt="Darth Vader impresso em 3D"></a>
       <a href="peca.html?id=banguela-furia-luz" class="marquee-item"><img loading="lazy" decoding="async" src="assets/img/gallery/banguela-furia-luz-600.webp" alt="Banguela &amp; Fúria da Luz impresso em 3D"></a>
@@ -138,9 +124,13 @@
       <a href="peca.html?id=coelho-laco" class="marquee-item"><img loading="lazy" decoding="async" src="assets/img/gallery/coelho-laco-600.webp" alt="Coelho com laço impresso em 3D"></a>
 
       <!-- repetição para a faixa correr sem emenda -->
+      <a href="peca.html?id=trex-articulado" class="marquee-item" aria-hidden="true" tabindex="-1"><img loading="lazy" decoding="async" src="assets/img/gallery/trex-articulado-600.webp" alt=""></a>
       <a href="peca.html?id=kratos" class="marquee-item" aria-hidden="true" tabindex="-1"><img loading="lazy" decoding="async" src="assets/img/gallery/kratos-figura-600.webp" alt=""></a>
+      <a href="peca.html?id=cavaleiro-porta-caneta" class="marquee-item" aria-hidden="true" tabindex="-1"><img loading="lazy" decoding="async" src="assets/img/gallery/cavaleiro-porta-caneta-angulo-600.webp" alt=""></a>
       <a href="peca.html?id=gengar" class="marquee-item" aria-hidden="true" tabindex="-1"><img loading="lazy" decoding="async" src="assets/img/gallery/gengar-600.webp" alt=""></a>
+      <a href="peca.html?id=alien-da-paz" class="marquee-item" aria-hidden="true" tabindex="-1"><img loading="lazy" decoding="async" src="assets/img/gallery/alien-da-paz-600.webp" alt=""></a>
       <a href="peca.html?id=dragao-articulado" class="marquee-item" aria-hidden="true" tabindex="-1"><img loading="lazy" decoding="async" src="assets/img/gallery/dragao-articulado-600.webp" alt=""></a>
+      <a href="peca.html?id=dev-headset" class="marquee-item" aria-hidden="true" tabindex="-1"><img loading="lazy" decoding="async" src="assets/img/gallery/dev-headset-600.webp" alt=""></a>
       <a href="peca.html?id=ninja" class="marquee-item" aria-hidden="true" tabindex="-1"><img loading="lazy" decoding="async" src="assets/img/gallery/ninja-600.webp" alt=""></a>
       <a href="peca.html?id=darth-vader" class="marquee-item" aria-hidden="true" tabindex="-1"><img loading="lazy" decoding="async" src="assets/img/gallery/darth-vader-600.webp" alt=""></a>
       <a href="peca.html?id=banguela-furia-luz" class="marquee-item" aria-hidden="true" tabindex="-1"><img loading="lazy" decoding="async" src="assets/img/gallery/banguela-furia-luz-600.webp" alt=""></a>
@@ -167,6 +157,95 @@
       <a href="peca.html?id=capivara-bailarina" class="marquee-item" aria-hidden="true" tabindex="-1"><img loading="lazy" decoding="async" src="assets/img/gallery/capivara-bailarina-600.webp" alt=""></a>
       <a href="peca.html?id=esqueleto-trex" class="marquee-item" aria-hidden="true" tabindex="-1"><img loading="lazy" decoding="async" src="assets/img/gallery/esqueleto-trex-600.webp" alt=""></a>
       <a href="peca.html?id=coelho-laco" class="marquee-item" aria-hidden="true" tabindex="-1"><img loading="lazy" decoding="async" src="assets/img/gallery/coelho-laco-600.webp" alt=""></a>
+    </div>
+  </section>
+
+  <!-- VITRINE: cada peça troca a cor da cena (js/home.js fixa a seção na tela) -->
+  <section id="destaques" class="showcase" aria-label="Peças em destaque">
+    <div class="sc-stick">
+      <div class="sc-glow" aria-hidden="true"></div>
+      <div class="sc-word" id="scWord" aria-hidden="true"></div>
+      <div class="sc-count" aria-hidden="true"><span id="scIndex">01</span> / <span id="scTotal">04</span></div>
+
+      <article class="sc-piece" style="--scene:#3a2512;--glow:#c4863f" data-word="T-REX">
+        <div class="sc-text">
+          <h2 class="sc-title">T-Rex<br>articulado</h2>
+          <p>Mandíbula, pescoço, braços e cauda em segmentos se movem. Brinquedo de mesa que ninguém resiste a mexer.</p>
+          <dl class="sc-specs"><div><dt>Tipo</dt><dd>Articulado</dd></div><div><dt>Cor</dt><dd>Bronze</dd></div><div><dt>Linha</dt><dd>Colecionável</dd></div></dl>
+          <a class="btn btn-ghost" href="peca.html?id=trex-articulado">Ver a peça</a>
+        </div>
+        <div class="sc-media">
+          <figure class="sc-main"><img src="assets/img/vitrine/trex-articulado.webp" width="900" height="1599" alt="T-Rex articulado bronze de corpo inteiro, de perfil sobre a mesa"></figure>
+          <figure class="sc-alt"><img src="assets/img/vitrine/trex-articulado-frente.webp" width="900" height="1599" loading="lazy" alt="T-Rex articulado bronze visto de frente com a boca aberta"></figure>
+        </div>
+      </article>
+
+      <article class="sc-piece" style="--scene:#4a0b0b;--glow:#d01010" data-word="CAVALEIRO">
+        <div class="sc-text">
+          <h2 class="sc-title">Cavaleiro<br>porta-caneta</h2>
+          <p>Armadura e capa em preto, penacho em vermelho. Fica ajoelhado na mesa e segura a sua caneta.</p>
+          <dl class="sc-specs"><div><dt>Tipo</dt><dd>Utilitário</dd></div><div><dt>Cores</dt><dd>Preto e vermelho</dd></div><div><dt>Uso</dt><dd>Porta-caneta</dd></div></dl>
+          <a class="btn btn-ghost" href="peca.html?id=cavaleiro-porta-caneta">Ver a peça</a>
+        </div>
+        <div class="sc-media">
+          <figure class="sc-main"><img src="assets/img/vitrine/cavaleiro-porta-caneta-angulo.webp" width="900" height="1599" loading="lazy" alt="Cavaleiro ajoelhado de armadura preta e penacho vermelho segurando uma caneta verde"></figure>
+          <figure class="sc-alt"><img src="assets/img/vitrine/cavaleiro-porta-caneta.webp" width="900" height="1599" loading="lazy" alt="Cavaleiro porta-caneta visto de frente"></figure>
+        </div>
+      </article>
+
+      <article class="sc-piece" style="--scene:#1d1f25;--glow:#8a93a6" data-word="DEV">
+        <div class="sc-text">
+          <h2 class="sc-title">Dev de<br>headset</h2>
+          <p>Notebook com teclado texturizado, caneca e fone com almofadas em camadas. Presente certo para quem vive no código.</p>
+          <dl class="sc-specs"><div><dt>Tipo</dt><dd>Figura de mesa</dd></div><div><dt>Cor</dt><dd>Preto</dd></div><div><dt>Linha</dt><dd>Presente</dd></div></dl>
+          <a class="btn btn-ghost" href="peca.html?id=dev-headset">Ver a peça</a>
+        </div>
+        <div class="sc-media">
+          <figure class="sc-main"><img src="assets/img/vitrine/dev-headset.webp" width="900" height="1599" loading="lazy" alt="Figura preta de um programador de headset atrás do notebook"></figure>
+          <figure class="sc-alt"><img src="assets/img/vitrine/dev-headset-direita.webp" width="900" height="1599" loading="lazy" alt="A mesma figura vista de lado, com notebook e caneca"></figure>
+        </div>
+      </article>
+
+      <article class="sc-piece" style="--scene:#123d26;--glow:#5fcf8c" data-word="ALIEN">
+        <div class="sc-text">
+          <h2 class="sc-title">Alien<br>da paz</h2>
+          <p>Três cores de filamento numa peça só: pele verde, bermuda bronze e chinelo preto.</p>
+          <dl class="sc-specs"><div><dt>Tipo</dt><dd>Figura</dd></div><div><dt>Cores</dt><dd>Verde, bronze e preto</dd></div><div><dt>Linha</dt><dd>Colecionável</dd></div></dl>
+          <a class="btn btn-ghost" href="peca.html?id=alien-da-paz">Ver a peça</a>
+        </div>
+        <div class="sc-media">
+          <figure class="sc-main"><img src="assets/img/vitrine/alien-da-paz.webp" width="900" height="1599" loading="lazy" alt="Alien verde sorridente fazendo sinal de paz, de bermuda bronze e chinelo preto"></figure>
+          <figure class="sc-alt"><img src="assets/img/vitrine/alien-da-paz-angulo.webp" width="900" height="1599" loading="lazy" alt="O mesmo alien de outro ângulo"></figure>
+        </div>
+      </article>
+
+      <nav class="sc-dots" id="scDots" aria-label="Escolher peça"></nav>
+    </div>
+  </section>
+
+  <!-- NA IMPRESSORA: vídeos curtos, sem som, que tocam só quando aparecem na tela -->
+  <section class="on-printer" aria-labelledby="onPrinterTitle">
+    <div class="container">
+      <h2 id="onPrinterTitle" class="reveal">Direto da impressora</h2>
+      <p class="section-lead reveal">A Bambu Lab P2S trabalhando e algumas peças em movimento.</p>
+      <div class="on-printer-grid">
+        <figure class="op-tile op-tall reveal">
+          <video muted loop playsinline preload="none" poster="assets/video/impressora-trabalhando.webp" aria-label="Cabeçote da impressora se movendo durante uma impressão"><source src="assets/video/impressora-trabalhando.mp4" type="video/mp4"></video>
+          <figcaption>Cabeçote em plena impressão</figcaption>
+        </figure>
+        <figure class="op-tile op-wide reveal">
+          <video muted loop playsinline preload="none" poster="assets/video/turbina-impressora.webp" aria-label="Turbina verde recém-impressa sobre a mesa da impressora"><source src="assets/video/turbina-impressora.mp4" type="video/mp4"></video>
+          <figcaption>Turbina recém-saída da mesa</figcaption>
+        </figure>
+        <a class="op-tile reveal" href="peca.html?id=gato-olhos-saltados">
+          <video muted loop playsinline preload="none" poster="assets/video/gato-olhos-saltados.webp" aria-label="Gato impresso em 3D com olhos que saltam ao apertar a cabeça"><source src="assets/video/gato-olhos-saltados.mp4" type="video/mp4"></video>
+          <span class="op-caption">Gato de olhos saltados</span>
+        </a>
+        <a class="op-tile reveal" href="peca.html?id=boneco-articulado-roxo">
+          <video muted loop playsinline preload="none" poster="assets/video/boneco-articulado-roxo.webp" aria-label="Boneco articulado roxo mexendo braços e pernas"><source src="assets/video/boneco-articulado-roxo.mp4" type="video/mp4"></video>
+          <span class="op-caption">Boneco articulado</span>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -314,7 +393,7 @@
       </div>
 
       <p class="gallery-note reveal center">
-        <a href="galeria.html">Ver galeria completa (60 peças) →</a>
+        <a href="galeria.html">Ver galeria completa (73 peças) →</a>
       </p>
     </div>
   </section>
@@ -334,7 +413,7 @@
         <p><a href="sobre.html">Conheça a história completa →</a></p>
       </div>
       <div class="about-card reveal" aria-hidden="true">
-        <img src="assets/img/brand/icon.png" alt="" class="about-illustration">
+        <img src="assets/img/brand/simbolo-3d.webp" alt="" class="about-illustration" width="900" height="774" loading="lazy">
       </div>
     </div>
   </section>
@@ -426,6 +505,10 @@
   <svg viewBox="0 0 24 24"><path d="M20.5 3.5a11 11 0 0 0-17.4 13.2L2 21.5l4.9-1.3A11 11 0 0 0 20.5 3.5Z"/><path d="M8.5 8.4c.2-.5.4-.5.6-.5h.5c.2 0 .4 0 .5.4.2.5.6 1.6.7 1.7.1.1.1.3 0 .5-.1.2-.2.3-.3.5-.2.2-.3.3-.1.6.2.3.8 1.3 1.8 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.2.4-.2.6-.1.2.1 1.5.7 1.8.8.3.1.5.2.5.3.1.4.1.8-.1 1.2-.2.4-1.1 1-1.9 1.1-.6.1-1.3.1-4.2-1-3.5-1.4-5.7-4.9-5.9-5.1-.2-.2-1.4-1.8-1.4-3.5 0-1.6.9-2.4 1.2-2.7Z" fill="var(--bg)" stroke="none"/></svg>
 </a>
 
+<script src="js/vendor/motion.min.js"></script>
+<script src="js/motion-site.js"></script>
 <script src="js/script.js"></script>
+<script src="js/vendor/three.min.js"></script>
+<script src="js/home.js"></script>
 </body>
 </html>
