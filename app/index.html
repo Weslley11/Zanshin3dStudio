@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#131519" />
+    <meta name="robots" content="noindex" />
+    <title>Zanshin 3D Studio · Gestão</title>
+    <script>
+      // Aplica o tema antes da primeira pintura para não piscar.
+      // "system" (padrão) segue o prefers-color-scheme do aparelho.
+      (function () {
+        var pref = 'system';
+        try { pref = localStorage.getItem('zanshin-theme') || 'system'; } catch (e) {}
+        var dark = pref === 'dark' || (pref === 'system' && !window.matchMedia('(prefers-color-scheme: light)').matches);
+        document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+        document.querySelector('meta[name=theme-color]').setAttribute('content', dark ? '#131519' : '#eceef1');
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
