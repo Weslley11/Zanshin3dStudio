@@ -69,7 +69,9 @@ DB_URL=postgresql://postgres:postgres@127.0.0.1:54322/postgres npm run db:test  
 ### 1. Supabase
 
 1. Crie um projeto em supabase.com (região São Paulo).
-2. Aplique as migrations: `npx supabase link --project-ref <ref>` e depois
+2. Crie as tabelas. Sem instalar nada: abra **SQL Editor → New query**, cole
+   o arquivo `supabase/instalar-tudo.sql` inteiro e clique em **Run** (só num
+   projeto novo e vazio). Com a CLI: `npx supabase link --project-ref <ref>` e
    `npx supabase db push`. **Não rode o `seed.sql` no projeto real**: ele é só
    exemplo.
 3. Em **Authentication → Sign In / Providers**, desligue "Allow new users to
@@ -113,6 +115,7 @@ início" (Safari) ou "Instalar app" (Chrome).
 app/
   supabase/migrations/   modelo de dados, RLS e funções (em ordem)
   supabase/seed.sql      dados de EXEMPLO para o banco local
+  supabase/instalar-tudo.sql  todas as migrations num arquivo (gerado por npm run db:bundle)
   supabase/tests/        teste SQL de RLS e do fluxo
   src/lib/               cálculo de preço, formatação pt-BR, cliente Supabase
   src/components/        interface base e layout
