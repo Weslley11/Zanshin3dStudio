@@ -102,6 +102,17 @@ Pelo fluxo de Pages também funciona: Root directory `app`, Build command
 
 O link de acompanhamento usa o endereço onde o app estiver publicado.
 
+Problemas comuns na publicação:
+
+- **"Failed: root directory not found"**: o build rodou num branch que ainda
+  não tem a pasta `app` (por exemplo o `main`). Troque o branch de produção em
+  Settings → Build → Branch control e publique de novo. "Retry build" repete o
+  mesmo branch e falha outra vez.
+- **Tela de login dizendo que o app não está ligado ao Supabase**: as variáveis
+  `VITE_SUPABASE_URL` e `VITE_SUPABASE_ANON_KEY` não chegaram ao build. Elas
+  precisam estar nas variáveis de build (Settings → Build), não nas de runtime,
+  e o app precisa ser publicado de novo depois de criá-las.
+
 ### 3. Instalar no celular
 
 Abra o endereço do app no navegador do celular e use "Adicionar à tela de
