@@ -11,6 +11,9 @@ import { FilamentsPage } from '@/features/filaments/FilamentsPage'
 import { SettingsPage } from '@/features/settings/SettingsPage'
 import { QuoteEditorPage } from '@/features/quotes/QuoteEditorPage'
 import { QuotesPage } from '@/features/quotes/QuotesPage'
+import { OrderDetailPage } from '@/features/orders/OrderDetailPage'
+import { OrdersPage } from '@/features/orders/OrdersPage'
+import { QueuePage } from '@/features/queue/QueuePage'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -31,6 +34,9 @@ export default function App() {
                 <Route path="orcamentos" element={<QuotesPage />} />
                 <Route path="orcamentos/novo" element={<QuoteEditorPage />} />
                 <Route path="orcamentos/:id" element={<QuoteEditorPage />} />
+                <Route path="pedidos" element={<OrdersPage />} />
+                <Route path="pedidos/:id" element={<OrderDetailPage />} />
+                <Route path="fila" element={<QueuePage />} />
                 <Route path="filamentos" element={<FilamentsPage />} />
                 <Route path="clientes" element={<CustomersPage />} />
                 <Route path="clientes/:id" element={<CustomerDetailPage />} />

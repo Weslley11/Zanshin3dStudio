@@ -109,7 +109,7 @@ export function AppShell() {
         </div>
       </aside>
 
-      <main className="min-w-0 pb-24 lg:pb-10">
+      <main className="min-w-0 overflow-x-clip pb-24 lg:pb-10">
         <Outlet />
       </main>
 
