@@ -38,10 +38,7 @@ import { cn } from '@/lib/utils'
 import { waLink } from '@/lib/whatsapp'
 import { useOrder, useSetOrderStatus, type OrderDetail } from './api'
 import { DueChip } from './DueChip'
-
-export function trackingUrl(token: string) {
-  return `${window.location.origin}/acompanhar/${token}`
-}
+import { trackingUrl } from './tracking'
 
 export function OrderDetailPage() {
   const { id } = useParams<{ id: string }>()
