@@ -1,8 +1,22 @@
 import { createClient } from '@supabase/supabase-js'
 import type { Database } from './database.types'
 
-const url = import.meta.env.VITE_SUPABASE_URL as string | undefined
-const key = import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined
+/**
+ * Aceita o endereço copiado de qualquer tela do Supabase: com /rest/v1 no fim,
+ * barra sobrando ou espaço colado junto, fica só https://<projeto>.supabase.co.
+ */
+export function projectUrl(raw: string | undefined) {
+  const t = raw?.trim()
+  if (!t) return undefined
+  try {
+    return new URL(t).origin
+  } catch {
+    return t
+  }
+}
+
+const url = projectUrl(import.meta.env.VITE_SUPABASE_URL as string | undefined)
+const key = (import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined)?.trim() || undefined
 
 export const supabaseConfigured = Boolean(url && key)
 
