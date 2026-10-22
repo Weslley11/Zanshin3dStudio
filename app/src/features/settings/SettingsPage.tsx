@@ -183,7 +183,7 @@ function PrintersSection({ settings, printers }: { settings: Settings; printers:
               </div>
               <p className="num mt-0.5 text-sm text-fg-muted">
                 {p.model ? `${p.model} · ` : ''}
-                {p.power_kw != null ? `${number(p.power_kw, 3)} kW` : 'potência a preencher'} ·{' '}
+                {p.power_kw != null ? `${number(Number(p.power_kw) * 1000, 0)} W` : 'potência a preencher'} ·{' '}
                 {p.wear_per_hour != null ? `${brl(p.wear_per_hour)}/h` : 'desgaste a preencher'}
               </p>
             </div>
@@ -211,13 +211,14 @@ function PrintersSection({ settings, printers }: { settings: Settings; printers:
 function PrinterDialog({ printer, onClose }: { printer: Printer | null; onClose: () => void }) {
   const [name, setName] = useState(printer?.name ?? '')
   const [model, setModel] = useState(printer?.model ?? '')
-  const [power, setPower] = useState<number | null>(printer?.power_kw ?? null)
+  // o banco guarda kW (entra direto na fórmula); a tela usa watts, como a impressora informa
+  const [powerW, setPowerW] = useState<number | null>(printer?.power_kw != null ? Math.round(Number(printer.power_kw) * 1000 * 10) / 10 : null)
   const [wear, setWear] = useState<number | null>(printer?.wear_per_hour ?? null)
   const [active, setActive] = useState(printer?.active ?? true)
 
   const save = useAction(
     async () => {
-      const row = { name: name.trim(), model: model.trim() || null, power_kw: power, wear_per_hour: wear, active }
+      const row = { name: name.trim(), model: model.trim() || null, power_kw: powerW == null ? null : powerW / 1000, wear_per_hour: wear, active }
       if (printer) return must(await supabase.from('printers').update(row).eq('id', printer.id))
       return must(await supabase.from('printers').insert(row))
     },
@@ -252,8 +253,8 @@ function PrinterDialog({ printer, onClose }: { printer: Printer | null; onClose:
         <Field label="Modelo" optional>
           {(p) => <Input {...p} value={model} onChange={(e) => setModel(e.target.value)} />}
         </Field>
-        <Field label="Potência média" hint="Consumo médio durante a impressão. Meça com um medidor de tomada se puder.">
-          {(p) => <NumberInput {...p} suffix="kW" digits={4} value={power} onValueChange={setPower} />}
+        <Field label="Potência média" hint="Consumo médio durante a impressão, em watts. Ex.: 180 W. Meça com um medidor de tomada se puder.">
+          {(p) => <NumberInput {...p} suffix="W" digits={1} value={powerW} onValueChange={setPowerW} />}
         </Field>
         <Field label="Desgaste" hint="Peças, manutenção e depreciação divididos pelas horas de uso.">
           {(p) => <NumberInput {...p} prefix="R$" suffix="/h" value={wear} onValueChange={setWear} />}
