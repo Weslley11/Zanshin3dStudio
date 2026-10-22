@@ -81,18 +81,26 @@ DB_URL=postgresql://postgres:postgres@127.0.0.1:54322/postgres npm run db:test  
 4. Em **Authentication → URL Configuration**, coloque o endereço do app em
    "Site URL".
 
-### 2. Hospedagem (Cloudflare Pages)
+### 2. Hospedagem (Cloudflare)
 
-Crie um projeto separado do site, apontando para este repositório:
+Crie um app separado do site em **Workers & Pages → Create app → Import a
+repository**, apontando para este repositório:
 
-- Root directory: `app`
+- Project name: `zanshin-gestao` (igual ao `name` do `wrangler.jsonc`)
 - Build command: `npm run build`
-- Output directory: `dist`
-- Variáveis: `VITE_SUPABASE_URL` e `VITE_SUPABASE_ANON_KEY` (Project Settings →
-  API no Supabase)
+- Deploy command: `npx wrangler deploy`
+- Advanced settings → Path: `app`
+- Variáveis de build: `VITE_SUPABASE_URL` e `VITE_SUPABASE_ANON_KEY`
+  (Project Settings → Data API e API Keys no Supabase)
 
-O arquivo `public/_redirects` já manda todas as rotas para o `index.html`. O
-link de acompanhamento usa o endereço onde o app estiver publicado.
+Depois de criado, em **Settings → Build → Branch control**, escolha o branch
+que tem o app como branch de produção. O `wrangler.jsonc` publica o `dist/`
+com as rotas do app caindo no `index.html`, e o `.node-version` fixa o Node 22.
+
+Pelo fluxo de Pages também funciona: Root directory `app`, Build command
+`npm run build`, Output directory `dist` e as mesmas variáveis.
+
+O link de acompanhamento usa o endereço onde o app estiver publicado.
 
 ### 3. Instalar no celular
 

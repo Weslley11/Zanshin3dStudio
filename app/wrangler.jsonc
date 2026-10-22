@@ -1,0 +1,12 @@
+// Publicação no Cloudflare (Workers com arquivos estáticos).
+// O "name" precisa ser igual ao nome do projeto criado no painel.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "zanshin-gestao",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "./dist",
+    // rotas como /pedidos/123 ou /acompanhar/<token> abrem o index.html
+    "not_found_handling": "single-page-application"
+  }
+}
