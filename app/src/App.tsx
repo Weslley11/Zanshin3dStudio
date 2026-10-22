@@ -14,6 +14,9 @@ import { QuotesPage } from '@/features/quotes/QuotesPage'
 import { OrderDetailPage } from '@/features/orders/OrderDetailPage'
 import { OrdersPage } from '@/features/orders/OrdersPage'
 import { QueuePage } from '@/features/queue/QueuePage'
+import { HomePage } from '@/features/home/HomePage'
+import { FinancePage } from '@/features/finance/FinancePage'
+import { CatalogPage } from '@/features/catalog/CatalogPage'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -30,7 +33,7 @@ export default function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route element={<RequireOwner />}>
               <Route element={<AppShell />}>
-                <Route index element={<Navigate to="/orcamentos" replace />} />
+                <Route index element={<HomePage />} />
                 <Route path="orcamentos" element={<QuotesPage />} />
                 <Route path="orcamentos/novo" element={<QuoteEditorPage />} />
                 <Route path="orcamentos/:id" element={<QuoteEditorPage />} />
@@ -40,6 +43,8 @@ export default function App() {
                 <Route path="filamentos" element={<FilamentsPage />} />
                 <Route path="clientes" element={<CustomersPage />} />
                 <Route path="clientes/:id" element={<CustomerDetailPage />} />
+                <Route path="catalogo" element={<CatalogPage />} />
+                <Route path="financeiro" element={<FinancePage />} />
                 <Route path="configuracoes" element={<SettingsPage />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Route>

@@ -60,6 +60,14 @@ export const CATEGORIES: Record<string, string> = {
   personalizadas: 'Encomendas personalizadas',
 }
 
+/** Rótulos curtos para filtros */
+export const CATEGORIES_SHORT: Record<string, string> = {
+  colecionaveis: 'Colecionáveis',
+  tecnicas: 'Técnicas',
+  utilidades: 'Utilidades',
+  personalizadas: 'Personalizadas',
+}
+
 export const DELIVERY: Record<string, string> = {
   retirada: 'Retirada',
   motoboy: 'Motoboy',
