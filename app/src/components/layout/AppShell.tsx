@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from 'react'
+import { Suspense, useState, type ReactNode } from 'react'
 import { NavLink, Outlet, useLocation } from 'react-router-dom'
 import {
   Calculator,
@@ -12,8 +12,10 @@ import {
   Queue,
   SignOut,
   Users,
+  WifiSlash,
 } from '@phosphor-icons/react'
 import { Dialog as D } from 'radix-ui'
+import { useOnline } from '@/hooks/useOnline'
 import { supabase } from '@/lib/supabase'
 import { cn } from '@/lib/utils'
 import { Logo } from './Logo'
@@ -83,6 +85,7 @@ export function AppShell() {
   const [moreOpen, setMoreOpen] = useState(false)
   const location = useLocation()
   const moreActive = MORE.some((m) => location.pathname.startsWith(m.to))
+  const online = useOnline()
 
   return (
     <div className="min-h-dvh lg:grid lg:grid-cols-[240px_1fr]">
@@ -110,7 +113,14 @@ export function AppShell() {
       </aside>
 
       <main className="min-w-0 overflow-x-clip pb-24 lg:pb-10">
-        <Outlet />
+        {!online && (
+          <div role="status" className="animate-fade sticky top-0 z-40 flex items-center justify-center gap-2 bg-surface-3 px-4 py-2 text-sm text-fg">
+            <WifiSlash className="size-4" /> Sem internet. Os dados voltam a carregar quando a conexão voltar.
+          </div>
+        )}
+        <Suspense fallback={<div className="mx-auto max-w-6xl px-4 py-6 lg:px-8 lg:py-10"><div className="skeleton h-24 rounded-ui" /></div>}>
+          <Outlet />
+        </Suspense>
       </main>
 
       {/* celular */}

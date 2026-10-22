@@ -1,5 +1,5 @@
 {
-  "name": "app",
+  "name": "zanshin-gestao",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,7 +7,10 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest run",
+    "db:test": "psql \"$DB_URL\" -v ON_ERROR_STOP=1 -f supabase/tests/rls_e_fluxo.sql",
+    "db:types": "supabase gen types typescript --local > src/lib/database.types.ts"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",

@@ -1,0 +1,131 @@
+# Zanshin 3D Studio · app de gestão
+
+App interno do estúdio: orçamentos, pedidos, fila da impressora, filamentos,
+catálogo, clientes e financeiro. Usado no celular ao lado da impressora e no
+computador. Fica separado do site (que continua HTML puro na raiz do
+repositório).
+
+**Stack:** React + Vite + TypeScript, Tailwind v4, componentes próprios sobre
+Radix (mesma base do shadcn/ui, com visual da Zanshin), ícones Phosphor,
+Supabase (Auth, Postgres com RLS e Storage) e PWA instalável.
+
+## Módulos
+
+| Tela | O que faz |
+|---|---|
+| Início | Prazos atrasados e dos próximos 3 dias, o que está imprimindo, próximos da fila, estoque baixo e faturamento do mês |
+| Orçamentos | Calculadora por peça com detalhamento do custo, preço à mão, número ZAN-0001, validade, texto do WhatsApp, botão wa.me, imagem e PDF com a marca. Aprovado vira pedido com um toque |
+| Pedidos | Quadro (arrastar no desktop, botão de avançar no celular) e lista com filtros. Pagamentos, entrega com rastreio, fotos, falhas, histórico e link do cliente |
+| Fila | Placas em ordem, previsão encadeada a partir de agora, reordenar arrastando, iniciar, concluir (desconta do carretel) e registrar falha |
+| Filamentos | Carretéis com cor, preço, peso, custo por grama automático e alerta de estoque baixo |
+| Catálogo | Peças recorrentes com foto e preço base; exporta JSON no formato do `js/pecas-data.js` do site |
+| Clientes | Contatos, origem, histórico e total gasto |
+| Financeiro | Faturamento, custos, lucro estimado, ticket médio, mais vendidos, taxa de falha real e CSV |
+| `/acompanhar/<token>` | Página pública do cliente: número, itens, andamento, prazo e fotos. Sem valores nem dados de outros clientes |
+
+### Como o preço é calculado
+
+Por unidade de cada peça:
+
+```
+material    = gramas × custo por grama do carretel
+energia     = horas × potência média da impressora (kW) × tarifa (R$/kWh)
+máquina     = horas × desgaste (R$/h)
+mão de obra = horas de pós × valor da hora
+preço       = soma × (1 + falha%) × (1 + margem%) [× (1 + urgência%)] + extras
+              arredondado para cima no final ,90 ou ,00
+```
+
+Os parâmetros ficam em **Configurações** e começam vazios: enquanto faltar
+algum, a calculadora avisa o que falta e aceita preço digitado à mão. Cada item
+de orçamento guarda uma cópia dos parâmetros usados, então mudar a tarifa
+amanhã não altera os orçamentos já feitos.
+
+## Rodar no computador
+
+Precisa de Node 20+ e Docker (para o Supabase local).
+
+```bash
+cd app
+npm install
+npx supabase start                 # sobe Postgres, Auth e Storage locais
+cp .env.example .env               # cole a URL e a ANON_KEY que o comando acima mostrou
+npx supabase db reset              # aplica as migrations e o seed de EXEMPLO
+npm run dev                        # http://localhost:5173
+```
+
+Crie o usuário no painel local (http://127.0.0.1:54323 → Authentication →
+Add user) ou pela API. O primeiro usuário que entrar vira o dono.
+
+Testes:
+
+```bash
+npm test                                                             # cálculo de preço, datas, fila, financeiro
+DB_URL=postgresql://postgres:postgres@127.0.0.1:54322/postgres npm run db:test   # RLS e fluxo completo no banco
+```
+
+## Colocar no ar
+
+### 1. Supabase
+
+1. Crie um projeto em supabase.com (região São Paulo).
+2. Aplique as migrations: `npx supabase link --project-ref <ref>` e depois
+   `npx supabase db push`. **Não rode o `seed.sql` no projeto real**: ele é só
+   exemplo.
+3. Em **Authentication → Sign In / Providers**, desligue "Allow new users to
+   sign up". Depois, em **Authentication → Users → Add user**, crie o seu
+   usuário (e-mail e senha). O primeiro login dele vira o dono; qualquer outra
+   conta que entrar depois é barrada pelo próprio banco.
+4. Em **Authentication → URL Configuration**, coloque o endereço do app em
+   "Site URL".
+
+### 2. Hospedagem (Cloudflare Pages)
+
+Crie um projeto separado do site, apontando para este repositório:
+
+- Root directory: `app`
+- Build command: `npm run build`
+- Output directory: `dist`
+- Variáveis: `VITE_SUPABASE_URL` e `VITE_SUPABASE_ANON_KEY` (Project Settings →
+  API no Supabase)
+
+O arquivo `public/_redirects` já manda todas as rotas para o `index.html`. O
+link de acompanhamento usa o endereço onde o app estiver publicado.
+
+### 3. Instalar no celular
+
+Abra o endereço do app no navegador do celular e use "Adicionar à tela de
+início" (Safari) ou "Instalar app" (Chrome).
+
+## Segurança
+
+- RLS ligado em todas as tabelas; só o usuário registrado em `app_owner` lê ou
+  grava. A chave anon pública não abre nenhuma tabela.
+- O cliente só enxerga o pedido pela função `public_order_tracking(token)`, que
+  devolve número, itens, andamento, prazo, entrega e fotos marcadas para ele.
+  O token tem 24 caracteres aleatórios.
+- Fotos ficam no bucket `photos` com nome aleatório; o anônimo não consegue
+  listar o bucket.
+
+## Organização
+
+```
+app/
+  supabase/migrations/   modelo de dados, RLS e funções (em ordem)
+  supabase/seed.sql      dados de EXEMPLO para o banco local
+  supabase/tests/        teste SQL de RLS e do fluxo
+  src/lib/               cálculo de preço, formatação pt-BR, cliente Supabase
+  src/components/        interface base e layout
+  src/features/<tela>/   uma pasta por módulo
+```
+
+## Fase 2 (modelo já preparado)
+
+- **Importar o `.gcode.3mf` do Bambu Studio:** `print_jobs` já tem
+  `source`, `source_file_path`, `plate_index` e `meta` para gramas e tempo de
+  cada placa vindos do arquivo.
+- **Pedidos do formulário do site:** tabela `site_requests`, a ser alimentada
+  por uma Edge Function com validação (não por insert anônimo).
+- **Mais de uma impressora:** tabela `printers`, `printer_id` em itens e
+  placas, fila separada por impressora e uma placa imprimindo por vez em cada
+  uma. Já dá para cadastrar outra em Configurações.

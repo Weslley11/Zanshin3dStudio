@@ -30,6 +30,8 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,png,svg,woff2}'],
+        // gerador de PDF só baixa quando for usado
+        globIgnores: ['**/jspdf*.js', '**/html2canvas*.js', '**/purify*.js', '**/index.es-*.js'],
         navigateFallback: '/index.html',
         // dados sempre frescos: o Supabase não passa pelo cache do service worker
         navigateFallbackDenylist: [/^\/rest\//, /^\/auth\//, /^\/storage\//],

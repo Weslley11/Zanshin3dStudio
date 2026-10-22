@@ -1,6 +1,23 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
 import type { Session } from '@supabase/supabase-js'
-import { supabase } from '@/lib/supabase'
+import { errorMessage, supabase } from '@/lib/supabase'
+
+const OWNER_HINT = 'zanshin-owner'
+function readOwnerHint() {
+  try {
+    return localStorage.getItem(OWNER_HINT)
+  } catch {
+    return null
+  }
+}
+function writeOwnerHint(id: string | null) {
+  try {
+    if (id) localStorage.setItem(OWNER_HINT, id)
+    else localStorage.removeItem(OWNER_HINT)
+  } catch {
+    /* modo privado */
+  }
+}
 
 type AuthState =
   | { status: 'loading' }
@@ -20,6 +37,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     async function resolve(session: Session | null) {
       if (!session) {
         current = null
+        writeOwnerHint(null)
         setState({ status: 'signed-out', denied })
         denied = false
         return
@@ -29,8 +47,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       // O primeiro login vira o dono; os seguintes só confirmam.
       const { data, error } = await supabase.rpc('claim_ownership')
       if (error) {
-        setState({ status: 'error', message: error.message })
+        // sem internet: se este usuário já foi confirmado como dono neste
+        // aparelho, abre o app (os dados seguem protegidos pelo RLS)
+        if (readOwnerHint() === session.user.id) setState({ status: 'owner', session })
+        else setState({ status: 'error', message: errorMessage(error) })
       } else if (data) {
+        writeOwnerHint(session.user.id)
         setState({ status: 'owner', session })
       } else {
         // conta sem acesso: encerra a sessão e avisa na tela de login

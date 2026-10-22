@@ -13,6 +13,14 @@ menu e o rodapé se repetem em cada arquivo (é tudo estático, sem
 templating), então uma mudança neles precisa ser replicada nas páginas
 escritas à mão e nos geradores de `tools/`.
 
+## App de gestão (pasta `app/`)
+
+A pasta `app/` guarda o app interno do estúdio (orçamentos, pedidos, fila da
+impressora, filamentos e financeiro). Ele é um projeto à parte, em React +
+Supabase, com build próprio e publicado num endereço separado do site. Tudo
+sobre ele está em [`app/README.md`](app/README.md). O site continua sem build:
+nada do que está em `app/` é usado pelas páginas daqui.
+
 ## Como visualizar localmente
 
 Não precisa instalar nada. Duas opções:
