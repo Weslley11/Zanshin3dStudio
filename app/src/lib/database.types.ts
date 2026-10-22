@@ -462,6 +462,9 @@ isOneToOne: false
 "reorder_print_jobs":
 { Args: { "p_ids": (string)[] }; Returns: undefined
                            },
+"save_quote":
+{ Args: { "p_items": Json,"p_quote": Json }; Returns: string
+                           },
 "start_print_job":
 { Args: { "p_job_id": string }; Returns: undefined
                            }
