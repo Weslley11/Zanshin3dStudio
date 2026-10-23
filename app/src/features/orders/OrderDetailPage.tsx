@@ -40,6 +40,8 @@ import { useOrder, useSetOrderStatus, type OrderDetail } from './api'
 import { DueChip } from './DueChip'
 import { trackingUrl } from './tracking'
 import { OrderModels } from './OrderModels'
+import { MessageDialog, statusChangedToast, useCustomerMessage } from './customerMessage'
+import { MESSAGE_KEYS, MESSAGE_LABEL, messageKeyForStatus, type MessageKey } from '@/lib/messages'
 
 export function OrderDetailPage() {
   const { id } = useParams<{ id: string }>()
@@ -65,7 +67,7 @@ export function OrderDetailPage() {
         ) : order.error ? (
           <ErrorState error={order.error} onRetry={() => order.refetch()} />
         ) : (
-          <div className="grid gap-4 lg:grid-cols-[1fr_340px] lg:items-start">
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-[minmax(0,1fr)_340px] lg:items-start">
             <div className="flex min-w-0 flex-col gap-4">
               <StatusCard order={o!} />
               <ItemsCard order={o!} filaments={filaments.data ?? []} />
@@ -75,6 +77,7 @@ export function OrderDetailPage() {
               <FailuresCard order={o!} filaments={filaments.data ?? []} />
             </div>
             <aside className="flex flex-col gap-4 lg:sticky lg:top-6">
+              <MessagesCard order={o!} />
               <PaymentsCard order={o!} />
               <DetailsCard key={o!.updated_at} order={o!} />
               <TrackingCard order={o!} />
@@ -107,7 +110,8 @@ function StatusCard({ order }: { order: OrderDetail }) {
   const [confirmCancel, setConfirmCancel] = useState(false)
   const next = nextStatus(status)
   const idx = ORDER_STATUSES.indexOf(status as (typeof ORDER_STATUSES)[number])
-  const change = (s: OrderStatus) => setStatus.mutate({ id: order.id, status: s }, { onSuccess: () => toast.success(`Pedido em "${ORDER_STATUS_LABEL[s]}"`) })
+  const msg = useCustomerMessage()
+  const change = (s: OrderStatus) => setStatus.mutate({ id: order.id, status: s }, { onSuccess: () => statusChangedToast(order, s, msg) })
 
   return (
     <Card className="p-4">
@@ -367,6 +371,7 @@ function PaymentDialog({ order, amount: initial, onClose }: { order: OrderDetail
 /* ------------------------------------------------------------------ dados do pedido */
 
 function DetailsCard({ order }: { order: OrderDetail }) {
+  const msg = useCustomerMessage()
   const [due, setDue] = useState<string | null>(order.due_date)
   const [delivery, setDelivery] = useState(order.delivery_method ?? '')
   const [tracking, setTracking] = useState(order.tracking_code ?? '')
@@ -396,7 +401,19 @@ function DetailsCard({ order }: { order: OrderDetail }) {
           })
           .eq('id', order.id),
       ),
-    { invalidate: [keys.orders], success: 'Pedido atualizado' },
+    {
+      invalidate: [keys.orders],
+      onSuccess: () => {
+        const code = tracking.trim().toUpperCase()
+        if (delivery === 'correios' && code && code !== (order.tracking_code ?? '') && order.customer) {
+          toast.success('Pedido atualizado', {
+            description: 'Mandar o código de rastreio para o cliente?',
+            duration: 9000,
+            action: { label: 'Mandar código', onClick: () => msg.open({ ...order, tracking_code: code }, 'rastreio') },
+          })
+        } else toast.success('Pedido atualizado')
+      },
+    },
   )
 
   return (
@@ -785,6 +802,30 @@ function HistoryCard({ order }: { order: OrderDetail }) {
           {open ? 'Mostrar menos' : `Ver tudo (${events.length})`}
         </Button>
       )}
+    </Section>
+  )
+}
+
+/* ------------------------------------------------------------------ mensagens */
+
+function MessagesCard({ order }: { order: OrderDetail }) {
+  const [open, setOpen] = useState<MessageKey | null>(null)
+  if (order.status === 'cancelado') return null
+  const current = messageKeyForStatus(order.status)
+  const remaining = Number(order.total) - Number(order.paid_total)
+  const keys = MESSAGE_KEYS.filter((k) => (k !== 'restante' || remaining > 0.009) && (k !== 'rastreio' || order.tracking_code))
+  // a mensagem da etapa atual vem primeiro
+  const ordered = current ? [current, ...keys.filter((k) => k !== current)] : keys
+  return (
+    <Section title="Mensagens para o cliente">
+      <div className="flex flex-wrap gap-2">
+        {ordered.map((k) => (
+          <Button key={k} size="sm" variant={k === current ? 'primary' : 'secondary'} onClick={() => setOpen(k)}>
+            {k === current && <WhatsappLogo />} {MESSAGE_LABEL[k]}
+          </Button>
+        ))}
+      </div>
+      {open && <MessageDialog order={order} messageKey={open} onClose={() => setOpen(null)} />}
     </Section>
   )
 }

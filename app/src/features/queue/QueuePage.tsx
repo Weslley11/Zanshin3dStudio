@@ -205,7 +205,7 @@ function PrinterQueue({
   }
 
   return (
-    <div className="grid gap-4 lg:grid-cols-[1fr_320px] lg:items-start">
+    <div className="grid grid-cols-1 gap-4 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start">
       <div className="flex min-w-0 flex-col gap-4">
         {plan.current ? (
           <RunningCard job={plan.current as Scheduled<JobRow>} now={now} filament={filaments.find((f) => f.id === plan.current!.filament_id)} short={shortage.has(plan.current.id)} />

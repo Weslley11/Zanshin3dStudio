@@ -1,4 +1,5 @@
 import { toPng } from 'html-to-image'
+import { shareOrDownload } from '@/lib/download'
 
 async function renderPng(node: HTMLElement) {
   // duas passadas: a primeira carrega fontes e imagens no Safari
@@ -15,35 +16,13 @@ function dataUrlToFile(dataUrl: string, name: string) {
   return new File([bytes], name, { type: mime })
 }
 
-function download(href: string, name: string) {
-  const a = document.createElement('a')
-  a.href = href
-  a.download = name
-  document.body.appendChild(a)
-  a.click()
-  a.remove()
-}
-
 /** Imagem: no celular abre o compartilhar (dá para mandar direto no WhatsApp); no desktop baixa. */
 export async function shareQuoteImage(node: HTMLElement, name: string) {
   return shareImageFile(dataUrlToFile(await renderPng(node), `${name}.png`))
 }
 
 export async function shareImageFile(file: File) {
-  const name = file.name.replace(/\.png$/, '')
-  const url = URL.createObjectURL(file)
-  const nav = navigator as Navigator & { canShare?: (d: ShareData) => boolean }
-  if (window.matchMedia('(pointer: coarse)').matches && nav.canShare?.({ files: [file] })) {
-    try {
-      await nav.share({ files: [file], title: name })
-      return 'shared'
-    } catch (e) {
-      if ((e as Error).name === 'AbortError') return 'cancelled'
-    }
-  }
-  download(url, `${name}.png`)
-  setTimeout(() => URL.revokeObjectURL(url), 10_000)
-  return 'downloaded'
+  return shareOrDownload(file)
 }
 
 export async function downloadQuotePdf(node: HTMLElement, name: string) {

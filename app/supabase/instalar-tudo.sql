@@ -1015,3 +1015,13 @@ create policy "dono altera modelos" on storage.objects for update to authenticat
   using (bucket_id = 'models' and public.is_owner());
 create policy "dono apaga modelos" on storage.objects for delete to authenticated
   using (bucket_id = 'models' and public.is_owner());
+
+-- ---------------------------------------------------------------- 20261023000007_backup_messages.sql
+
+-- Zanshin 3D Studio · mensagens prontas para o cliente e lembrete de backup
+
+alter table public.settings
+  -- textos editados pelo dono; chave ausente = texto padrão do app
+  add column message_templates jsonb not null default '{}'::jsonb,
+  -- último backup baixado (o app lembra quando faz tempo)
+  add column last_backup_at timestamptz;

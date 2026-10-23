@@ -22,6 +22,8 @@ Supabase (Auth, Postgres com RLS e Storage) e PWA instalável.
 | Modelos 3D | Envia STL, OBJ, 3MF ou o `.gcode.3mf` do Bambu Studio: vê em 3D na cor do carretel, mede, avisa se não cabe na mesa, estima gramas pelo volume e, no arquivo fatiado, leva tempo e gramas de cada placa para o orçamento e a fila |
 | Clientes | Contatos, origem, histórico e total gasto |
 | Financeiro | Faturamento, custos, lucro estimado, ticket médio, mais vendidos, taxa de falha real e CSV |
+| Mensagens | Textos prontos para o cliente em cada etapa (confirmado, na fila, imprimindo, acabamento, pronto, entregue, restante, rastreio), editáveis em Configurações. Ao mudar o status, o app oferece abrir o WhatsApp com a mensagem da etapa |
+| Backup | Em Configurações: baixa um .zip com todos os dados (backup.json) e uma planilha por tabela. O Início lembra quando passa de 30 dias |
 | `/acompanhar/<token>` | Página pública do cliente: número, itens, andamento, prazo e fotos. Sem valores nem dados de outros clientes |
 
 ### Como o preço é calculado

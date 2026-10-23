@@ -15,6 +15,7 @@ import { useOrders, useSetOrderStatus, type OrderListRow } from './api'
 import { DueChip } from './DueChip'
 import { dueInfo } from './due'
 import { OrderCard } from './OrderCard'
+import { statusChangedToast, useCustomerMessage } from './customerMessage'
 
 type View = 'quadro' | 'lista'
 
@@ -76,7 +77,7 @@ export function OrdersPage() {
       />
       <Page className="max-w-none lg:max-w-none">
         {orders.isPending ? (
-          <div className="grid gap-3 lg:grid-cols-6">
+          <div className="grid grid-cols-1 gap-3 lg:grid-cols-6">
             {Array.from({ length: 6 }, (_, i) => (
               <ListSkeleton key={i} rows={2} height="h-28" />
             ))}
@@ -112,6 +113,7 @@ export function OrdersPage() {
 function Board({ orders }: { orders: OrderListRow[] }) {
   const desktop = useMediaQuery('(min-width: 1024px) and (pointer: fine)')
   const setStatus = useSetOrderStatus()
+  const msg = useCustomerMessage()
   const [tab, setTab] = useState<OrderStatus>(() => {
     const firstWithOrders = ORDER_STATUSES.find((s) => orders.some((o) => o.status === s))
     return firstWithOrders ?? 'aprovado'
@@ -129,7 +131,14 @@ function Board({ orders }: { orders: OrderListRow[] }) {
 
   function move(id: string, to: OrderStatus) {
     setMoved((m) => ({ ...m, [id]: to }))
-    setStatus.mutate({ id, status: to }, { onError: () => setMoved((m) => ({ ...m, [id]: undefined as unknown as OrderStatus })) })
+    const order = orders.find((o) => o.id === id)
+    setStatus.mutate(
+      { id, status: to },
+      {
+        onSuccess: () => order && statusChangedToast(order, to, msg),
+        onError: () => setMoved((m) => ({ ...m, [id]: undefined as unknown as OrderStatus })),
+      },
+    )
   }
 
   if (!desktop) {

@@ -57,7 +57,7 @@ export function ModelDetailPage() {
         ) : model.error ? (
           <ErrorState error={model.error} onRetry={() => model.refetch()} />
         ) : (
-          <div className="grid gap-4 lg:grid-cols-[1fr_360px] lg:items-start">
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start">
             <div className="flex min-w-0 flex-col gap-4">
               {mesh.isPending ? (
                 <Skeleton className="h-[52vh] min-h-72" />

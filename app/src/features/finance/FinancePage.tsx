@@ -86,12 +86,12 @@ export function FinancePage() {
 
             <Headline s={s!} prev={prev} />
 
-            <div className="grid gap-4 lg:grid-cols-[1.4fr_1fr]">
+            <div className="grid grid-cols-1 gap-4 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
               <RevenueChart summaries={summaries} month={month} onSelect={setMonth} />
               <FailureCard s={s!} data={finance.data} />
             </div>
 
-            <div className="grid gap-4 lg:grid-cols-2">
+            <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
               <TopPieces s={s!} />
               <Categories s={s!} />
             </div>

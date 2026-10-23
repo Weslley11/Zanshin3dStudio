@@ -13,6 +13,8 @@ import { keys, must, useAction, usePrinters, useSettings } from '@/lib/queries'
 import { supabase } from '@/lib/supabase'
 import type { Printer, Settings } from '@/lib/types'
 import { missingSettings } from './missing'
+import { BackupSection } from './BackupSection'
+import { MessagesSection } from './MessagesSection'
 
 function Section({ title, description, children }: { title: string; description?: ReactNode; children: ReactNode }) {
   return (
@@ -44,6 +46,8 @@ export function SettingsPage() {
             <PricingForm settings={settings.data} />
             <PrintersSection settings={settings.data} printers={printers.data} />
             <StudioForm settings={settings.data} />
+            <MessagesSection key={settings.data.updated_at} settings={settings.data} />
+            <BackupSection settings={settings.data} />
             <Section title="Aparência" description="Escolha o tema ou deixe seguir o do aparelho.">
               <ThemeSwitcher />
             </Section>

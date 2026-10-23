@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
-import { ArrowRight, Calculator, CalendarCheck, Disc, Plus, Printer, Queue, Warning } from '@phosphor-icons/react'
+import { ArrowRight, Calculator, CalendarCheck, CloudArrowDown, Disc, Plus, Printer, Queue, Warning } from '@phosphor-icons/react'
 import { Page } from '@/components/layout/AppShell'
 import { Button } from '@/components/ui/button'
 import { Card, ColorSwatch, StatusBadge } from '@/components/ui/misc'
@@ -12,7 +12,7 @@ import { missingSettings } from '@/features/settings/missing'
 import { monthOf } from '@/features/finance/compute'
 import { useNow } from '@/hooks/useNow'
 import { TIMEZONE, type OrderStatus } from '@/lib/constants'
-import { brl, docNumber, duration, grams, relativeDateTime, todayISO } from '@/lib/format'
+import { brl, daysUntil, docNumber, duration, grams, relativeDateTime, todayISO, toISODate } from '@/lib/format'
 import { isLowStock, lowStockLimit, must, useFilaments, usePrinters, useSettings } from '@/lib/queries'
 import { supabase } from '@/lib/supabase'
 import type { PrintJob } from '@/lib/types'
@@ -24,7 +24,7 @@ function useHome() {
     queryKey: ['home'],
     queryFn: async () => {
       const monthStart = `${todayISO().slice(0, 7)}-01T00:00:00-03:00`
-      const [open, month, jobs, quotes] = await Promise.all([
+      const [open, month, jobs, quotes, allOrders] = await Promise.all([
         supabase
           .from('orders')
           .select('id, number, status, due_date, total, paid_total, customer:customers(name)')
@@ -33,12 +33,14 @@ function useHome() {
         supabase.from('orders').select('total, created_at, status').gte('created_at', monthStart).neq('status', 'cancelado'),
         supabase.from('print_jobs').select('*, order:orders(id, number, customer:customers(name))').in('status', ['na_fila', 'imprimindo']).order('position'),
         supabase.from('quotes').select('id', { count: 'exact', head: true }).in('status', ['rascunho', 'enviado']),
+        supabase.from('orders').select('id', { count: 'exact', head: true }),
       ])
       return {
         open: must(open) as unknown as { id: string; number: number; status: string; due_date: string | null; total: number; paid_total: number; customer: { name: string } | null }[],
         month: (must(month) ?? []).filter((o) => monthOf(o.created_at) === todayISO().slice(0, 7)),
         jobs: must(jobs) as unknown as JobRow[],
         openQuotes: quotes.count ?? 0,
+        ordersCount: allOrders.count ?? 0,
       }
     },
     refetchInterval: 60_000,
@@ -83,15 +85,17 @@ export function HomePage() {
         </Link>
       )}
 
+      {home.data && home.data.ordersCount > 0 && settings.data && <BackupReminder last={settings.data.last_backup_at} />}
+
       {home.isPending ? (
-        <div className="grid gap-4 lg:grid-cols-[1.5fr_1fr]">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)]">
           <ListSkeleton rows={3} height="h-24" />
           <ListSkeleton rows={2} height="h-32" />
         </div>
       ) : home.error ? (
         <ErrorState error={home.error} onRetry={() => home.refetch()} />
       ) : (
-        <div className="grid gap-4 lg:grid-cols-[1.5fr_1fr]">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)]">
           <div className="flex min-w-0 flex-col gap-4">
             <PrinterNow jobs={home.data.jobs} now={now} printerName={printers.data?.find((p) => p.id === settings.data?.default_printer_id)?.name ?? 'Impressora'} />
             <Deadlines orders={home.data.open} />
@@ -262,5 +266,21 @@ function MonthRevenue({ orders, openQuotes }: { orders: { total: number | null }
         </Button>
       </div>
     </Card>
+  )
+}
+
+/** Lembra do backup quando nunca foi feito ou já passou de 30 dias. */
+function BackupReminder({ last }: { last: string | null }) {
+  const days = last ? -daysUntil(toISODate(new Date(last))) : null
+  if (days != null && days < 30) return null
+  return (
+    <Link to="/configuracoes#backup" className="mb-4 flex items-center gap-3 rounded-ui border border-border bg-surface p-4 text-sm hover:border-border-strong">
+      <CloudArrowDown className="size-5 shrink-0 text-fg-muted" />
+      <span className="flex-1">
+        {days == null ? 'Você ainda não baixou nenhum backup dos dados.' : `Faz ${days} dias desde o último backup.`}{' '}
+        <span className="text-fg-muted">Leva alguns segundos e protege o histórico do estúdio.</span>
+      </span>
+      <ArrowRight className="size-4" />
+    </Link>
   )
 }

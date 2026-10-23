@@ -415,14 +415,14 @@ isOneToOne: false
                   ]
                 },"settings": {
                   Row: {
-                    "business_instagram": string | null,"business_name": string,"business_whatsapp": string | null,"default_printer_id": string | null,"energy_tariff": number | null,"failure_rate_pct": number | null,"id": number,"labor_rate": number | null,"low_stock_default_g": number | null,"margin_pct": number | null,"quote_validity_days": number | null,"rounding": string | null,"updated_at": string,"urgency_pct": number | null
+                    "business_instagram": string | null,"business_name": string,"business_whatsapp": string | null,"default_printer_id": string | null,"energy_tariff": number | null,"failure_rate_pct": number | null,"id": number,"labor_rate": number | null,"last_backup_at": string | null,"low_stock_default_g": number | null,"margin_pct": number | null,"message_templates": NonNullable<Json>,"quote_validity_days": number | null,"rounding": string | null,"updated_at": string,"urgency_pct": number | null
                   }
                   ComputedFields: never
                   Insert: {
-                    "business_instagram"?: string | null,"business_name"?: string,"business_whatsapp"?: string | null,"default_printer_id"?: string | null,"energy_tariff"?: number | null,"failure_rate_pct"?: number | null,"id"?: number,"labor_rate"?: number | null,"low_stock_default_g"?: number | null,"margin_pct"?: number | null,"quote_validity_days"?: number | null,"rounding"?: string | null,"updated_at"?: string,"urgency_pct"?: number | null
+                    "business_instagram"?: string | null,"business_name"?: string,"business_whatsapp"?: string | null,"default_printer_id"?: string | null,"energy_tariff"?: number | null,"failure_rate_pct"?: number | null,"id"?: number,"labor_rate"?: number | null,"last_backup_at"?: string | null,"low_stock_default_g"?: number | null,"margin_pct"?: number | null,"message_templates"?: NonNullable<Json>,"quote_validity_days"?: number | null,"rounding"?: string | null,"updated_at"?: string,"urgency_pct"?: number | null
                   }
                   Update: {
-                    "business_instagram"?: string | null,"business_name"?: string,"business_whatsapp"?: string | null,"default_printer_id"?: string | null,"energy_tariff"?: number | null,"failure_rate_pct"?: number | null,"id"?: number,"labor_rate"?: number | null,"low_stock_default_g"?: number | null,"margin_pct"?: number | null,"quote_validity_days"?: number | null,"rounding"?: string | null,"updated_at"?: string,"urgency_pct"?: number | null
+                    "business_instagram"?: string | null,"business_name"?: string,"business_whatsapp"?: string | null,"default_printer_id"?: string | null,"energy_tariff"?: number | null,"failure_rate_pct"?: number | null,"id"?: number,"labor_rate"?: number | null,"last_backup_at"?: string | null,"low_stock_default_g"?: number | null,"margin_pct"?: number | null,"message_templates"?: NonNullable<Json>,"quote_validity_days"?: number | null,"rounding"?: string | null,"updated_at"?: string,"urgency_pct"?: number | null
                   }
                   Relationships: [
                     {
