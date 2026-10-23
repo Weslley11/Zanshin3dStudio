@@ -32,8 +32,11 @@ Archivo itálico, a mesma fonte do site.
 ### Cena 3D da impressão
 
 No mesmo estilo do site, uma peça é impressa camada por camada, com o bico
-percorrendo o contorno de cada camada. As peças são geradas por código: kabuto
-samurai, carro de F1 e kunai ninja, sem personagens nem marcas. A cena aparece:
+percorrendo o contorno de cada camada. As peças são geradas por código, sem
+personagens nem marcas: samurai com katana, capacete de piloto, carro de F1,
+kunai ninja e kabuto samurai. A parte principal sai na cor do carretel; lâminas
+e pinos ficam prateados, e viseira e pneus, pretos, como numa impressão
+multicolor. A cena aparece:
 
 - no login, com as peças se revezando;
 - no Início e na Fila, na placa que está imprimindo, sempre com a mesma peça

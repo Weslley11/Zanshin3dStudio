@@ -7,9 +7,11 @@ export const LAYERS = 240
 
 /** Peças da cena, geradas por código (nada de personagens ou marcas). */
 export const PIECES = [
-  { id: 'kabuto', label: 'kabuto samurai' },
+  { id: 'samurai', label: 'samurai com katana' },
+  { id: 'capacete', label: 'capacete de piloto' },
   { id: 'f1', label: 'carro de F1' },
   { id: 'kunai', label: 'kunai ninja' },
+  { id: 'kabuto', label: 'kabuto samurai' },
 ] as const
 export type PieceId = (typeof PIECES)[number]['id']
 

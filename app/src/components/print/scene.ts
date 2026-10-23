@@ -131,10 +131,14 @@ export function createPrintScene(framing: Framing) {
     side: THREE.DoubleSide,
     clippingPlanes: [clip],
   })
+  // acabamentos fixos: metal prateado e preto (viseira, pneus); a cor do carretel só muda a parte principal
+  const metalMat = new THREE.MeshStandardMaterial({ color: 0xc7cdd3, roughness: 0.22, metalness: 0.9, bumpMap: layers, bumpScale: 0.6, side: THREE.DoubleSide, clippingPlanes: [clip] })
+  const darkMat = new THREE.MeshStandardMaterial({ color: 0x24272c, roughness: 0.3, metalness: 0.2, bumpMap: layers, bumpScale: 0.6, side: THREE.DoubleSide, clippingPlanes: [clip] })
   const shellMat = new THREE.MeshBasicMaterial({ color: 0xc7cdd3, transparent: true, opacity: 0.05, depthWrite: false, side: THREE.DoubleSide, clippingPlanes: [ghostClip] })
   const edgeMat = new THREE.LineBasicMaterial({ color: 0xc7cdd3, transparent: true, opacity: 0.18, depthWrite: false, clippingPlanes: [ghostClip] })
   const table = new THREE.Group()
-  const solid = new THREE.Mesh(new THREE.BufferGeometry(), pieceMat)
+  // a ordem segue FINISHES: principal, metal, escuro
+  const solid = new THREE.Mesh(new THREE.BufferGeometry(), [pieceMat, metalMat, darkMat])
   const shell = new THREE.Mesh(new THREE.BufferGeometry(), shellMat)
   const edges = new THREE.LineSegments(new THREE.BufferGeometry(), edgeMat)
   table.add(solid, shell, edges)
@@ -321,7 +325,7 @@ export function createPrintScene(framing: Framing) {
         pc.edges.dispose()
       }
       for (const g of [bedGeo, ringGeo, blockGeo, sinkGeo, nozzleGeo, gantryGeo]) g.dispose()
-      for (const m of [bedMat, pieceMat, shellMat, edgeMat, ringMat, blockMat, sinkMat, nozzleMat, gantryMat]) m.dispose()
+      for (const m of [bedMat, pieceMat, metalMat, darkMat, shellMat, edgeMat, ringMat, blockMat, sinkMat, nozzleMat, gantryMat]) m.dispose()
       plate.dispose()
       layers.dispose()
       env.dispose()

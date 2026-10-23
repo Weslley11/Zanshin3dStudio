@@ -68,7 +68,7 @@ describe('tempo da cena', () => {
 
   it('a mesma placa sempre mostra a mesma peça', () => {
     expect(pieceFor('abc')).toBe(pieceFor('abc'))
-    const seen = new Set(Array.from({ length: 30 }, (_, i) => pieceFor(`placa-${i}`)))
+    const seen = new Set(Array.from({ length: 80 }, (_, i) => pieceFor(`placa-${i}`)))
     expect(seen.size).toBe(PIECES.length)
   })
 })
