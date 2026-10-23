@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Calculator, CaretRight, MagnifyingGlass, Plus } from '@phosphor-icons/react'
+import { Calculator, CaretRight, Eye, MagnifyingGlass, Plus } from '@phosphor-icons/react'
 import { Page, PageHeader } from '@/components/layout/AppShell'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/field'
@@ -106,7 +106,16 @@ export function QuotesPage() {
                       <div className="flex flex-col items-end gap-1">
                         <span className="num text-sm font-semibold">{brl(Number(x.total))}</span>
                         <span className="flex items-center gap-1.5">
-                          {expired ? <Badge tone="warn">Vencido</Badge> : <Badge tone={x.status === 'aprovado' ? 'ok' : 'neutral'}>{QUOTE_STATUS_LABEL[x.status]}</Badge>}
+                          {x.client_viewed_at && x.status !== 'aprovado' && (
+                            <Eye className="size-4 text-ok" weight="fill" aria-label="O cliente abriu o link" />
+                          )}
+                          {expired ? (
+                            <Badge tone="warn">Vencido</Badge>
+                          ) : (
+                            <Badge tone={x.status === 'aprovado' ? 'ok' : 'neutral'}>
+                              {x.status === 'aprovado' && x.approved_via === 'cliente' ? 'Aprovado pelo cliente' : QUOTE_STATUS_LABEL[x.status]}
+                            </Badge>
+                          )}
                           <span className="num hidden text-xs text-fg-subtle sm:inline">{date(x.created_at)}</span>
                         </span>
                       </div>

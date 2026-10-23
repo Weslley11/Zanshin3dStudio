@@ -16,7 +16,7 @@ Supabase (Auth, Postgres com RLS e Storage) e PWA instalável.
 |---|---|
 | Início | Prazos atrasados e dos próximos 3 dias, o que está imprimindo, próximos da fila, estoque baixo e faturamento do mês |
 | Orçamentos | Calculadora por peça com detalhamento do custo, preço à mão, número ZAN-0001, validade, texto do WhatsApp, botão wa.me, imagem e PDF com a marca. Aprovado vira pedido com um toque |
-| Pedidos | Quadro (arrastar no desktop, botão de avançar no celular) e lista com filtros. Pagamentos, entrega com rastreio, fotos, falhas, histórico e link do cliente |
+| Pedidos | Quadro (arrastar no desktop, botão de avançar no celular) e lista com filtros. Pagamentos, entrega com rastreio, fotos, falhas, histórico e link do cliente. Pedido direto sem orçamento e edição dos itens depois de aprovado |
 | Fila | Placas em ordem, previsão encadeada a partir de agora, reordenar arrastando, iniciar, concluir (desconta do carretel) e registrar falha |
 | Filamentos | Carretéis com cor, preço, peso, custo por grama automático e alerta de estoque baixo |
 | Catálogo | Peças recorrentes com foto e preço base; exporta JSON no formato do `js/pecas-data.js` do site |
@@ -26,6 +26,7 @@ Supabase (Auth, Postgres com RLS e Storage) e PWA instalável.
 | Mensagens | Textos prontos para o cliente em cada etapa (confirmado, na fila, imprimindo, acabamento, pronto, entregue, restante, rastreio), editáveis em Configurações. Ao mudar o status, o app oferece abrir o WhatsApp com a mensagem da etapa |
 | Backup | Em Configurações: baixa um .zip com todos os dados (backup.json) e uma planilha por tabela. O Início lembra quando passa de 30 dias |
 | `/acompanhar/<token>` | Página pública do cliente: número, itens, andamento, prazo e fotos. Sem valores nem dados de outros clientes |
+| `/orcamento/<token>` | Orçamento para o cliente aprovar sozinho: peças, preços e total (sem custos). Aprovar cria o pedido e leva ao acompanhamento; vencido ou encerrado não aprova. O app mostra quando o cliente abriu e avisa no Início quando ele aprova |
 
 ### Como o preço é calculado
 

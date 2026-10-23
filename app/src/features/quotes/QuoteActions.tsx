@@ -1,11 +1,11 @@
 import { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { CheckCircle, Copy, CopySimple, FilePdf, Image, Trash, WhatsappLogo, XCircle } from '@phosphor-icons/react'
+import { CheckCircle, Copy, CopySimple, Eye, FilePdf, Image, LinkSimple, Trash, WhatsappLogo, XCircle } from '@phosphor-icons/react'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { ConfirmDialog } from '@/components/ui/dialog'
 import { Card } from '@/components/ui/misc'
-import { docNumber } from '@/lib/format'
+import { dateTime, docNumber } from '@/lib/format'
 import { keys, must, useAction, useFilaments, useSettings } from '@/lib/queries'
 import { errorMessage, supabase } from '@/lib/supabase'
 import { waLink } from '@/lib/whatsapp'
@@ -24,7 +24,8 @@ export function QuoteActions({ quote, dirty }: { quote: QuoteWithItems; dirty: b
   const name = `Orcamento ${docNumber(quote.number)}`
   const approved = quote.status === 'aprovado'
 
-  const text = quoteWhatsAppText({ quote, items: quote.items, customer: quote.customer, filaments, businessName: settings.business_name })
+  const approvalLink = `${window.location.origin}/orcamento/${quote.public_token}`
+  const text = quoteWhatsAppText({ quote, items: quote.items, customer: quote.customer, filaments, businessName: settings.business_name, approvalLink: approved ? undefined : approvalLink })
 
   const setStatus = useAction(
     async (status: 'enviado' | 'recusado' | 'rascunho') =>
@@ -98,6 +99,36 @@ export function QuoteActions({ quote, dirty }: { quote: QuoteWithItems; dirty: b
         </Button>
       </div>
       {!quote.customer?.whatsapp && <p className="text-xs text-fg-subtle">Cliente sem WhatsApp: o botão abre o WhatsApp para você escolher o contato.</p>}
+
+      {!approved && (
+        <div className="flex flex-col gap-2 rounded-ui bg-surface-2 p-3">
+          <p className="text-xs text-fg-muted">O texto do WhatsApp já leva o link para o cliente aprovar sozinho. O pedido nasce na hora e você vê em Pedidos.</p>
+          <div className="flex gap-2">
+            <Button
+              size="sm"
+              className="flex-1"
+              onClick={async () => {
+                await navigator.clipboard.writeText(approvalLink)
+                toast.success('Link de aprovação copiado')
+              }}
+            >
+              <LinkSimple /> Copiar link
+            </Button>
+            <Button asChild size="sm" variant="ghost">
+              <a href={approvalLink} target="_blank" rel="noreferrer">
+                <Eye /> Ver como cliente
+              </a>
+            </Button>
+          </div>
+          {quote.client_viewed_at ? (
+            <p className="flex items-center gap-1.5 text-xs text-ok">
+              <Eye weight="fill" /> O cliente abriu em {dateTime(quote.client_viewed_at)}
+            </p>
+          ) : (
+            quote.status === 'enviado' && <p className="text-xs text-fg-subtle">O cliente ainda não abriu o link.</p>
+          )}
+        </div>
+      )}
 
       {!approved && (
         <div className="flex flex-col gap-2 border-t border-border pt-3">

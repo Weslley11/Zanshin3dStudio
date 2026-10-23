@@ -53,6 +53,20 @@ select string_agg(to_status, '>' order by created_at) = 'aprovado>na_fila>imprim
 update public.orders set status = 'pronto' where id = :'oid';
 select public_token as tok from public.orders where id = :'oid' \gset
 
+-- dois orçamentos para o link: um válido e um vencido
+select public.save_quote(
+  json_build_object('customer_id', :'cid', 'valid_until', (public.today_sp() + 5)::text, 'internal_notes', 'segredo interno')::jsonb,
+  json_build_array(json_build_object('description', 'Chaveiro', 'grams', 5, 'print_minutes', 20, 'quantity', 1,
+    'material_cost', 0.5, 'calculated_unit_price', 15))::jsonb
+) as qid2 \gset
+select public.save_quote(
+  json_build_object('customer_id', :'cid', 'valid_until', (public.today_sp() - 1)::text)::jsonb,
+  json_build_array(json_build_object('description', 'Vaso', 'grams', 50, 'print_minutes', 90, 'quantity', 1, 'calculated_unit_price', 40))::jsonb
+) as qid3 \gset
+select public_token as qtok2 from public.quotes where id = :'qid2' \gset
+select public_token as qtok3 from public.quotes where id = :'qid3' \gset
+select set_config('teste.qtok3', :'qtok3', true) \gset
+
 -- ------------------------------------------------------------ intruso
 reset role;
 select set_config('request.jwt.claims', json_build_object('sub', :'intruso', 'role', 'authenticated')::text, true) \gset
@@ -73,5 +87,33 @@ select (r ->> 'number') is not null
    as ok_rastreio_sem_valores_nem_cliente
   from (select public.public_order_tracking(:'tok') as r) x;
 select public.public_order_tracking('token-que-nao-existe-1234') is null as ok_token_invalido;
+
+-- orçamento pelo link: vê preços, nunca custos nem anotação interna
+select (r ->> 'number') is not null and (r -> 'items' -> 0 ->> 'unit_price')::numeric = 15
+   and r::text not ilike '%material_cost%' and r::text not ilike '%segredo interno%' and r::text not ilike '%params%'
+   and r ->> 'customer_first_name' = 'Cliente'
+   as ok_link_mostra_precos_sem_custos
+  from (select public.public_quote(:'qtok2') as r) x;
+select public.public_quote_seen(:'qtok2') \gset
+-- vencido não aprova
+do $$
+begin
+  perform public.public_approve_quote(current_setting('teste.qtok3'));
+  raise exception 'deveria ter recusado';
+exception when others then
+  if sqlerrm not like 'Este orçamento venceu%' then raise; end if;
+end $$;
+select (public.public_quote(:'qtok3') ->> 'expired')::boolean as ok_link_vencido_marcado;
+-- válido aprova e cria o pedido; aprovar de novo não duplica
+select public.public_approve_quote(:'qtok2') ->> 'order_token' as otok \gset
+select (public.public_approve_quote(:'qtok2') ->> 'already')::boolean and (public.public_approve_quote(:'qtok2') ->> 'order_token') = :'otok' as ok_aprovar_de_novo_nao_duplica;
+select public.public_order_tracking(:'otok') ->> 'status' = 'aprovado' as ok_cliente_acompanha_pedido;
+
+reset role;
+select (select count(*) from public.orders where quote_id = :'qid2') = 1
+   and (select approved_via from public.quotes where id = :'qid2') = 'cliente'
+   and (select client_viewed_at is not null from public.quotes where id = :'qid2')
+   and (select note from public.order_events e join public.orders o on o.id = e.order_id where o.quote_id = :'qid2' and e.from_status is null) like 'Aprovado pelo cliente%'
+   as ok_pedido_do_link_registrado;
 
 rollback;

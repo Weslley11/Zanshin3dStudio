@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
-import { ArrowRight, Calculator, CalendarCheck, CloudArrowDown, Disc, Plus, Printer, Queue, Warning } from '@phosphor-icons/react'
+import { ArrowRight, Calculator, CalendarCheck, CheckCircle, CloudArrowDown, Disc, Plus, Printer, Queue, Warning } from '@phosphor-icons/react'
 import { Page } from '@/components/layout/AppShell'
 import { Button } from '@/components/ui/button'
 import { Card, ColorSwatch, StatusBadge } from '@/components/ui/misc'
@@ -25,7 +25,7 @@ function useHome() {
     queryKey: ['home'],
     queryFn: async () => {
       const monthStart = `${todayISO().slice(0, 7)}-01T00:00:00-03:00`
-      const [open, month, jobs, quotes, allOrders] = await Promise.all([
+      const [open, month, jobs, quotes, allOrders, byClient] = await Promise.all([
         supabase
           .from('orders')
           .select('id, number, status, due_date, total, paid_total, customer:customers(name)')
@@ -35,6 +35,13 @@ function useHome() {
         supabase.from('print_jobs').select('*, order:orders(id, number, customer:customers(name))').in('status', ['na_fila', 'imprimindo']).order('position'),
         supabase.from('quotes').select('id', { count: 'exact', head: true }).in('status', ['rascunho', 'enviado']),
         supabase.from('orders').select('id', { count: 'exact', head: true }),
+        // aprovados pelo cliente no link nos últimos 7 dias
+        supabase
+          .from('quotes')
+          .select('number, approved_at, customer:customers(name), order:orders(id, status)')
+          .eq('approved_via', 'cliente')
+          .gte('approved_at', new Date(Date.now() - 7 * 86_400_000).toISOString())
+          .order('approved_at', { ascending: false }),
       ])
       return {
         open: must(open) as unknown as { id: string; number: number; status: string; due_date: string | null; total: number; paid_total: number; customer: { name: string } | null }[],
@@ -42,6 +49,12 @@ function useHome() {
         jobs: must(jobs) as unknown as JobRow[],
         openQuotes: quotes.count ?? 0,
         ordersCount: allOrders.count ?? 0,
+        // a tabela ainda pode não ter a coluna se a atualização do banco não foi aplicada
+        approvedByClient: byClient.error
+          ? []
+          : ((byClient.data ?? []) as unknown as { number: number; approved_at: string; customer: { name: string } | null; order: { id: string; status: string }[] | { id: string; status: string } | null }[])
+              .map((q) => ({ ...q, order: Array.isArray(q.order) ? q.order[0] : q.order }))
+              .filter((q) => q.order?.status === 'aprovado'),
       }
     },
     refetchInterval: 60_000,
@@ -86,6 +99,21 @@ export function HomePage() {
         </Link>
       )}
 
+      {home.data?.approvedByClient.map((q) => (
+        <FadeIn key={q.number} className="mb-3">
+          <Link
+            to={`/pedidos/${q.order!.id}`}
+            className="flex items-center gap-3 rounded-ui border border-[color-mix(in_srgb,var(--ok)_40%,var(--border))] bg-surface p-4 text-sm hover:border-[var(--ok)]"
+          >
+            <CheckCircle className="size-5 shrink-0 text-ok" weight="fill" />
+            <span className="flex-1">
+              <span className="font-medium">{q.customer?.name ?? 'Cliente'} aprovou o orçamento {docNumber(q.number)}</span>
+              <span className="block text-fg-muted">Pelo link, {relativeDateTime(new Date(q.approved_at)).toLowerCase()}. Toque para ver o pedido e mandar para a fila.</span>
+            </span>
+            <ArrowRight className="size-4" />
+          </Link>
+        </FadeIn>
+      ))}
       {home.data && home.data.ordersCount > 0 && settings.data && <BackupReminder last={settings.data.last_backup_at} />}
 
       {home.isPending ? (

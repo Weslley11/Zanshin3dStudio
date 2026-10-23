@@ -26,7 +26,7 @@ export function useQuotes() {
       must(
         await supabase
           .from('quotes')
-          .select('id, number, status, total, valid_until, created_at, customer:customers(id, name), items:quote_items(description)')
+          .select('id, number, status, total, valid_until, created_at, client_viewed_at, approved_via, customer:customers(id, name), items:quote_items(description)')
           .order('number', { ascending: false }),
       ),
   })

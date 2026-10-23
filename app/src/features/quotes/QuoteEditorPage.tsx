@@ -136,7 +136,11 @@ function Editor({ quote }: { quote: QuoteWithItems | null }) {
         title={
           <span className="flex items-center gap-2">
             {quote ? docNumber(quote.number) : 'Novo orçamento'}
-            {quote && <Badge tone={quote.status === 'aprovado' ? 'ok' : 'neutral'}>{QUOTE_STATUS_LABEL[quote.status]}</Badge>}
+            {quote && (
+              <Badge tone={quote.status === 'aprovado' ? 'ok' : 'neutral'}>
+                {quote.status === 'aprovado' && quote.approved_via === 'cliente' ? 'Aprovado pelo cliente' : QUOTE_STATUS_LABEL[quote.status]}
+              </Badge>
+            )}
             {expired && <Badge tone="warn">Vencido</Badge>}
           </span>
         }

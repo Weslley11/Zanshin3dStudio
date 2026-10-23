@@ -389,14 +389,14 @@ isOneToOne: false
                   ]
                 },"quotes": {
                   Row: {
-                    "approved_at": string | null,"created_at": string,"customer_id": string | null,"delivery_fee": number,"id": string,"internal_notes": string | null,"items_total": number,"notes": string | null,"number": number,"sent_at": string | null,"status": string,"total": number | null,"updated_at": string,"valid_until": string | null
+                    "approved_at": string | null,"approved_via": string | null,"client_viewed_at": string | null,"created_at": string,"customer_id": string | null,"delivery_fee": number,"id": string,"internal_notes": string | null,"items_total": number,"notes": string | null,"number": number,"public_token": string,"sent_at": string | null,"status": string,"total": number | null,"updated_at": string,"valid_until": string | null
                   }
                   ComputedFields: never
                   Insert: {
-                    "approved_at"?: string | null,"created_at"?: string,"customer_id"?: string | null,"delivery_fee"?: number,"id"?: string,"internal_notes"?: string | null,"items_total"?: number,"notes"?: string | null,"number"?: number,"sent_at"?: string | null,"status"?: string,"total"?: never,"updated_at"?: string,"valid_until"?: string | null
+                    "approved_at"?: string | null,"approved_via"?: string | null,"client_viewed_at"?: string | null,"created_at"?: string,"customer_id"?: string | null,"delivery_fee"?: number,"id"?: string,"internal_notes"?: string | null,"items_total"?: number,"notes"?: string | null,"number"?: number,"public_token"?: string,"sent_at"?: string | null,"status"?: string,"total"?: never,"updated_at"?: string,"valid_until"?: string | null
                   }
                   Update: {
-                    "approved_at"?: string | null,"created_at"?: string,"customer_id"?: string | null,"delivery_fee"?: number,"id"?: string,"internal_notes"?: string | null,"items_total"?: number,"notes"?: string | null,"number"?: number,"sent_at"?: string | null,"status"?: string,"total"?: never,"updated_at"?: string,"valid_until"?: string | null
+                    "approved_at"?: string | null,"approved_via"?: string | null,"client_viewed_at"?: string | null,"created_at"?: string,"customer_id"?: string | null,"delivery_fee"?: number,"id"?: string,"internal_notes"?: string | null,"items_total"?: number,"notes"?: string | null,"number"?: number,"public_token"?: string,"sent_at"?: string | null,"status"?: string,"total"?: never,"updated_at"?: string,"valid_until"?: string | null
                   }
                   Relationships: [
                     {
@@ -497,8 +497,17 @@ isOneToOne: false
 "is_owner":
 { Args: Record<PropertyKey, never>; Returns: boolean
                            },
+"public_approve_quote":
+{ Args: { "p_token": string }; Returns: Json
+                           },
 "public_order_tracking":
 { Args: { "p_token": string }; Returns: Json
+                           },
+"public_quote":
+{ Args: { "p_token": string }; Returns: Json
+                           },
+"public_quote_seen":
+{ Args: { "p_token": string }; Returns: undefined
                            },
 "random_token":
 { Args: Record<PropertyKey, never>; Returns: string
@@ -514,6 +523,9 @@ isOneToOne: false
                            },
 "start_print_job":
 { Args: { "p_job_id": string }; Returns: undefined
+                           },
+"today_sp":
+{ Args: Record<PropertyKey, never>; Returns: string
                            }
           }
           Enums: {

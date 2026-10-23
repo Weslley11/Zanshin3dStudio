@@ -8,12 +8,14 @@ export function quoteWhatsAppText({
   customer,
   filaments,
   businessName,
+  approvalLink,
 }: {
   quote: Quote
   items: QuoteItem[]
   customer: Customer | null
   filaments: Filament[]
   businessName: string
+  approvalLink?: string
 }) {
   const first = customer?.name.trim().split(/\s+/)[0]
   const lines: string[] = []
@@ -40,6 +42,9 @@ export function quoteWhatsAppText({
     lines.push(quote.notes.trim())
   }
   lines.push('')
-  lines.push('Para confirmar, é só responder esta mensagem.')
+  if (approvalLink) {
+    lines.push(`Para aprovar, é só tocar aqui: ${approvalLink}`)
+    lines.push('Se preferir, responda esta mensagem.')
+  } else lines.push('Para confirmar, é só responder esta mensagem.')
   return lines.join('\n')
 }

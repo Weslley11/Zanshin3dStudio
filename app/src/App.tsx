@@ -30,6 +30,7 @@ const SettingsPage = named(() => import('@/features/settings/SettingsPage'), 'Se
 const ModelsPage = named(() => import('@/features/models/ModelsPage'), 'ModelsPage')
 const ModelDetailPage = named(() => import('@/features/models/ModelDetailPage'), 'ModelDetailPage')
 const TrackingPage = named(() => import('@/features/tracking/TrackingPage'), 'TrackingPage')
+const QuoteApprovalPage = named(() => import('@/features/quotes/QuoteApprovalPage'), 'QuoteApprovalPage')
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -57,6 +58,7 @@ export default function App() {
             <Routes>
               <Route path="/login" element={<LoginPage />} />
               <Route path="/acompanhar/:token" element={<TrackingPage />} />
+              <Route path="/orcamento/:token" element={<QuoteApprovalPage />} />
               <Route element={<RequireOwner />}>
                 <Route element={<AppShell />}>
                   <Route index element={<HomePage />} />
