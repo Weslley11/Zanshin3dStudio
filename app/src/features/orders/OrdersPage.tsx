@@ -70,9 +70,9 @@ export function OrdersPage() {
                 { value: 'lista', label: <><ListBullets /> <span className="hidden sm:inline">Lista</span></> },
               ]}
             />
-            <Button asChild variant="primary" className="hidden sm:inline-flex">
-              <Link to="/orcamentos/novo">
-                <Plus /> Novo
+            <Button asChild variant="primary">
+              <Link to="/pedidos/novo" aria-label="Novo pedido">
+                <Plus /> <span className="hidden sm:inline">Novo pedido</span>
               </Link>
             </Button>
           </>
@@ -93,12 +93,17 @@ export function OrdersPage() {
               icon={<Package />}
               title="Nenhum pedido ainda"
               action={
-                <Button asChild variant="primary">
-                  <Link to="/orcamentos">Ir para orçamentos</Link>
-                </Button>
+                <div className="flex flex-wrap justify-center gap-2">
+                  <Button asChild variant="primary">
+                    <Link to="/orcamentos/novo">Fazer orçamento</Link>
+                  </Button>
+                  <Button asChild>
+                    <Link to="/pedidos/novo">Pedido direto</Link>
+                  </Button>
+                </div>
               }
             >
-              Pedidos nascem de orçamentos aprovados. Abra um orçamento e toque em "Aprovado: criar pedido".
+              Pedidos nascem de orçamentos aprovados ("Aprovado: criar pedido"). Quem já chega fechando pode virar pedido direto, sem orçamento.
             </EmptyState>
           </div>
         ) : view === 'quadro' ? (

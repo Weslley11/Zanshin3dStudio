@@ -19,6 +19,7 @@ const QuotesPage = named(() => import('@/features/quotes/QuotesPage'), 'QuotesPa
 const QuoteEditorPage = named(() => import('@/features/quotes/QuoteEditorPage'), 'QuoteEditorPage')
 const OrdersPage = named(() => import('@/features/orders/OrdersPage'), 'OrdersPage')
 const OrderDetailPage = named(() => import('@/features/orders/OrderDetailPage'), 'OrderDetailPage')
+const OrderEditorPage = named(() => import('@/features/orders/OrderEditorPage'), 'OrderEditorPage')
 const QueuePage = named(() => import('@/features/queue/QueuePage'), 'QueuePage')
 const FilamentsPage = named(() => import('@/features/filaments/FilamentsPage'), 'FilamentsPage')
 const CustomersPage = named(() => import('@/features/customers/CustomersPage'), 'CustomersPage')
@@ -63,7 +64,9 @@ export default function App() {
                   <Route path="orcamentos/novo" element={<QuoteEditorPage />} />
                   <Route path="orcamentos/:id" element={<QuoteEditorPage />} />
                   <Route path="pedidos" element={<OrdersPage />} />
+                  <Route path="pedidos/novo" element={<OrderEditorPage />} />
                   <Route path="pedidos/:id" element={<OrderDetailPage />} />
+                  <Route path="pedidos/:id/itens" element={<OrderEditorPage />} />
                   <Route path="fila" element={<QueuePage />} />
                   <Route path="filamentos" element={<FilamentsPage />} />
                   <Route path="clientes" element={<CustomersPage />} />

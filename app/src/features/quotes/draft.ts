@@ -122,7 +122,10 @@ export function toRow(item: DraftItem) {
 
 const round4 = (n: number) => Math.round(n * 10000) / 10000
 
-export function fromRow(r: QuoteItem): DraftItem {
+/** Linha de item de orçamento ou de pedido (as colunas são as mesmas). */
+export type ItemRow = Omit<QuoteItem, 'quote_id'>
+
+export function fromRow(r: ItemRow): DraftItem {
   const p = (r.params ?? {}) as Partial<ItemParams>
   return {
     key: r.id,
@@ -148,7 +151,9 @@ export function fromRow(r: QuoteItem): DraftItem {
       urgencyPct: num(p.urgencyPct),
       rounding: (p.rounding as '90' | '00' | null) ?? null,
     },
-    override_unit_price: num(r.override_unit_price),
+    // item antigo, sem a cópia dos parâmetros: o preço que já estava vale como preço à mão
+    override_unit_price:
+      num(r.override_unit_price) ?? (!Object.keys(p).length && Number(r.calculated_unit_price) > 0 ? Number(r.calculated_unit_price) : null),
   }
 }
 

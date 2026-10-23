@@ -15,7 +15,7 @@ export function FadeIn({ index = 0, children, className, as = 'div' }: { index?:
 /** Número que conta até o valor novo (faturamento, totais). */
 export function AnimatedNumber({ value, format, from0 = false }: { value: number; format: (n: number) => string; from0?: boolean }) {
   const reduce = useReducedMotion()
-  const mv = useSpring(from0 ? 0 : value, { stiffness: 170, damping: 26 })
+  const mv = useSpring(from0 ? 0 : value, { stiffness: 320, damping: 36 })
   const text = useTransform(mv, (v) => format(v))
   useEffect(() => {
     mv.set(value)

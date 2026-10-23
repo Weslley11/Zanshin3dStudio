@@ -1,14 +1,13 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useState } from 'react'
 import { Link, useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import type { QuotePrefill } from '@/features/models/ModelDetailPage'
-import { Cube, FloppyDisk, Plus } from '@phosphor-icons/react'
+import { FloppyDisk } from '@phosphor-icons/react'
 import { Page, PageHeader } from '@/components/layout/AppShell'
 import { BackButton } from '@/components/ui/BackButton'
 import { Button } from '@/components/ui/button'
 import { DateInput, Field, NumberInput, Textarea } from '@/components/ui/field'
 import { Badge, Card } from '@/components/ui/misc'
 import { ErrorState, ListSkeleton } from '@/components/ui/states'
-import { CatalogPicker } from '@/features/catalog/CatalogPicker'
 import { CustomerPicker } from '@/features/customers/CustomerPicker'
 import { missingSettings } from '@/features/settings/missing'
 import { QUOTE_STATUS_LABEL } from '@/lib/constants'
@@ -17,8 +16,8 @@ import { keys, must, useAction, useFilaments, usePrinters, useSettings } from '@
 import { supabase } from '@/lib/supabase'
 import { cn } from '@/lib/utils'
 import { useQuote, type QuoteWithItems } from './api'
-import { currentParams, fromRow, itemFromCatalog, newItem, paramsOutdated, toRow, unitPrice, validate, type DraftItem, type ItemParams } from './draft'
-import { ItemEditor } from './ItemEditor'
+import { fromRow, newItem, toRow, validate } from './draft'
+import { ItemsEditorList, useItemsDraft } from './ItemsDraft'
 import { AnimatedNumber } from '@/components/ui/motion'
 import { QuoteActions } from './QuoteActions'
 
@@ -62,29 +61,14 @@ function Editor({ quote }: { quote: QuoteWithItems | null }) {
   const incoming = (useLocation().state ?? null) as { prefill?: QuotePrefill[]; customerId?: string | null } | null
   const settings = useSettings().data!
   const printers = usePrinters().data!
-  const filaments = useFilaments().data!
   const readOnly = quote?.status === 'aprovado'
 
-  const defaultPrinter = printers.find((p) => p.id === settings.default_printer_id) ?? printers[0]
-  const paramsFor = (printerId: string | null, filamentId: string | null, base?: ItemParams): ItemParams => {
-    const fresh = currentParams(settings, printers.find((p) => p.id === printerId) ?? defaultPrinter, filaments.find((f) => f.id === filamentId))
-    // trocar carretel ou impressora só mexe no que vem deles; o resto continua como estava
-    return base ? { ...base, costPerG: fresh.costPerG, powerKw: fresh.powerKw, wearPerHour: fresh.wearPerHour } : fresh
-  }
-
-  const [customerId, setCustomerId] = useState<string | null>(quote?.customer_id ?? incoming?.customerId ?? search.get('cliente'))
-  const [validUntil, setValidUntil] = useState<string | null>(
-    quote ? quote.valid_until : settings.quote_validity_days ? addDaysISO(todayISO(), settings.quote_validity_days) : null,
-  )
-  const [deliveryFee, setDeliveryFee] = useState<number | null>(quote ? Number(quote.delivery_fee) : null)
-  const [notes, setNotes] = useState(quote?.notes ?? '')
-  const [internalNotes, setInternalNotes] = useState(quote?.internal_notes ?? '')
-  const [items, setItems] = useState<DraftItem[]>(() =>
+  const draft = useItemsDraft(({ paramsFor, defaultPrinterId }) =>
     quote
       ? quote.items.map(fromRow)
       : incoming?.prefill?.length
         ? incoming.prefill.map((p) =>
-            newItem(paramsFor(defaultPrinter?.id ?? null, p.filament_id), defaultPrinter?.id ?? null, {
+            newItem(paramsFor(defaultPrinterId, p.filament_id), defaultPrinterId, {
               description: p.description,
               grams: p.grams,
               print_minutes: p.print_minutes,
@@ -93,33 +77,20 @@ function Editor({ quote }: { quote: QuoteWithItems | null }) {
               category: p.category ?? null,
             }),
           )
-        : [newItem(paramsFor(defaultPrinter?.id ?? null, null), defaultPrinter?.id ?? null)],
+        : [newItem(paramsFor(defaultPrinterId, null), defaultPrinterId)],
   )
-  const [catalogOpen, setCatalogOpen] = useState(false)
+  const { items, markDirty, isDirty } = draft
+
+  const [customerId, setCustomerId] = useState<string | null>(quote?.customer_id ?? incoming?.customerId ?? search.get('cliente'))
+  const [validUntil, setValidUntil] = useState<string | null>(
+    quote ? quote.valid_until : settings.quote_validity_days ? addDaysISO(todayISO(), settings.quote_validity_days) : null,
+  )
+  const [deliveryFee, setDeliveryFee] = useState<number | null>(quote ? Number(quote.delivery_fee) : null)
+  const [notes, setNotes] = useState(quote?.notes ?? '')
+  const [internalNotes, setInternalNotes] = useState(quote?.internal_notes ?? '')
   const [formError, setFormError] = useState<string | null>(null)
-  const dirty = useRef(false)
-  const [isDirty, setIsDirty] = useState(false)
-  const markDirty = () => {
-    if (!dirty.current) {
-      dirty.current = true
-      setIsDirty(true)
-    }
-  }
 
-  useEffect(() => {
-    const warn = (e: BeforeUnloadEvent) => {
-      if (dirty.current) e.preventDefault()
-    }
-    window.addEventListener('beforeunload', warn)
-    return () => window.removeEventListener('beforeunload', warn)
-  }, [])
-
-  const patchItem = (key: string, patch: Partial<DraftItem>) => {
-    markDirty()
-    setItems((list) => list.map((it) => (it.key === key ? { ...it, ...patch } : it)))
-  }
-
-  const itemsTotal = items.reduce((s, it) => s + (unitPrice(it) ?? 0) * it.quantity, 0)
+  const itemsTotal = draft.itemsTotal
   const total = itemsTotal + (deliveryFee ?? 0)
   const missing = missingSettings(settings, printers)
 
@@ -144,8 +115,7 @@ function Editor({ quote }: { quote: QuoteWithItems | null }) {
       invalidate: [keys.quotes, ['quotes'], ['customers']],
       success: quote ? 'Orçamento salvo' : 'Orçamento criado',
       onSuccess: (newId) => {
-        dirty.current = false
-        setIsDirty(false)
+        draft.markSaved()
         if (!quote) navigate(`/orcamentos/${newId}`, { replace: true })
       },
     },
@@ -158,7 +128,6 @@ function Editor({ quote }: { quote: QuoteWithItems | null }) {
   }
 
   const expired = quote?.valid_until && quote.status !== 'aprovado' && daysUntil(quote.valid_until) < 0
-  const current = useMemo(() => paramsFor(defaultPrinter?.id ?? null, null), [settings, printers]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
@@ -198,33 +167,7 @@ function Editor({ quote }: { quote: QuoteWithItems | null }) {
               <Field label="Cliente">{(p) => <CustomerPicker {...p} value={customerId} onChange={(v) => (markDirty(), setCustomerId(v))} disabled={readOnly} />}</Field>
             </Card>
 
-            {items.map((it, i) => (
-              <ItemEditor
-                key={it.key}
-                item={it}
-                index={i}
-                filaments={filaments}
-                printers={printers}
-                readOnly={readOnly}
-                outdated={paramsOutdated(it, paramsFor(it.printer_id, it.filament_id))}
-                paramsFor={paramsFor}
-                onChange={(patch) => patchItem(it.key, patch)}
-                onRemove={() => (markDirty(), setItems((l) => l.filter((x) => x.key !== it.key)))}
-                onDuplicate={() => (markDirty(), setItems((l) => [...l.slice(0, i + 1), { ...it, key: crypto.randomUUID() }, ...l.slice(i + 1)]))}
-                onRefreshParams={() => patchItem(it.key, { params: paramsFor(it.printer_id, it.filament_id) })}
-              />
-            ))}
-
-            {!readOnly && (
-              <div className="flex flex-wrap gap-2">
-                <Button onClick={() => (markDirty(), setItems((l) => [...l, newItem(current, defaultPrinter?.id ?? null)]))}>
-                  <Plus /> Adicionar peça
-                </Button>
-                <Button variant="ghost" onClick={() => setCatalogOpen(true)}>
-                  <Cube /> Do catálogo
-                </Button>
-              </div>
-            )}
+            <ItemsEditorList draft={draft} readOnly={readOnly} />
           </div>
 
           <aside className="flex flex-col gap-4 lg:sticky lg:top-6">
@@ -302,16 +245,6 @@ function Editor({ quote }: { quote: QuoteWithItems | null }) {
         </div>
       )}
 
-      <CatalogPicker
-        open={catalogOpen}
-        onOpenChange={setCatalogOpen}
-        onPick={(c) => {
-          markDirty()
-          const item = itemFromCatalog(c, paramsFor(defaultPrinter?.id ?? null, c.filament_id), defaultPrinter?.id ?? null)
-          // troca a primeira peça se ela ainda estiver em branco
-          setItems((l) => (l.length === 1 && !l[0].description && l[0].grams == null ? [item] : [...l, item]))
-        }}
-      />
     </>
   )
 }

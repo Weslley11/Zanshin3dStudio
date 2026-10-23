@@ -51,3 +51,25 @@ describe('calculate', () => {
     expect(r.missing).toEqual(['tarifa de energia', 'margem'])
   })
 })
+
+import { fromRow, unitPrice } from '@/features/quotes/draft'
+
+describe('itens já gravados', () => {
+  const base = {
+    id: 'x', position: 0, catalog_item_id: null, description: 'Peça', category: null, filament_id: null, printer_id: null,
+    grams: 10, print_minutes: 60, quantity: 1, post_hours: 0, extras: [], urgent: false,
+    material_cost: 0, energy_cost: 0, machine_cost: 0, labor_cost: 0, extras_total: 0,
+    unit_price: 89.9, line_total: 89.9, created_at: '',
+  }
+  it('item sem cópia dos parâmetros mantém o preço que já tinha', () => {
+    const it = fromRow({ ...base, params: {}, calculated_unit_price: 89.9, override_unit_price: null })
+    expect(unitPrice(it)).toBe(89.9)
+  })
+  it('item com parâmetros recalcula igual ao gravado', () => {
+    const params = { costPerG: 0.1, energyTariff: 1, powerKw: 0.2, wearPerHour: 1, laborRate: 20, failureRatePct: 10, marginPct: 100, urgencyPct: 20, rounding: '90' }
+    const it = fromRow({ ...base, params, calculated_unit_price: 6.9, override_unit_price: null })
+    expect(it.override_unit_price).toBeNull()
+    // 10 g × 0,1 + 1 h × 0,2 × 1 + 1 h × 1 = 2,2 → × 1,1 × 2 = 4,84 → 4,90
+    expect(unitPrice(it)).toBe(4.9)
+  })
+})

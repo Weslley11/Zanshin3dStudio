@@ -195,11 +195,20 @@ function ItemsCard({ order, filaments }: { order: OrderDetail; filaments: Filame
     <Section
       title="Itens"
       action={
-        order.quote_id && (
-          <Button asChild variant="ghost" size="sm">
-            <Link to={`/orcamentos/${order.quote_id}`}>Ver orçamento</Link>
-          </Button>
-        )
+        <div className="flex gap-1">
+          {order.quote_id && (
+            <Button asChild variant="ghost" size="sm">
+              <Link to={`/orcamentos/${order.quote_id}`}>Orçamento</Link>
+            </Button>
+          )}
+          {order.status !== 'cancelado' && (
+            <Button asChild variant="ghost" size="sm">
+              <Link to={`/pedidos/${order.id}/itens`}>
+                <PencilSimple /> Editar
+              </Link>
+            </Button>
+          )}
+        </div>
       }
     >
       <ul className="divide-y divide-border">

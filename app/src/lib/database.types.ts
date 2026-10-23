@@ -506,6 +506,9 @@ isOneToOne: false
 "reorder_print_jobs":
 { Args: { "p_ids": (string)[] }; Returns: undefined
                            },
+"save_order":
+{ Args: { "p_items": Json,"p_order": Json }; Returns: string
+                           },
 "save_quote":
 { Args: { "p_items": Json,"p_quote": Json }; Returns: string
                            },
