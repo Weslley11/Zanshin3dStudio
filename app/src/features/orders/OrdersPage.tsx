@@ -15,6 +15,9 @@ import { useOrders, useSetOrderStatus, type OrderListRow } from './api'
 import { DueChip } from './DueChip'
 import { dueInfo } from './due'
 import { OrderCard } from './OrderCard'
+import { AnimatePresence, m } from 'motion/react'
+import { FadeIn } from '@/components/ui/motion'
+import { ease, spring, stagger } from '@/lib/motion'
 import { statusChangedToast, useCustomerMessage } from './customerMessage'
 
 type View = 'quadro' | 'lista'
@@ -161,9 +164,20 @@ function Board({ orders }: { orders: OrderListRow[] }) {
           />
         </div>
         <div className="flex flex-col gap-2">
-          {byStatus(tab).map((o) => (
-            <OrderCard key={o.id} order={o} onAdvance={(to) => move(o.id, to)} advancing={setStatus.isPending && setStatus.variables?.id === o.id} />
-          ))}
+          {/* ao avançar, o cartão sai deslizando e os outros sobem para o lugar */}
+          <AnimatePresence initial={false} mode="popLayout">
+            {byStatus(tab).map((o, i) => (
+              <m.div
+                key={o.id}
+                layout
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0, transition: { ...spring, delay: stagger(i) } }}
+                exit={{ opacity: 0, x: 80, transition: { duration: 0.22, ease } }}
+              >
+                <OrderCard order={o} onAdvance={(to) => move(o.id, to)} advancing={setStatus.isPending && setStatus.variables?.id === o.id} />
+              </m.div>
+            ))}
+          </AnimatePresence>
           {!byStatus(tab).length && <p className="py-10 text-center text-sm text-fg-muted">Nenhum pedido em "{ORDER_STATUS_LABEL[tab]}".</p>}
         </div>
       </div>
@@ -190,9 +204,13 @@ function Board({ orders }: { orders: OrderListRow[] }) {
       <div className="grid grid-cols-6 gap-3">
         {ORDER_STATUSES.map((s) => (
           <Column key={s} status={s} count={byStatus(s).length}>
-            {byStatus(s).map((o) => (
-              <DraggableCard key={o.id} order={o} hidden={o.id === activeId} />
-            ))}
+            <AnimatePresence initial={false}>
+              {byStatus(s).map((o) => (
+                <m.div key={o.id} layout initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.96 }} transition={spring}>
+                  <DraggableCard order={o} hidden={o.id === activeId} />
+                </m.div>
+              ))}
+            </AnimatePresence>
           </Column>
         ))}
       </div>
@@ -290,10 +308,11 @@ function OrderList({ orders }: { orders: OrderListRow[] }) {
         <p className="py-10 text-center text-sm text-fg-muted">Nenhum pedido com esses filtros.</p>
       ) : (
         <Card className="divide-y divide-border overflow-hidden">
-          {list.map((o) => {
+          {list.map((o, i) => {
             const remaining = Number(o.total) - Number(o.paid_total)
             return (
-              <Link key={o.id} to={`/pedidos/${o.id}`} className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-surface-2">
+              <FadeIn key={o.id} index={i}>
+              <Link to={`/pedidos/${o.id}`} className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-surface-2">
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
                     <span className="num font-medium">{docNumber(o.number)}</span>
@@ -312,6 +331,7 @@ function OrderList({ orders }: { orders: OrderListRow[] }) {
                 </div>
                 <CaretRight className="size-4 text-fg-subtle" />
               </Link>
+              </FadeIn>
             )
           })}
         </Card>

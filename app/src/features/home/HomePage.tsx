@@ -11,6 +11,7 @@ import { schedule } from '@/features/queue/schedule'
 import { missingSettings } from '@/features/settings/missing'
 import { monthOf } from '@/features/finance/compute'
 import { useNow } from '@/hooks/useNow'
+import { AnimatedNumber, FadeIn, ProgressFill } from '@/components/ui/motion'
 import { TIMEZONE, type OrderStatus } from '@/lib/constants'
 import { brl, daysUntil, docNumber, duration, grams, relativeDateTime, todayISO, toISODate } from '@/lib/format'
 import { isLowStock, lowStockLimit, must, useFilaments, usePrinters, useSettings } from '@/lib/queries'
@@ -97,12 +98,20 @@ export function HomePage() {
       ) : (
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)]">
           <div className="flex min-w-0 flex-col gap-4">
-            <PrinterNow jobs={home.data.jobs} now={now} printerName={printers.data?.find((p) => p.id === settings.data?.default_printer_id)?.name ?? 'Impressora'} />
-            <Deadlines orders={home.data.open} />
+            <FadeIn index={0}>
+              <PrinterNow jobs={home.data.jobs} now={now} printerName={printers.data?.find((p) => p.id === settings.data?.default_printer_id)?.name ?? 'Impressora'} />
+            </FadeIn>
+            <FadeIn index={2}>
+              <Deadlines orders={home.data.open} />
+            </FadeIn>
           </div>
           <div className="flex flex-col gap-4">
-            <MonthRevenue orders={home.data.month} openQuotes={home.data.openQuotes} />
-            <LowStock />
+            <FadeIn index={1}>
+              <MonthRevenue orders={home.data.month} openQuotes={home.data.openQuotes} />
+            </FadeIn>
+            <FadeIn index={3}>
+              <LowStock />
+            </FadeIn>
           </div>
         </div>
       )}
@@ -174,7 +183,7 @@ function PrinterNow({ jobs, now, printerName }: { jobs: JobRow[]; now: number; p
             </Link>
           )}
           <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-surface-3" aria-hidden>
-            <div className="h-full rounded-full" style={{ width: `${pct}%`, background: 'var(--st-imprimindo)' }} />
+            <ProgressFill pct={pct} className="h-full rounded-full" style={{ background: 'var(--st-imprimindo)' }} />
           </div>
           <p className="num mt-1.5 text-xs text-fg-muted">Termina {relativeDateTime(new Date(c.endAt)).toLowerCase()}</p>
         </div>
@@ -251,7 +260,9 @@ function MonthRevenue({ orders, openQuotes }: { orders: { total: number | null }
   return (
     <Card className="p-4">
       <p className="text-xs font-medium tracking-wide text-fg-subtle uppercase">Faturamento de {month}</p>
-      <p className="num mt-1 text-3xl font-semibold tracking-tight">{brl(revenue)}</p>
+      <p className="num mt-1 text-3xl font-semibold tracking-tight">
+        <AnimatedNumber value={revenue} format={brl} from0 />
+      </p>
       <p className="num mt-1 text-sm text-fg-muted">
         {orders.length} {orders.length === 1 ? 'pedido aprovado' : 'pedidos aprovados'}
       </p>

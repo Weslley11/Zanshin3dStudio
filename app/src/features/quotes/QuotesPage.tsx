@@ -9,6 +9,7 @@ import { EmptyState, ErrorState, ListSkeleton } from '@/components/ui/states'
 import { QUOTE_STATUS_LABEL } from '@/lib/constants'
 import { brl, date, daysUntil, docNumber } from '@/lib/format'
 import { useQuotes } from './api'
+import { FadeIn } from '@/components/ui/motion'
 
 type Filter = 'abertos' | 'aprovado' | 'recusado' | 'todos'
 
@@ -90,10 +91,11 @@ export function QuotesPage() {
               <p className="py-10 text-center text-sm text-fg-muted">Nenhum orçamento neste filtro.</p>
             ) : (
               <Card className="divide-y divide-border overflow-hidden">
-                {list.map((x) => {
+                {list.map((x, i) => {
                   const expired = x.valid_until && ['rascunho', 'enviado'].includes(x.status) && daysUntil(x.valid_until) < 0
                   return (
-                    <Link key={x.id} to={`/orcamentos/${x.id}`} className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-surface-2">
+                    <FadeIn key={x.id} index={i}>
+                    <Link to={`/orcamentos/${x.id}`} className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-surface-2">
                       <div className="min-w-0 flex-1">
                         <div className="flex flex-wrap items-center gap-2">
                           <span className="num font-medium">{docNumber(x.number)}</span>
@@ -110,6 +112,7 @@ export function QuotesPage() {
                       </div>
                       <CaretRight className="size-4 text-fg-subtle" />
                     </Link>
+                    </FadeIn>
                   )
                 })}
               </Card>

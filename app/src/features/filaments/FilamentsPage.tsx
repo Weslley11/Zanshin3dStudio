@@ -12,6 +12,7 @@ import { isLowStock, keys, lowStockLimit, must, useAction, useFilaments, useSett
 import { supabase } from '@/lib/supabase'
 import type { Filament, Settings } from '@/lib/types'
 import { cn } from '@/lib/utils'
+import { FadeIn, ProgressFill } from '@/components/ui/motion'
 
 type Filter = 'todos' | 'baixo' | (typeof MATERIALS)[number] | 'arquivados'
 
@@ -82,9 +83,10 @@ export function FilamentsPage() {
               <p className="py-10 text-center text-sm text-fg-muted">Nada neste filtro.</p>
             ) : (
               <ul className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-                {list.map((f) => (
+                {list.map((f, i) => (
                   <FilamentCard
                     key={f.id}
+                    index={i}
                     f={f}
                     settings={settings.data}
                     onEdit={() => setEditing(f)}
@@ -108,12 +110,14 @@ export function FilamentsPage() {
 
 function FilamentCard({
   f,
+  index,
   settings,
   onEdit,
   onWeigh,
   onDuplicate,
 }: {
   f: Filament
+  index: number
   settings: Settings | undefined
   onEdit: () => void
   onWeigh: () => void
@@ -128,7 +132,7 @@ function FilamentCard({
   )
 
   return (
-    <li>
+    <FadeIn as="li" index={index}>
       <Card className={cn('flex h-full flex-col gap-3 p-4', f.archived && 'opacity-70')}>
         <div className="flex items-start gap-3">
           <ColorSwatch hex={f.color_hex} className="mt-0.5 size-9" label={`Cor ${f.color_name}`} />
@@ -175,7 +179,7 @@ function FilamentCard({
             aria-valuemin={0}
             aria-valuemax={100}
           >
-            <div className={cn('h-full rounded-full transition-[width] duration-500', low ? 'bg-accent' : 'bg-silver')} style={{ width: `${pct}%` }} />
+            <ProgressFill pct={pct} className={cn('h-full rounded-full', low ? 'bg-accent' : 'bg-silver')} />
           </div>
         </div>
 
@@ -190,7 +194,7 @@ function FilamentCard({
           )}
         </div>
       </Card>
-    </li>
+    </FadeIn>
   )
 }
 

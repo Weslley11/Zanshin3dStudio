@@ -1,4 +1,6 @@
-import { Suspense, useState, type ReactNode } from 'react'
+import { Suspense, useEffect, useRef, useState, type ReactNode } from 'react'
+import { m } from 'motion/react'
+import { ease, spring } from '@/lib/motion'
 import { NavLink, Outlet, useLocation } from 'react-router-dom'
 import {
   Calculator,
@@ -19,6 +21,7 @@ import { Dialog as D } from 'radix-ui'
 import { useOnline } from '@/hooks/useOnline'
 import { supabase } from '@/lib/supabase'
 import { cn } from '@/lib/utils'
+import { BottomSheet } from '@/components/ui/dialog'
 import { Logo } from './Logo'
 import { ThemeSwitcher } from './ThemeSwitcher'
 
@@ -48,15 +51,19 @@ function SideLink({ item }: { item: NavItem }) {
       className={({ isActive }) =>
         cn(
           'group relative flex h-10 items-center gap-3 rounded-ui px-3 text-sm font-medium transition-colors',
-          isActive ? 'bg-surface-2 text-fg' : 'text-fg-muted hover:bg-surface-2/60 hover:text-fg',
+          isActive ? 'text-fg' : 'text-fg-muted hover:bg-surface-2/60 hover:text-fg',
         )
       }
     >
       {({ isActive }) => (
         <>
-          <span className={cn('absolute top-2 bottom-2 left-0 w-0.5 rounded-full bg-accent transition-opacity', isActive ? 'opacity-100' : 'opacity-0')} />
-          <Icon className="size-5" weight={isActive ? 'fill' : 'regular'} />
-          {item.label}
+          {isActive && (
+            <m.span layoutId="side-active" className="absolute inset-0 rounded-ui bg-surface-2" transition={spring}>
+              <span className="absolute top-2 bottom-2 left-0 w-0.5 rounded-full bg-accent" />
+            </m.span>
+          )}
+          <Icon className="relative size-5" weight={isActive ? 'fill' : 'regular'} />
+          <span className="relative">{item.label}</span>
         </>
       )}
     </NavLink>
@@ -75,7 +82,10 @@ function TabLink({ item }: { item: NavItem }) {
     >
       {({ isActive }) => (
         <>
-          <Icon className={cn('size-6', isActive && 'text-accent-text')} weight={isActive ? 'fill' : 'regular'} />
+          <span className="relative flex h-7 w-12 items-center justify-center">
+            {isActive && <m.span layoutId="tab-active" className="absolute inset-0 rounded-full bg-accent-soft" transition={spring} />}
+            <Icon className={cn('relative size-6', isActive && 'text-accent-text')} weight={isActive ? 'fill' : 'regular'} />
+          </span>
           {item.label}
         </>
       )}
@@ -121,7 +131,7 @@ export function AppShell() {
           </div>
         )}
         <Suspense fallback={<div className="mx-auto max-w-6xl px-4 py-6 lg:px-8 lg:py-10"><div className="skeleton h-24 rounded-ui" /></div>}>
-          <Outlet />
+          <RouteTransition />
         </Suspense>
       </main>
 
@@ -143,26 +153,20 @@ export function AppShell() {
             <DotsThreeOutline className={cn('size-6', moreActive && 'text-accent-text')} weight={moreActive ? 'fill' : 'regular'} />
             Mais
           </D.Trigger>
-          <D.Portal>
-            <D.Overlay className="animate-fade fixed inset-0 z-50 bg-[var(--overlay)]" />
-            <D.Content className="pb-safe fixed inset-x-0 bottom-0 z-50 animate-[sheet-up_240ms_var(--ease-out)] rounded-t-ui border-t border-border bg-surface px-3 pt-3">
-              <div className="mx-auto mb-3 h-1 w-10 rounded-full bg-border-strong" />
-              <D.Title className="sr-only">Mais seções</D.Title>
-              <D.Description className="sr-only">Filamentos, clientes, catálogo, financeiro e configurações</D.Description>
-              <div className="flex flex-col gap-0.5" onClick={() => setMoreOpen(false)}>
-                {MORE.map((i) => (
-                  <MoreLink key={i.to} item={i} />
-                ))}
-              </div>
-              <div className="my-3 h-px bg-border" />
-              <div className="flex items-center justify-between gap-3 px-1 pb-4">
-                <ThemeSwitcher />
-                <button onClick={() => supabase.auth.signOut()} className="flex h-10 items-center gap-2 rounded-ui px-3 text-sm text-fg-muted">
-                  <SignOut className="size-4" /> Sair
-                </button>
-              </div>
-            </D.Content>
-          </D.Portal>
+          <BottomSheet open={moreOpen} onOpenChange={setMoreOpen} title="Mais seções" description="Filamentos, clientes, catálogo, modelos, financeiro e configurações">
+            <div className="flex flex-col gap-0.5" onClick={() => setMoreOpen(false)}>
+              {MORE.map((i) => (
+                <MoreLink key={i.to} item={i} />
+              ))}
+            </div>
+            <div className="my-3 h-px bg-border" />
+            <div className="flex items-center justify-between gap-3 px-1 pb-4">
+              <ThemeSwitcher />
+              <button onClick={() => supabase.auth.signOut()} className="flex h-10 items-center gap-2 rounded-ui px-3 text-sm text-fg-muted">
+                <SignOut className="size-4" /> Sair
+              </button>
+            </div>
+          </BottomSheet>
         </D.Root>
       </nav>
     </div>
@@ -201,5 +205,24 @@ export function PageHeader({ title, description, actions, back }: { title: React
 }
 
 export function Page({ children, className }: { children: ReactNode; className?: string }) {
-  return <div className={cn('animate-enter mx-auto max-w-6xl px-4 py-4 lg:px-8 lg:py-6', className)}>{children}</div>
+  return <div className={cn('mx-auto max-w-6xl px-4 py-4 lg:px-8 lg:py-6', className)}>{children}</div>
+}
+
+/**
+ * Troca de tela: entrar num detalhe (/pedidos → /pedidos/123) desliza da
+ * direita, voltar desliza da esquerda, trocar de seção só aparece.
+ */
+function RouteTransition() {
+  const { pathname } = useLocation()
+  const depth = pathname.split('/').filter(Boolean).length
+  const prev = useRef(depth)
+  const dir = depth > prev.current ? 1 : depth < prev.current ? -1 : 0
+  useEffect(() => {
+    prev.current = depth
+  }, [depth])
+  return (
+    <m.div key={pathname} initial={{ opacity: 0, x: dir * 28, y: dir ? 0 : 6 }} animate={{ opacity: 1, x: 0, y: 0 }} transition={{ duration: 0.26, ease }}>
+      <Outlet />
+    </m.div>
+  )
 }

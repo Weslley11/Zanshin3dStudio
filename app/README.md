@@ -7,6 +7,7 @@ repositório).
 
 **Stack:** React + Vite + TypeScript, Tailwind v4, componentes próprios sobre
 Radix (mesma base do shadcn/ui, com visual da Zanshin), ícones Phosphor,
+animações com Motion (respeitam o "reduzir movimento" do aparelho),
 Supabase (Auth, Postgres com RLS e Storage) e PWA instalável.
 
 ## Módulos

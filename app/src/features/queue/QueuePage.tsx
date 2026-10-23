@@ -33,6 +33,9 @@ import type { Filament, PrintJob } from '@/lib/types'
 import { cn } from '@/lib/utils'
 import { FailDialog, JobDialog } from './JobDialog'
 import { schedule, type Scheduled } from './schedule'
+import { AnimatePresence, m } from 'motion/react'
+import { ProgressFill } from '@/components/ui/motion'
+import { spring } from '@/lib/motion'
 
 type JobRow = PrintJob & { order: { id: string; number: number; customer: { name: string } | null } | null }
 
@@ -207,14 +210,18 @@ function PrinterQueue({
   return (
     <div className="grid grid-cols-1 gap-4 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start">
       <div className="flex min-w-0 flex-col gap-4">
+        <AnimatePresence mode="popLayout" initial={false}>
         {plan.current ? (
-          <RunningCard job={plan.current as Scheduled<JobRow>} now={now} filament={filaments.find((f) => f.id === plan.current!.filament_id)} short={shortage.has(plan.current.id)} />
+          <m.div key={plan.current.id} layout initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12, scale: 0.98 }} transition={spring}>
+            <RunningCard job={plan.current as Scheduled<JobRow>} now={now} filament={filaments.find((f) => f.id === plan.current!.filament_id)} short={shortage.has(plan.current.id)} />
+          </m.div>
         ) : (
           <div className="flex items-center gap-3 rounded-ui border border-dashed border-border-strong px-4 py-3 text-sm text-fg-muted">
             <PrinterIcon className="size-5 text-fg-subtle" />
             {printerName} parada. Toque em <Play className="inline size-4" weight="fill" /> na próxima placa para começar.
           </div>
         )}
+        </AnimatePresence>
 
         {queued.length > 0 && (
           <section aria-label="Próximas placas">
@@ -301,7 +308,7 @@ function RunningCard({ job, now, filament, short }: { job: Scheduled<JobRow>; no
             aria-valuemin={0}
             aria-valuemax={100}
           >
-            <div className="h-full rounded-full transition-[width] duration-1000" style={{ width: `${pct}%`, background: 'var(--st-imprimindo)' }} />
+            <ProgressFill pct={pct} className="h-full rounded-full" style={{ background: 'var(--st-imprimindo)' }} />
           </div>
           <div className="num mt-1.5 flex justify-between text-xs text-fg-muted">
             <span>

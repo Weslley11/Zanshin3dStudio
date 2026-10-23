@@ -11,6 +11,7 @@ import { brl, date, docNumber, grams, monthLabel, percent } from '@/lib/format'
 import { keys, must, useAction, useSettings } from '@/lib/queries'
 import { supabase } from '@/lib/supabase'
 import { cn } from '@/lib/utils'
+import { AnimatedNumber } from '@/components/ui/motion'
 import { lastMonths, monthCsv, overallFailureRate, summarize, type FinanceData, type MonthSummary } from './compute'
 
 function useFinance() {
@@ -114,15 +115,17 @@ function Headline({ s, prev }: { s: MonthSummary; prev?: MonthSummary }) {
     <Card className="grid gap-6 p-5 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr]">
       <div className="flex flex-col gap-1 sm:col-span-2 lg:col-span-1">
         <span className="text-xs font-medium tracking-wide text-fg-subtle uppercase">Faturamento</span>
-        <span className="num text-4xl font-semibold tracking-tight">{brl(s.revenue)}</span>
+        <span className="num text-4xl font-semibold tracking-tight">
+          <AnimatedNumber value={s.revenue} format={brl} from0 />
+        </span>
         <span className="num text-xs text-fg-muted">
           {s.count} {s.count === 1 ? 'pedido' : 'pedidos'}
           {delta(s.revenue, prev?.revenue) && ` · ${delta(s.revenue, prev?.revenue)}`}
         </span>
       </div>
-      <Stat label="Lucro estimado" value={brl(s.profit)} hint={margin != null ? `${percent(margin, 0)} do faturamento` : undefined} />
+      <Stat label="Lucro estimado" value={<AnimatedNumber value={s.profit} format={brl} from0 />} hint={margin != null ? `${percent(margin, 0)} do faturamento` : undefined} />
       <Stat label="Ticket médio" value={s.ticket == null ? '--' : brl(s.ticket)} />
-      <Stat label="Recebido no mês" value={brl(s.received)} hint="Pagamentos registrados" />
+      <Stat label="Recebido no mês" value={<AnimatedNumber value={s.received} format={brl} from0 />} hint="Pagamentos registrados" />
       <dl className="num grid grid-cols-2 gap-x-6 gap-y-2 border-t border-border pt-4 text-sm sm:col-span-2 lg:col-span-4 lg:grid-cols-4">
         <div>
           <dt className="text-fg-subtle">Material</dt>

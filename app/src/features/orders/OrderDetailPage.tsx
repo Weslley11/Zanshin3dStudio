@@ -40,6 +40,8 @@ import { useOrder, useSetOrderStatus, type OrderDetail } from './api'
 import { DueChip } from './DueChip'
 import { trackingUrl } from './tracking'
 import { OrderModels } from './OrderModels'
+import { AnimatePresence, m } from 'motion/react'
+import { ease } from '@/lib/motion'
 import { MessageDialog, statusChangedToast, useCustomerMessage } from './customerMessage'
 import { MESSAGE_KEYS, MESSAGE_LABEL, messageKeyForStatus, type MessageKey } from '@/lib/messages'
 
@@ -128,10 +130,15 @@ function StatusCard({ order }: { order: OrderDetail }) {
           <ol className="flex items-center gap-1" aria-label="Andamento do pedido">
             {ORDER_STATUSES.map((s, i) => (
               <li key={s} className="flex flex-1 flex-col gap-1.5" aria-current={i === idx ? 'step' : undefined}>
-                <span
-                  className={cn('h-1.5 rounded-full transition-colors duration-300', i <= idx ? '' : 'bg-surface-3')}
-                  style={i <= idx ? { background: `var(--st-${status})` } : undefined}
-                />
+                <span className="h-1.5 overflow-hidden rounded-full bg-surface-3">
+                  <m.span
+                    className="block h-full origin-left rounded-full"
+                    style={{ background: `var(--st-${status})` }}
+                    initial={false}
+                    animate={{ scaleX: i <= idx ? 1 : 0 }}
+                    transition={{ duration: 0.35, ease, delay: i <= idx ? i * 0.04 : 0 }}
+                  />
+                </span>
                 <span className={cn('hidden text-[11px] sm:block', i === idx ? 'font-medium text-fg' : 'text-fg-subtle')}>{ORDER_STATUS_LABEL[s]}</span>
               </li>
             ))}
@@ -268,8 +275,17 @@ function PaymentsCard({ order }: { order: OrderDetail }) {
       </div>
       {order.payments.length > 0 && (
         <ul className="mt-3 divide-y divide-border text-sm">
+          <AnimatePresence initial={false}>
           {order.payments.map((p) => (
-            <li key={p.id} className="flex items-center gap-2 py-2">
+            <m.li
+              key={p.id}
+              layout
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.22, ease }}
+              className="flex items-center gap-2 overflow-hidden py-2"
+            >
               <span className="num w-20 text-fg-muted">{date(p.paid_at)}</span>
               <span className="flex-1">
                 {PAYMENT_KIND[p.kind]} · {PAYMENT[p.method]}
@@ -278,8 +294,9 @@ function PaymentsCard({ order }: { order: OrderDetail }) {
               <Button variant="ghost" size="icon-sm" aria-label="Remover pagamento" onClick={() => remove.mutate(p.id)}>
                 <Trash />
               </Button>
-            </li>
+            </m.li>
           ))}
+          </AnimatePresence>
         </ul>
       )}
       {remaining > 0.009 && order.status !== 'cancelado' && (

@@ -2,6 +2,8 @@ import { lazy, Suspense } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { Toaster } from 'sonner'
+import { LazyMotion, MotionConfig } from 'motion/react'
+import { ease, loadMotionFeatures } from '@/lib/motion'
 import { AppShell } from '@/components/layout/AppShell'
 import { ListSkeleton } from '@/components/ui/states'
 import { AuthProvider } from '@/features/auth/AuthProvider'
@@ -45,6 +47,9 @@ function Loading() {
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
+      {/* "user": quem ativou reduzir movimento no aparelho fica sem animação */}
+      <MotionConfig reducedMotion="user" transition={{ duration: 0.24, ease }}>
+      <LazyMotion features={loadMotionFeatures} strict>
       <BrowserRouter>
         <AuthProvider>
           <Suspense fallback={<Loading />}>
@@ -75,6 +80,8 @@ export default function App() {
           </Suspense>
         </AuthProvider>
       </BrowserRouter>
+      </LazyMotion>
+      </MotionConfig>
       <Toaster
         position="top-center"
         toastOptions={{

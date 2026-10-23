@@ -10,6 +10,7 @@ import { duration, grams, number } from '@/lib/format'
 import { photoUrl } from '@/lib/supabase'
 import { formatLabel, storedPlates, useModels, type ModelRow } from './api'
 import { useModelUpload } from './useModelUpload'
+import { FadeIn } from '@/components/ui/motion'
 
 export function ModelsPage() {
   const models = useModels()
@@ -65,10 +66,10 @@ export function ModelsPage() {
               <p className="py-10 text-center text-sm text-fg-muted">Nada encontrado.</p>
             ) : (
               <ul className="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-4">
-                {list.map((m) => (
-                  <li key={m.id}>
+                {list.map((m, i) => (
+                  <FadeIn as="li" key={m.id} index={i}>
                     <ModelCard m={m} />
-                  </li>
+                  </FadeIn>
                 ))}
               </ul>
             )}

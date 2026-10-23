@@ -1,4 +1,6 @@
-import type { ComponentProps, ReactNode } from 'react'
+import { useId, type ComponentProps, type ReactNode } from 'react'
+import { m } from 'motion/react'
+import { spring } from '@/lib/motion'
 import { DropdownMenu as DM } from 'radix-ui'
 import { cn } from '@/lib/utils'
 import type { OrderStatus } from '@/lib/constants'
@@ -67,6 +69,7 @@ export function Segmented<T extends string>({
   className?: string
   label: string
 }) {
+  const pillId = useId()
   return (
     <div role="radiogroup" aria-label={label} className={cn('inline-flex rounded-ui border border-border bg-surface p-0.5', className)}>
       {options.map((o) => (
@@ -77,11 +80,13 @@ export function Segmented<T extends string>({
           aria-checked={value === o.value}
           onClick={() => onChange(o.value)}
           className={cn(
-            'inline-flex h-9 items-center gap-1.5 rounded-ui px-3 text-sm whitespace-nowrap text-fg-muted transition-colors [&_svg]:size-4',
-            value === o.value ? 'bg-surface-3 text-fg' : 'hover:text-fg',
+            'relative inline-flex h-9 items-center gap-1.5 rounded-ui px-3 text-sm whitespace-nowrap text-fg-muted transition-colors [&_svg]:size-4',
+            value === o.value ? 'text-fg' : 'hover:text-fg',
           )}
         >
-          {o.label}
+          {/* o fundo do item escolhido desliza até o novo */}
+          {value === o.value && <m.span layoutId={pillId} className="absolute inset-0 rounded-ui bg-surface-3" transition={spring} />}
+          <span className="relative inline-flex items-center gap-1.5">{o.label}</span>
         </button>
       ))}
     </div>

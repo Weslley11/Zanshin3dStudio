@@ -26,7 +26,7 @@ export function OrderCard({
   return (
     <div
       className={cn(
-        'animate-enter rounded-ui border border-border bg-surface p-3 transition-shadow',
+        'rounded-ui border border-border bg-surface p-3 transition-shadow',
         dragging && 'rotate-1 shadow-[var(--shadow)] ring-1 ring-border-strong',
         className,
       )}

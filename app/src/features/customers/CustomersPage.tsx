@@ -10,6 +10,7 @@ import { ORIGINS } from '@/lib/constants'
 import { brl, formatPhone } from '@/lib/format'
 import { useCustomers } from '@/lib/queries'
 import { CustomerDialog } from './CustomerDialog'
+import { FadeIn } from '@/components/ui/motion'
 
 type Sort = 'nome' | 'gasto' | 'recentes'
 
@@ -101,8 +102,9 @@ export function CustomersPage() {
               <p className="py-10 text-center text-sm text-fg-muted">Nenhum cliente encontrado.</p>
             ) : (
               <Card className="divide-y divide-border overflow-hidden">
-                {list.map((c) => (
-                  <Link key={c.id} to={`/clientes/${c.id}`} className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-surface-2">
+                {list.map((c, i) => (
+                  <FadeIn key={c.id} index={i}>
+                  <Link to={`/clientes/${c.id}`} className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-surface-2">
                     <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-surface-3 text-sm font-semibold text-fg-muted">
                       {c.name
                         .split(/\s+/)
@@ -128,6 +130,7 @@ export function CustomersPage() {
                     </div>
                     <CaretRight className="size-4 text-fg-subtle" />
                   </Link>
+                  </FadeIn>
                 ))}
               </Card>
             )}

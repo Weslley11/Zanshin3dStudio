@@ -18,6 +18,7 @@ import { errorMessage, photoUrl, supabase, uploadPhoto } from '@/lib/supabase'
 import type { CatalogItem, Filament } from '@/lib/types'
 import { cn } from '@/lib/utils'
 import { useCatalog } from './api'
+import { FadeIn } from '@/components/ui/motion'
 
 type Filter = 'todas' | keyof typeof CATEGORIES
 
@@ -118,8 +119,8 @@ export function CatalogPage() {
               <p className="py-10 text-center text-sm text-fg-muted">Nada encontrado.</p>
             ) : (
               <ul className="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-4">
-                {list.map((c) => (
-                  <li key={c.id}>
+                {list.map((c, i) => (
+                  <FadeIn as="li" key={c.id} index={i}>
                     <button type="button" onClick={() => setEditing(c)} className="group block h-full w-full text-left">
                       <Card className={cn('flex h-full flex-col overflow-hidden transition-colors group-hover:border-border-strong', !c.active && 'opacity-60')}>
                         {c.photo_path ? (
@@ -141,7 +142,7 @@ export function CatalogPage() {
                         </div>
                       </Card>
                     </button>
-                  </li>
+                  </FadeIn>
                 ))}
               </ul>
             )}

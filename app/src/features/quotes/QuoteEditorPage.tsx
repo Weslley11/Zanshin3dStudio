@@ -19,6 +19,7 @@ import { cn } from '@/lib/utils'
 import { useQuote, type QuoteWithItems } from './api'
 import { currentParams, fromRow, itemFromCatalog, newItem, paramsOutdated, toRow, unitPrice, validate, type DraftItem, type ItemParams } from './draft'
 import { ItemEditor } from './ItemEditor'
+import { AnimatedNumber } from '@/components/ui/motion'
 import { QuoteActions } from './QuoteActions'
 
 export function QuoteEditorPage() {
@@ -256,7 +257,9 @@ function Editor({ quote }: { quote: QuoteWithItems | null }) {
                 )}
                 <div className="mt-1 flex items-baseline justify-between">
                   <dt className="font-medium">Total</dt>
-                  <dd className="text-2xl font-semibold">{brl(total)}</dd>
+                  <dd className="text-2xl font-semibold">
+                    <AnimatedNumber value={total} format={brl} />
+                  </dd>
                 </div>
               </dl>
               {formError && (
@@ -283,7 +286,9 @@ function Editor({ quote }: { quote: QuoteWithItems | null }) {
           <div className="flex items-center gap-3">
             <div className="flex-1">
               <div className="text-xs text-fg-subtle">Total</div>
-              <div className={cn('num text-lg leading-tight font-semibold')}>{brl(total)}</div>
+              <div className={cn('num text-lg leading-tight font-semibold')}>
+                <AnimatedNumber value={total} format={brl} />
+              </div>
             </div>
             <Button variant="primary" size="lg" onClick={submit} loading={save.isPending}>
               <FloppyDisk /> {quote ? 'Salvar' : 'Criar orçamento'}
