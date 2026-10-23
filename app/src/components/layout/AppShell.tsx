@@ -195,7 +195,7 @@ export function PageHeader({ title, description, actions, back }: { title: React
       <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 pt-[max(0.75rem,env(safe-area-inset-top))] pb-3 lg:px-8 lg:pt-8 lg:pb-2">
         {back}
         <div className="min-w-0 flex-1">
-          <h1 className="truncate text-xl font-semibold lg:text-2xl">{title}</h1>
+          <h1 className="title-display truncate text-xl lg:text-2xl">{title}</h1>
           {description && <p className="mt-0.5 hidden text-sm text-fg-muted sm:block">{description}</p>}
         </div>
         {actions && <div className="flex shrink-0 items-center gap-2">{actions}</div>}

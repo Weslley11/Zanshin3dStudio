@@ -7,6 +7,7 @@ import logoDark from '@/assets/logo-horizontal-dark-bg.png'
 import logoLight from '@/assets/logo-horizontal-light-bg.png'
 import { Button } from '@/components/ui/button'
 import { Card, Skeleton } from '@/components/ui/misc'
+import { PrintStage } from '@/components/print/PrintStage'
 import { ErrorState } from '@/components/ui/states'
 import { DELIVERY, ORDER_STATUSES, ORDER_STATUS_PUBLIC, type OrderStatus } from '@/lib/constants'
 import { date, dateTime } from '@/lib/format'
@@ -91,7 +92,7 @@ function TrackingView({ t }: { t: Tracking }) {
     <>
       <Card className="p-5">
         <p className="text-sm text-fg-muted">Pedido</p>
-        <h1 className="num text-3xl font-semibold tracking-tight">{t.number}</h1>
+        <h1 className="title-display num text-3xl">{t.number}</h1>
         <p className={cn('mt-3 text-lg font-medium', cancelled ? 'text-fg-muted' : '')} style={cancelled ? undefined : { color: `var(--st-${t.status})` }}>
           {ORDER_STATUS_PUBLIC[t.status]}
         </p>
@@ -101,6 +102,13 @@ function TrackingView({ t }: { t: Tracking }) {
           </p>
         )}
       </Card>
+
+      {t.status === 'imprimindo' && (
+        <Card className="overflow-hidden">
+          <PrintStage framing="card" sceneClassName="print-fade-card" className="h-56" />
+          <p className="border-t border-border px-4 py-3 text-sm text-fg-muted">Cada peça sai da impressora camada por camada. A sua está sendo impressa agora.</p>
+        </Card>
+      )}
 
       {ready && t.photos.length > 0 && (
         <Card className="overflow-hidden">

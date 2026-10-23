@@ -114,7 +114,7 @@ function QuoteView({ quote, token, onChange }: { quote: PublicQuote; token: stri
     <>
       <Card className="p-5">
         <p className="text-sm text-fg-muted">{quote.customer_first_name ? `Orçamento para ${quote.customer_first_name}` : 'Orçamento'}</p>
-        <h1 className="num text-3xl font-semibold tracking-tight">{quote.number}</h1>
+        <h1 className="title-display num text-3xl">{quote.number}</h1>
         <p className="num mt-2 text-sm text-fg-muted">
           Emitido em {date(quote.created_at)}
           {quote.valid_until && (

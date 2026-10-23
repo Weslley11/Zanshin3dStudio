@@ -1,6 +1,8 @@
 @import 'tailwindcss';
 @import '@fontsource-variable/geist';
 @import '@fontsource-variable/geist-mono';
+/* títulos no estilo do site: Archivo itálico (só o arquivo itálico, 39 KB) */
+@import '@fontsource-variable/archivo/wght-italic.css';
 
 /* Tema: o <html> recebe data-theme="dark" ou "light" antes da primeira pintura
    (script em index.html). Escuro é a base; nada de preto ou branco puros. */
@@ -76,6 +78,7 @@
 @theme inline {
   --font-sans: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'Geist Mono Variable', ui-monospace, monospace;
+  --font-display: 'Archivo Variable', 'Arial Narrow', ui-sans-serif, sans-serif;
 
   --color-bg: var(--bg);
   --color-surface: var(--surface);
@@ -147,6 +150,51 @@
   }
 }
 
+/* Título de tela no estilo do site: Archivo itálico pesado, em caixa alta.
+   A folga à direita impede o itálico de ser cortado quando o texto trunca. */
+@utility title-display {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 820;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  padding-right: 0.1em;
+}
+
+/* Eyebrow: rótulo pequeno em mono acima de um título ou número */
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Linhas de camada no fundo, descendo devagar (o assunto da casa).
+   Quem usa precisa de position relative e isolate. --lines-at move o foco. */
+.layer-lines::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: repeating-linear-gradient(0deg, color-mix(in srgb, var(--fg) 6%, transparent) 0 1px, transparent 1px 8px);
+  mask: radial-gradient(70% 90% at var(--lines-at, 50% 40%), #000, transparent 72%);
+  animation: layer-drift 14s linear infinite;
+}
+@keyframes layer-drift {
+  to { background-position: 0 -160px; }
+}
+
+/* A cena 3D some nas bordas, sem emenda com o fundo */
+.print-fade-hero {
+  mask: radial-gradient(closest-side at 50% 50%, #000 62%, transparent 100%);
+}
+.print-fade-card {
+  mask: radial-gradient(closest-side at 50% 50%, #000 70%, transparent 100%);
+}
+
 /* Animações curtas e com função */
 @keyframes enter {
   from { opacity: 0; transform: translateY(6px); }
@@ -193,6 +241,7 @@
     scroll-behavior: auto !important;
   }
   .skeleton { animation: none; }
+  .layer-lines::before { animation: none; }
 }
 
 @media print {

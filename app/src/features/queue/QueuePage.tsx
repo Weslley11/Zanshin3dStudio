@@ -35,6 +35,8 @@ import { FailDialog, JobDialog } from './JobDialog'
 import { schedule, type Scheduled } from './schedule'
 import { AnimatePresence, m } from 'motion/react'
 import { ProgressFill } from '@/components/ui/motion'
+import { PrintStage } from '@/components/print/PrintStage'
+import { jobProgress, pieceFor } from '@/components/print/timeline'
 import { spring } from '@/lib/motion'
 
 type JobRow = PrintJob & { order: { id: string; number: number; customer: { name: string } | null } | null }
@@ -292,36 +294,45 @@ function RunningCard({ job, now, filament, short }: { job: Scheduled<JobRow>; no
 
   return (
     <Card className="overflow-hidden border-[color-mix(in_srgb,var(--st-imprimindo)_40%,var(--border))]">
-      <div className="p-4">
-        <div className="flex items-center gap-2 text-xs font-medium" style={{ color: 'var(--st-imprimindo)' }}>
-          <span className="size-2 animate-pulse rounded-full" style={{ background: 'var(--st-imprimindo)' }} />
-          Imprimindo agora
-        </div>
-        <h2 className="mt-1.5 text-lg font-semibold">{job.title}</h2>
-        <JobMeta job={job} filament={filament} />
-        <div className="mt-4">
-          <div
-            className="h-2 overflow-hidden rounded-full bg-surface-3"
-            role="progressbar"
-            aria-label="Progresso estimado"
-            aria-valuenow={Math.round(pct)}
-            aria-valuemin={0}
-            aria-valuemax={100}
-          >
-            <ProgressFill pct={pct} className="h-full rounded-full" style={{ background: 'var(--st-imprimindo)' }} />
+      <div className="grid grid-cols-1 sm:grid-cols-[minmax(0,1fr)_14rem]">
+        <PrintStage
+          progress={jobProgress(job.startAt, job.print_minutes, now)}
+          piece={pieceFor(job.id)}
+          color={filament?.color_hex}
+          sceneClassName="print-fade-card"
+          className="h-40 border-b border-border sm:order-last sm:h-auto sm:border-b-0 sm:border-l"
+        />
+        <div className="min-w-0 p-4">
+          <div className="flex items-center gap-2 text-xs font-medium" style={{ color: 'var(--st-imprimindo)' }}>
+            <span className="size-2 animate-pulse rounded-full" style={{ background: 'var(--st-imprimindo)' }} />
+            Imprimindo agora
           </div>
-          <div className="num mt-1.5 flex justify-between text-xs text-fg-muted">
-            <span>
-              {duration(elapsed / 60_000)} de {duration(job.print_minutes)}
-            </span>
-            <span className={late ? 'text-warn' : ''}>{late ? 'Já devia ter terminado' : `Termina ${relativeDateTime(new Date(job.endAt)).toLowerCase()}`}</span>
+          <h2 className="mt-1.5 text-lg font-semibold">{job.title}</h2>
+          <JobMeta job={job} filament={filament} />
+          <div className="mt-4">
+            <div
+              className="h-2 overflow-hidden rounded-full bg-surface-3"
+              role="progressbar"
+              aria-label="Progresso estimado"
+              aria-valuenow={Math.round(pct)}
+              aria-valuemin={0}
+              aria-valuemax={100}
+            >
+              <ProgressFill pct={pct} className="h-full rounded-full" style={{ background: 'var(--st-imprimindo)' }} />
+            </div>
+            <div className="num mt-1.5 flex justify-between text-xs text-fg-muted">
+              <span>
+                {duration(elapsed / 60_000)} de {duration(job.print_minutes)}
+              </span>
+              <span className={late ? 'text-warn' : ''}>{late ? 'Já devia ter terminado' : `Termina ${relativeDateTime(new Date(job.endAt)).toLowerCase()}`}</span>
+            </div>
           </div>
+          {short && (
+            <p className="mt-3 flex items-center gap-1.5 text-xs text-accent-text">
+              <Warning weight="fill" /> O carretel pode não ter filamento suficiente.
+            </p>
+          )}
         </div>
-        {short && (
-          <p className="mt-3 flex items-center gap-1.5 text-xs text-accent-text">
-            <Warning weight="fill" /> O carretel pode não ter filamento suficiente.
-          </p>
-        )}
       </div>
       <div className="grid grid-cols-2 gap-2 border-t border-border bg-surface-2/40 p-3">
         <Button variant="primary" onClick={() => complete.mutate(undefined)} loading={complete.isPending}>

@@ -12,13 +12,15 @@ import { missingSettings } from '@/features/settings/missing'
 import { monthOf } from '@/features/finance/compute'
 import { useNow } from '@/hooks/useNow'
 import { AnimatedNumber, FadeIn, ProgressFill } from '@/components/ui/motion'
+import { PrintStage } from '@/components/print/PrintStage'
+import { jobProgress, pieceFor } from '@/components/print/timeline'
 import { TIMEZONE, type OrderStatus } from '@/lib/constants'
 import { brl, daysUntil, docNumber, duration, grams, relativeDateTime, todayISO, toISODate } from '@/lib/format'
 import { isLowStock, lowStockLimit, must, useFilaments, usePrinters, useSettings } from '@/lib/queries'
 import { supabase } from '@/lib/supabase'
 import type { PrintJob } from '@/lib/types'
 
-type JobRow = PrintJob & { order: { id: string; number: number; customer: { name: string } | null } | null }
+type JobRow = PrintJob & { order: { id: string; number: number; customer: { name: string } | null } | null; filament: { color_hex: string | null } | null }
 
 function useHome() {
   return useQuery({
@@ -32,7 +34,11 @@ function useHome() {
           .not('status', 'in', '(entregue,cancelado)')
           .order('due_date', { ascending: true, nullsFirst: false }),
         supabase.from('orders').select('total, created_at, status').gte('created_at', monthStart).neq('status', 'cancelado'),
-        supabase.from('print_jobs').select('*, order:orders(id, number, customer:customers(name))').in('status', ['na_fila', 'imprimindo']).order('position'),
+        supabase
+          .from('print_jobs')
+          .select('*, order:orders(id, number, customer:customers(name)), filament:filaments(color_hex)')
+          .in('status', ['na_fila', 'imprimindo'])
+          .order('position'),
         supabase.from('quotes').select('id', { count: 'exact', head: true }).in('status', ['rascunho', 'enviado']),
         supabase.from('orders').select('id', { count: 'exact', head: true }),
         // aprovados pelo cliente no link nos últimos 7 dias
@@ -80,7 +86,7 @@ export function HomePage() {
       <header className="mb-5 flex flex-wrap items-end justify-between gap-3">
         <div>
           <p className="text-sm text-fg-muted first-letter:uppercase">{today}</p>
-          <h1 className="text-2xl font-semibold lg:text-3xl">{greeting()}</h1>
+          <h1 className="title-display text-2xl lg:text-3xl">{greeting()}</h1>
         </div>
         <Button asChild variant="primary">
           <Link to="/orcamentos/novo">
@@ -200,20 +206,31 @@ function PrinterNow({ jobs, now, printerName }: { jobs: JobRow[]; now: number; p
         </Link>
       </div>
       {c ? (
-        <div className="p-4">
-          <div className="flex items-center gap-2 text-xs font-medium" style={{ color: 'var(--st-imprimindo)' }}>
-            <span className="size-2 animate-pulse rounded-full" style={{ background: 'var(--st-imprimindo)' }} /> Imprimindo agora
+        <div className="grid grid-cols-[minmax(0,1fr)_7rem] sm:grid-cols-[minmax(0,1fr)_12rem]">
+          <div className="min-w-0 p-4">
+            <div className="flex items-center gap-2 text-xs font-medium" style={{ color: 'var(--st-imprimindo)' }}>
+              <span className="size-2 animate-pulse rounded-full" style={{ background: 'var(--st-imprimindo)' }} /> Imprimindo agora
+            </div>
+            <p className="mt-1 text-lg font-semibold">{c.title}</p>
+            {c.order && (
+              <Link to={`/pedidos/${c.order.id}`} className="num text-sm text-fg-muted hover:underline">
+                {docNumber(c.order.number)} · {c.order.customer?.name ?? 'Sem cliente'}
+              </Link>
+            )}
+            <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-surface-3" aria-hidden>
+              <ProgressFill pct={pct} className="h-full rounded-full" style={{ background: 'var(--st-imprimindo)' }} />
+            </div>
+            <p className="num mt-1.5 text-xs text-fg-muted">
+              {Math.round(pct)}% · termina {relativeDateTime(new Date(c.endAt)).toLowerCase()}
+            </p>
           </div>
-          <p className="mt-1 text-lg font-semibold">{c.title}</p>
-          {c.order && (
-            <Link to={`/pedidos/${c.order.id}`} className="num text-sm text-fg-muted hover:underline">
-              {docNumber(c.order.number)} · {c.order.customer?.name ?? 'Sem cliente'}
-            </Link>
-          )}
-          <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-surface-3" aria-hidden>
-            <ProgressFill pct={pct} className="h-full rounded-full" style={{ background: 'var(--st-imprimindo)' }} />
-          </div>
-          <p className="num mt-1.5 text-xs text-fg-muted">Termina {relativeDateTime(new Date(c.endAt)).toLowerCase()}</p>
+          <PrintStage
+            progress={jobProgress(c.startAt, c.print_minutes, now)}
+            piece={pieceFor(c.id)}
+            color={c.filament?.color_hex}
+            sceneClassName="print-fade-card"
+            className="border-l border-border"
+          />
         </div>
       ) : (
         <p className="flex items-center gap-2 p-4 text-sm text-fg-muted">

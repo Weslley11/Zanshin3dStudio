@@ -8,7 +8,8 @@ repositório).
 **Stack:** React + Vite + TypeScript, Tailwind v4, componentes próprios sobre
 Radix (mesma base do shadcn/ui, com visual da Zanshin), ícones Phosphor,
 animações com Motion (respeitam o "reduzir movimento" do aparelho),
-Supabase (Auth, Postgres com RLS e Storage) e PWA instalável.
+Supabase (Auth, Postgres com RLS e Storage) e PWA instalável. Títulos em
+Archivo itálico, a mesma fonte do site.
 
 ## Módulos
 
@@ -27,6 +28,21 @@ Supabase (Auth, Postgres com RLS e Storage) e PWA instalável.
 | Backup | Em Configurações: baixa um .zip com todos os dados (backup.json) e uma planilha por tabela. O Início lembra quando passa de 30 dias |
 | `/acompanhar/<token>` | Página pública do cliente: número, itens, andamento, prazo e fotos. Sem valores nem dados de outros clientes |
 | `/orcamento/<token>` | Orçamento para o cliente aprovar sozinho: peças, preços e total (sem custos). Aprovar cria o pedido e leva ao acompanhamento; vencido ou encerrado não aprova. O app mostra quando o cliente abriu e avisa no Início quando ele aprova |
+
+### Cena 3D da impressão
+
+No mesmo estilo do site, uma peça é impressa camada por camada, com o bico
+percorrendo o contorno de cada camada. As peças são geradas por código: kabuto
+samurai, carro de F1 e kunai ninja, sem personagens nem marcas. A cena aparece:
+
+- no login, com as peças se revezando;
+- no Início e na Fila, na placa que está imprimindo, sempre com a mesma peça
+  para a mesma placa, na cor do carretel e no progresso estimado;
+- no link do cliente, enquanto o pedido está imprimindo.
+
+Só desenha enquanto aparece na tela. Com "reduzir movimento" ligado, mostra um
+quadro parado. Sem WebGL, fica só o fundo com linhas de camada. O three.js só é
+baixado nas telas que usam a cena.
 
 ### Como o preço é calculado
 
