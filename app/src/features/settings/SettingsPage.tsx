@@ -185,6 +185,7 @@ function PrintersSection({ settings, printers }: { settings: Settings; printers:
                 {p.model ? `${p.model} · ` : ''}
                 {p.power_kw != null ? `${number(Number(p.power_kw) * 1000, 0)} W` : 'potência a preencher'} ·{' '}
                 {p.wear_per_hour != null ? `${brl(p.wear_per_hour)}/h` : 'desgaste a preencher'}
+                {p.bed_x_mm != null && ` · mesa ${number(Number(p.bed_x_mm))} × ${number(Number(p.bed_y_mm))} × ${number(Number(p.bed_z_mm))} mm`}
               </p>
             </div>
             <div className="flex gap-1">
@@ -215,10 +216,13 @@ function PrinterDialog({ printer, onClose }: { printer: Printer | null; onClose:
   const [powerW, setPowerW] = useState<number | null>(printer?.power_kw != null ? Math.round(Number(printer.power_kw) * 1000 * 10) / 10 : null)
   const [wear, setWear] = useState<number | null>(printer?.wear_per_hour ?? null)
   const [active, setActive] = useState(printer?.active ?? true)
+  const [bedX, setBedX] = useState<number | null>(printer?.bed_x_mm != null ? Number(printer.bed_x_mm) : null)
+  const [bedY, setBedY] = useState<number | null>(printer?.bed_y_mm != null ? Number(printer.bed_y_mm) : null)
+  const [bedZ, setBedZ] = useState<number | null>(printer?.bed_z_mm != null ? Number(printer.bed_z_mm) : null)
 
   const save = useAction(
     async () => {
-      const row = { name: name.trim(), model: model.trim() || null, power_kw: powerW == null ? null : powerW / 1000, wear_per_hour: wear, active }
+      const row = { name: name.trim(), model: model.trim() || null, power_kw: powerW == null ? null : powerW / 1000, wear_per_hour: wear, active, bed_x_mm: bedX, bed_y_mm: bedY, bed_z_mm: bedZ }
       if (printer) return must(await supabase.from('printers').update(row).eq('id', printer.id))
       return must(await supabase.from('printers').insert(row))
     },
@@ -259,6 +263,15 @@ function PrinterDialog({ printer, onClose }: { printer: Printer | null; onClose:
         <Field label="Desgaste" hint="Peças, manutenção e depreciação divididos pelas horas de uso.">
           {(p) => <NumberInput {...p} prefix="R$" suffix="/h" value={wear} onValueChange={setWear} />}
         </Field>
+        <div className="flex flex-col gap-1.5 sm:col-span-2">
+          <span className="text-sm font-medium">Área de impressão</span>
+          <div className="grid grid-cols-3 gap-2">
+            <NumberInput aria-label="Largura da mesa (X)" suffix="mm" digits={1} value={bedX} onValueChange={setBedX} placeholder="X" />
+            <NumberInput aria-label="Profundidade da mesa (Y)" suffix="mm" digits={1} value={bedY} onValueChange={setBedY} placeholder="Y" />
+            <NumberInput aria-label="Altura máxima (Z)" suffix="mm" digits={1} value={bedZ} onValueChange={setBedZ} placeholder="Z" />
+          </div>
+          <span className="text-xs text-fg-subtle">Usada na aba Modelos para avisar quando a peça não cabe.</span>
+        </div>
         <Checkbox label="Em uso" checked={active} onChange={(e) => setActive(e.target.checked)} />
       </form>
     </Dialog>

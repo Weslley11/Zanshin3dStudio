@@ -123,6 +123,44 @@ isOneToOne: false
                   Relationships: [
                     
                   ]
+                },"models": {
+                  Row: {
+                    "area_cm2": number | null,"catalog_item_id": string | null,"created_at": string,"customer_id": string | null,"file_name": string,"file_path": string,"file_size": number | null,"format": string,"id": string,"name": string,"notes": string | null,"order_id": string | null,"parts": number | null,"plates": NonNullable<Json>,"size_x_mm": number | null,"size_y_mm": number | null,"size_z_mm": number | null,"thumbnail_path": string | null,"triangles": number | null,"updated_at": string,"volume_cm3": number | null
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "area_cm2"?: number | null,"catalog_item_id"?: string | null,"created_at"?: string,"customer_id"?: string | null,"file_name": string,"file_path": string,"file_size"?: number | null,"format": string,"id"?: string,"name": string,"notes"?: string | null,"order_id"?: string | null,"parts"?: number | null,"plates"?: NonNullable<Json>,"size_x_mm"?: number | null,"size_y_mm"?: number | null,"size_z_mm"?: number | null,"thumbnail_path"?: string | null,"triangles"?: number | null,"updated_at"?: string,"volume_cm3"?: number | null
+                  }
+                  Update: {
+                    "area_cm2"?: number | null,"catalog_item_id"?: string | null,"created_at"?: string,"customer_id"?: string | null,"file_name"?: string,"file_path"?: string,"file_size"?: number | null,"format"?: string,"id"?: string,"name"?: string,"notes"?: string | null,"order_id"?: string | null,"parts"?: number | null,"plates"?: NonNullable<Json>,"size_x_mm"?: number | null,"size_y_mm"?: number | null,"size_z_mm"?: number | null,"thumbnail_path"?: string | null,"triangles"?: number | null,"updated_at"?: string,"volume_cm3"?: number | null
+                  }
+                  Relationships: [
+                    {
+      foreignKeyName: "models_catalog_item_id_fkey"
+      columns: ["catalog_item_id"]
+isOneToOne: false
+      referencedRelation: "catalog_items"
+      referencedColumns: ["id"]
+    },{
+      foreignKeyName: "models_customer_id_fkey"
+      columns: ["customer_id"]
+isOneToOne: false
+      referencedRelation: "customer_stats"
+      referencedColumns: ["customer_id"]
+    },{
+      foreignKeyName: "models_customer_id_fkey"
+      columns: ["customer_id"]
+isOneToOne: false
+      referencedRelation: "customers"
+      referencedColumns: ["id"]
+    },{
+      foreignKeyName: "models_order_id_fkey"
+      columns: ["order_id"]
+isOneToOne: false
+      referencedRelation: "orders"
+      referencedColumns: ["id"]
+    }
+                  ]
                 },"order_events": {
                   Row: {
                     "created_at": string,"from_status": string | null,"id": string,"note": string | null,"order_id": string,"to_status": string
@@ -255,14 +293,14 @@ isOneToOne: false
                   ]
                 },"print_jobs": {
                   Row: {
-                    "created_at": string,"deducted_g": number | null,"filament_id": string | null,"finished_at": string | null,"grams": number,"id": string,"meta": NonNullable<Json>,"order_id": string | null,"order_item_id": string | null,"plate_index": number | null,"position": number,"print_minutes": number,"printer_id": string | null,"source": string,"source_file_path": string | null,"started_at": string | null,"status": string,"title": string,"updated_at": string
+                    "created_at": string,"deducted_g": number | null,"filament_id": string | null,"finished_at": string | null,"grams": number,"id": string,"meta": NonNullable<Json>,"model_id": string | null,"order_id": string | null,"order_item_id": string | null,"plate_index": number | null,"position": number,"print_minutes": number,"printer_id": string | null,"source": string,"source_file_path": string | null,"started_at": string | null,"status": string,"title": string,"updated_at": string
                   }
                   ComputedFields: never
                   Insert: {
-                    "created_at"?: string,"deducted_g"?: number | null,"filament_id"?: string | null,"finished_at"?: string | null,"grams"?: number,"id"?: string,"meta"?: NonNullable<Json>,"order_id"?: string | null,"order_item_id"?: string | null,"plate_index"?: number | null,"position"?: number,"print_minutes"?: number,"printer_id"?: string | null,"source"?: string,"source_file_path"?: string | null,"started_at"?: string | null,"status"?: string,"title": string,"updated_at"?: string
+                    "created_at"?: string,"deducted_g"?: number | null,"filament_id"?: string | null,"finished_at"?: string | null,"grams"?: number,"id"?: string,"meta"?: NonNullable<Json>,"model_id"?: string | null,"order_id"?: string | null,"order_item_id"?: string | null,"plate_index"?: number | null,"position"?: number,"print_minutes"?: number,"printer_id"?: string | null,"source"?: string,"source_file_path"?: string | null,"started_at"?: string | null,"status"?: string,"title": string,"updated_at"?: string
                   }
                   Update: {
-                    "created_at"?: string,"deducted_g"?: number | null,"filament_id"?: string | null,"finished_at"?: string | null,"grams"?: number,"id"?: string,"meta"?: NonNullable<Json>,"order_id"?: string | null,"order_item_id"?: string | null,"plate_index"?: number | null,"position"?: number,"print_minutes"?: number,"printer_id"?: string | null,"source"?: string,"source_file_path"?: string | null,"started_at"?: string | null,"status"?: string,"title"?: string,"updated_at"?: string
+                    "created_at"?: string,"deducted_g"?: number | null,"filament_id"?: string | null,"finished_at"?: string | null,"grams"?: number,"id"?: string,"meta"?: NonNullable<Json>,"model_id"?: string | null,"order_id"?: string | null,"order_item_id"?: string | null,"plate_index"?: number | null,"position"?: number,"print_minutes"?: number,"printer_id"?: string | null,"source"?: string,"source_file_path"?: string | null,"started_at"?: string | null,"status"?: string,"title"?: string,"updated_at"?: string
                   }
                   Relationships: [
                     {
@@ -270,6 +308,12 @@ isOneToOne: false
       columns: ["filament_id"]
 isOneToOne: false
       referencedRelation: "filaments"
+      referencedColumns: ["id"]
+    },{
+      foreignKeyName: "print_jobs_model_id_fkey"
+      columns: ["model_id"]
+isOneToOne: false
+      referencedRelation: "models"
       referencedColumns: ["id"]
     },{
       foreignKeyName: "print_jobs_order_id_fkey"
@@ -293,14 +337,14 @@ isOneToOne: false
                   ]
                 },"printers": {
                   Row: {
-                    "active": boolean,"created_at": string,"id": string,"model": string | null,"name": string,"power_kw": number | null,"updated_at": string,"wear_per_hour": number | null
+                    "active": boolean,"bed_x_mm": number | null,"bed_y_mm": number | null,"bed_z_mm": number | null,"created_at": string,"id": string,"model": string | null,"name": string,"power_kw": number | null,"updated_at": string,"wear_per_hour": number | null
                   }
                   ComputedFields: never
                   Insert: {
-                    "active"?: boolean,"created_at"?: string,"id"?: string,"model"?: string | null,"name": string,"power_kw"?: number | null,"updated_at"?: string,"wear_per_hour"?: number | null
+                    "active"?: boolean,"bed_x_mm"?: number | null,"bed_y_mm"?: number | null,"bed_z_mm"?: number | null,"created_at"?: string,"id"?: string,"model"?: string | null,"name": string,"power_kw"?: number | null,"updated_at"?: string,"wear_per_hour"?: number | null
                   }
                   Update: {
-                    "active"?: boolean,"created_at"?: string,"id"?: string,"model"?: string | null,"name"?: string,"power_kw"?: number | null,"updated_at"?: string,"wear_per_hour"?: number | null
+                    "active"?: boolean,"bed_x_mm"?: number | null,"bed_y_mm"?: number | null,"bed_z_mm"?: number | null,"created_at"?: string,"id"?: string,"model"?: string | null,"name"?: string,"power_kw"?: number | null,"updated_at"?: string,"wear_per_hour"?: number | null
                   }
                   Relationships: [
                     

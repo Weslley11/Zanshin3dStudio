@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import { Link, useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import type { QuotePrefill } from '@/features/models/ModelDetailPage'
 import { Cube, FloppyDisk, Plus } from '@phosphor-icons/react'
 import { Page, PageHeader } from '@/components/layout/AppShell'
 import { BackButton } from '@/components/ui/BackButton'
@@ -56,6 +57,8 @@ export function QuoteEditorPage() {
 function Editor({ quote }: { quote: QuoteWithItems | null }) {
   const navigate = useNavigate()
   const [search] = useSearchParams()
+  // peças vindas da aba Modelos (estimativa ou placas fatiadas)
+  const incoming = (useLocation().state ?? null) as { prefill?: QuotePrefill[]; customerId?: string | null } | null
   const settings = useSettings().data!
   const printers = usePrinters().data!
   const filaments = useFilaments().data!
@@ -68,7 +71,7 @@ function Editor({ quote }: { quote: QuoteWithItems | null }) {
     return base ? { ...base, costPerG: fresh.costPerG, powerKw: fresh.powerKw, wearPerHour: fresh.wearPerHour } : fresh
   }
 
-  const [customerId, setCustomerId] = useState<string | null>(quote?.customer_id ?? search.get('cliente'))
+  const [customerId, setCustomerId] = useState<string | null>(quote?.customer_id ?? incoming?.customerId ?? search.get('cliente'))
   const [validUntil, setValidUntil] = useState<string | null>(
     quote ? quote.valid_until : settings.quote_validity_days ? addDaysISO(todayISO(), settings.quote_validity_days) : null,
   )
@@ -76,7 +79,20 @@ function Editor({ quote }: { quote: QuoteWithItems | null }) {
   const [notes, setNotes] = useState(quote?.notes ?? '')
   const [internalNotes, setInternalNotes] = useState(quote?.internal_notes ?? '')
   const [items, setItems] = useState<DraftItem[]>(() =>
-    quote ? quote.items.map(fromRow) : [newItem(paramsFor(defaultPrinter?.id ?? null, null), defaultPrinter?.id ?? null)],
+    quote
+      ? quote.items.map(fromRow)
+      : incoming?.prefill?.length
+        ? incoming.prefill.map((p) =>
+            newItem(paramsFor(defaultPrinter?.id ?? null, p.filament_id), defaultPrinter?.id ?? null, {
+              description: p.description,
+              grams: p.grams,
+              print_minutes: p.print_minutes,
+              filament_id: p.filament_id,
+              catalog_item_id: p.catalog_item_id ?? null,
+              category: p.category ?? null,
+            }),
+          )
+        : [newItem(paramsFor(defaultPrinter?.id ?? null, null), defaultPrinter?.id ?? null)],
   )
   const [catalogOpen, setCatalogOpen] = useState(false)
   const [formError, setFormError] = useState<string | null>(null)

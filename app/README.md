@@ -19,6 +19,7 @@ Supabase (Auth, Postgres com RLS e Storage) e PWA instalável.
 | Fila | Placas em ordem, previsão encadeada a partir de agora, reordenar arrastando, iniciar, concluir (desconta do carretel) e registrar falha |
 | Filamentos | Carretéis com cor, preço, peso, custo por grama automático e alerta de estoque baixo |
 | Catálogo | Peças recorrentes com foto e preço base; exporta JSON no formato do `js/pecas-data.js` do site |
+| Modelos 3D | Envia STL, OBJ, 3MF ou o `.gcode.3mf` do Bambu Studio: vê em 3D na cor do carretel, mede, avisa se não cabe na mesa, estima gramas pelo volume e, no arquivo fatiado, leva tempo e gramas de cada placa para o orçamento e a fila |
 | Clientes | Contatos, origem, histórico e total gasto |
 | Financeiro | Faturamento, custos, lucro estimado, ticket médio, mais vendidos, taxa de falha real e CSV |
 | `/acompanhar/<token>` | Página pública do cliente: número, itens, andamento, prazo e fotos. Sem valores nem dados de outros clientes |
@@ -113,6 +114,12 @@ Problemas comuns na publicação:
   precisam estar nas variáveis de build (Settings → Build), não nas de runtime,
   e o app precisa ser publicado de novo depois de criá-las.
 
+### Atualizar um projeto que já está no ar
+
+Quando chegar uma migration nova em `supabase/migrations`, rode só os arquivos
+novos, em ordem, no **SQL Editor** do Supabase (ou `npx supabase db push`). O
+`instalar-tudo.sql` é só para projeto novo e vazio.
+
 ### 3. Instalar no celular
 
 Abra o endereço do app no navegador do celular e use "Adicionar à tela de
@@ -143,9 +150,9 @@ app/
 
 ## Fase 2 (modelo já preparado)
 
-- **Importar o `.gcode.3mf` do Bambu Studio:** `print_jobs` já tem
-  `source`, `source_file_path`, `plate_index` e `meta` para gramas e tempo de
-  cada placa vindos do arquivo.
+- **Importar o `.gcode.3mf` do Bambu Studio:** feito na aba Modelos. O app lê
+  `Metadata/slice_info.config` (tempo, gramas e filamentos por placa) e as
+  miniaturas `Metadata/plate_N.png`.
 - **Pedidos do formulário do site:** tabela `site_requests`, a ser alimentada
   por uma Edge Function com validação (não por insert anônimo).
 - **Mais de uma impressora:** tabela `printers`, `printer_id` em itens e

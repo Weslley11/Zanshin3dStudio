@@ -4,6 +4,7 @@ import {
   Calculator,
   ChartLineUp,
   Cube,
+  CubeFocus,
   Disc,
   DotsThreeOutline,
   GearSix,
@@ -33,6 +34,7 @@ const MORE: NavItem[] = [
   { to: '/filamentos', label: 'Filamentos', icon: Disc },
   { to: '/clientes', label: 'Clientes', icon: Users },
   { to: '/catalogo', label: 'Catálogo', icon: Cube },
+  { to: '/modelos', label: 'Modelos 3D', icon: CubeFocus },
   { to: '/financeiro', label: 'Financeiro', icon: ChartLineUp },
   { to: '/configuracoes', label: 'Configurações', icon: GearSix },
 ]

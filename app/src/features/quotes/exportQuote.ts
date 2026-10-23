@@ -26,8 +26,12 @@ function download(href: string, name: string) {
 
 /** Imagem: no celular abre o compartilhar (dá para mandar direto no WhatsApp); no desktop baixa. */
 export async function shareQuoteImage(node: HTMLElement, name: string) {
-  const url = await renderPng(node)
-  const file = dataUrlToFile(url, `${name}.png`)
+  return shareImageFile(dataUrlToFile(await renderPng(node), `${name}.png`))
+}
+
+export async function shareImageFile(file: File) {
+  const name = file.name.replace(/\.png$/, '')
+  const url = URL.createObjectURL(file)
   const nav = navigator as Navigator & { canShare?: (d: ShareData) => boolean }
   if (window.matchMedia('(pointer: coarse)').matches && nav.canShare?.({ files: [file] })) {
     try {
@@ -38,6 +42,7 @@ export async function shareQuoteImage(node: HTMLElement, name: string) {
     }
   }
   download(url, `${name}.png`)
+  setTimeout(() => URL.revokeObjectURL(url), 10_000)
   return 'downloaded'
 }
 

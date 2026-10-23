@@ -39,6 +39,7 @@ import { waLink } from '@/lib/whatsapp'
 import { useOrder, useSetOrderStatus, type OrderDetail } from './api'
 import { DueChip } from './DueChip'
 import { trackingUrl } from './tracking'
+import { OrderModels } from './OrderModels'
 
 export function OrderDetailPage() {
   const { id } = useParams<{ id: string }>()
@@ -70,6 +71,7 @@ export function OrderDetailPage() {
               <ItemsCard order={o!} filaments={filaments.data ?? []} />
               <JobsCard order={o!} filaments={filaments.data ?? []} />
               <PhotosCard order={o!} />
+              <OrderModels orderId={o!.id} />
               <FailuresCard order={o!} filaments={filaments.data ?? []} />
             </div>
             <aside className="flex flex-col gap-4 lg:sticky lg:top-6">

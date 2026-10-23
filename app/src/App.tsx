@@ -24,6 +24,8 @@ const CustomerDetailPage = named(() => import('@/features/customers/CustomerDeta
 const CatalogPage = named(() => import('@/features/catalog/CatalogPage'), 'CatalogPage')
 const FinancePage = named(() => import('@/features/finance/FinancePage'), 'FinancePage')
 const SettingsPage = named(() => import('@/features/settings/SettingsPage'), 'SettingsPage')
+const ModelsPage = named(() => import('@/features/models/ModelsPage'), 'ModelsPage')
+const ModelDetailPage = named(() => import('@/features/models/ModelDetailPage'), 'ModelDetailPage')
 const TrackingPage = named(() => import('@/features/tracking/TrackingPage'), 'TrackingPage')
 
 const queryClient = new QueryClient({
@@ -62,6 +64,8 @@ export default function App() {
                   <Route path="clientes" element={<CustomersPage />} />
                   <Route path="clientes/:id" element={<CustomerDetailPage />} />
                   <Route path="catalogo" element={<CatalogPage />} />
+                  <Route path="modelos" element={<ModelsPage />} />
+                  <Route path="modelos/:id" element={<ModelDetailPage />} />
                   <Route path="financeiro" element={<FinancePage />} />
                   <Route path="configuracoes" element={<SettingsPage />} />
                   <Route path="*" element={<Navigate to="/" replace />} />

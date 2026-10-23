@@ -64,7 +64,9 @@ select (select count(*) from public.orders) = 0 and (select count(*) from public
 reset role;
 select set_config('request.jwt.claims', '{"role":"anon"}', true) \gset
 set local role anon;
-select (select count(*) from public.orders) = 0 and (select count(*) from public.customers) = 0 as ok_anon_nao_ve_tabelas;
+select (select count(*) from public.orders) = 0 and (select count(*) from public.customers) = 0
+   and (select count(*) from public.models) = 0 as ok_anon_nao_ve_tabelas;
+select count(*) = 0 as ok_anon_nao_lista_arquivos_3d from storage.objects where bucket_id = 'models';
 select (r ->> 'number') is not null
    and r -> 'items' -> 0 ->> 'description' = 'Peça'
    and not (r ? 'total') and not (r ? 'customer') and not (r::text ilike '%Cliente Teste%')
